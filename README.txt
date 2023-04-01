@@ -1,5 +1,5 @@
 - 가입하기(책내용참조)
-1. https://github.com에 접속하여 [Sign Up] 클릭한다.
+1. https://github.com 에 접속하여 [Sign Up] 클릭한다.
 2. [Enter your email]에 이메일 입력하고 [Continue]버튼을 클릭한다.
 3. [Create a password]에 패스워드 입력하고 [Continue]버튼을 클릭한다.
 4. [Enter a username]에 이름 입력하고 [Continue]버튼을 클릭한다.
