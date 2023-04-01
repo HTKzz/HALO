@@ -1,0 +1,39 @@
+[1.표지]
+
+[2.화면정의서]
+메인/상품상세페이지/구매페이지
+[3.기능정의서]
+화면정의서 기준
+[4.정책정의서]
+참고해서...
+[5.검수용 체크리스트]
+참고해서...
+[6.일정표]
+적당한 양식 받아다가....임의로...
+[7.사이트맵]
+있는 그대로(폼만 바꿔서)
+[8.시퀀스 다이어그램] ★★★ >> 꼭 직접 작성해볼것(디테일하게)
+
+## 보고서에 있던 컨트롤러 ##
+
+GoodsController-Impl1  지영
+MemberController-Impl2  은경
+MypageController-Impl3  준석
+CartController-Impl4      태기
+OrderController-Impl5    원석
+
+AdminGoodsController-Impl  은경, 원석
+AdminOrderController-Impl  지영
+AdminMemberController-Impl  준석, 태기
+
+
+## 보고서에 없던 컨트롤러 ##
+
+BaseController
+MainController
+
+[9.ERD]
+
+[10.도서 쇼핑몰 추가기능 구현(코드)]
+강조 / 퀵메뉴 / 공지사항 게시판
+완성하는거 시간봐서
