@@ -18,6 +18,9 @@
 2. 폴더 우클릭후 git bash here 클릭
 git config --global user.email "자신의 것" 엔터
 git config --global user.name "자신의 것" 엔터
+git branch -m main
+
+
 
 - 깃허브 프로그램 명령어 
 컨트롤+insert = 복사
@@ -46,6 +49,8 @@ git commit -m "메시지"
 6. 올리기(절대 push 관련 다른명령어 사용금지!!!!!!!!!!!!)
 git push origin main
 
+* 처음 올리기하면 권한이 없어서 로그인하는것처럼 뜨는데 토큰으로 로그인하면됨*
+
 
 
 -- 오류정보
@@ -55,5 +60,5 @@ git push origin main
 
 ** failed to push some refs to      3번 실행
 
-
+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
 
