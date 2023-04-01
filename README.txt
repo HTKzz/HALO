@@ -36,7 +36,7 @@ git remote add origin https://github.com/HTKzz/HALO.git
 git pull origin master
 
 4. 파일올리기
-git add "파일이름.확장자명"      ex) README.txt
+git add "파일이름.확장자명"      ex) README.txt 폴더는 git add 폴더명
 
 5. commit 하면서 *코멘트 달기*
 git commit -m "메시지"
@@ -45,10 +45,12 @@ git commit -m "메시지"
 git push origin master
 
 
-
+-- 오류정보
 ** remote origin already exists. 뜨는건 remote add가 이미 되어있음
+** 'origin' does not appear to be a git repository     2번
 
-** failed to push some refs to 3번????
+
+** failed to push some refs to 
 
 
 
