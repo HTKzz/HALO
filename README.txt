@@ -29,28 +29,31 @@ git init
 
 폴더안에 .git 파일 생겼나 확인하기 *숨김파일로 생기니 숨김파일보기설정
 
-2. pm 깃허브 연결하기
+2. PM 깃허브 연결하기
 git remote add origin https://github.com/HTKzz/HALO.git
 
 3. 깃허브 폴더전체 다운로드 받기
 git pull origin master
 
-4. 파일올리기
-git add "파일이름.확장자명"      ex) README.txt 폴더는 git add 폴더명
+4. 파일/폴더 올리기
+git add "파일이름.확장자명"      ex) README.txt / 폴더는 git add 폴더명
+
+git add . << 폴더안에 파일전체가 올라가서 절대사용금지!!!!!!!!!
 
 5. commit 하면서 *코멘트 달기*
 git commit -m "메시지"
 
-6. 올리기
+6. 올리기(절대 push 관련 다른명령어 사용금지!!!!!!!!!!!!)
 git push origin master
+
 
 
 -- 오류정보
 ** remote origin already exists. 뜨는건 remote add가 이미 되어있음
-** 'origin' does not appear to be a git repository     2번
+** 'origin' does not appear to be a git repository     2번 실행
 
 
-** failed to push some refs to 
+** failed to push some refs to      3번 실행
 
 
 
