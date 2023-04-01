@@ -60,5 +60,5 @@ git push origin main
 
 ** failed to push some refs to      3번 실행
 
-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
+
 
