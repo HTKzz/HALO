@@ -53,7 +53,7 @@ git push origin master
 ** 'origin' does not appear to be a git repository     2번 실행
 
 
-** failed to push some refs to      3번 실행
+** failed to push some refs to      3번 실행~
 
 
 
