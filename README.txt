@@ -16,8 +16,11 @@
 - 사용하기전
 1. 사용할 폴더 만들기
 2. 폴더 우클릭후 git bash here 클릭
-$ git config --global user.email "자신의 것" 엔터
-$ git config --global user.name "자신의 것" 엔터
+git config --global user.email "자신의 것" 엔터
+git config --global user.name "자신의 것" 엔터
+git branch -m main
+
+
 
 - 깃허브 프로그램 명령어 
 컨트롤+insert = 복사
@@ -33,7 +36,7 @@ git init
 git remote add origin https://github.com/HTKzz/HALO.git
 
 3. 깃허브 폴더전체 다운로드 받기
-git pull origin master
+git pull origin main
 
 4. 파일/폴더 올리기
 git add "파일이름.확장자명"      ex) README.txt / 폴더는 git add 폴더명
@@ -44,7 +47,9 @@ git add . << 폴더안에 파일전체가 올라가서 절대사용금지!!!!!!!
 git commit -m "메시지"
 
 6. 올리기(절대 push 관련 다른명령어 사용금지!!!!!!!!!!!!)
-git push origin master
+git push origin main
+
+* 처음 올리기하면 권한이 없어서 로그인하는것처럼 뜨는데 토큰으로 로그인하면됨*
 
 
 
@@ -56,4 +61,4 @@ git push origin master
 ** failed to push some refs to      3번 실행
 
 
-
+수정하기가 됩니다 태기
