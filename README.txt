@@ -60,9 +60,5 @@ git push origin main
 
 ** failed to push some refs to      3번 실행
 
-
-수정하기가 됩니다 태기
-2빠 왔다감 - 준석
-3빠 왔다감 은경
-수정완료
+** 뭔가 이것저것해도 안될시 rm -rf .git/ 실행후 1번부터 
 
