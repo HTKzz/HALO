@@ -62,3 +62,4 @@ git push origin main
 
 ** 뭔가 이것저것해도 안될시 rm -rf .git/ 실행후 1번부터 
 
+ㅎㅇㅎㅇ
