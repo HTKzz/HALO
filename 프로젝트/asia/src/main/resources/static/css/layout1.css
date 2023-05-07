@@ -18,6 +18,10 @@ body {
 	text-align: center;
 }
 
+.nav-link {
+	text-decoration: none;
+}
+
 
 .content {
 	margin-bottom: 100px;
