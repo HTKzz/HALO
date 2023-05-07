@@ -30,13 +30,17 @@ public class MemberController {
 	@PostConstruct
 	private void createAdmin() {
 		//관리자
-		boolean check = memberService.checkMemidDuplicate("admin");
+		boolean check = memberService.checkIdDuplicate("admin");
 		if (check)
 			return;
 		MemberFormDto memberFormDto = new MemberFormDto();
 		memberFormDto.setName("관리자");
-		memberFormDto.setMemid("admin");
+		memberFormDto.setId("admin");
 		memberFormDto.setPassword("12341234");
+		memberFormDto.setEmail("123@naver.com");
+		memberFormDto.setTel("0105555555");
+		memberFormDto.setBirth("1996-05-23");
+		memberFormDto.setAddr("관저동");
 		Member member = Member.createMember(memberFormDto , passwordEncoder);
 		String password = passwordEncoder.encode(memberFormDto.getPassword());
 		member.setPassword(password);

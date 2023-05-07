@@ -6,7 +6,10 @@ import com.asia.entity.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 	
-	Member findByMemid(String Memid);
-	boolean existsByMemid(String memid);
+	Member findById(String id);
+	Member findByTel(String tel);
+	Member findByEmail(String email);
+	
+	boolean existsById(String id);
 	
 }

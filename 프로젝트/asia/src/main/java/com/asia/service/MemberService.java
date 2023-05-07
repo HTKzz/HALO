@@ -25,28 +25,38 @@ public class MemberService implements UserDetailsService {
 	}
 
 	private void validateDuplicateMember(Member member) {
-		Member findMember = memberRepository.findByMemid(member.getMemid());
+		Member findMember = memberRepository.findById(member.getId());
 		if (findMember != null) {
-			throw new IllegalStateException("이미 가입된 회원입니다."); // 이미 가입된 회원의 경우 예외를 발생시킨다.
+			throw new IllegalStateException("이미 가입된 아이디입니다."); // 이미 가입된 회원의 경우 예외를 발생시킨다.
+		}
+		findMember = null;
+		findMember = memberRepository.findByEmail(member.getEmail());
+		if (findMember != null) {
+			throw new IllegalStateException("이미 사용된 이메일입니다."); // 이미 가입된 회원의 경우 예외를 발생시킨다.
+		}
+		findMember = null;
+		findMember = memberRepository.findByTel(member.getTel());
+		if (findMember != null) {
+			throw new IllegalStateException("이미 사용된 전화번호입니다."); // 이미 가입된 회원의 경우 예외를 발생시킨다.
 		}
 	}
 
-	public UserDetails loadUserByUsername(String memid) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
 		
-		Member member = memberRepository.findByMemid(memid);
+		Member member = memberRepository.findById(id);
 		
 		if (member == null) {
-			throw new UsernameNotFoundException(memid);
+			throw new UsernameNotFoundException(id);
 		}
 		
 		return User.builder()
-				.username(member.getMemid())
+				.username(member.getId())
 				.password(member.getPassword())
 				.roles(member.getRole().toString())
 				.build();
 	}
 	
-	public boolean checkMemidDuplicate(String memid) {
-		return memberRepository.existsByMemid(memid);
+	public boolean checkIdDuplicate(String memid) {
+		return memberRepository.existsById(memid);
 	}
 }
