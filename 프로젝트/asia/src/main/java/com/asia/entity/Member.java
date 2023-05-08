@@ -1,7 +1,5 @@
 package com.asia.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -62,6 +60,8 @@ public class Member extends BaseEntity {
 	
 	private String agree;
 	
+	
+	//회원가입
 	public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
 		Member member = new Member();
 		member.setId(memberFormDto.getId());
