@@ -1,7 +1,5 @@
 package com.asia.dto;
 
-import java.sql.Date;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -39,4 +37,6 @@ public class MemberFormDto {
 	private String birth;
 	
 	private Long age;
+	
+	private String agree;
 }
