@@ -39,4 +39,6 @@ public class MemberFormDto {
 	private String birth;
 	
 	private Long age;
+	
+	private String agree;
 }
