@@ -49,9 +49,9 @@ public class Company extends BaseEntity {
 	public static Company createCompany(CompanyFormDto companyFormDto, PasswordEncoder passwordEncoder) {
 		Company company = new Company();
 		company.setId(companyFormDto.getId());
-		company.setName(companyFormDto.getName());
 		String password = passwordEncoder.encode(companyFormDto.getPassword());
 		company.setPassword(password);
+		company.setName(companyFormDto.getName());
 		company.setRole(Role.COMPANY);
 		company.setStat(Stat.회원);
 		return company;

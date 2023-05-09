@@ -28,17 +28,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.formLogin()
 				.loginPage("/members/login")
-				.loginPage("/companys/login")
 				.defaultSuccessUrl("/")
 				.usernameParameter("id")
 				.failureUrl("/members/login/error")
-				.failureUrl("/companys/login/error")
 				.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
-				.logoutRequestMatcher(new AntPathRequestMatcher("/companys/logout"))
 				.logoutSuccessUrl("/") 
 		;
+		
+		http.formLogin()
+				.loginPage("/companys/login")
+				.defaultSuccessUrl("/")
+				.usernameParameter("id")
+				.failureUrl("/companys/login/error")
+				.and()
+				.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/companys/logout"))
+				.logoutSuccessUrl("/") 
+;
 		
 		http.authorizeRequests()
 			.mvcMatchers("/", "/members/**", "/companys/**", "/item/**", "/images/**").permitAll()
