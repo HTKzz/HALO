@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+	
+<meta charset="UTF-8">
+<th:block layout:fragment="css">
+	
+</th:block>
+
+<div layout:fragment="content">
+	<form role="form" method="post" action="/members/login">
+		<div class="form-group">
+			<button type="button" class="btn btn-primary" onClick="location.href='/members/login'">개인 로그인</button>
+			
+		</div>
+	</form>
+	
+	<form role="form" method="get" action="/companys/login">	
+		<div class="form-group">
+			<button type="button" class="btn btn-primary" onClick="location.href='/companys/login'">법인 로그인</button>
+		</div>
+	</form>
+	
+	
+</div>
+</html>
