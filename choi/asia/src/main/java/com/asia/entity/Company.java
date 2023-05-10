@@ -40,6 +40,18 @@ public class Company extends BaseEntity {
 	@Column
 	private String name;
 	
+	@Column
+	private Integer tel;
+	
+	@Column
+	private String addr;
+	
+	@Column
+	private String email;
+	
+	@Column
+	private String agree;
+	
 	@Enumerated(EnumType.STRING)
 	private Stat stat;
 	

@@ -26,10 +26,10 @@ public class MemberController {
 	private final MemberService memberService;
 	private final PasswordEncoder passwordEncoder;
 	
-	//�엫�쓽濡� 愿�由ъ옄 �깮�꽦
+	//임의로 관리자 생성
 	@PostConstruct
 	private void createAdmin() {
-		//愿�由ъ옄
+		//관리자
 		boolean check = memberService.checkIdDuplicate("admin");
 		if (check)
 			return;
@@ -40,7 +40,7 @@ public class MemberController {
 		memberFormDto.setEmail("123@naver.com");
 		memberFormDto.setTel("0105555555");
 		memberFormDto.setBirth("1996-05-23");
-		memberFormDto.setAddr("둔산동");
+		memberFormDto.setAddr("관저동");
 		Member member = Member.createMember(memberFormDto , passwordEncoder);
 		String password = passwordEncoder.encode(memberFormDto.getPassword());
 		member.setPassword(password);
@@ -53,8 +53,6 @@ public class MemberController {
 		model.addAttribute("memberFormDto", new MemberFormDto());
 		return "member/memberForm";
 	}
-	
-	
 
 //	@PostMapping(value = "/new")
 //	public String memberForm(MemberFormDto memberFormDto) {
@@ -79,27 +77,15 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@GetMapping(value="/identify")
-	public String IdentifyUser() {
-		return "member/identifyLoginForm";
-	}
-	
 	@GetMapping(value="/login")
 	public String loginMember() {
-		return "member/memberLoginForm";
+		return "/member/memberLoginForm";
 	}
 	
 	@GetMapping(value="/login/error")
 	public String loginError(Model model) {
-		model.addAttribute("loginErrorMsg", "아이디와 비밀번호를 확인하세요!");
-		return "member/memberLoginForm";
+		model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
+		return "/member/memberLoginForm";
 	}
-	
-	@PostMapping(value="/login")
-	public String loginForm(Model model) {
-		
-		model.addAttribute("memberFormDto", new MemberFormDto());
-		return "member/memberLoginForm";
-	}
-	
+
 }

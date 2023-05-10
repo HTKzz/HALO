@@ -12,45 +12,37 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.asia.service.CompanyService;
+import com.asia.service.MemberService;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityCompanyConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	CompanyService companyService;
-	
+	MemberService memberService;
 	
 	protected void configure(HttpSecurity http) throws Exception {
-		
-		http
-				.formLogin()
-				.loginPage("/companys/login")
+		http.formLogin()
+				.loginPage("/members/login")
 				.defaultSuccessUrl("/")
 				.usernameParameter("id")
-				.failureUrl("/companys/login/error")
+				.failureUrl("/members/login/error")
 				.and()
 				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/companys/logout"))
+				.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
 				.logoutSuccessUrl("/") 
 		;
 		
-		http
-				.authorizeRequests()
-				.mvcMatchers("/", "/members/**", "/companys/**", "/item/**", "/images/**").permitAll()
-				.mvcMatchers("/admin/**").hasRole("ADMIN")
-				.anyRequest()
-				.authenticated()
+		http.authorizeRequests()
+			.mvcMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
+			.mvcMatchers("/admin/**").hasRole("ADMIN")
+			.anyRequest().authenticated()
 		;
 		
-		http
-				.exceptionHandling()
-				.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+		http.exceptionHandling()
+			.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
 		;
-		
 	}
-	
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -58,7 +50,7 @@ public class SecurityCompanyConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(companyService)
+		auth.userDetailsService(memberService)
 		.passwordEncoder(passwordEncoder());
 	}
 	
