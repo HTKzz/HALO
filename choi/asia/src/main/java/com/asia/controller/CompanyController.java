@@ -60,7 +60,7 @@ public class CompanyController {
 	}
 	
 	@PostMapping(value="/login")
-	public String loginCompany2(Model model) {
+	public String loginForm(Model model) {
 		
 		model.addAttribute("companyFormDto", new CompanyFormDto());
 		System.out.println(model);
@@ -71,6 +71,11 @@ public class CompanyController {
 	public String CompanyForm(Model model) {
 		model.addAttribute("companyFormDto", new CompanyFormDto());
 		return "member/companyForm";
+	}
+	
+	@GetMapping(value="/identify")
+	public String IdentifyUser() {
+		return "member/identifyLoginForm";
 	}
 	
 	@GetMapping(value="/login")

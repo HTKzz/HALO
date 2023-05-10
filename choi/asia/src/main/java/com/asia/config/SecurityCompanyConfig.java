@@ -12,54 +12,44 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.asia.repository.CompanyRepository;
-import com.asia.service.MemberService;
+import com.asia.service.CompanyService;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityCompanyConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	MemberService memberService;
+	CompanyService companyService;
 	
-	@Autowired
-	CompanyRepository companyRepository;
 	
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin()
-				.loginPage("/members/login")
-				.defaultSuccessUrl("/")
-				.usernameParameter("id")
-				.failureUrl("/members/login/error")
-				.and()
-				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
-				.logoutSuccessUrl("/") 
-		;
 		
-		http.formLogin()
+		http
+				.formLogin()
 				.loginPage("/companys/login")
 				.defaultSuccessUrl("/")
 				.usernameParameter("id")
 				.failureUrl("/companys/login/error")
 				.and()
 				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/companys/logout"))
+				.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
 				.logoutSuccessUrl("/") 
-;
-		
-		http.authorizeRequests()
-			.mvcMatchers("/", "/members/**", "/companys/**", "/item/**", "/images/**").permitAll()
-			.mvcMatchers("/admin/**").hasRole("ADMIN")
-			.anyRequest().authenticated()
 		;
 		
-		http.exceptionHandling()
-			.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+		http
+				.authorizeRequests()
+				.mvcMatchers("/", "/members/**", "/companys/**", "/item/**", "/images/**").permitAll()
+				.mvcMatchers("/admin/**").hasRole("ADMIN")
+				.anyRequest()
+				.authenticated()
+		;
+		
+		http
+				.exceptionHandling()
+				.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
 		;
 		
 	}
-	
 	
 
 	@Bean
@@ -68,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(memberService)
+		auth.userDetailsService(companyService)
 		.passwordEncoder(passwordEncoder());
 	}
 	

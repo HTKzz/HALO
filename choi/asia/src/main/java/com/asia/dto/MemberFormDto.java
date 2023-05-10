@@ -16,7 +16,7 @@ public class MemberFormDto {
 	@NotBlank(message = "이름은 필수 입력 값입니다.")
 	private String name;
 	
-	@NotBlank(message = "아이디은 필수 입력 값입니다.")
+	@NotBlank(message = "아이디는 필수 입력 값입니다.")
 	private String id;
 	
 	@NotEmpty(message = "이메일은 필수 입력 값입니다.")
