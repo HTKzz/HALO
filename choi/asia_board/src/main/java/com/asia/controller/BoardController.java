@@ -1,5 +1,8 @@
 package com.asia.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -37,10 +40,21 @@ public class BoardController {
 	
 	//게시판 글 다써서 서브밋 해보리기~
 	@PostMapping(value="/submitBoard")
-	public String addBoardList(@Valid BoardFormDto boardFormDto) {
+	public String addBoardList(@Valid BoardFormDto boardFormDto, Model model) {
 		
-		
+		model.addAttribute(boardFormDto);
 		return "/board";
+	}
+	
+	@PostMapping(value="/board")
+	public String boardLists(BoardFormDto boardFormDto, Model model){
+		
+//		List listS = new ArrayList(boardService.boardLists());
+//		
+//		model.addAttribute(listS);
+		model.addAttribute("BoardFormDto", new BoardFormDto());
+		model.addAttribute(boardFormDto);
+		return "board/boardList";
 	}
 	
 }
