@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+<meta charset="UTF-8">
+<title>보오오오오오올ㄹㄹㄹ드으으ㅡ</title>
+<th:block layout:fragment="css">
+<style>
+
+	.group-wrapper{
+            width: 800px;
+            height: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+	.group-div{
+            display: inline-block;
+            width: 125px;
+            height: 30px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .group-show{
+            display: inline-block;
+            width: 125px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .title{
+            display: inline-block;
+            width: 325px;
+            vertical-align: middle;
+        }
+        
+        .write{
+        	height:40px;
+        	right:700px;
+        	
+        	line-height:40px;
+        	
+        } 
+</style>
+</th:block>
+<div layout:fragment="content">
+	<form role="form" method="post" action="/board">
+		<div class="group-wrapper">
+			<div class="group-div">글번호</div>
+
+			<div class="group-div title">제목</div>
+
+			<div class="group-div">작성일</div>
+
+			<div class="group-div">작성자</div>
+		</div>
+		<div class="group-wrapper">
+			<div class="group-show">글번호 들어갈 곳</div>
+
+			<div class="group-show title">제목 들어갈 곳</div>
+
+			<div class="group-show">작성일 들어갈 곳</div>
+
+			<div class="group-show">작성자 들어갈 곳</div>
+		</div>
+		<div class="group-wrapper">
+			<div class ="write">
+				<!-- <input type="button" value="글쓰러 가보싈?"> -->
+				<a href="/boards/write">글쓰러 가보실?</a>
+			</div>
+		</div>
+	</form>
+</div>
+</html>

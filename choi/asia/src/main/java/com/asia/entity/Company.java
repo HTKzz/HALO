@@ -28,7 +28,7 @@ public class Company extends BaseEntity {
 	
 	@Id
 	@Column(name="company_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Long num;
 	
 	@Column

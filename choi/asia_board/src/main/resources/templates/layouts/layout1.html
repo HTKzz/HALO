@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
 <title>Title</title>
@@ -19,8 +19,11 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css"></th:block>
 </head>
 <body>
-<div th:replace="fragments/header::header"></div>
-<div layout:fragment="content" class="content"> </div>
-<div th:replace="fragments/footer::footer"></div>
+	<div th:replace="fragments/header::header"></div>
+	
+	<div><a href="boards/lists">게시판 가보싈?</a></div>
+	
+	<div layout:fragment="content" class="content"></div>
+	<div th:replace="fragments/footer::footer"></div>
 </body>
 </html>

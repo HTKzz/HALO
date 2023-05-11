@@ -9,6 +9,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	Board findByName(String name);
 	Board findByContent(String content);
 	
-	boolean existsByName(String name);
+//	boolean existsByName(String name);
 	
 }

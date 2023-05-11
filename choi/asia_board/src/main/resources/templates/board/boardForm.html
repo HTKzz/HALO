@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+<meta charset="UTF-8">
+<title>글쓰기폼인데~</title>
+
+<th:block layout:fragment="css">
+<style>
+	.cont{
+		height:150px;
+		padding:5px;
+	}
+	
+</style>
+</th:block>
+
+<div layout:fragment="content">
+	<form action="/boards/submitBoard" method="post" th:object="${BoardFormDto}">
+		<div class="write-wrapper">
+			<label th:for="name">제목 <input class="title" type="text"
+				 th:field="*{name}" placeholder="내용을 작성 해주세요"></label>
+		</div>
+
+		<div>
+			<label th:for="content">내용 <input class="cont" type="text"
+				 th:field="*{content}" placeholder="제목을 작성 해주세요"></label>
+		</div>
+		
+		<div>
+			<input type="submit" value="글쓰기">
+		</div>
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+	</form>
+</div>
+	
+
+</html>
