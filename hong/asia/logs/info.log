@@ -1,0 +1,958 @@
+[2023-05-12 15:43:00.803] [INFO ] [background-preinit] org.hibernate.validator.internal.util.Version
+				HV000001: Hibernate Validator 6.2.5.Final
+[2023-05-12 15:43:00.805] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Starting AsiaApplication using Java 11.0.17 on DESKTOP-OOGC79Q with PID 3652 (C:\boot\asia\target\classes started by BIG603-06 in C:\boot\asia)
+[2023-05-12 15:43:00.806] [INFO ] [restartedMain] com.asia.AsiaApplication
+				No active profile set, falling back to 1 default profile: "default"
+[2023-05-12 15:43:01.024] [INFO ] [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls
+				The Class-Path manifest attribute in C:\Users\BIG603-06\.m2\repository\com\oracle\database\jdbc\ojdbc8\21.5.0.0\ojdbc8-21.5.0.0.jar referenced one or more files that do not exist: file:/C:/Users/BIG603-06/.m2/repository/com/oracle/database/jdbc/ojdbc8/21.5.0.0/oraclepki.jar
+[2023-05-12 15:43:01.024] [INFO ] [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor
+				Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2023-05-12 15:43:01.024] [INFO ] [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor
+				For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2023-05-12 15:43:01.607] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2023-05-12 15:43:01.658] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Finished Spring Data repository scanning in 45 ms. Found 3 JPA repository interfaces.
+[2023-05-12 15:43:02.216] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat initialized with port(s): 8090 (http)
+[2023-05-12 15:43:02.224] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Initializing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:43:02.225] [INFO ] [restartedMain] org.apache.catalina.core.StandardService
+				Starting service [Tomcat]
+[2023-05-12 15:43:02.225] [INFO ] [restartedMain] org.apache.catalina.core.StandardEngine
+				Starting Servlet engine: [Apache Tomcat/9.0.74]
+[2023-05-12 15:43:02.298] [INFO ] [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Initializing Spring embedded WebApplicationContext
+[2023-05-12 15:43:02.298] [INFO ] [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext
+				Root WebApplicationContext: initialization completed in 1273 ms
+[2023-05-12 15:43:02.354] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-1 - Starting...
+[2023-05-12 15:43:02.361] [WARN ] [restartedMain] com.zaxxer.hikari.util.DriverDataSource
+				Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-05-12 15:43:02.573] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-1 - Start completed.
+[2023-05-12 15:43:02.582] [INFO ] [restartedMain] org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+				H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@localhost:1521:xe'
+[2023-05-12 15:43:02.687] [INFO ] [restartedMain] org.hibernate.jpa.internal.util.LogHelper
+				HHH000204: Processing PersistenceUnitInfo [name: default]
+[2023-05-12 15:43:02.741] [INFO ] [restartedMain] org.hibernate.Version
+				HHH000412: Hibernate ORM core version 5.6.15.Final
+[2023-05-12 15:43:02.896] [INFO ] [restartedMain] org.hibernate.annotations.common.Version
+				HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[2023-05-12 15:43:02.989] [INFO ] [restartedMain] org.hibernate.dialect.Dialect
+				HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+[2023-05-12 15:43:03.741] [INFO ] [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator
+				HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2023-05-12 15:43:03.750] [INFO ] [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:43:03.793] [WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2023-05-12 15:43:04.532] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:43:04.533] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/css/**']
+[2023-05-12 15:43:04.533] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:43:04.533] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/js/**']
+[2023-05-12 15:43:04.533] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/img/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:43:04.533] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/img/**']
+[2023-05-12 15:43:04.572] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4586eed5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2fe1c7c5, org.springframework.security.web.context.SecurityContextPersistenceFilter@5fa78e50, org.springframework.security.web.header.HeaderWriterFilter@1a66be07, org.springframework.security.web.csrf.CsrfFilter@400e2e8a, org.springframework.security.web.authentication.logout.LogoutFilter@4d97b060, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@302eaf77, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5825f0b8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@34e74a0e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@307ad099, org.springframework.security.web.session.SessionManagementFilter@7cb53a51, org.springframework.security.web.access.ExceptionTranslationFilter@7123beb6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@63aebc93]
+[2023-05-12 15:43:04.899] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer
+				LiveReload server is running on port 35729
+[2023-05-12 15:43:04.913] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Starting ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:43:04.926] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat started on port(s): 8090 (http) with context path ''
+[2023-05-12 15:43:04.936] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Started AsiaApplication in 4.589 seconds (JVM running for 5.268)
+[2023-05-12 15:46:07.663] [INFO ] [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener
+				Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-05-12 15:46:07.703] [INFO ] [Thread-9] org.apache.coyote.http11.Http11NioProtocol
+				Pausing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:07.703] [INFO ] [Thread-9] org.apache.catalina.core.StandardService
+				Stopping service [Tomcat]
+[2023-05-12 15:46:07.712] [INFO ] [Thread-9] org.apache.coyote.http11.Http11NioProtocol
+				Stopping ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:07.715] [INFO ] [Thread-9] org.apache.coyote.http11.Http11NioProtocol
+				Destroying ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:07.720] [INFO ] [Thread-9] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Closing JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:46:07.723] [INFO ] [Thread-9] com.zaxxer.hikari.HikariDataSource
+				HikariPool-1 - Shutdown initiated...
+[2023-05-12 15:46:07.731] [INFO ] [Thread-9] com.zaxxer.hikari.HikariDataSource
+				HikariPool-1 - Shutdown completed.
+[2023-05-12 15:46:07.811] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Starting AsiaApplication using Java 11.0.17 on DESKTOP-OOGC79Q with PID 3652 (C:\boot\asia\target\classes started by BIG603-06 in C:\boot\asia)
+[2023-05-12 15:46:07.812] [INFO ] [restartedMain] com.asia.AsiaApplication
+				No active profile set, falling back to 1 default profile: "default"
+[2023-05-12 15:46:07.986] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2023-05-12 15:46:08.005] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Finished Spring Data repository scanning in 18 ms. Found 3 JPA repository interfaces.
+[2023-05-12 15:46:08.088] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat initialized with port(s): 8090 (http)
+[2023-05-12 15:46:08.089] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Initializing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:08.089] [INFO ] [restartedMain] org.apache.catalina.core.StandardService
+				Starting service [Tomcat]
+[2023-05-12 15:46:08.089] [INFO ] [restartedMain] org.apache.catalina.core.StandardEngine
+				Starting Servlet engine: [Apache Tomcat/9.0.74]
+[2023-05-12 15:46:08.111] [INFO ] [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Initializing Spring embedded WebApplicationContext
+[2023-05-12 15:46:08.111] [INFO ] [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext
+				Root WebApplicationContext: initialization completed in 298 ms
+[2023-05-12 15:46:08.120] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-2 - Starting...
+[2023-05-12 15:46:08.120] [WARN ] [restartedMain] com.zaxxer.hikari.util.DriverDataSource
+				Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-05-12 15:46:08.133] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-2 - Start completed.
+[2023-05-12 15:46:08.133] [INFO ] [restartedMain] org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+				H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@localhost:1521:xe'
+[2023-05-12 15:46:08.155] [INFO ] [restartedMain] org.hibernate.jpa.internal.util.LogHelper
+				HHH000204: Processing PersistenceUnitInfo [name: default]
+[2023-05-12 15:46:08.161] [INFO ] [restartedMain] org.hibernate.dialect.Dialect
+				HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+[2023-05-12 15:46:08.240] [INFO ] [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator
+				HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2023-05-12 15:46:08.240] [INFO ] [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:46:08.262] [WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2023-05-12 15:46:08.429] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:08.429] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/css/**']
+[2023-05-12 15:46:08.429] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:08.429] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/js/**']
+[2023-05-12 15:46:08.429] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/img/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:08.429] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/img/**']
+[2023-05-12 15:46:08.434] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7c89e173, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4de0b464, org.springframework.security.web.context.SecurityContextPersistenceFilter@2a57c3cc, org.springframework.security.web.header.HeaderWriterFilter@637a4267, org.springframework.security.web.csrf.CsrfFilter@552181b2, org.springframework.security.web.authentication.logout.LogoutFilter@634fe4b4, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@25f8e68e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@220c9fac, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@13d488f0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@256ab235, org.springframework.security.web.session.SessionManagementFilter@7322e00b, org.springframework.security.web.access.ExceptionTranslationFilter@38061ab0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@214acdc4]
+[2023-05-12 15:46:08.472] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer
+				LiveReload server is running on port 35729
+[2023-05-12 15:46:08.480] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Starting ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:08.482] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat started on port(s): 8090 (http) with context path ''
+[2023-05-12 15:46:08.488] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Started AsiaApplication in 0.705 seconds (JVM running for 188.821)
+[2023-05-12 15:46:08.491] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener
+				Condition evaluation unchanged
+[2023-05-12 15:46:49.812] [INFO ] [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener
+				Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-05-12 15:46:49.846] [INFO ] [Thread-11] org.apache.coyote.http11.Http11NioProtocol
+				Pausing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:49.846] [INFO ] [Thread-11] org.apache.catalina.core.StandardService
+				Stopping service [Tomcat]
+[2023-05-12 15:46:49.853] [INFO ] [Thread-11] org.apache.coyote.http11.Http11NioProtocol
+				Stopping ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:49.856] [INFO ] [Thread-11] org.apache.coyote.http11.Http11NioProtocol
+				Destroying ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:49.859] [INFO ] [Thread-11] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Closing JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:46:49.860] [INFO ] [Thread-11] com.zaxxer.hikari.HikariDataSource
+				HikariPool-2 - Shutdown initiated...
+[2023-05-12 15:46:49.865] [INFO ] [Thread-11] com.zaxxer.hikari.HikariDataSource
+				HikariPool-2 - Shutdown completed.
+[2023-05-12 15:46:49.933] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Starting AsiaApplication using Java 11.0.17 on DESKTOP-OOGC79Q with PID 3652 (C:\boot\asia\target\classes started by BIG603-06 in C:\boot\asia)
+[2023-05-12 15:46:49.933] [INFO ] [restartedMain] com.asia.AsiaApplication
+				No active profile set, falling back to 1 default profile: "default"
+[2023-05-12 15:46:50.096] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2023-05-12 15:46:50.115] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Finished Spring Data repository scanning in 17 ms. Found 3 JPA repository interfaces.
+[2023-05-12 15:46:50.199] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat initialized with port(s): 8090 (http)
+[2023-05-12 15:46:50.200] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Initializing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:50.200] [INFO ] [restartedMain] org.apache.catalina.core.StandardService
+				Starting service [Tomcat]
+[2023-05-12 15:46:50.200] [INFO ] [restartedMain] org.apache.catalina.core.StandardEngine
+				Starting Servlet engine: [Apache Tomcat/9.0.74]
+[2023-05-12 15:46:50.218] [INFO ] [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Initializing Spring embedded WebApplicationContext
+[2023-05-12 15:46:50.218] [INFO ] [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext
+				Root WebApplicationContext: initialization completed in 284 ms
+[2023-05-12 15:46:50.226] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-3 - Starting...
+[2023-05-12 15:46:50.226] [WARN ] [restartedMain] com.zaxxer.hikari.util.DriverDataSource
+				Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-05-12 15:46:50.242] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-3 - Start completed.
+[2023-05-12 15:46:50.242] [INFO ] [restartedMain] org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+				H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@localhost:1521:xe'
+[2023-05-12 15:46:50.262] [INFO ] [restartedMain] org.hibernate.jpa.internal.util.LogHelper
+				HHH000204: Processing PersistenceUnitInfo [name: default]
+[2023-05-12 15:46:50.268] [INFO ] [restartedMain] org.hibernate.dialect.Dialect
+				HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+[2023-05-12 15:46:50.341] [INFO ] [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator
+				HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2023-05-12 15:46:50.341] [INFO ] [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:46:50.359] [WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2023-05-12 15:46:50.535] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:50.536] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/css/**']
+[2023-05-12 15:46:50.536] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:50.536] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/js/**']
+[2023-05-12 15:46:50.536] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/img/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:50.536] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/img/**']
+[2023-05-12 15:46:50.541] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@34bf4ae4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5bb5c662, org.springframework.security.web.context.SecurityContextPersistenceFilter@273c1e19, org.springframework.security.web.header.HeaderWriterFilter@3c52f1ff, org.springframework.security.web.csrf.CsrfFilter@9160be0, org.springframework.security.web.authentication.logout.LogoutFilter@35f3bed3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2ae0456b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@25475967, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e319939, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4a97f25, org.springframework.security.web.session.SessionManagementFilter@1e4c5f3b, org.springframework.security.web.access.ExceptionTranslationFilter@47e8a223, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5c9e9ff0]
+[2023-05-12 15:46:50.579] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer
+				LiveReload server is running on port 35729
+[2023-05-12 15:46:50.587] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Starting ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:50.589] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat started on port(s): 8090 (http) with context path ''
+[2023-05-12 15:46:50.594] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Started AsiaApplication in 0.687 seconds (JVM running for 230.926)
+[2023-05-12 15:46:50.596] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener
+				Condition evaluation unchanged
+[2023-05-12 15:46:53.065] [INFO ] [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener
+				Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-05-12 15:46:53.099] [INFO ] [Thread-16] org.apache.coyote.http11.Http11NioProtocol
+				Pausing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:53.099] [INFO ] [Thread-16] org.apache.catalina.core.StandardService
+				Stopping service [Tomcat]
+[2023-05-12 15:46:53.107] [INFO ] [Thread-16] org.apache.coyote.http11.Http11NioProtocol
+				Stopping ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:53.110] [INFO ] [Thread-16] org.apache.coyote.http11.Http11NioProtocol
+				Destroying ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:53.112] [INFO ] [Thread-16] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Closing JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:46:53.112] [INFO ] [Thread-16] com.zaxxer.hikari.HikariDataSource
+				HikariPool-3 - Shutdown initiated...
+[2023-05-12 15:46:53.118] [INFO ] [Thread-16] com.zaxxer.hikari.HikariDataSource
+				HikariPool-3 - Shutdown completed.
+[2023-05-12 15:46:53.190] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Starting AsiaApplication using Java 11.0.17 on DESKTOP-OOGC79Q with PID 3652 (C:\boot\asia\target\classes started by BIG603-06 in C:\boot\asia)
+[2023-05-12 15:46:53.190] [INFO ] [restartedMain] com.asia.AsiaApplication
+				No active profile set, falling back to 1 default profile: "default"
+[2023-05-12 15:46:53.356] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2023-05-12 15:46:53.374] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Finished Spring Data repository scanning in 17 ms. Found 3 JPA repository interfaces.
+[2023-05-12 15:46:53.446] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat initialized with port(s): 8090 (http)
+[2023-05-12 15:46:53.447] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Initializing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:53.447] [INFO ] [restartedMain] org.apache.catalina.core.StandardService
+				Starting service [Tomcat]
+[2023-05-12 15:46:53.447] [INFO ] [restartedMain] org.apache.catalina.core.StandardEngine
+				Starting Servlet engine: [Apache Tomcat/9.0.74]
+[2023-05-12 15:46:53.465] [INFO ] [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Initializing Spring embedded WebApplicationContext
+[2023-05-12 15:46:53.465] [INFO ] [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext
+				Root WebApplicationContext: initialization completed in 274 ms
+[2023-05-12 15:46:53.473] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-4 - Starting...
+[2023-05-12 15:46:53.474] [WARN ] [restartedMain] com.zaxxer.hikari.util.DriverDataSource
+				Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-05-12 15:46:53.487] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-4 - Start completed.
+[2023-05-12 15:46:53.488] [INFO ] [restartedMain] org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+				H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@localhost:1521:xe'
+[2023-05-12 15:46:53.508] [INFO ] [restartedMain] org.hibernate.jpa.internal.util.LogHelper
+				HHH000204: Processing PersistenceUnitInfo [name: default]
+[2023-05-12 15:46:53.513] [INFO ] [restartedMain] org.hibernate.dialect.Dialect
+				HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+[2023-05-12 15:46:53.579] [INFO ] [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator
+				HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2023-05-12 15:46:53.579] [INFO ] [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:46:53.593] [WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2023-05-12 15:46:53.754] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:53.754] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/css/**']
+[2023-05-12 15:46:53.754] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:53.754] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/js/**']
+[2023-05-12 15:46:53.754] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/img/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:53.754] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/img/**']
+[2023-05-12 15:46:53.759] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@507cd0ea, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3907fabd, org.springframework.security.web.context.SecurityContextPersistenceFilter@26b265b8, org.springframework.security.web.header.HeaderWriterFilter@69274d32, org.springframework.security.web.csrf.CsrfFilter@5de7a6a2, org.springframework.security.web.authentication.logout.LogoutFilter@5fd609c2, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@44099bec, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7fec9509, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2cf1191b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@60544079, org.springframework.security.web.session.SessionManagementFilter@4600096c, org.springframework.security.web.access.ExceptionTranslationFilter@271fd314, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@34d2d4d5]
+[2023-05-12 15:46:53.797] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer
+				LiveReload server is running on port 35729
+[2023-05-12 15:46:53.803] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Starting ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:53.805] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat started on port(s): 8090 (http) with context path ''
+[2023-05-12 15:46:53.811] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Started AsiaApplication in 0.649 seconds (JVM running for 234.143)
+[2023-05-12 15:46:53.813] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener
+				Condition evaluation unchanged
+[2023-05-12 15:46:56.263] [INFO ] [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener
+				Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-05-12 15:46:56.295] [INFO ] [Thread-21] org.apache.coyote.http11.Http11NioProtocol
+				Pausing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:56.295] [INFO ] [Thread-21] org.apache.catalina.core.StandardService
+				Stopping service [Tomcat]
+[2023-05-12 15:46:56.303] [INFO ] [Thread-21] org.apache.coyote.http11.Http11NioProtocol
+				Stopping ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:56.305] [INFO ] [Thread-21] org.apache.coyote.http11.Http11NioProtocol
+				Destroying ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:56.308] [INFO ] [Thread-21] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Closing JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:46:56.309] [INFO ] [Thread-21] com.zaxxer.hikari.HikariDataSource
+				HikariPool-4 - Shutdown initiated...
+[2023-05-12 15:46:56.314] [INFO ] [Thread-21] com.zaxxer.hikari.HikariDataSource
+				HikariPool-4 - Shutdown completed.
+[2023-05-12 15:46:56.389] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Starting AsiaApplication using Java 11.0.17 on DESKTOP-OOGC79Q with PID 3652 (C:\boot\asia\target\classes started by BIG603-06 in C:\boot\asia)
+[2023-05-12 15:46:56.389] [INFO ] [restartedMain] com.asia.AsiaApplication
+				No active profile set, falling back to 1 default profile: "default"
+[2023-05-12 15:46:56.551] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2023-05-12 15:46:56.569] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Finished Spring Data repository scanning in 17 ms. Found 3 JPA repository interfaces.
+[2023-05-12 15:46:56.650] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat initialized with port(s): 8090 (http)
+[2023-05-12 15:46:56.650] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Initializing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:56.650] [INFO ] [restartedMain] org.apache.catalina.core.StandardService
+				Starting service [Tomcat]
+[2023-05-12 15:46:56.651] [INFO ] [restartedMain] org.apache.catalina.core.StandardEngine
+				Starting Servlet engine: [Apache Tomcat/9.0.74]
+[2023-05-12 15:46:56.668] [INFO ] [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Initializing Spring embedded WebApplicationContext
+[2023-05-12 15:46:56.668] [INFO ] [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext
+				Root WebApplicationContext: initialization completed in 277 ms
+[2023-05-12 15:46:56.676] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-5 - Starting...
+[2023-05-12 15:46:56.676] [WARN ] [restartedMain] com.zaxxer.hikari.util.DriverDataSource
+				Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-05-12 15:46:56.688] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-5 - Start completed.
+[2023-05-12 15:46:56.688] [INFO ] [restartedMain] org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+				H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@localhost:1521:xe'
+[2023-05-12 15:46:56.707] [INFO ] [restartedMain] org.hibernate.jpa.internal.util.LogHelper
+				HHH000204: Processing PersistenceUnitInfo [name: default]
+[2023-05-12 15:46:56.714] [INFO ] [restartedMain] org.hibernate.dialect.Dialect
+				HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+[2023-05-12 15:46:56.788] [INFO ] [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator
+				HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2023-05-12 15:46:56.788] [INFO ] [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:46:56.805] [WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2023-05-12 15:46:56.969] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:56.969] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/css/**']
+[2023-05-12 15:46:56.969] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:56.969] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/js/**']
+[2023-05-12 15:46:56.969] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/img/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:56.969] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/img/**']
+[2023-05-12 15:46:56.974] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4a9d3b22, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58a79756, org.springframework.security.web.context.SecurityContextPersistenceFilter@2579d02f, org.springframework.security.web.header.HeaderWriterFilter@242edd0d, org.springframework.security.web.csrf.CsrfFilter@6e22db6d, org.springframework.security.web.authentication.logout.LogoutFilter@24afe6fd, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3a5c0aa5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4c345c8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@565736e8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@74696672, org.springframework.security.web.session.SessionManagementFilter@5df8914e, org.springframework.security.web.access.ExceptionTranslationFilter@69491a42, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1008cb6c]
+[2023-05-12 15:46:57.009] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer
+				LiveReload server is running on port 35729
+[2023-05-12 15:46:57.016] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Starting ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:57.017] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat started on port(s): 8090 (http) with context path ''
+[2023-05-12 15:46:57.023] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Started AsiaApplication in 0.662 seconds (JVM running for 237.355)
+[2023-05-12 15:46:57.024] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener
+				Condition evaluation unchanged
+[2023-05-12 15:46:58.465] [INFO ] [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener
+				Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-05-12 15:46:58.499] [INFO ] [Thread-26] org.apache.coyote.http11.Http11NioProtocol
+				Pausing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:58.499] [INFO ] [Thread-26] org.apache.catalina.core.StandardService
+				Stopping service [Tomcat]
+[2023-05-12 15:46:58.507] [INFO ] [Thread-26] org.apache.coyote.http11.Http11NioProtocol
+				Stopping ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:58.508] [INFO ] [Thread-26] org.apache.coyote.http11.Http11NioProtocol
+				Destroying ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:58.510] [INFO ] [Thread-26] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Closing JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:46:58.510] [INFO ] [Thread-26] com.zaxxer.hikari.HikariDataSource
+				HikariPool-5 - Shutdown initiated...
+[2023-05-12 15:46:58.514] [INFO ] [Thread-26] com.zaxxer.hikari.HikariDataSource
+				HikariPool-5 - Shutdown completed.
+[2023-05-12 15:46:58.585] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Starting AsiaApplication using Java 11.0.17 on DESKTOP-OOGC79Q with PID 3652 (C:\boot\asia\target\classes started by BIG603-06 in C:\boot\asia)
+[2023-05-12 15:46:58.585] [INFO ] [restartedMain] com.asia.AsiaApplication
+				No active profile set, falling back to 1 default profile: "default"
+[2023-05-12 15:46:58.756] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2023-05-12 15:46:58.779] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Finished Spring Data repository scanning in 22 ms. Found 3 JPA repository interfaces.
+[2023-05-12 15:46:58.857] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat initialized with port(s): 8090 (http)
+[2023-05-12 15:46:58.858] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Initializing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:58.858] [INFO ] [restartedMain] org.apache.catalina.core.StandardService
+				Starting service [Tomcat]
+[2023-05-12 15:46:58.858] [INFO ] [restartedMain] org.apache.catalina.core.StandardEngine
+				Starting Servlet engine: [Apache Tomcat/9.0.74]
+[2023-05-12 15:46:58.877] [INFO ] [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Initializing Spring embedded WebApplicationContext
+[2023-05-12 15:46:58.877] [INFO ] [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext
+				Root WebApplicationContext: initialization completed in 291 ms
+[2023-05-12 15:46:58.886] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-6 - Starting...
+[2023-05-12 15:46:58.886] [WARN ] [restartedMain] com.zaxxer.hikari.util.DriverDataSource
+				Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-05-12 15:46:58.899] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-6 - Start completed.
+[2023-05-12 15:46:58.899] [INFO ] [restartedMain] org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+				H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@localhost:1521:xe'
+[2023-05-12 15:46:58.920] [INFO ] [restartedMain] org.hibernate.jpa.internal.util.LogHelper
+				HHH000204: Processing PersistenceUnitInfo [name: default]
+[2023-05-12 15:46:58.925] [INFO ] [restartedMain] org.hibernate.dialect.Dialect
+				HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+[2023-05-12 15:46:58.990] [INFO ] [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator
+				HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2023-05-12 15:46:58.991] [INFO ] [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:46:59.007] [WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2023-05-12 15:46:59.168] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:59.168] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/css/**']
+[2023-05-12 15:46:59.169] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:59.169] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/js/**']
+[2023-05-12 15:46:59.169] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/img/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:46:59.169] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/img/**']
+[2023-05-12 15:46:59.174] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7a53ad27, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@37070c68, org.springframework.security.web.context.SecurityContextPersistenceFilter@36606138, org.springframework.security.web.header.HeaderWriterFilter@d9f47a3, org.springframework.security.web.csrf.CsrfFilter@66dcf5a5, org.springframework.security.web.authentication.logout.LogoutFilter@4cc670da, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@69c47467, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3fb3429f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@48e6b895, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@21b7d32a, org.springframework.security.web.session.SessionManagementFilter@3790dbb2, org.springframework.security.web.access.ExceptionTranslationFilter@3b265f94, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1c098bbc]
+[2023-05-12 15:46:59.213] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer
+				LiveReload server is running on port 35729
+[2023-05-12 15:46:59.220] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Starting ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:46:59.222] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat started on port(s): 8090 (http) with context path ''
+[2023-05-12 15:46:59.227] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Started AsiaApplication in 0.668 seconds (JVM running for 239.559)
+[2023-05-12 15:46:59.229] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener
+				Condition evaluation unchanged
+[2023-05-12 15:47:01.700] [INFO ] [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener
+				Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+[2023-05-12 15:47:01.739] [INFO ] [Thread-31] org.apache.coyote.http11.Http11NioProtocol
+				Pausing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:47:01.739] [INFO ] [Thread-31] org.apache.catalina.core.StandardService
+				Stopping service [Tomcat]
+[2023-05-12 15:47:01.743] [INFO ] [Thread-31] org.apache.coyote.http11.Http11NioProtocol
+				Stopping ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:47:01.745] [INFO ] [Thread-31] org.apache.coyote.http11.Http11NioProtocol
+				Destroying ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:47:01.746] [INFO ] [Thread-31] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Closing JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:47:01.747] [INFO ] [Thread-31] com.zaxxer.hikari.HikariDataSource
+				HikariPool-6 - Shutdown initiated...
+[2023-05-12 15:47:01.753] [INFO ] [Thread-31] com.zaxxer.hikari.HikariDataSource
+				HikariPool-6 - Shutdown completed.
+[2023-05-12 15:47:01.841] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Starting AsiaApplication using Java 11.0.17 on DESKTOP-OOGC79Q with PID 3652 (C:\boot\asia\target\classes started by BIG603-06 in C:\boot\asia)
+[2023-05-12 15:47:01.841] [INFO ] [restartedMain] com.asia.AsiaApplication
+				No active profile set, falling back to 1 default profile: "default"
+[2023-05-12 15:47:02.013] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2023-05-12 15:47:02.030] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Finished Spring Data repository scanning in 17 ms. Found 3 JPA repository interfaces.
+[2023-05-12 15:47:02.106] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat initialized with port(s): 8090 (http)
+[2023-05-12 15:47:02.106] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Initializing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:47:02.107] [INFO ] [restartedMain] org.apache.catalina.core.StandardService
+				Starting service [Tomcat]
+[2023-05-12 15:47:02.107] [INFO ] [restartedMain] org.apache.catalina.core.StandardEngine
+				Starting Servlet engine: [Apache Tomcat/9.0.74]
+[2023-05-12 15:47:02.125] [INFO ] [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Initializing Spring embedded WebApplicationContext
+[2023-05-12 15:47:02.125] [INFO ] [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext
+				Root WebApplicationContext: initialization completed in 283 ms
+[2023-05-12 15:47:02.133] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-7 - Starting...
+[2023-05-12 15:47:02.133] [WARN ] [restartedMain] com.zaxxer.hikari.util.DriverDataSource
+				Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-05-12 15:47:02.145] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-7 - Start completed.
+[2023-05-12 15:47:02.145] [INFO ] [restartedMain] org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+				H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@localhost:1521:xe'
+[2023-05-12 15:47:02.166] [INFO ] [restartedMain] org.hibernate.jpa.internal.util.LogHelper
+				HHH000204: Processing PersistenceUnitInfo [name: default]
+[2023-05-12 15:47:02.171] [INFO ] [restartedMain] org.hibernate.dialect.Dialect
+				HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+[2023-05-12 15:47:02.234] [INFO ] [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator
+				HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2023-05-12 15:47:02.234] [INFO ] [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 15:47:02.249] [WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2023-05-12 15:47:02.409] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:47:02.409] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/css/**']
+[2023-05-12 15:47:02.409] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:47:02.409] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/js/**']
+[2023-05-12 15:47:02.409] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/img/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 15:47:02.409] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/img/**']
+[2023-05-12 15:47:02.415] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2884e4e3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@39e1756f, org.springframework.security.web.context.SecurityContextPersistenceFilter@1b527591, org.springframework.security.web.header.HeaderWriterFilter@79190088, org.springframework.security.web.csrf.CsrfFilter@2c49ba6b, org.springframework.security.web.authentication.logout.LogoutFilter@28191977, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5b8200dc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@234a145c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@12664dfd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@54f405af, org.springframework.security.web.session.SessionManagementFilter@7a29125d, org.springframework.security.web.access.ExceptionTranslationFilter@3776ae5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1befae2c]
+[2023-05-12 15:47:02.454] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer
+				LiveReload server is running on port 35729
+[2023-05-12 15:47:02.461] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Starting ProtocolHandler ["http-nio-8090"]
+[2023-05-12 15:47:02.463] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat started on port(s): 8090 (http) with context path ''
+[2023-05-12 15:47:02.469] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Started AsiaApplication in 0.656 seconds (JVM running for 242.8)
+[2023-05-12 15:47:02.470] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener
+				Condition evaluation unchanged
+[2023-05-12 15:51:24.411] [INFO ] [http-nio-8090-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2023-05-12 15:51:24.412] [INFO ] [http-nio-8090-exec-1] org.springframework.web.servlet.DispatcherServlet
+				Initializing Servlet 'dispatcherServlet'
+[2023-05-12 15:51:24.413] [INFO ] [http-nio-8090-exec-1] org.springframework.web.servlet.DispatcherServlet
+				Completed initialization in 1 ms
+[2023-05-12 15:51:31.103] [WARN ] [http-nio-8090-exec-3] nz.net.ultraq.thymeleaf.layoutdialect.fragments.FragmentProcessor
+				You don't need to put the layout:fragment/data-layout-fragment attribute into the <head> section - the decoration process will automatically copy the <head> section of your content templates into your layout page.
+[2023-05-12 16:43:15.479] [INFO ] [RMI TCP Connection(76)-127.0.0.1] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin
+				Application shutdown requested.
+[2023-05-12 16:43:15.511] [INFO ] [RMI TCP Connection(76)-127.0.0.1] org.apache.coyote.http11.Http11NioProtocol
+				Pausing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 16:43:15.511] [INFO ] [RMI TCP Connection(76)-127.0.0.1] org.apache.catalina.core.StandardService
+				Stopping service [Tomcat]
+[2023-05-12 16:43:15.514] [INFO ] [RMI TCP Connection(76)-127.0.0.1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2023-05-12 16:43:15.518] [INFO ] [RMI TCP Connection(76)-127.0.0.1] org.apache.coyote.http11.Http11NioProtocol
+				Stopping ProtocolHandler ["http-nio-8090"]
+[2023-05-12 16:43:15.520] [INFO ] [RMI TCP Connection(76)-127.0.0.1] org.apache.coyote.http11.Http11NioProtocol
+				Destroying ProtocolHandler ["http-nio-8090"]
+[2023-05-12 16:43:15.524] [INFO ] [RMI TCP Connection(76)-127.0.0.1] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Closing JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 16:43:15.525] [INFO ] [RMI TCP Connection(76)-127.0.0.1] com.zaxxer.hikari.HikariDataSource
+				HikariPool-7 - Shutdown initiated...
+[2023-05-12 16:43:15.528] [INFO ] [RMI TCP Connection(76)-127.0.0.1] com.zaxxer.hikari.HikariDataSource
+				HikariPool-7 - Shutdown completed.
+[2023-05-12 16:43:18.489] [INFO ] [background-preinit] org.hibernate.validator.internal.util.Version
+				HV000001: Hibernate Validator 6.2.5.Final
+[2023-05-12 16:43:18.490] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Starting AsiaApplication using Java 11.0.17 on DESKTOP-OOGC79Q with PID 5632 (C:\boot\asia\target\classes started by BIG603-06 in C:\boot\asia)
+[2023-05-12 16:43:18.492] [INFO ] [restartedMain] com.asia.AsiaApplication
+				No active profile set, falling back to 1 default profile: "default"
+[2023-05-12 16:43:18.711] [INFO ] [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls
+				The Class-Path manifest attribute in C:\Users\BIG603-06\.m2\repository\com\oracle\database\jdbc\ojdbc8\21.5.0.0\ojdbc8-21.5.0.0.jar referenced one or more files that do not exist: file:/C:/Users/BIG603-06/.m2/repository/com/oracle/database/jdbc/ojdbc8/21.5.0.0/oraclepki.jar
+[2023-05-12 16:43:18.712] [INFO ] [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor
+				Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2023-05-12 16:43:18.712] [INFO ] [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor
+				For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2023-05-12 16:43:19.288] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2023-05-12 16:43:19.341] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Finished Spring Data repository scanning in 47 ms. Found 3 JPA repository interfaces.
+[2023-05-12 16:43:19.894] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat initialized with port(s): 8090 (http)
+[2023-05-12 16:43:19.903] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Initializing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 16:43:19.904] [INFO ] [restartedMain] org.apache.catalina.core.StandardService
+				Starting service [Tomcat]
+[2023-05-12 16:43:19.904] [INFO ] [restartedMain] org.apache.catalina.core.StandardEngine
+				Starting Servlet engine: [Apache Tomcat/9.0.74]
+[2023-05-12 16:43:19.975] [INFO ] [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Initializing Spring embedded WebApplicationContext
+[2023-05-12 16:43:19.975] [INFO ] [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext
+				Root WebApplicationContext: initialization completed in 1262 ms
+[2023-05-12 16:43:20.029] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-1 - Starting...
+[2023-05-12 16:43:20.036] [WARN ] [restartedMain] com.zaxxer.hikari.util.DriverDataSource
+				Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-05-12 16:43:20.235] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-1 - Start completed.
+[2023-05-12 16:43:20.243] [INFO ] [restartedMain] org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+				H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@localhost:1521:xe'
+[2023-05-12 16:43:20.343] [INFO ] [restartedMain] org.hibernate.jpa.internal.util.LogHelper
+				HHH000204: Processing PersistenceUnitInfo [name: default]
+[2023-05-12 16:43:20.397] [INFO ] [restartedMain] org.hibernate.Version
+				HHH000412: Hibernate ORM core version 5.6.15.Final
+[2023-05-12 16:43:20.554] [INFO ] [restartedMain] org.hibernate.annotations.common.Version
+				HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[2023-05-12 16:43:20.652] [INFO ] [restartedMain] org.hibernate.dialect.Dialect
+				HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+[2023-05-12 16:43:21.467] [INFO ] [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator
+				HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2023-05-12 16:43:21.475] [INFO ] [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 16:43:21.517] [WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2023-05-12 16:43:22.237] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 16:43:22.238] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/css/**']
+[2023-05-12 16:43:22.238] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 16:43:22.238] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/js/**']
+[2023-05-12 16:43:22.238] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/img/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-12 16:43:22.238] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/img/**']
+[2023-05-12 16:43:22.274] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@35248137, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@77192c97, org.springframework.security.web.context.SecurityContextPersistenceFilter@23f5f511, org.springframework.security.web.header.HeaderWriterFilter@7481975b, org.springframework.security.web.csrf.CsrfFilter@3882caec, org.springframework.security.web.authentication.logout.LogoutFilter@62d34bf3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5930d229, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@58ce4d2a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@192b8062, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@34e415ad, org.springframework.security.web.session.SessionManagementFilter@6586f3ea, org.springframework.security.web.access.ExceptionTranslationFilter@7d06b025, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7f528291]
+[2023-05-12 16:43:22.599] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer
+				LiveReload server is running on port 35729
+[2023-05-12 16:43:22.612] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Starting ProtocolHandler ["http-nio-8090"]
+[2023-05-12 16:43:22.625] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat started on port(s): 8090 (http) with context path ''
+[2023-05-12 16:43:22.636] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Started AsiaApplication in 4.52 seconds (JVM running for 5.205)
+[2023-05-12 16:43:25.836] [INFO ] [http-nio-8090-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2023-05-12 16:43:25.836] [INFO ] [http-nio-8090-exec-1] org.springframework.web.servlet.DispatcherServlet
+				Initializing Servlet 'dispatcherServlet'
+[2023-05-12 16:43:25.837] [INFO ] [http-nio-8090-exec-1] org.springframework.web.servlet.DispatcherServlet
+				Completed initialization in 1 ms
+[2023-05-12 16:43:32.245] [WARN ] [http-nio-8090-exec-3] nz.net.ultraq.thymeleaf.layoutdialect.fragments.FragmentProcessor
+				You don't need to put the layout:fragment/data-layout-fragment attribute into the <head> section - the decoration process will automatically copy the <head> section of your content templates into your layout page.
+[2023-05-12 16:49:27.174] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.186] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.188] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.189] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.189] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.189] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.190] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.190] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.190] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.191] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.191] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.191] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.191] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.191] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.192] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.192] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.192] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.192] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.193] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.193] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.193] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.193] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.193] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.194] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.194] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.194] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.194] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.194] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.195] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.195] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.195] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.195] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.195] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.196] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.196] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.196] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.196] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.196] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.196] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.197] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.197] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.197] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.197] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.197] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.198] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.198] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.198] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.198] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.198] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.199] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.199] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.199] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.199] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.199] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.200] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.200] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.200] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.200] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.200] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.200] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.201] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.201] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.201] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.201] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.201] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.202] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.202] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.202] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.202] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.202] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.202] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.203] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.203] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.203] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.203] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.203] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.203] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.204] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.204] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.204] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.204] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.204] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.204] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.205] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.205] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.205] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.205] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.206] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.206] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.206] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.206] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.206] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.207] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.207] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.207] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.207] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.207] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.208] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.208] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.208] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.209] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.209] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.209] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.209] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.209] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.209] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.210] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.210] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.210] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.210] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.210] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.210] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.211] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.211] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.211] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.211] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.211] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.211] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.212] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.212] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.212] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.212] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.212] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.212] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.213] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.213] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.213] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.213] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.213] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.214] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.214] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.214] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.214] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.214] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.214] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.214] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.215] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.215] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.215] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.215] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.215] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.215] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.216] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.216] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.216] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.216] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 16:49:27.216] [WARN ] [http-nio-8090-exec-10] org.hibernate.orm.deprecation
+				HHH90000015: Found use of deprecated [org.hibernate.id.MultipleHiLoPerTableGenerator] table-based id generator; use org.hibernate.id.enhanced.TableGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-12 17:22:34.779] [INFO ] [RMI TCP Connection(50)-127.0.0.1] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin
+				Application shutdown requested.
+[2023-05-12 17:22:34.817] [INFO ] [RMI TCP Connection(50)-127.0.0.1] org.apache.coyote.http11.Http11NioProtocol
+				Pausing ProtocolHandler ["http-nio-8090"]
+[2023-05-12 17:22:34.817] [INFO ] [RMI TCP Connection(50)-127.0.0.1] org.apache.catalina.core.StandardService
+				Stopping service [Tomcat]
+[2023-05-12 17:22:34.819] [INFO ] [RMI TCP Connection(50)-127.0.0.1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Destroying Spring FrameworkServlet 'dispatcherServlet'
+[2023-05-12 17:22:34.833] [INFO ] [RMI TCP Connection(50)-127.0.0.1] org.apache.coyote.http11.Http11NioProtocol
+				Stopping ProtocolHandler ["http-nio-8090"]
+[2023-05-12 17:22:34.835] [INFO ] [RMI TCP Connection(50)-127.0.0.1] org.apache.coyote.http11.Http11NioProtocol
+				Destroying ProtocolHandler ["http-nio-8090"]
+[2023-05-12 17:22:34.841] [INFO ] [RMI TCP Connection(50)-127.0.0.1] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Closing JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-12 17:22:34.845] [INFO ] [RMI TCP Connection(50)-127.0.0.1] com.zaxxer.hikari.HikariDataSource
+				HikariPool-1 - Shutdown initiated...
+[2023-05-12 17:22:34.850] [INFO ] [RMI TCP Connection(50)-127.0.0.1] com.zaxxer.hikari.HikariDataSource
+				HikariPool-1 - Shutdown completed.
