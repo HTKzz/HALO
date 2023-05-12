@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+<meta charset="UTF-8">
+
+<div layout:fragment="content">
+	<form method="get" action="/boards/detailForm/{num}" role="form">
+		<div>
+			<div>
+				<div th:text="${board.name}"></div>
+			</div>
+			<div>
+				<div th:text="${board.content}"></div>
+			</div>
+		</div>
+	</form>
+</div>
+
+</html>

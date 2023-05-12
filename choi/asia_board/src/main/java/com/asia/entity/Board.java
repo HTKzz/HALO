@@ -6,9 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.asia.constant.Role;
@@ -39,7 +42,9 @@ public class Board extends BaseEntity {
 	
 	private Integer cnt;
 	
-	private String id;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name="member_num")
+//	private Member member;
 	
 	@Enumerated(EnumType.STRING)
 	private Stat stat;
@@ -51,6 +56,7 @@ public class Board extends BaseEntity {
 	//새 게시글 쓰기
 	public static Board addBoard(BoardDto boardDto) {
 		
+		
 		Board board = new Board();
 		board.setName(boardDto.getName());
 		board.setContent(boardDto.getContent());
@@ -58,5 +64,6 @@ public class Board extends BaseEntity {
 		board.getRole();
 		return board;
 	}
+	
 	
 }

@@ -46,7 +46,7 @@
 </style>
 </th:block>
 <div layout:fragment="content">
-	<form role="form" method="post" action="/board">
+	<form role="form" method="get" action="/boards">
 		<!-- <div class="group-wrapper">
 			<div class="group-div">글번호</div>
 
@@ -71,13 +71,19 @@
                     <th>글번호</th>
                     <th>제목</th>
                     <th>내용</th>
+                    <th>작성자</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each = "board:${boardlists}">
-                	<td th:text="${board.num}">1</td>
-                    <td th:text="${board.name}">제목임</td>
-                    <td th:text="${board.content}">내용임</td>
+               <tr th:each = "board:${boardList}">
+                
+                 <td th:text="${board.num}">글번호임</td>
+                	<!-- <td> <a th:href="/boards/detail" th:text="${board.num}"></a></td> -->
+                   <!-- <a th:href="/boards/detail"></a> --> 
+                   <td ><a th:text="${board.name}" th:href="@{/boards/detail/(num=${board.num})}">제목임</a></td>
+                    <td  th:text="${board.content}">제목임</td>
+                    <td th:text="${board.createdBy}">작성자임</td>
+                	
                 </tr>
             </tbody>
         </table>
