@@ -15,8 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.asia.dto.ApplicationDto;
 import com.asia.entity.Application;
+import com.asia.entity.Member;
 import com.asia.entity.SeatA;
 import com.asia.repository.ApplicationRepository;
+import com.asia.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,9 +28,15 @@ import lombok.RequiredArgsConstructor;
 public class ApplicationService {
 
 	private final ApplicationRepository applicationRepository;
+	private final MemberRepository memberRepository;
 	private final SeatService seatService;
+	
 
-	public Long saveApplication(ApplicationDto applicationDto) throws Exception {
+	public Long saveApplication(ApplicationDto applicationDto, String name) throws Exception {
+		
+		Member member = memberRepository.findById(name);
+		
+		System.out.println(member);
 		
 		String seat = applicationDto.getSeatDetail();
 		String startdate = applicationDto.getStartdate();
@@ -48,7 +56,9 @@ public class ApplicationService {
 				cal.setTime(firstDate);
 				cal.add(Calendar.DATE, i);
 				applicationDto.setUdate(sdfYMD.format(cal.getTime()));
+				
 				Application application = applicationDto.createApplication();
+				application.setMember(member);
 				applicationRepository.save(application);
 				
 				for (int j = 1; j < 49; j++) {

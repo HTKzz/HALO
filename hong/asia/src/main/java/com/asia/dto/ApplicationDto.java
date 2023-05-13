@@ -3,6 +3,7 @@ package com.asia.dto;
 import org.modelmapper.ModelMapper;
 
 import com.asia.entity.Application;
+import com.asia.entity.Member;
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.Getter;
@@ -27,6 +28,8 @@ public class ApplicationDto {
 	private String udate;
 
 	private String seatDetail;
+	
+	private Long member;
 
 	private static ModelMapper modelMapper = new ModelMapper();
 

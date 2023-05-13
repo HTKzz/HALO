@@ -1,22 +1,15 @@
 package com.asia.controller;
 
-import java.text.ParseException;
-
-import javax.annotation.PostConstruct;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.asia.dto.ApplicationDto;
-import com.asia.dto.SeatADto;
-import com.asia.entity.SeatA;
+import com.asia.dto.UpdateDto;
 import com.asia.service.SeatService;
 
 import lombok.RequiredArgsConstructor;
-
 
 @Controller
 @RequiredArgsConstructor
@@ -37,12 +30,15 @@ public class SeatController {
 //			seatService.saveSeatA(seatA);
 //		}
 //	}
-	
-	@GetMapping(value="/reservations/seat")
-	public String addSeat(Model model, ApplicationDto reservationDto) {
-		
-		model.addAttribute("seatADto", new SeatADto());
-		model.addAttribute("reservationDto", reservationDto);
-		return "seat/seatA";
+
+	@PostMapping(value = "/reservations/update")
+	public String updateSeat(@RequestParam("anum") int anum, UpdateDto updateDto) throws Exception {
+		System.out.println(anum);
+		System.out.println(updateDto);
+//		SeatA seatA = seatService.getSeat(anum);
+//		
+//		seatService.updateItem(seatADto);
+
+		return "seat/success";
 	}
 }

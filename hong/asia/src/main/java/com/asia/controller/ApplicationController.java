@@ -1,5 +1,7 @@
 package com.asia.controller;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -51,13 +53,18 @@ public class ApplicationController {
 //	}
 	
 	@PostMapping(value = "/new")
-	public String newApplication(@Valid ApplicationDto ApplicationDto, BindingResult bindingResult, Model model) {
+	public String newApplication(@Valid ApplicationDto ApplicationDto, BindingResult bindingResult, Model model,
+			Principal principal) {
 		
 		if (bindingResult.hasErrors()) {
 			return "Application/ApplicationForm";
 		}
 		try {
-			ApplicationService.saveApplication(ApplicationDto);
+
+			String name = principal.getName();
+			
+			ApplicationService.saveApplication(ApplicationDto, name);
+			
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "상품 등록 중 에러가 발생하였습니다.");
 			return "application/applicationForm";
@@ -66,7 +73,7 @@ public class ApplicationController {
 	}
 	
 	@GetMapping(value="/add")
-	public String addApplication(Model model) {
+	public String addApplication(Model model, Principal principal) {
 		model.addAttribute("applicationDto", new ApplicationDto());
 		return "application/applicationForm";
 	}

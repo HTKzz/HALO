@@ -86,7 +86,8 @@
 
         .seat {
             background-color: #444451;
-            height: 40px;width: 45px;
+            height: 40px;
+            width: 45px;
             margin: 3px;
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
@@ -224,8 +225,11 @@
 
                 if (e.target.className === 'seat') {
                     e.target.className = 'selectedSeat';
+                    $('input[name='+ e.target.id +']').attr('value', 'seat occupied');
+                    
                 } else if (e.target.className === 'selectedSeat') {
                     e.target.className = 'seat';
+                    $('input[name='+ e.target.id +']').attr('value', 'seat');
                 }
 
                 //                countSeatPrice();
@@ -240,6 +244,14 @@
             //                countSeatPrice()
             //
             //            })
+            
+//            document.getElementById('btn').onclick = function() {
+//
+//            /* document.getElementById('frm').submit(); */
+//
+//            return false;
+//            };
+		    
         })
 
     </script>
@@ -273,20 +285,22 @@
                     <small class="small">Occupied Seat</small>
                 </li>
             </ul>
-            <form action="/applications/update" role="form" method="post" th:object="${seatADto}" id="frm">
+            <form action="/reservations/update" role="form" method="post" th:object="${updateDto}" id="frm">
                 <div class="seatContainer">
                     <div class="screen"></div>
                     <div style="width:640px;">
+                    	<input type="hidden" th:value="${anum}" name="anum">
                         <div class="row" th:each="list : ${seatList}">
-                            <span class="" th:classappend="${list.stat}" th:text="${list.seat}"></span>
+                            <span class="" th:classappend="${list.stat}" th:text="${list.seat}" th:id="${list.seat}"></span>
+                            <input type="hidden" value="seat" th:name="${list.seat}">
                         </div>
                     </div>
                 </div>
 
                 <div style="text-align: center">
-			<input type="button" class="btn btn-primary" id="btn" value="가입하기">
-		</div>
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <input type="submit" class="btn btn-primary" id="btn" value="예매하기">
+                </div>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
             </form>
         </div>
     </body>

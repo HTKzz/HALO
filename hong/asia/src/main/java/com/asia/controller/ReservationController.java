@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.asia.dto.SeatADto;
+import com.asia.dto.UpdateDto;
 import com.asia.service.SeatService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,10 +27,10 @@ public class ReservationController {
 	//좌석 페이지 이동
 	@PostMapping(value="/new")
 	public String selectSeat(Model model, @RequestParam("test") int anum, SeatADto seatADto) {
-		System.out.println(anum);
 		List<SeatADto> seatList = seatService.getSeat(anum);
 //		System.out.println(seatList);
-		model.addAttribute("seatADto", new SeatADto());
+		model.addAttribute("updateDto", new UpdateDto());
+		model.addAttribute("anum", anum);
 		model.addAttribute("seatList", seatList);
 		return "seat/seatA";
 	}

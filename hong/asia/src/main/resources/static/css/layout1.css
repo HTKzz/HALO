@@ -20,7 +20,11 @@ body {
 	text-align: center;
 }
 
+ul {
+}
+
 .nav-link {
+	display: flex;
 	text-decoration: none;
 }
 
