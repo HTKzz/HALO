@@ -4,14 +4,37 @@
 	layout:decorate="~{layouts/layout1}">
 <meta charset="UTF-8">
 
+<th:block layout:fragment="css">
+<style>
+
+.back > a{
+	text-decoration: none;
+	color: darkblue;
+}
+
+.group-detail{
+	display: flex;
+	
+}
+
+</style>
+</th:block>
+
+
 <div layout:fragment="content">
-	<form method="get" action="/boards/detailForm/{num}" role="form">
+	<form method="get" action="/boards/detailForm/{num}" role="form" th:object=${boardDto}>
 		<div>
-			<div>
-				<div th:text="${board.name}"></div>
+			<div class="group-detail">
+				제목 : &nbsp; <div th:text="*{name}"></div> 
+				작성자 : &nbsp; <div th:text="*{Member.id}"></div>
 			</div>
-			<div>
-				<div th:text="${board.content}"></div>
+			<div class="group-detail">
+				내용 : &nbsp; <div th:text="*{content}"></div>
+			</div>
+		</div>
+		<div>
+			<div class="group-detail back">
+				<a th:href="@{/boards/lists}">돌아가기</a>
 			</div>
 		</div>
 	</form>

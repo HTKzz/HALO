@@ -6,9 +6,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.asia.dto.BoardFormDto;
+import com.asia.dto.BoardDto;
 import com.asia.entity.Board;
+import com.asia.entity.Member;
 import com.asia.repository.BoardRepository;
+import com.asia.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,18 +20,23 @@ import lombok.RequiredArgsConstructor;
 public class BoardService {
 	
 	private final BoardRepository boardRepository;
+	private final MemberRepository memberRepository;
 	
 	// 게시판 글 썼을 때 저장 해줘버리기~
-	public String writeBoard(Board board) {
+	public String writeBoard(Board board, String id) {
 		
+//		Board board =    
 		
+		Member member = memberRepository.findById(id);
+		
+		board.setMember(member);
 		boardRepository.save(board);
-		return board.getName();
+		return null;
 	}
 	
-	public Long writeBoard(BoardFormDto boardFormDto) {
+	public Long writeBoard(BoardDto boardDto) {
 		
-		Board board = boardFormDto.newBoard();
+		Board board = boardDto.boardLists();
 		boardRepository.save(board);
 		return board.getNum();
 	}
@@ -41,14 +48,14 @@ public class BoardService {
 	}
 	
 	//게시판 디테일 불러오기
-	public BoardFormDto getBoardDetail(Long num) {
+	public BoardDto getBoardDetail(Long num) {
 		
 		Board board = boardRepository.findByNum(num);
 		
-		BoardFormDto boardFormDto = BoardFormDto.of(board);
+		BoardDto boardDto = BoardDto.of(board);
 		
 		
-		return boardFormDto;
+		return boardDto;
 	}
 	
 	

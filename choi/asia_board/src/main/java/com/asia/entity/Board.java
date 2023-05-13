@@ -42,9 +42,9 @@ public class Board extends BaseEntity {
 	
 	private Integer cnt;
 	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name="member_num")
-//	private Member member;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="member_id")
+	private Member member;
 	
 	@Enumerated(EnumType.STRING)
 	private Stat stat;

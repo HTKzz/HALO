@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 
 import com.asia.entity.BaseEntity;
 import com.asia.entity.Board;
+import com.asia.entity.Member;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,8 @@ public class BoardDto extends BaseEntity {
 	private Long num;
 	
 	private String createdBy;
+	
+	private Member Member;
 	
 	private static ModelMapper modelMapper = new ModelMapper();
 	

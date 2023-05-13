@@ -1,5 +1,6 @@
 package com.asia.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.asia.dto.BoardDto;
-import com.asia.dto.BoardFormDto;
 import com.asia.entity.Board;
 import com.asia.service.BoardService;
 
@@ -43,47 +43,53 @@ public class BoardController {
 	//게시판 글쓰기 폼 불러와보리기~
 	@GetMapping(value="/write")
 	public String boardForm(Model model){
-		model.addAttribute("BoardDto", new BoardDto());
-		model.addAttribute("BoardFormDto", new BoardFormDto());
+		model.addAttribute("boardDto", new BoardDto());
 		LOGGER.info("model에 들어온 값 : {}", model);
 		return "board/boardForm";
 	}
 	
 	//게시판 글 다써서 서브밋 후 리스트 불러오기
 	@PostMapping(value="/submitBoard")
-	public String addBoardList(@Valid BoardFormDto boardFormDto, BindingResult bindingResult, Model model) {
+	public String addBoardList(@Valid BoardDto boardDto, Board board, BindingResult bindingResult, Model model, Principal principal) {
 		
 		if(bindingResult.hasErrors()) {
 			return "board/boardForm";
 		}
 		try {
-			boardService.writeBoard(boardFormDto);
+			String id = principal.getName();
+			System.out.println(id);
+			
+			boardService.writeBoard(board, id);
 		
 		}catch(Exception e) {
 			return "board/boardForm";
 		}
 		
-		model.addAttribute(boardFormDto);
-		LOGGER.info("model에 들어온 값 : {}", model);
 		return "redirect:/boards/lists";
 	}
 	
 	// 리스트 불러오기
 	@GetMapping(value="/board")
-	public String boardLists(BoardFormDto boardFormDto, Model model){
+	public String boardLists(BoardDto boardDto, Model model){
 		
 		List<Board> List = boardService.boardLists();
-		model.addAttribute("BoardFormDto", List);
+		model.addAttribute("boardDto", List);
 		return "board/boardList";
 	}
 	
+	// 글 상세보기
 	@GetMapping(value="/detail/{num}")
-	public String boardDetail(@PathVariable("num")Long num, Model model) {
+	public String boardDetail(@PathVariable("num")Long num, Model model, BoardDto boardDto) {
+		System.out.println(num);
 		
-		BoardFormDto boardFormDto = boardService.getBoardDetail(num);
-		model.addAttribute("detail", boardFormDto);
+		
+		
+		boardDto = boardService.getBoardDetail(num);
+		model.addAttribute("mem_num");
+		model.addAttribute("boardDto", boardDto);
+//		model.addAttribute("detail", boardFormDto);
 		LOGGER.info("/board/detail/{num} 의 값 {} :", num);
-		return "board/boardDetail";
+		return "board/boardDetailForm";
 	}
 	
 }

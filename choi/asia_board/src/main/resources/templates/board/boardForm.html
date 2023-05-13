@@ -23,12 +23,11 @@
 </th:block>
 
 <div layout:fragment="content">
-	<form action="/boards/submitBoard" method="post" th:object="${BoardFormDto}">
+	<form action="/boards/submitBoard" method="post" th:object="${boardDto}">
 		<div class="write-wrapper">
 			<label th:for="name">제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			 <input class="name" type="text"
-				 th:field="*{name}" placeholder="내용을 작성 해주세요"></label>
+			 <input class="name" type="text" th:field="*{name}" placeholder="내용을 작성 해주세요"></label>
 		</div>
 
 		<div>

@@ -6,7 +6,17 @@
 <title>보오오오오오올ㄹㄹㄹ드으으ㅡ</title>
 <th:block layout:fragment="css">
 <style>
-
+	
+	td > a{
+		text-decoration: none;
+		color: darkblue;
+	}
+	
+	.write > a{
+		text-decoration: none;
+		color: darkblue;
+	}
+	
 	.group-wrapper{
             width: 800px;
             height: 30px;
@@ -80,7 +90,7 @@
                  <td th:text="${board.num}">글번호임</td>
                 	<!-- <td> <a th:href="/boards/detail" th:text="${board.num}"></a></td> -->
                    <!-- <a th:href="/boards/detail"></a> --> 
-                   <td ><a th:text="${board.name}" th:href="@{/boards/detail/(num=${board.num})}">제목임</a></td>
+                   <td ><a th:text="${board.name}" th:href="@{/boards/detail/{num}(num=${board.num})}">제목임</a></td>
                     <td  th:text="${board.content}">제목임</td>
                     <td th:text="${board.createdBy}">작성자임</td>
                 	
