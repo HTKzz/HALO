@@ -1,12 +1,16 @@
 package com.asia.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.asia.dto.SeatADto;
 import com.asia.dto.UpdateDto;
+import com.asia.entity.SeatA;
 import com.asia.service.SeatService;
 
 import lombok.RequiredArgsConstructor;
@@ -14,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class SeatController {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+//	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private final SeatService seatService;
 
@@ -33,11 +37,8 @@ public class SeatController {
 
 	@PostMapping(value = "/reservations/update")
 	public String updateSeat(@RequestParam("anum") int anum, UpdateDto updateDto) throws Exception {
-		System.out.println(anum);
-		System.out.println(updateDto);
-//		SeatA seatA = seatService.getSeat(anum);
-//		
-//		seatService.updateItem(seatADto);
+		
+		seatService.updateSeat(updateDto, anum);
 
 		return "seat/success";
 	}

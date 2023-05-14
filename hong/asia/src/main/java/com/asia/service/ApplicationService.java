@@ -59,6 +59,7 @@ public class ApplicationService {
 				
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
+				System.out.println(application);
 				applicationRepository.save(application);
 				
 				for (int j = 1; j < 49; j++) {

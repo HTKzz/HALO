@@ -12,12 +12,12 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class SeatADto {
+	
+	private Long num;
 
 	private String stat;
 	
 	private String seat;
-	
-	private Long num;
 	
 	@QueryProjection
 	public SeatADto(Long num, String seat) {
@@ -26,9 +26,11 @@ public class SeatADto {
 	}
 	
 	@QueryProjection
-	public SeatADto(String stat, String seat) {
+	public SeatADto(Long num, String stat, String seat) {
+		this.num = num;
 		this.stat = stat;
 		this.seat = seat;
 	}
+	
 	
 }

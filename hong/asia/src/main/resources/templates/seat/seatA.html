@@ -225,11 +225,11 @@
 
                 if (e.target.className === 'seat') {
                     e.target.className = 'selectedSeat';
-                    $('input[name='+ e.target.id +']').attr('value', 'seat occupied');
+                    $('input[id='+ e.target.id +']').attr('value', 'seat occupied');
                     
                 } else if (e.target.className === 'selectedSeat') {
                     e.target.className = 'seat';
-                    $('input[name='+ e.target.id +']').attr('value', 'seat');
+                    $('input[id='+ e.target.id +']').attr('value', 'seat');
                 }
 
                 //                countSeatPrice();
@@ -292,7 +292,8 @@
                     	<input type="hidden" th:value="${anum}" name="anum">
                         <div class="row" th:each="list : ${seatList}">
                             <span class="" th:classappend="${list.stat}" th:text="${list.seat}" th:id="${list.seat}"></span>
-                            <input type="hidden" value="seat" th:name="${list.seat}">
+                            <input type="hidden" th:value="${list.stat}" th:id="${list.seat}" th:name="${list.seat}">
+                            <!-- <input type="hidden" th:value="${list.seat}" name="seat"> -->
                         </div>
                     </div>
                 </div>

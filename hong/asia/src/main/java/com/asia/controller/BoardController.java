@@ -28,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/boards")
 @RequiredArgsConstructor
 public class BoardController {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+//	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private final ApplicationService applicationService;
 	private final SeatService seatService;

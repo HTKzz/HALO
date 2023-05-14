@@ -20,15 +20,15 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/reservations")
 @RequiredArgsConstructor
 public class ReservationController {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+//	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private final SeatService seatService;
 	
 	//좌석 페이지 이동
 	@PostMapping(value="/new")
-	public String selectSeat(Model model, @RequestParam("test") int anum, SeatADto seatADto) {
+	public String selectSeat(Model model, @RequestParam("test") int anum, UpdateDto updateDto) {
 		List<SeatADto> seatList = seatService.getSeat(anum);
-//		System.out.println(seatList);
+		System.out.println(seatList);
 		model.addAttribute("updateDto", new UpdateDto());
 		model.addAttribute("anum", anum);
 		model.addAttribute("seatList", seatList);

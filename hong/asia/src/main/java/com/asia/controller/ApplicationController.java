@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class ApplicationController {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+//	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private final ApplicationService ApplicationService;
 

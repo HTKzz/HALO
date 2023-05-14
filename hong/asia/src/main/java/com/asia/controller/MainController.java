@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class MainController {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+//	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@GetMapping(value = "/")
 	public String main() {
