@@ -3,33 +3,54 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout1}">
 <meta charset="UTF-8">
+<head>
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+</head>
+
 
 <th:block layout:fragment="css">
-<style>
-
-.back > a{
+	<style>
+a {
 	text-decoration: none;
 	color: darkblue;
 }
 
-.group-detail{
+.group-detail {
 	display: flex;
-	
 }
 
+.detail-title {
+	width: 250px;
+}
+
+.detail-name {
+	width: 100px;
+	height: 50px;
+	text-align: right;
+}
 </style>
 </th:block>
 
 
 <div layout:fragment="content">
-	<form method="get" action="/boards/detailForm/{num}" role="form" th:object=${boardDto}>
+	<form method="get" action="/boards/detail" role="form"
+		th:object=${boardDto} enctype="multipart/form-data">
 		<div>
 			<div class="group-detail">
-				제목 : &nbsp; <div th:text="*{name}"></div> 
-				작성자 : &nbsp; <div th:text="*{Member.id}"></div>
+				제목 : &nbsp;
+				<div class="detail-title" th:text="*{name}"></div>
+				<div class="detail-name">작성자 : &nbsp;</div>
+				<div th:text="*{Member.id}"></div>
 			</div>
 			<div class="group-detail">
-				내용 : &nbsp; <div th:text="*{content}"></div>
+				내용 : &nbsp;
+				<div th:text="*{content}"></div>
+			</div>
+		</div>
+		<div>
+			<div class="group-detail mod">
+				<a th:href="@{/boards/modForm/{num}(num=*{num})}">수정하기</a>
 			</div>
 		</div>
 		<div>

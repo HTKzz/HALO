@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
 <meta charset="UTF-8">
+
 <div class="header" th:fragment="header">
 	<ul class="">
 		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a
