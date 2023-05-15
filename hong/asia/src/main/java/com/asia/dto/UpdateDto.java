@@ -62,5 +62,4 @@ public class UpdateDto {
 	private String A47;
 	private String A48;
 
-	
 }

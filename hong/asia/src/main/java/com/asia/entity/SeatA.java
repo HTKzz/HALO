@@ -12,7 +12,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.asia.dto.SeatADto;
-import com.asia.dto.UpdateDto;
 
 import lombok.Getter;
 import lombok.Setter;

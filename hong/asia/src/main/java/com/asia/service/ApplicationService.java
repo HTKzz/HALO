@@ -17,6 +17,8 @@ import com.asia.dto.ApplicationDto;
 import com.asia.entity.Application;
 import com.asia.entity.Member;
 import com.asia.entity.SeatA;
+import com.asia.entity.SeatB;
+import com.asia.entity.SeatC;
 import com.asia.repository.ApplicationRepository;
 import com.asia.repository.MemberRepository;
 
@@ -49,7 +51,8 @@ public class ApplicationService {
 		long diff = secondDate.getTime() - firstDate.getTime();
 		TimeUnit time = TimeUnit.DAYS;
 		long diffrence = time.convert(diff, TimeUnit.MILLISECONDS);
-
+		
+		
 		for (int i = 0; i < diffrence+1; i++) {
 			if (seat.equals("A")) {
 				Calendar cal = Calendar.getInstance();
@@ -69,6 +72,58 @@ public class ApplicationService {
 
 					seatService.saveSeatA(seatA);
 				}
+			}
+			
+			if (seat.equals("B")) {
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(firstDate);
+				cal.add(Calendar.DATE, i);
+				applicationDto.setUdate(sdfYMD.format(cal.getTime()));
+				
+				Application application = applicationDto.createApplication();
+				application.setMember(member);
+				System.out.println(application);
+				applicationRepository.save(application);
+				
+				for (int j = 1; j < 41; j++) {
+					SeatB seatB = new SeatB();
+					seatB.setApplication(application);
+					seatB.setSeat("A"+j);
+
+					seatService.saveSeatB(seatB);
+				}
+			}
+			
+			if (seat.equals("C")) {
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(firstDate);
+				cal.add(Calendar.DATE, i);
+				applicationDto.setUdate(sdfYMD.format(cal.getTime()));
+				
+				Application application = applicationDto.createApplication();
+				application.setMember(member);
+				System.out.println(application);
+				applicationRepository.save(application);
+				
+				for (int j = 1; j < 33; j++) {
+					SeatC seatC = new SeatC();
+					seatC.setApplication(application);
+					seatC.setSeat("A"+j);
+
+					seatService.saveSeatC(seatC);
+				}
+			}
+			
+			if (seat == "") {
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(firstDate);
+				cal.add(Calendar.DATE, i);
+				applicationDto.setUdate(sdfYMD.format(cal.getTime()));
+				
+				Application application = applicationDto.createApplication();
+				application.setMember(member);
+				System.out.println(application);
+				applicationRepository.save(application);
 			}
 		}
 		return null;
@@ -116,5 +171,10 @@ public class ApplicationService {
 	public List<ApplicationDto> getApplicationSelect(String name) {
 		List<ApplicationDto> list = applicationRepository.getList2(name);
 		return list;
+	}
+
+	public Application getApplicationDtl1(long anum) {
+		Application application = applicationRepository.findByNum(anum);
+		return application;
 	}
 }

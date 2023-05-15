@@ -38,7 +38,7 @@ input {
 		<span th:text="${startdate}"></span> -->
 		<!-- <input type="hidden" th:field="*{num}" id="num" name="num"> -->
 		<div class="text-right">
-				<div class="h4 text-danger text-left">행사명
+				<div class="h4 text-danger text-left">프로그램명
 					<input type="hidden" th:field="*{name}" id="name" name="name">
 					<input type="text" th:field="*{name}" readOnly>
 				</div>
@@ -50,6 +50,7 @@ input {
 					<input type="hidden" th:field="*{enddate}" id="enddate" name="enddate">
 					<input type="text" th:field="*{enddate}" readOnly>
 				</div>
+				<input type="hidden" th:field="*{seatDetail}">
 				<select th:name="test">
 					<option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					-- 선택 --&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>

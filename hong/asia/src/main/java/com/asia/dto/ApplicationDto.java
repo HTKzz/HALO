@@ -1,5 +1,8 @@
 package com.asia.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 import org.modelmapper.ModelMapper;
 
 import com.asia.entity.Application;
@@ -29,6 +32,8 @@ public class ApplicationDto {
 
 	private String seatDetail;
 	
+	private int price;
+	
 	private Long member;
 
 	private static ModelMapper modelMapper = new ModelMapper();
@@ -51,11 +56,13 @@ public class ApplicationDto {
 	}
 	
 	@QueryProjection
-	public ApplicationDto(Long num, String name, String startdate, String enddate) {
+	public ApplicationDto(Long num, String name, String startdate, String enddate, String udate, String seatDetail) {
 		this.num = num;
 		this.name = name;
 		this.startdate = startdate;
 		this.enddate = enddate;
+		this.udate = udate;
+		this.seatDetail = seatDetail;
 	}
 	
 	@QueryProjection

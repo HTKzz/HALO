@@ -51,6 +51,11 @@
 			<input type="text" th:field="*{seatDetail}" class="form-control" placeholder="A OR B OR C">
 			<p th:if="${#fields.hasErrors('seatDetail')}" th:errors="*{seatDetail}" class="fieldError">Incorrect data</p>
 		</div>
+		<div class="form-group">
+			<label th:for="price">가격</label>
+			<input type="number" th:field="*{price}" class="form-control">
+			<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="fieldError">Incorrect data</p>
+		</div>
 		
 		<div style="text-align: center">
 			<input type="button" class="btn btn-primary" id="btn" value="다음">

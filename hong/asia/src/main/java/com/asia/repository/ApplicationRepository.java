@@ -17,8 +17,10 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
 			+ "where name = :name")
 	List<ApplicationDto> getList2(String name);
 	
-	@Query("select distinct new com.asia.dto.ApplicationDto(num, name, startdate, enddate) from Application "
+	@Query("select distinct new com.asia.dto.ApplicationDto(num, name, startdate, enddate, udate, seatDetail) from Application "
 			+ "where name = :name")
 	List<ApplicationDto> getApplication(String name);
+	
+	Application findByNum(long anum);
 }
 

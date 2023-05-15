@@ -36,9 +36,9 @@ public class SeatController {
 //	}
 
 	@PostMapping(value = "/reservations/update")
-	public String updateSeat(@RequestParam("anum") int anum, UpdateDto updateDto) throws Exception {
+	public String updateSeat(@RequestParam("anum") int anum, @RequestParam("seat") String seat, UpdateDto updateDto) throws Exception {
 		
-		seatService.updateSeat(updateDto, anum);
+		seatService.updateSeat(updateDto, anum, seat);
 
 		return "seat/success";
 	}

@@ -97,33 +97,57 @@ public class BoardController {
 	@GetMapping(value="/application/{name}")
 	public String applicationDetail(Model model, @PathVariable("name") String name) {
 		List<ApplicationDto> application = applicationService.getApplicationDtl(name);
-		//System.out.println(application.get(0).getName());
-		//System.out.println(application);
 		model.addAttribute("application", application.get(0));
 		
 		List<ApplicationDto> application1 = applicationService.getApplicationSelect(name);
-		List<CountDto> seat1 = seatService.getCount();
+		String seatDetail = application.get(0).getSeatDetail();
+
 		Map<Long, Long> seatMap = new HashMap<>();
 		Map<String, String> seatMap1 = new HashMap<>();
 	
-		for(CountDto dto : seat1) {
-			seatMap.put(dto.getApplication_id(), dto.getCount());
+		if (seatDetail == null) {
+			for(ApplicationDto dto : application1) {
+				String total = dto.getUdate();
+				seatMap1.put(total, Long.toString(dto.getNum()));
+			}
+			
+			Map<String, String> sortedMap = new TreeMap<>(seatMap1);
+			model.addAttribute("select", sortedMap);
+			
+			return "application/applicationDetail1";
 		}
-//		List<String> dateList = new ArrayList<>();
+		
+		if (seatDetail.equals("A")) {
+			List<CountDto> seat1 = seatService.getCountA();
+			for(CountDto dto : seat1) {
+				seatMap.put(dto.getApplication_id(), dto.getCount());
+			}
+		}
+		if (seatDetail.equals("B")) {
+			List<CountDto> seat1 = seatService.getCountB();
+			for(CountDto dto : seat1) {
+				seatMap.put(dto.getApplication_id(), dto.getCount());
+			}
+		}
+		if (seatDetail.equals("C")) {
+			List<CountDto> seat1 = seatService.getCountC();
+			for(CountDto dto : seat1) {
+				seatMap.put(dto.getApplication_id(), dto.getCount());
+			}
+		}
+		
+	
 		for(ApplicationDto dto : application1) {
 			long count = 0;
 			if(seatMap.containsKey(dto.getNum())) {
 				count = seatMap.get(dto.getNum());
 			}
 			String total = dto.getUdate() + "일 남은 좌석 : " + Long.toString(count);
-//			seatMap1.put(Long.toString(dto.getNum()), total);
 			seatMap1.put(total, Long.toString(dto.getNum()));
-//			dateList.add(dto.getDate());
 		}
 		
 		Map<String, String> sortedMap = new TreeMap<>(seatMap1);
 		model.addAttribute("select", sortedMap);
-//		System.out.println(sortedMap);
 		
 		return "application/applicationDetail";
 	}
