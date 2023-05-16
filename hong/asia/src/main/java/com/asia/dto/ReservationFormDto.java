@@ -27,10 +27,4 @@ public class ReservationFormDto {
 	private int price;
 	
 	private String stat;
-	
-	private static ModelMapper modelMapper = new ModelMapper();
-
-	public Reservation creatReservation() {
-		return modelMapper.map(this, Reservation.class);
-	}
 }

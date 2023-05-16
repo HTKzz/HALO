@@ -1,9 +1,9 @@
 package com.asia.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,13 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.DynamicInsert;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.asia.constant.Role;
-import com.asia.constant.Stat;
-import com.asia.dto.MemberFormDto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -45,7 +38,7 @@ public class Reservation extends BaseEntity {
 
 	private String seat;
 	
-	private String udate;
+	private LocalDate rdate;
 	
 	private int price;
 	

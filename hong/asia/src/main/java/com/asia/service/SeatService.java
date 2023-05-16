@@ -72,8 +72,9 @@ public class SeatService {
 		return seat;
 	}
 
-	public List<SeatBDto> getSeatB(int anum) {
-		List<SeatBDto> seat = seatBRepository.getSeat(anum);
+	public List<SeatBDto> getSeatB(int num) {
+		List<SeatBDto> seat = seatBRepository.getSeat(num);
+		System.out.println(seat);
 		return seat;
 	}
 
@@ -86,6 +87,8 @@ public class SeatService {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map result = objectMapper.convertValue(updateDto, Map.class);
+		
+		System.out.println(result);
 
 		if (seat1.equals("A")) {
 			List<SeatADto> seat = seatARepository.getSeat(anum);
@@ -120,6 +123,60 @@ public class SeatService {
 				String C = (String) result.get(seat.get(i).getSeat().toLowerCase());
 				seatC.updateSeat(C);
 
+			}
+		}
+	}
+	
+	public void cancelUpdateSeat(String seatDetail, int anum, String[] array) {
+		
+		if (seatDetail.equals("A")) {
+			List<SeatADto> seat = seatARepository.getSeat(anum);
+			
+			for (int i = 0; i < array.length; i++) {
+				
+				for (int j = 0; j < seat.size(); j++) {
+					if (seat.get(j).getSeat().equals(array[i])) {
+						seat.get(j).setStat("seat");
+						SeatA seatA = new SeatA();
+						seatA = seatARepository.findByNum(seat.get(j).getNum());
+						String A = seat.get(j).getStat();
+						seatA.updateSeat(A);
+					}
+				}
+			}
+		}
+		
+		if (seatDetail.equals("B")) {
+			List<SeatBDto> seat = seatBRepository.getSeat(anum);
+			
+			for (int i = 0; i < array.length; i++) {
+				
+				for (int j = 0; j < seat.size(); j++) {
+					if (seat.get(j).getSeat().equals(array[i])) {
+						seat.get(j).setStat("seat");
+						SeatB seatB = new SeatB();
+						seatB = seatBRepository.findByNum(seat.get(j).getNum());
+						String B = seat.get(j).getStat();
+						seatB.updateSeat(B);
+					}
+				}
+			}
+		}
+		
+		if (seatDetail.equals("C")) {
+			List<SeatCDto> seat = seatCRepository.getSeat(anum);
+			
+			for (int i = 0; i < array.length; i++) {
+				
+				for (int j = 0; j < seat.size(); j++) {
+					if (seat.get(j).getSeat().equals(array[i])) {
+						seat.get(j).setStat("seat");
+						SeatC seatC = new SeatC();
+						seatC = seatCRepository.findByNum(seat.get(j).getNum());
+						String C = seat.get(j).getStat();
+						seatC.updateSeat(C);
+					}
+				}
 			}
 		}
 	}

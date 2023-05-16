@@ -22,5 +22,6 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
 	List<ApplicationDto> getApplication(String name);
 	
 	Application findByNum(long anum);
+	
 }
 
