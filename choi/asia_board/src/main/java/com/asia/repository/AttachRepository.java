@@ -8,7 +8,7 @@ import com.asia.entity.Attach;
 
 public interface AttachRepository extends JpaRepository<Attach, Long> {
 	
-	List<Attach> findByNumOrderByNumAsc(Long num); 
+	List<Attach> findByBoardNumOrderByNumAsc(Long num); 
 	
 	Attach findByNumAndThumb(Long num, String thumb);
 }

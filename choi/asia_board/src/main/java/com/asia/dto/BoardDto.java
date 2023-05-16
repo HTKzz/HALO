@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 
-import com.asia.entity.Attach;
 import com.asia.entity.BaseEntity;
 import com.asia.entity.Board;
 import com.asia.entity.Member;

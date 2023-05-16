@@ -15,13 +15,11 @@ import com.asia.dto.AttachDto;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name="Attach")
 @Getter
 @Setter
-@ToString
 @SequenceGenerator(name = "USER_SEQ_GEN3", // 시퀀스 제너레이터 이름
 sequenceName = "USER_SEQ3", // 시퀀스 이름
 initialValue = 1, // 시작값
@@ -35,8 +33,11 @@ public class Attach {
 	private Long num;
 	
 	private String name;
+	
 	private String oriname;
+	
 	private String url;
+	
 	private String thumb;
 	
 	@ManyToOne(fetch=FetchType.LAZY)

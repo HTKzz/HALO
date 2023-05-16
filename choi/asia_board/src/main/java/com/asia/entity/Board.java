@@ -32,7 +32,6 @@ import lombok.ToString;
 @Table(name="board")
 @Getter
 @Setter
-@ToString
 @SequenceGenerator(name = "USER_SEQ_GEN2", // 시퀀스 제너레이터 이름
 sequenceName = "USER_SEQ2", // 시퀀스 이름
 initialValue = 1, // 시작값
@@ -81,13 +80,12 @@ public class Board extends BaseEntity {
 	}
 	
 	//글 수정하기
-	public void updateBoard(BoardDto boardDto, Attach attach) {
-		
+	public void updateBoard(BoardDto boardDto) {
 		
 		this.num = boardDto.getNum();
 		this.name = boardDto.getName();
 		this.content = boardDto.getContent();
-//		this.attachFileList = Attach.addAttach(new AttachDto());
+		this.d_date = boardDto.getD_date();
 	}
 	
 }

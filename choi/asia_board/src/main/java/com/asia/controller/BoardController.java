@@ -39,7 +39,6 @@ public class BoardController {
 		LOGGER.info("/boards/lists 메서드 호출");
 
 		model.addAttribute("boardList", boardService.boardList());
-		LOGGER.info("model에 들어온 값 : {}", model);
 		return "board/boardList";
 	}
 
@@ -100,7 +99,6 @@ public class BoardController {
 		model.addAttribute("boardDto", boardDto);
 //		model.addAttribute("detail", boardFormDto);
 		LOGGER.info("/board/detail/{num} 의 값 {} :", num);
-		LOGGER.info("/board/detail/{num} 의 model값 {} :", model);
 		return "board/boardDetailForm";
 	}
 
@@ -113,7 +111,7 @@ public class BoardController {
 		try {
 			
 			BoardDto boardDto = boardService.getBoardDetail(num);
-			model.addAttribute("mem_num");
+//			model.addAttribute("mem_num");
 			model.addAttribute("boardDto", boardDto);
 		
 		}catch(EntityNotFoundException e) {
@@ -125,7 +123,7 @@ public class BoardController {
 
 		LOGGER.info("/boards/modForm/ 의 model값 {} :", model);
 
-		return "board/modForm";
+		return "board/boardForm";
 	}
 
 	// 글 수정하기
@@ -134,32 +132,31 @@ public class BoardController {
 			@RequestParam("attachFile") List<MultipartFile> attachFileList) {
 //		
 		if (bindingResult.hasErrors()) {
-			return "board/modForm";
+//			LOGGER.info("/modBoard/{num} 의 model 값", model);
+			return "board/boardForm";
 		}
 
 		if (attachFileList.get(0).isEmpty() && boardDto.getNum() == null) {
 			model.addAttribute("errorMessage", "제목 또는 내용을 입력하세요");
-			return "board/modForm";
+			
+			return "board/boardForm";
 		}
-
+		
+	
 		try {
 //			boardDto = boardService.getBoardDetail(num);
+			System.out.println(boardDto);
+			LOGGER.info("/modBoard/{num} 의 model 값", attachFileList);
 			boardService.updateAttach(boardDto, attachFileList);
-
-//			Board board = new Board();
-//			board.setNum(boardDto.getNum());
-//			board.setName(boardDto.getName());
-//			board.setContent(boardDto.getContent());
-//			
-//			model.addAttribute("board", board);
+			
 
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			System.out.println(boardDto);
+//			e.printStackTrace();
 			model.addAttribute("errorMessage", "잘못된 정보 일겁니다.");
-			return "board/modForm";
+			return "board/boardForm";
 		}
-
+		
 		return "redirect:/boards/lists";
 	}
 

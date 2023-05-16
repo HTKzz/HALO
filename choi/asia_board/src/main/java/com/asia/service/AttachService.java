@@ -27,15 +27,15 @@ public class AttachService {
 	public void saveAttach(Attach attach, MultipartFile attachFile) throws Exception {
 
 		String oriname = attachFile.getOriginalFilename();
-		String attachName = "";
-		String attachUrl = "";
+		String name = "";
+		String url = "";
 
 		if (!StringUtils.isEmpty(oriname)) {
-			attachName = fileService.uploadFile(attachLocation, oriname, attachFile.getBytes());
-			attachUrl = "/images/item" + attachName;
+			name = fileService.uploadFile(attachLocation, oriname, attachFile.getBytes());
+			url = "/asia/attach/" + name;
 		}
 
-		attach.updateAttach(oriname, attachName, attachUrl);
+		attach.updateAttach(oriname, name, url);
 		attachRepository.save(attach);
 	}
 
@@ -51,10 +51,12 @@ public class AttachService {
 			}
 
 			String oriname = attachFile.getOriginalFilename();
-			String attachName = fileService.uploadFile(attachLocation, oriname, attachFile.getBytes());
 			
-			String attachUrl = "/images/item/" + attachName;
-			savedAttach.updateAttach(oriname, attachName, attachUrl);
+			String name = fileService.uploadFile(attachLocation, oriname, attachFile.getBytes());
+			
+			String url = "/asia/attach/" + name;
+			
+			savedAttach.updateAttach(oriname, name, url);
 		}
 	}
 

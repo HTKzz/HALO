@@ -82,7 +82,7 @@ public class BoardService {
 	@Transactional
 	public BoardDto getBoardDetail(Long num) {
 
-		List<Attach> attachList = attachRepository.findByNumOrderByNumAsc(num);
+		List<Attach> attachList = attachRepository.findByBoardNumOrderByNumAsc(num);
 		List<AttachDto> attachDtoList = new ArrayList<>();
 
 		for (Attach attach : attachList) {
@@ -101,11 +101,15 @@ public class BoardService {
 
 	public Long updateAttach(BoardDto boardDto, List<MultipartFile> attachFileList) throws Exception {
 
-		Board board = boardRepository.findById(boardDto.getNum()).orElseThrow(EntityNotFoundException::new);
+		Board board = boardRepository.findById(boardDto.getNum())
+				.orElseThrow(EntityNotFoundException::new);
+		
 		System.out.println(board);
-//		board.updateBoard(boardDto);
+		
+		board.updateBoard(boardDto);
 
 		List<Long> attachNums = boardDto.getAttachNames();
+		
 		for (int i = 0; i < attachFileList.size(); i++) {
 
 			attachService.updateAttach(attachNums.get(i), attachFileList.get(i));
