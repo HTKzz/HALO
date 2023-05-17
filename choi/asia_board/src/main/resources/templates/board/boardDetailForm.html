@@ -193,8 +193,23 @@ a {
 				<a th:href="@{/boards/lists}">돌아가기</a>
 			</div>
 		</div>
+		<div>
+			<div class="group-detail back">
+				<button th:formaction="@{'/boards/deleteBoard/' + ${boardDto.num}}" type="submit" class="btn btn-primary">삭제</button>
+				<!-- <a th:href="@{/boards/deleteBoard/{num}(num=${boardDto.num})}">삭제하기</a> -->
+			</div>
+		</div>
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 	</form>
+	<!-- <form method="get" action="/boards/deleteBoard/{num}(num=${boardDto.num})" role="form">
+		<div>
+			<div class="group-detail back">
+				<input type="submit" value="삭제하기">
+				<a th:href="@{/boards/deleteBoard/{num}(num=${boardDto.num})}">삭제하기</a>
+			</div>
+		</div>
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+	</form> -->
 </div>
 
 </html>

@@ -1,5 +1,7 @@
 package com.asia.service;
 
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.asia.dto.AttachDto;
 import com.asia.entity.Attach;
 import com.asia.repository.AttachRepository;
 
@@ -58,6 +61,19 @@ public class AttachService {
 			
 			savedAttach.updateAttach(oriname, name, url);
 		}
+	}
+	
+	public void deleteAttach(Long num) throws Exception{
+		
+		List<AttachDto> attachList = attachRepository.getAttachLists(num);
+		
+		for(int i=0 ; i<attachList.size() ; i++) {
+			
+			fileService.deleteFile(attachLocation + "/" + attachList.get(i).getName());
+		}
+		
+		
+			
 	}
 
 }

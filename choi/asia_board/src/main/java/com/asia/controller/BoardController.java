@@ -8,6 +8,10 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.BoardDto;
 import com.asia.entity.Board;
+import com.asia.service.AttachService;
 import com.asia.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,14 +36,45 @@ public class BoardController {
 
 	private final Logger LOGGER = LoggerFactory.getLogger(BoardController.class);
 	private final BoardService boardService;
-//	private final AttachService attachService;
-
+	private final AttachService attachService;
+	
+	
+	
+//	// 게시판 리스트 불러오기
+//	@GetMapping(value = "/lists")
+//	public String boardlist(Model model) {
+//		LOGGER.info("/boards/lists 메서드 호출");
+//		
+//		
+//		model.addAttribute("boardList", boardService.boardList());
+//		return "board/boardList";
+//	}
+	
+//  // 리스트 불러오기
+//		@GetMapping(value = "/board")
+//		public String boardList(BoardDto boardDto, Model model) {
+//
+//			List<Board> List = boardService.boardLists();
+//			model.addAttribute("boardDto", List);
+//			return "board/boardList";
+//		}
+	
 	// 게시판 리스트 불러오기
 	@GetMapping(value = "/lists")
-	public String boardlist(Model model) {
+	public String boardlist(Model model, @PageableDefault(page=0, size=3, sort="num", direction=Sort.Direction.DESC) Pageable pageable) {
 		LOGGER.info("/boards/lists 메서드 호출");
-
-		model.addAttribute("boardList", boardService.boardList());
+		
+		Page<Board> lists = boardService.boardList(pageable);
+		
+		model.addAttribute("boardList", lists);
+		
+		int nowPage = lists.getPageable().getPageNumber() + 1;
+		int startPage =  Math.max(nowPage - 4, 1);
+	    int endPage = Math.min(nowPage + 9, lists.getTotalPages());
+	    model.addAttribute("nowPage", nowPage);
+	    model.addAttribute("startPage", startPage);
+	    model.addAttribute("endPage", endPage);
+	    
 		return "board/boardList";
 	}
 
@@ -53,13 +89,13 @@ public class BoardController {
 	// 게시판 글 다써서 서브밋 후 리스트 불러오기
 	@PostMapping(value = "/submitBoard")
 	public String addBoardList(@Valid BoardDto boardDto, Board board, BindingResult bindingResult, Model model,
-			Principal principal, @RequestParam("attachFile") List<MultipartFile> attachFileList) {
+			Principal principal, @RequestParam("attachFile") List<MultipartFile> attachList) {
 
 		if (bindingResult.hasErrors()) {
 			return "board/boardForm";
 		}
 
-		if (attachFileList.get(0).isEmpty() && boardDto.getNum() == null) {
+		if (attachList.get(0).isEmpty() && boardDto.getNum() == null) {
 			model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력 값 입니다.");
 			return "item/itemForm";
 		}
@@ -68,8 +104,7 @@ public class BoardController {
 			String id = principal.getName();
 			System.out.println(id);
 
-			boardService.writeBoard(boardDto, attachFileList, id);
-//			attachService.saveAttach(Attach.addBoard(), boardDto.getNum());
+			boardService.writeBoard(boardDto, attachList, id);
 
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "등록 중 에러가 발생하였습니다.");
@@ -79,26 +114,16 @@ public class BoardController {
 		return "redirect:/boards/lists";
 	}
 
-	// 리스트 불러오기
-	@GetMapping(value = "/board")
-	public String boardList(BoardDto boardDto, Model model) {
-
-		List<Board> List = boardService.boardList();
-		model.addAttribute("boardDto", List);
-		return "board/boardList";
-	}
-
 	// 글 상세보기
 	@GetMapping(value = "/detail/{num}")
 	public String boardDetail(@PathVariable("num") Long num, Model model, BoardDto boardDto) {
-		System.out.println(num);
 
+		LOGGER.info("보드 컨트롤러 디테일 메서드 호출");
 		boardDto = boardService.getBoardDetail(num);
-		LOGGER.info("디테일 boardDto {}", boardDto);
-		model.addAttribute("mem_num");
+		
+//		model.addAttribute("mem_num");
 		model.addAttribute("boardDto", boardDto);
 //		model.addAttribute("detail", boardFormDto);
-		LOGGER.info("/board/detail/{num} 의 값 {} :", num);
 		return "board/boardDetailForm";
 	}
 
@@ -106,8 +131,7 @@ public class BoardController {
 	@GetMapping(value = "/modForm/{num}")
 	public String modForm(@PathVariable("num") Long num, Model model) {
 		
-		LOGGER.info("/boards/modForm/ 의 num값 {} :", num);
-		
+		LOGGER.info("보드 컨트롤러 모드폼 메서드 호출");
 		try {
 			
 			BoardDto boardDto = boardService.getBoardDetail(num);
@@ -121,43 +145,46 @@ public class BoardController {
 			return "board/boardList";
 		}
 
-		LOGGER.info("/boards/modForm/ 의 model값 {} :", model);
-
 		return "board/boardForm";
 	}
 
 	// 글 수정하기
 	@PostMapping(value = "/modBoard/{num}")
 	public String modBoard(@PathVariable("num") Long num, BoardDto boardDto, Model model, BindingResult bindingResult,
-			@RequestParam("attachFile") List<MultipartFile> attachFileList) {
-//		
+			@RequestParam("attachFile") List<MultipartFile> attachList) {
+		
+		LOGGER.info("보드 컨트롤러 수정완료 메서드 호출");
 		if (bindingResult.hasErrors()) {
-//			LOGGER.info("/modBoard/{num} 의 model 값", model);
+			
 			return "board/boardForm";
 		}
 
-		if (attachFileList.get(0).isEmpty() && boardDto.getNum() == null) {
+		if (attachList.get(0).isEmpty() && boardDto.getNum() == null) {
 			model.addAttribute("errorMessage", "제목 또는 내용을 입력하세요");
 			
 			return "board/boardForm";
 		}
 		
-	
 		try {
-//			boardDto = boardService.getBoardDetail(num);
-			System.out.println(boardDto);
-			LOGGER.info("/modBoard/{num} 의 model 값", attachFileList);
-			boardService.updateAttach(boardDto, attachFileList);
+			LOGGER.info("/modBoard/{num} 의 model 값", attachList);
+			boardService.updateBoard(boardDto, attachList);
 			
-
 		} catch (Exception e) {
-			System.out.println(boardDto);
-//			e.printStackTrace();
-			model.addAttribute("errorMessage", "잘못된 정보 일겁니다.");
+			model.addAttribute("errorMessage", "잘못된 정보 입니다.");
+			
 			return "board/boardForm";
 		}
 		
+		return "redirect:/boards/detail/{num}";
+	}
+	
+	@GetMapping(value="/deleteBoard/{num}")
+	public String deleteBoard(@PathVariable("num") Long num) throws Exception{
+		
+		attachService.deleteAttach(num);
+		boardService.deleteBoard(num);
+		
 		return "redirect:/boards/lists";
 	}
-
+	
 }

@@ -36,7 +36,7 @@ public class BoardDto extends BaseEntity {
 	
 	private List<AttachDto> attachDtoList = new ArrayList<>();
 	
-	private List<Long> attachNames = new ArrayList<>();
+	private List<Long> attachNums = new ArrayList<>();
 	
 	private static ModelMapper modelMapper = new ModelMapper();
 	

@@ -9,6 +9,8 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -47,7 +49,7 @@ public class BoardService {
 //	}
 
 	// 게시판 글 썻을 때 저장하기.
-	public Long writeBoard(@Valid BoardDto boardDto, List<MultipartFile> attachFileList, String id) throws Exception {
+	public Long writeBoard(@Valid BoardDto boardDto, List<MultipartFile> attachList, String id) throws Exception {
 
 		Board board = boardDto.createBoard();
 		System.out.println(board);
@@ -58,7 +60,7 @@ public class BoardService {
 		
 		boardRepository.save(board);
 
-		for (int i = 0; i < attachFileList.size(); i++) {
+		for (int i = 0; i < attachList.size(); i++) {
 			Attach attach = new Attach();
 			attach.setBoard(board);
 			
@@ -66,18 +68,24 @@ public class BoardService {
 				attach.setThumb("Y");
 			else
 				attach.setThumb("N");
-			attachService.saveAttach(attach, attachFileList.get(i));
+			attachService.saveAttach(attach, attachList.get(i));
 		}
 
 		return board.getNum();
 	}
 
-	// 게시판 리스트 싹 다 불러오기
-	public List<Board> boardList() {
-
-		return boardRepository.findAll();
+//	// 게시판 리스트 싹 다 불러오기
+//	public List<Board> boardLists() {
+//
+//		return boardRepository.findAll();
+//	}
+	
+	// 게시판 리스트 싹 다 불러오기 (페이징)
+	public Page<Board> boardList(Pageable pageable){
+		
+		return boardRepository.findAll(pageable);
 	}
-
+	
 	// 게시판 디테일 불러오기
 	@Transactional
 	public BoardDto getBoardDetail(Long num) {
@@ -99,7 +107,7 @@ public class BoardService {
 		return boardDto;
 	}
 
-	public Long updateAttach(BoardDto boardDto, List<MultipartFile> attachFileList) throws Exception {
+	public Long updateBoard(BoardDto boardDto, List<MultipartFile> attachList) throws Exception {
 
 		Board board = boardRepository.findById(boardDto.getNum())
 				.orElseThrow(EntityNotFoundException::new);
@@ -108,14 +116,20 @@ public class BoardService {
 		
 		board.updateBoard(boardDto);
 
-		List<Long> attachNums = boardDto.getAttachNames();
+		List<Long> attachNums = boardDto.getAttachNums();
 		
-		for (int i = 0; i < attachFileList.size(); i++) {
+		for (int i = 0; i < attachList.size(); i++) {
 
-			attachService.updateAttach(attachNums.get(i), attachFileList.get(i));
+			attachService.updateAttach(attachNums.get(i), attachList.get(i));
 		}
 
 		return board.getNum();
 	}
-
+	
+	public void deleteBoard(Long num)throws Exception{
+		
+		boardRepository.deleteByNum(num);
+		
+	}
+	
 }

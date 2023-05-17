@@ -1,6 +1,5 @@
 package com.asia.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -56,8 +55,11 @@ public class Board extends BaseEntity {
 	@JoinColumn(name="member_id")
 	private Member member;
 	
-	@OneToMany(mappedBy = "num", cascade = CascadeType.ALL)
-	private List<Attach> attachFileList = new ArrayList<>();
+	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+	@ToString.Exclude
+	private List<Attach> attachList;
+	
+//	private List<Attach> attachFileList = new ArrayList<>();
 	
 	@Enumerated(EnumType.STRING)
 	private Stat stat;
@@ -88,4 +90,9 @@ public class Board extends BaseEntity {
 		this.d_date = boardDto.getD_date();
 	}
 	
+	//글 삭제하기
+	public void deleteBoard(BoardDto boardDto) {
+		
+		this.num = boardDto.getNum();
+	}
 }

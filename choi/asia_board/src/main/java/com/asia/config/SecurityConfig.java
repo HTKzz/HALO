@@ -3,7 +3,9 @@ package com.asia.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,7 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	MemberService memberService;
 	
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin()
+		http
+//				.csrf().disable()
+				.formLogin()
 				.loginPage("/members/login")
 				.defaultSuccessUrl("/")
 				.usernameParameter("id")
@@ -34,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		;
 		
 		http.authorizeRequests()
-			.mvcMatchers("/", "/images/**", "/boards/**", "/members/**", "/item/**", "/attach/**").permitAll()
+			.mvcMatchers("/", "/images/**", "/boards/**", "/members/**", "/item/**", "/attach/**", "/asia/**").permitAll()
 			.mvcMatchers("/admin/**").hasRole("ADMIN")
 			.anyRequest().authenticated()
 		;
@@ -47,6 +51,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	AuthenticationManager authenticationManager(AuthenticationConfiguration authConfiguration) throws Exception {
+		return authConfiguration.getAuthenticationManager(); 
 	}
 	
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

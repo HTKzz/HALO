@@ -16,5 +16,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 				.addResourceLocations(uploadPath);
 		registry.addResourceHandler("/asia/**")
 				.addResourceLocations(uploadPath);
+		registry.addResourceHandler("/attach/**")
+				.addResourceLocations(uploadPath);
 	}
 }
