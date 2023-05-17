@@ -34,7 +34,7 @@ public class ReservationController {
 	private final ApplicationService applicationService;
 	private final ReservationService reservationSerivce;
 
-	// 좌석 페이지 이동
+	//좌석o 선택페이지 이동
 	@PostMapping(value = "/new")
 	public String selectSeat(Model model, @RequestParam("test") int anum, @RequestParam("seatDetail") String seat) {
 
@@ -72,7 +72,7 @@ public class ReservationController {
 		return null;
 	}
 
-	//
+	//좌석o 예매하기
 	@PostMapping(value = "/add")
 	public String addreservation(Model model, @RequestParam("anum") int anum, @RequestParam("seat1") String seat1,
 			@RequestParam("seat") String seat, @RequestParam("cnt") int cnt, @RequestParam("price") int price,
@@ -89,7 +89,7 @@ public class ReservationController {
 		return "success";
 	}
 
-	//
+	//좌석x 예매페이지 이동
 	@PostMapping(value = "/new1")
 	public String reservation1(Model model, @RequestParam("test") long anum) {
 		Application application = applicationService.getApplicationDtl1(anum);
@@ -99,7 +99,7 @@ public class ReservationController {
 		return "reservation/reservationForm";
 	}
 
-	//
+	//좌석x 예매
 	@PostMapping(value = "/add1")
 	public String addreservation1(Model model, @RequestParam("anum") int anum, @RequestParam("cnt") int cnt,
 			@RequestParam("price") int price, Principal principal) throws Exception {
@@ -114,7 +114,8 @@ public class ReservationController {
 
 		return "success";
 	}
-
+	
+	//예매 삭제
 	@GetMapping(value = "/delete/{num}")
 	public String reservationDelete(@PathVariable Long num) {
 
@@ -126,12 +127,14 @@ public class ReservationController {
 		Long deleteSeat = reservation.getApplication().getNum();
 		int anum = Long.valueOf(deleteSeat).intValue();
 
-		String selectSeat = reservation.getSeat();
-		String[] array = selectSeat.split(",");
-		
-		seatService.cancelUpdateSeat(seatDetail, anum, array);
+		if (seatDetail != null) {
+			String selectSeat = reservation.getSeat();
+			String[] array = selectSeat.split(",");
 
-		reservationSerivce.deleteReservation(num); 
+			seatService.cancelUpdateSeat(seatDetail, anum, array);
+		}
+		
+		reservationSerivce.deleteReservation(num);
 
 		return "redirect:/admin/reservationMng";
 	}

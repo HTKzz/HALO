@@ -1,12 +1,11 @@
 package com.asia.dto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 
 import com.asia.entity.Application;
-import com.asia.entity.Member;
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.Getter;
@@ -34,7 +33,11 @@ public class ApplicationDto {
 	
 	private int price;
 	
-	private Long member;
+//	private Long member;
+	
+	private List<AttachDto> attachDtoList = new ArrayList<>();
+
+	private List<Long> attachIds = new ArrayList<>();
 
 	private static ModelMapper modelMapper = new ModelMapper();
 

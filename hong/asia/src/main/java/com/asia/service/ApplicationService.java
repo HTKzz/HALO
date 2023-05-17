@@ -12,9 +12,11 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.ApplicationDto;
 import com.asia.entity.Application;
+import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.SeatA;
 import com.asia.entity.SeatB;
@@ -32,105 +34,165 @@ public class ApplicationService {
 	private final ApplicationRepository applicationRepository;
 	private final MemberRepository memberRepository;
 	private final SeatService seatService;
-	
+	private final AttachService attachService;
 
-	public Long saveApplication(ApplicationDto applicationDto, String name) throws Exception {
-		
+	public Long saveApplication(ApplicationDto applicationDto, List<MultipartFile> attachFileList, String name)
+			throws Exception {
+
 		Member member = memberRepository.findById(name);
-		
-		System.out.println(member);
-		
+
 		String seat = applicationDto.getSeatDetail();
 		String startdate = applicationDto.getStartdate();
 		String enddate = applicationDto.getEnddate();
 		SimpleDateFormat sdfYMD = new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		Date firstDate = sdfYMD.parse(startdate);
 		Date secondDate = sdfYMD.parse(enddate);
-		
+
 		long diff = secondDate.getTime() - firstDate.getTime();
 		TimeUnit time = TimeUnit.DAYS;
 		long diffrence = time.convert(diff, TimeUnit.MILLISECONDS);
 		
-		
-		for (int i = 0; i < diffrence+1; i++) {
+
+		for (int i = 0; i < diffrence + 1; i++) {
 			if (seat.equals("A")) {
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(firstDate);
 				cal.add(Calendar.DATE, i);
 				applicationDto.setUdate(sdfYMD.format(cal.getTime()));
-				
+
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
-				System.out.println(application);
 				applicationRepository.save(application);
-				
+
 				for (int j = 1; j < 49; j++) {
 					SeatA seatA = new SeatA();
 					seatA.setApplication(application);
-					seatA.setSeat("A"+j);
+					seatA.setSeat("A" + j);
 
 					seatService.saveSeatA(seatA);
 				}
+
+				for (int j = 0; j < attachFileList.size(); j++) {
+					Attach attach = new Attach();
+					attach.setApplication(application);
+
+					if (j == 0)
+						attach.setThumb("Y");
+					else
+						attach.setThumb("N");
+					
+					System.out.println(application);
+					System.out.println(attachFileList);
+					
+					attachService.saveAttach(attach, attachFileList.get(j));
+				}
 			}
-			
+
 			if (seat.equals("B")) {
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(firstDate);
 				cal.add(Calendar.DATE, i);
 				applicationDto.setUdate(sdfYMD.format(cal.getTime()));
-				
+
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
-				System.out.println(application);
 				applicationRepository.save(application);
-				
+
 				for (int j = 1; j < 41; j++) {
 					SeatB seatB = new SeatB();
 					seatB.setApplication(application);
-					seatB.setSeat("A"+j);
+					seatB.setSeat("A" + j);
 
 					seatService.saveSeatB(seatB);
 				}
+				
+				for (int j = 0; j < attachFileList.size(); j++) {
+					Attach attach = new Attach();
+					attach.setApplication(application);
+
+					if (j == 0)
+						attach.setThumb("Y");
+					else
+						attach.setThumb("N");
+					
+					System.out.println(application);
+					System.out.println(attachFileList);
+					
+					attachService.saveAttach(attach, attachFileList.get(j));
+				}
 			}
-			
+
 			if (seat.equals("C")) {
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(firstDate);
 				cal.add(Calendar.DATE, i);
 				applicationDto.setUdate(sdfYMD.format(cal.getTime()));
-				
+
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
-				System.out.println(application);
 				applicationRepository.save(application);
-				
+
 				for (int j = 1; j < 33; j++) {
 					SeatC seatC = new SeatC();
 					seatC.setApplication(application);
-					seatC.setSeat("A"+j);
+					seatC.setSeat("A" + j);
 
 					seatService.saveSeatC(seatC);
 				}
+				
+				for (int j = 0; j < attachFileList.size(); j++) {
+					Attach attach = new Attach();
+					attach.setApplication(application);
+
+					if (j == 0)
+						attach.setThumb("Y");
+					else
+						attach.setThumb("N");
+					
+					System.out.println(application);
+					System.out.println(attachFileList);
+					
+					attachService.saveAttach(attach, attachFileList.get(j));
+				}
 			}
-			
-			if (seat == "") {
+
+			if (seat.equals("")) {
+				
+				System.out.println("@@@"+applicationDto.getSeatDetail());
+				System.out.println(attachFileList);
+				
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(firstDate);
 				cal.add(Calendar.DATE, i);
 				applicationDto.setUdate(sdfYMD.format(cal.getTime()));
-				
+
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
-				System.out.println(application);
 				applicationRepository.save(application);
+
+				for (int j = 0; j < attachFileList.size(); j++) {
+					Attach attach = new Attach();
+					attach.setApplication(application);
+
+					if (j == 0)
+						attach.setThumb("Y");
+					else
+						attach.setThumb("N");
+					
+					System.out.println(application);
+					System.out.println(attachFileList);
+					
+					attachService.saveAttach(attach, attachFileList.get(j));
+				}
 			}
+
 		}
+
 		return null;
-		
-//		return Application.getNum();
+
 	}
-	
+
 //	public Page<Application> findAll(Pageable pageable){
 //		return applicationRepository.findAll(pageable);
 //	}
@@ -138,20 +200,20 @@ public class ApplicationService {
 //	public Page<ApplicationDto> getList(ApplicationDto applicationDto, Pageable pageable){
 //		return applicationRepository.getList(applicationDto, pageable);
 //	}
-	
-	public Page<ApplicationDto> getList1(ApplicationDto applicationDto, Pageable pageable){
-		List<ApplicationDto> list =  applicationRepository.getList1();
+
+	public Page<ApplicationDto> getList1(ApplicationDto applicationDto, Pageable pageable) {
+		List<ApplicationDto> list = applicationRepository.getList1();
 		List<ApplicationDto> resultList = new ArrayList<ApplicationDto>();
 		int offset = Long.valueOf(pageable.getOffset()).intValue();
-		for(int x=offset; x<=offset+9; x++) {
-			if(x<list.size()) {
+		for (int x = offset; x <= offset + 9; x++) {
+			if (x < list.size()) {
 				resultList.add(list.get(x));
 			}
 		}
-		
+
 		return new PageImpl<>(resultList, pageable, list.size());
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<ApplicationDto> getApplicationDtl(String name) {
 //		List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
@@ -160,13 +222,13 @@ public class ApplicationService {
 //			ItemImgDto itemImgDto = ItemImgDto.of(itemImg);
 //			itemImgDtoList.add(itemImgDto);
 //		}
-		
+
 		List<ApplicationDto> list = applicationRepository.getApplication(name);
 //		ApplicationDto applicationDto = ApplicationDto.of(application);
 //		applicationDto.setItemImgDtoList(itemImgDtoList);
 		return list;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<ApplicationDto> getApplicationSelect(String name) {
 		List<ApplicationDto> list = applicationRepository.getList2(name);

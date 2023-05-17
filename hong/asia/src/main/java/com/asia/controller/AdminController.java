@@ -22,9 +22,9 @@ import lombok.RequiredArgsConstructor;
 public class AdminController {
 //	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	private final ApplicationService ApplicationService;
 	private final ReservationService reservationService;
 	
+	//예매 관리 페이지
 	@GetMapping(value = "/reservationMng")
 	public String reservationManage(ReservationSearchDto reservationSearchDto, @PageableDefault(page=0, size=10, sort="num", direction=Sort.Direction.DESC) Pageable pageable, Model model) {
 				
@@ -42,4 +42,5 @@ public class AdminController {
 		
 		return "admin/reservationMng";
 	}
+	
 }
