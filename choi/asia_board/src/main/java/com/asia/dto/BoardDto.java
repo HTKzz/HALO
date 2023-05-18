@@ -32,7 +32,13 @@ public class BoardDto extends BaseEntity {
 	
 	private String createdBy;
 	
-	private Member Member;
+	private Long originNo;
+	
+	private Long groupOrd;
+	 
+    private Long groupLayer;
+	
+	private Member member;
 	
 	private List<AttachDto> attachDtoList = new ArrayList<>();
 	
@@ -43,10 +49,6 @@ public class BoardDto extends BaseEntity {
 	public Board createBoard() {
 		return modelMapper.map(this, Board.class);
 	}
-	
-//	public Board boardList() {
-//		return modelMapper.map(this, Board.class);
-//	}
 	
 	public static BoardDto of(Board board) {
 		return modelMapper.map(board, BoardDto.class);

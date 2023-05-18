@@ -6,6 +6,7 @@
 <title>보오오오오오올ㄹㄹㄹ드으으ㅡ</title>
 <th:block layout:fragment="css">
 	<style>
+	
 td>a {
 	text-decoration: none;
 	color: darkblue;
@@ -43,6 +44,7 @@ td>a {
 	display: inline-block;
 	width: 325px;
 	vertical-align: middle;
+	
 }
 
 .write {
@@ -50,6 +52,17 @@ td>a {
 	right: 700px;
 	line-height: 40px;
 }
+
+.thumbImg{
+	width: 200px;
+	height:200px;
+	margin:20px;
+}
+
+.pagebtn{
+	text-align: center;
+}
+
 </style>
 </th:block>
 <div layout:fragment="content">
@@ -58,29 +71,38 @@ td>a {
 			<thead>
 				<tr>
 					<th>글번호</th>
-					<th>제목</th>
-					<th>내용</th>
-					<th>작성자</th>
+					<th>썸네일</th>
+					<!-- <th>제목</th>
+					<th>작성자</th> -->
+					<th>조회수</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="board:${boardList}">
-
+					
+					
 					<td th:text="${board.num}">글번호임</td>
-					<td><a th:text="${board.name}"
+					<td class="group-list">
+						<a th:href="@{/boards/detail/{num}(num=${board.num})}"><img th:src="${board.attachList[0].url}"
+							class="thumbImg" th:alt="${board.name}"></a>
+					</td>
+					<!-- <td><a th:text="${board.name}"
 						th:href="@{/boards/detail/{num}(num=${board.num})}">제목임</a></td>
-					<td th:text="${board.content}">제목임</td>
-					<td th:text="${board.createdBy}">작성자임</td>
+					<td th:text="${board.createdBy}">작성자임</td> -->
+					<td th:text="${board.cnt}">조회수</td>
 
 				</tr>
 			</tbody>
+
+
+
 		</table>
 		<div class="pagebtn">
 			<th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
 				<a th:if="${page==0? page==1 : page != nowPage}"
 					th:href="@{/boards/lists(page=${page-1})}" th:text="${page}"></a>
 				<strong th:if="${page==nowPage}" th:text="${page}"
-					style="color: red"></strong>
+					style="color:gray; font-size:2em;"></strong>
 			</th:block>
 		</div>
 		<div class="group-wrapper">

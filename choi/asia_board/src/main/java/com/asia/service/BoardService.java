@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.AttachDto;
@@ -48,6 +49,12 @@ public class BoardService {
 //		return null;
 //	}
 
+//	// 게시판 리스트 싹 다 불러오기
+//	public List<Board> boardLists() {
+//
+//		return boardRepository.findAll();
+//	}
+	
 	// 게시판 글 썻을 때 저장하기.
 	public Long writeBoard(@Valid BoardDto boardDto, List<MultipartFile> attachList, String id) throws Exception {
 
@@ -56,10 +63,18 @@ public class BoardService {
 		
 		Member member = memberRepository.findById(id);
 		
+		
 		board.setMember(member);
+		board.setCnt(0);
+//		
+		boardRepository.save(board);
+		
+		board.setOriginNo(board.getNum());
+		board.setGroupLayer((long) 0);
+		board.setGroupOrd((long) 0);
 		
 		boardRepository.save(board);
-
+		
 		for (int i = 0; i < attachList.size(); i++) {
 			Attach attach = new Attach();
 			attach.setBoard(board);
@@ -70,20 +85,48 @@ public class BoardService {
 				attach.setThumb("N");
 			attachService.saveAttach(attach, attachList.get(i));
 		}
+		
+		return board.getNum();
+	}
+	
+	// 게시판 답글
+	public Long replyBoard(@Valid BoardDto boardDto, List<MultipartFile> attachList, String id, Model model) throws Exception {
+		
+		
+		Board board = boardDto.createBoard();
+		System.out.println("=============================================================="+model);
+		System.out.println("=============================================================="+board);
+		Member member = memberRepository.findById(id);
+		
+		board.setMember(member);
+		
+		boardRepository.save(board);
+		
+//		for (int i = 0; i < attachList.size(); i++) {
+//			Attach attach = new Attach();
+//			attach.setBoard(board);
+//			
+//			if (i == 0)
+//				attach.setThumb("Y");
+//			else
+//				attach.setThumb("N");
+//			attachService.saveAttach(attach, attachList.get(i));
+//		}
 
 		return board.getNum();
 	}
-
-//	// 게시판 리스트 싹 다 불러오기
-//	public List<Board> boardLists() {
-//
-//		return boardRepository.findAll();
-//	}
 	
 	// 게시판 리스트 싹 다 불러오기 (페이징)
 	public Page<Board> boardList(Pageable pageable){
 		
 		return boardRepository.findAll(pageable);
+	}
+	
+	// 조회수
+	@Transactional
+	public int updateCnt(Long num) {
+		
+		return boardRepository.updateCnt(num);
 	}
 	
 	// 게시판 디테일 불러오기
@@ -100,13 +143,15 @@ public class BoardService {
 		}
 
 		Board board = boardRepository.findByNum(num);
+		 
 		BoardDto boardDto = BoardDto.of(board);
 		boardDto.setAttachDtoList(attachDtoList);
-
+		
 		LOGGER.info("서비스에서 num에 들어온 값 {}", num);
 		return boardDto;
 	}
-
+	
+	// 게시판 글 수정하기
 	public Long updateBoard(BoardDto boardDto, List<MultipartFile> attachList) throws Exception {
 
 		Board board = boardRepository.findById(boardDto.getNum())
@@ -126,6 +171,7 @@ public class BoardService {
 		return board.getNum();
 	}
 	
+	// 게시판 글 삭제하기
 	public void deleteBoard(Long num)throws Exception{
 		
 		boardRepository.deleteByNum(num);
