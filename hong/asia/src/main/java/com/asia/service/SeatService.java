@@ -74,7 +74,6 @@ public class SeatService {
 
 	public List<SeatBDto> getSeatB(int num) {
 		List<SeatBDto> seat = seatBRepository.getSeat(num);
-		System.out.println(seat);
 		return seat;
 	}
 
@@ -88,8 +87,6 @@ public class SeatService {
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map result = objectMapper.convertValue(updateDto, Map.class);
 		
-		System.out.println(result);
-
 		if (seat1.equals("A")) {
 			List<SeatADto> seat = seatARepository.getSeat(anum);
 			for (int i = 0; i < seat.size(); i++) {

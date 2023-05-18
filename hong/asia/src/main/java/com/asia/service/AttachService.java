@@ -1,5 +1,7 @@
 package com.asia.service;
 
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 
 import org.apache.groovy.parser.antlr4.util.StringUtils;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.asia.dto.AttachDto;
 import com.asia.entity.Attach;
 import com.asia.repository.AttachRepository;
 
@@ -31,7 +34,7 @@ public class AttachService {
 
 		if (!StringUtils.isEmpty(oriName)) {
 			name = fileService.uploadFile(attachLocation, oriName, attachFile.getBytes());
-			url = "/shop/item/" + name;
+			url = "/asia/attach/" + name;
 		}
 
 		attach.updateAttach(oriName, name, url);
@@ -49,8 +52,21 @@ public class AttachService {
 			
 			String oriName = attachFile.getOriginalFilename();
 			String name = fileService.uploadFile(attachLocation, oriName, attachFile.getBytes());
-			String url = "/images/item/" + name;
+			String url = "/asia/attach/ " + name;
 			savedAttach.updateAttach(oriName, name, url);
+		}
+	}
+
+	public void attachDelete(Long num) throws Exception {
+		
+		List<AttachDto> attachLists = attachRepository.getLists(num);
+		System.out.println(attachLists);
+
+		for (int i = 0; i < attachLists.size(); i++) {
+
+			String attach = attachLists.get(i).getName();
+
+			fileService.deleteFile(attachLocation + "/" + attach);
 		}
 	}
 	

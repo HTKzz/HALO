@@ -50,7 +50,6 @@ public class ReservationController {
 
 		if (seat.equals("A")) {
 			List<SeatADto> seatList = seatService.getSeatA(anum);
-			System.out.println(seatList);
 			model.addAttribute("seatList", seatList);
 
 			return "seat/seatA";
@@ -120,7 +119,6 @@ public class ReservationController {
 	public String reservationDelete(@PathVariable Long num) {
 
 		Reservation reservation = reservationSerivce.getDtl(num);
-		System.out.println(reservation);
 
 		String seatDetail = reservation.getApplication().getSeatDetail();
 

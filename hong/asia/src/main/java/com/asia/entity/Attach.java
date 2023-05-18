@@ -1,6 +1,5 @@
 package com.asia.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -45,6 +44,10 @@ public class Attach {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="application_id")
 	private Application application;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="voc_id")
+	private Voc voc;
 	
 	public void updateAttach(String oriName, String name, String url) {
 		this.oriName = oriName;

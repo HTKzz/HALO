@@ -49,8 +49,6 @@ public class BoardController {
         model.addAttribute("endPage", endPage);
         model.addAttribute("applicationList", list);
         
-        System.out.println(list);
-        
         return "application/applicationList";	
 	}
 	

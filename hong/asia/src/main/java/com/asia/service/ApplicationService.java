@@ -36,8 +36,7 @@ public class ApplicationService {
 	private final SeatService seatService;
 	private final AttachService attachService;
 
-	public Long saveApplication(ApplicationDto applicationDto, List<MultipartFile> attachFileList, String name)
-			throws Exception {
+	public Long saveApplication(ApplicationDto applicationDto, List<MultipartFile> attachFileList, String name) throws Exception {
 
 		Member member = memberRepository.findById(name);
 
@@ -52,7 +51,6 @@ public class ApplicationService {
 		long diff = secondDate.getTime() - firstDate.getTime();
 		TimeUnit time = TimeUnit.DAYS;
 		long diffrence = time.convert(diff, TimeUnit.MILLISECONDS);
-		
 
 		for (int i = 0; i < diffrence + 1; i++) {
 			if (seat.equals("A")) {
@@ -81,9 +79,6 @@ public class ApplicationService {
 						attach.setThumb("Y");
 					else
 						attach.setThumb("N");
-					
-					System.out.println(application);
-					System.out.println(attachFileList);
 					
 					attachService.saveAttach(attach, attachFileList.get(j));
 				}
@@ -116,9 +111,6 @@ public class ApplicationService {
 					else
 						attach.setThumb("N");
 					
-					System.out.println(application);
-					System.out.println(attachFileList);
-					
 					attachService.saveAttach(attach, attachFileList.get(j));
 				}
 			}
@@ -150,17 +142,11 @@ public class ApplicationService {
 					else
 						attach.setThumb("N");
 					
-					System.out.println(application);
-					System.out.println(attachFileList);
-					
 					attachService.saveAttach(attach, attachFileList.get(j));
 				}
 			}
 
 			if (seat.equals("")) {
-				
-				System.out.println("@@@"+applicationDto.getSeatDetail());
-				System.out.println(attachFileList);
 				
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(firstDate);
@@ -180,26 +166,14 @@ public class ApplicationService {
 					else
 						attach.setThumb("N");
 					
-					System.out.println(application);
-					System.out.println(attachFileList);
-					
 					attachService.saveAttach(attach, attachFileList.get(j));
 				}
 			}
-
 		}
-
+		
 		return null;
-
+		
 	}
-
-//	public Page<Application> findAll(Pageable pageable){
-//		return applicationRepository.findAll(pageable);
-//	}
-//	
-//	public Page<ApplicationDto> getList(ApplicationDto applicationDto, Pageable pageable){
-//		return applicationRepository.getList(applicationDto, pageable);
-//	}
 
 	public Page<ApplicationDto> getList1(ApplicationDto applicationDto, Pageable pageable) {
 		List<ApplicationDto> list = applicationRepository.getList1();
