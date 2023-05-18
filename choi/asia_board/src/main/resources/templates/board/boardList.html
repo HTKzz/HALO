@@ -3,53 +3,52 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout1}">
 <meta charset="UTF-8">
-<title>보오오오오오올ㄹㄹㄹ드으으ㅡ</title>
+<title>게시판</title>
 <th:block layout:fragment="css">
 	<style>
+
+form{
 	
-td>a {
-	text-decoration: none;
-	color: darkblue;
 }
 
-.write>a {
-	text-decoration: none;
-	color: darkblue;
+.all{
+	width: 90%;
+	height: 700px;
+	margin-left: 10%;
+	margin-top: 50px;
+	
 }
 
-.group-wrapper {
-	width: 800px;
-	height: 30px;
-	margin: 0;
-	padding: 0;
-}
-
-.group-div {
-	display: inline-block;
-	width: 125px;
-	height: 30px;
+tr>th{
+	
 	text-align: center;
-	vertical-align: middle;
+}
+
+tr>td{
+	
+	text-align: center;
+}
+	
+a {
+	text-decoration: none;
+}
+
+.write {
+	width:100%;
+	text-align:center;
+	font-size: 1.2em;
 }
 
 .group-show {
 	display: inline-block;
-	width: 125px;
+	width: 30%;
 	height: 50px;
 	text-align: center;
 	line-height: 50px;
 }
 
-.title {
-	display: inline-block;
-	width: 325px;
-	vertical-align: middle;
-	
-}
-
 .write {
 	height: 40px;
-	right: 700px;
 	line-height: 40px;
 }
 
@@ -65,31 +64,32 @@ td>a {
 
 </style>
 </th:block>
-<div layout:fragment="content">
+<div layout:fragment="content" class="all">
 	<form role="form" method="get" action="/boards">
-		<table>
-			<thead>
-				<tr>
-					<th>글번호</th>
-					<th>썸네일</th>
-					<!-- <th>제목</th>
-					<th>작성자</th> -->
-					<th>조회수</th>
+		<table style="width:100%;">
+			<thead style="width:100%;">
+				<tr style="width:100%;">
+					<th style="width:20%;">글번호</th>
+					<th style="width:20%;">썸네일</th>
+					<th style="width:20%;">제목</th>
+					<th style="width:20%;">조회수</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="board:${boardList}">
 					
 					
-					<td th:text="${board.num}">글번호임</td>
-					<td class="group-list">
-						<a th:href="@{/boards/detail/{num}(num=${board.num})}"><img th:src="${board.attachList[0].url}"
-							class="thumbImg" th:alt="${board.name}"></a>
+					<td style="width:20%;" th:text="${board.num}">글번호임</td>
+					<td style="width:20%;" class="group-list">
+						<a th:href="@{/boards/detail/{num}(num=${board.num})}">
+						<img th:src="${board.attachList[0].url}" class="thumbImg" 
+							th:alt="${board.name}"></a>
 					</td>
-					<!-- <td><a th:text="${board.name}"
-						th:href="@{/boards/detail/{num}(num=${board.num})}">제목임</a></td>
-					<td th:text="${board.createdBy}">작성자임</td> -->
-					<td th:text="${board.cnt}">조회수</td>
+					<td style="width:20%;">
+						<a th:text="${board.name}" 
+							th:href="@{/boards/detail/{num}(num=${board.num})}">제목임</a>
+					</td>
+					<td style="width:20%;" th:text="${board.cnt}">조회수</td>
 
 				</tr>
 			</tbody>
@@ -97,17 +97,17 @@ td>a {
 
 
 		</table>
-		<div class="pagebtn">
+		<div class="group-list pagebtn">
 			<th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
 				<a th:if="${page==0? page==1 : page != nowPage}"
 					th:href="@{/boards/lists(page=${page-1})}" th:text="${page}"></a>
 				<strong th:if="${page==nowPage}" th:text="${page}"
-					style="color:gray; font-size:2em;"></strong>
+					style="width:100%; color:darkslateblue; font-size:2em;"></strong>
 			</th:block>
 		</div>
-		<div class="group-wrapper">
-			<div class="write">
-				<a href="/boards/write">글쓰러 가보실?</a>
+		<div class="group-list paging">
+			<div class="group-list write">
+				<a href="/boards/write">글쓰기</a>
 			</div>
 		</div>
 
