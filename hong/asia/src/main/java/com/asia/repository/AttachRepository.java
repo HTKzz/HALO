@@ -18,4 +18,6 @@ public interface AttachRepository extends JpaRepository<Attach, Long> {
 	
 	@Query("select new com.asia.dto.AttachDto(num, name) from Attach where voc_num = :num")
 	List<AttachDto> getLists(Long num);
+	
+	Attach findByNum(Long num);
 }  

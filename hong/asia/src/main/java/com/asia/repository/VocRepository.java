@@ -24,10 +24,10 @@ public interface VocRepository extends JpaRepository<Voc, Long> ,QuerydslPredica
 	//삭제
 	void deleteByNum(Long num);
 	
-//	@Query("SELECT level, voc_num, parent_NO, name, content, "
-//			+ "reg_time from Voc START WITH parent_NO=0 CONNECT BY PRIOR "
-//			+ "voc_num=parent_NO ORDER SIBLINGS BY voc_num DESC")
-//	List selectAllVocList();
+	@Query(value = "SELECT level, voc_num, parent_NO, name, content, "
+			+ "reg_time from Voc START WITH parent_NO=0 CONNECT BY PRIOR "
+			+ "voc_num=parent_NO ORDER SIBLINGS BY voc_num DESC", nativeQuery = true)
+	List selectAllVocList();
 	
 	@Modifying
 	@Query("update Voc set group_Ord = group_Ord + 1 where origin_No = :originNo and group_Ord > :groupOrd")

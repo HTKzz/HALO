@@ -111,8 +111,8 @@ public class VocController {
 	// 상세보기
 	@GetMapping("/detail/{num}")
 	public String detailVoc(Model model, @PathVariable("num") Long num) {
-		System.out.println(num);
 		VocFormDto vocFormDto = vocService.getvocDtl(num);
+		System.out.println(vocFormDto);
 		vocService.updateCnt(num);
 		model.addAttribute("voc", vocFormDto);
 
@@ -190,8 +190,6 @@ public class VocController {
 		model.addAttribute("vocFormDto", new VocFormDto());
 		model.addAttribute("num", num);
 		model.addAttribute("originNo", parentVoc.getOriginNo());
-		model.addAttribute("groupOrd", parentVoc.getGroupOrd());
-		model.addAttribute("groupLayer", parentVoc.getGroupLayer());
 
 		return "board/voc/vocReply";
 
@@ -200,12 +198,11 @@ public class VocController {
 	@PostMapping("/reply/new")
 	public String newReplyVoc(@Valid VocFormDto vocFormDto, BindingResult bindingResult, Model model,
 			@RequestParam("attachFile") List<MultipartFile> attachFileList, @RequestParam("parentNo") int parentNo,
-			@RequestParam("groupOrd") int groupOrd, @RequestParam("groupLayer") int groupLayer, 
 			@RequestParam("originNo") int num) {
 		// LOGGER.info("newVoc 메서드가 호출되었습니다.");
 		// LOGGER.info("vocFormDto의 내용은 : {}", attachFileList);
 		if (bindingResult.hasErrors()) {
-			return "board/voc/vocReply";
+			return "board/voc/vocReply"; 
 		}
 
 		if (attachFileList.get(0).isEmpty() && vocFormDto.getNum() == null) {
@@ -215,7 +212,7 @@ public class VocController {
 
 		try {
 			
-			vocService.saveReplyVoc(vocFormDto, attachFileList, parentNo, groupOrd, groupLayer, num);
+			vocService.saveReplyVoc(vocFormDto, attachFileList, parentNo, num);
 			
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "등록 중 에러발생");

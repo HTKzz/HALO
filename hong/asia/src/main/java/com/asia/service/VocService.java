@@ -45,21 +45,21 @@ public class VocService {
 
 	// 새글등록
 	public Long saveVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList) throws Exception {
-		
-		//새글등록
+
+		// 새글등록
 		Voc voc = vocFormDto.createVoc();
 		voc.setGroupOrd((long) 0);
 		voc.setGroupLayer((long) 0);
 		vocRepository.save(voc);
 		voc.setOriginNo(voc.getNum());
 		vocRepository.save(voc);
-		
-		//이미지등록
-		for(int i = 0; i < attachFileList.size();i++) {
+
+		// 이미지등록
+		for (int i = 0; i < attachFileList.size(); i++) {
 			Attach attach = new Attach();
 			attach.setVoc(voc);
-			
-			if(i == 0)// 첫번째 이미지일 경우 대표이미지여부값을 Y로 세팅. 나머지는 N
+
+			if (i == 0)// 첫번째 이미지일 경우 대표이미지여부값을 Y로 세팅. 나머지는 N
 				attach.setThumb("Y");
 			else
 				attach.setThumb("N");
@@ -67,40 +67,53 @@ public class VocService {
 		}
 		return voc.getNum();
 	}
-	
-	public Long saveReplyVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, int parentNo,
-			int groupOrd, int groupLayer, int num) throws Exception {
-		
+
+	public Long saveReplyVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, int parentNo, int num)
+			throws Exception {
+
 		Long lparentNo = Long.valueOf(parentNo);
 		Long lnum = Long.valueOf(num);
-		
+
 		Voc parentVoc = vocRepository.findByNum(lparentNo);
 		Voc presentVoc = vocRepository.findByNum(lnum);
-		
+
 		Voc voc = vocFormDto.createVoc();
 		String reply = "";
-		
+
+		System.out.println(parentVoc);
+		System.out.println(presentVoc);
+
 		voc.setName(voc.getName());
 		voc.setOriginNo(parentVoc.getOriginNo());
-		voc.setGroupOrd(parentVoc.getGroupOrd()+1);
-		voc.setGroupLayer(parentVoc.getGroupLayer()+1);
+		
+		for (int i = 1; i < 6; i++) {
+			if (parentVoc.getGroupLayer() == i) {
+				System.out.println("요기");
+				voc.setGroupOrd(parentVoc.getGroupOrd());
+			} else {
+				System.out.println("조기");
+				voc.setGroupOrd(parentVoc.getGroupOrd() + 1);
+			}
+		}
+		voc.setGroupLayer(parentVoc.getGroupLayer() + 1);
 		vocRepository.save(voc);
 
-		System.out.println(presentVoc.getGroupLayer());
-		for(int i = 0 ; i < voc.getGroupLayer(); i++ ) {
+		for (int i = 0; i < voc.getGroupLayer(); i++) {
 			reply += "RE : ";
 		}
+
 		voc.setName(reply + voc.getName());
 		vocRepository.save(voc);
-		
-		vocRepository.updateGroupOrd(voc.getOriginNo(), parentVoc.getGroupOrd());
-		
-		//이미지등록
-		for(int i = 0; i < attachFileList.size();i++) {
+		if (!voc.getGroupOrd().equals(presentVoc.getGroupOrd())) {
+			vocRepository.updateGroupOrd(voc.getOriginNo(), parentVoc.getGroupOrd());
+		}
+
+		// 이미지등록
+		for (int i = 0; i < attachFileList.size(); i++) {
 			Attach attach = new Attach();
 			attach.setVoc(voc);
-			
-			if(i == 0)// 첫번째 이미지일 경우 대표이미지여부값을 Y로 세팅. 나머지는 N
+
+			if (i == 0)// 첫번째 이미지일 경우 대표이미지여부값을 Y로 세팅. 나머지는 N
 				attach.setThumb("Y");
 			else
 				attach.setThumb("N");
@@ -127,47 +140,50 @@ public class VocService {
 	// 수정-등록된 상품 불러오는 메서드
 	@Transactional(readOnly = true) // 읽어오는 트랜잭션을 읽기전용으로 설정, 이럴 경우 JPA가 변경감지(더티체킹)를 수행하지 않아서 성능향상
 	public VocFormDto getvocDtl(Long num) {
-		List<Attach> attachList = attachRepository.findByVocNumOrderByNumAsc(num); //해당 이미지 조회
+		List<Attach> attachList = attachRepository.findByVocNumOrderByNumAsc(num); // 해당 이미지 조회
 		List<AttachDto> attachDtoList = new ArrayList<AttachDto>();
-		for(Attach attach : attachList) { //조회한 attach엔티티를 attachDto객체로 만들어서 리스트에 추가
+		for (Attach attach : attachList) { // 조회한 attach엔티티를 attachDto객체로 만들어서 리스트에 추가
 			AttachDto attachDto = AttachDto.of(attach);
 			attachDtoList.add(attachDto);
 		}
-		
+
 		Voc voc = vocRepository.findById(num).orElseThrow(EntityNotFoundException::new);
 		VocFormDto vocFormDto = VocFormDto.of(voc);
 		vocFormDto.setAttachDtoList(attachDtoList);
 		return vocFormDto;
 	}
 
-	public Long updateVoc(VocFormDto vocFormDto,List<MultipartFile> attachFileList) throws Exception {
+	public Long updateVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList) throws Exception {
 		// 글 수정
 		Voc voc = vocRepository.findById(vocFormDto.getNum()).orElseThrow(EntityNotFoundException::new);
 		voc.updateVoc(vocFormDto); // 수정화면으로 전달 받은 noticeFormDto를 통해 Notice엔티티 업데이트
 
-		//이미지 수정
-		List<Long> attachIds = vocFormDto.getAttachIds(); //이미지 아이디 리스트 반환
-		for(int i = 0; i <attachFileList.size();i++) {
-			attachService.updateAttach(attachIds.get(i), attachFileList.get(i));//이미지아이디를 업데이트하기 위해서 이미지 아이디, 이미지 파일정보 전달
+		// 이미지 수정
+		List<Long> attachIds = vocFormDto.getAttachIds(); // 이미지 아이디 리스트 반환
+		for (int i = 0; i < attachFileList.size(); i++) {
+			attachService.updateAttach(attachIds.get(i), attachFileList.get(i));// 이미지아이디를 업데이트하기 위해서 이미지 아이디, 이미지 파일정보
+																				// 전달
 		}
-		
+
 		return voc.getNum();
 	}
-	
-	//게시판 페이징
-	public Page<Voc> getlistPage(Pageable pageable){
+
+	// 게시판 페이징
+	public Page<Voc> getlistPage(Pageable pageable) {
 		return vocRepository.findAll(pageable);
 	}
-	
-	//게시판 페이징+조건검색 
+
+	// 게시판 페이징+조건검색
 	@Transactional(readOnly = true)
-	public Page<Voc> getBoardPage(BoardSearchDto boardSearchDto, Pageable pageable){
+	public Page<Voc> getBoardPage(BoardSearchDto boardSearchDto, Pageable pageable) {
 		return vocRepository.getBoardPage(boardSearchDto, pageable);
 	}// 조회조건과 페이지정보를 파라미터로 받아서 데이터를 조회하는 getBoardPage()메서드 추가
-	
 
-	public Page<Voc> getVocLists(Pageable pageable){
+	public Page<Voc> getVocLists(Pageable pageable) {
+//		List list = vocRepository.selectAllVocList();
+//		System.out.println(list);
+
 		return vocRepository.getVocLists(pageable);
 	}
-	
+
 }
