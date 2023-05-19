@@ -60,7 +60,7 @@ public class BoardController {
 	// 게시판 리스트 불러오기
 	@GetMapping(value = "/lists")
 	public String boardlist(Model model,
-			@PageableDefault(page = 0, size = 3, sort = "num", direction = Sort.Direction.DESC) Pageable pageable) {
+			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable) {
 		LOGGER.info("/boards/lists 메서드 호출");
 
 		Page<Board> lists = boardService.boardList(pageable);
@@ -85,7 +85,7 @@ public class BoardController {
 		return "board/boardForm";
 	}
 
-	// 게시판 글쓰고 저장 후 게시판으로 리다이렉트
+	// 새 글쓰기
 	@PostMapping(value = "/submitBoard")
 	public String addBoardList(@Valid BoardDto boardDto, Board board, BindingResult bindingResult, Model model,
 			Principal principal, @RequestParam("attachFile") List<MultipartFile> attachList) {
@@ -101,7 +101,6 @@ public class BoardController {
 
 		try {
 			String id = principal.getName();
-//			System.out.println(id);
 
 			boardService.writeBoard(boardDto, attachList, id);
 			
@@ -120,9 +119,7 @@ public class BoardController {
 		LOGGER.info("보드 컨트롤러 디테일 메서드 호출");
 		boardDto = boardService.getBoardDetail(num);
 		boardService.updateCnt(num);
-//		model.addAttribute("mem_num");
 		model.addAttribute("boardDto", boardDto);
-//		model.addAttribute("detail", boardFormDto);
 		return "board/boardDetailForm";
 	}
 
@@ -134,7 +131,6 @@ public class BoardController {
 		try {
 
 			BoardDto boardDto = boardService.getBoardDetail(num);
-//			model.addAttribute("mem_num");
 			model.addAttribute("boardDto", boardDto);
 
 		} catch (EntityNotFoundException e) {
@@ -189,20 +185,24 @@ public class BoardController {
 
 	// 답글쓰기 폼 풀러오기
 	@GetMapping(value = "/replyForm/{num}")
-	public String replyForm(@PathVariable("num") Long num, BoardDto boardDto, Model model) {
-		
+	public String replyForm(@PathVariable("num") Long num, Model model) {
 		model.addAttribute("num", num);
-//		model.addAttribute("boardDto", boardDto);
-		LOGGER.info("답글쓰기 폼 호출 - num : {}", boardDto);
+		BoardDto boardDto1 = boardService.getBoardDetail(num);
 		
-		return "board/boardForm";
-	}
+		BoardDto boardDto2 = new BoardDto();
+		
+		boardDto2.setOriginNo(boardDto1.getNum());
+		boardDto2.setGroupLayer(boardDto1.getGroupLayer());
+		
+		model.addAttribute("boardDto", boardDto2);
+//		LOGGER.info("답글쓰기 폼 호출 - num : {}", boardDto);
+		
+		return "board/replyForm";
+		}
 	
 	// 답글 저장
-	@PostMapping(value = "/replyBoard/{num}")
-	public String replyBoard(@PathVariable("num") Long num, Principal principal, @RequestParam("attachFile") List<MultipartFile> attachList, BoardDto boardDto, Model model) {
-		
-		
+	@PostMapping(value = "/replyBoard")
+	public String replyBoard(Principal principal, @RequestParam("attachFile") List<MultipartFile> attachList, BoardDto boardDto, Model model) {
 		try {
 			String id = principal.getName();
 			System.out.println(boardDto);
@@ -210,7 +210,7 @@ public class BoardController {
 			
 		}catch(Exception e) {
 
-			return "board/boardForm";
+			return "board/replyForm";
 		}
 		
 		return "redirect:/boards/lists";

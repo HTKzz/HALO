@@ -92,26 +92,37 @@ public class BoardService {
 	// 게시판 답글
 	public Long replyBoard(@Valid BoardDto boardDto, List<MultipartFile> attachList, String id, Model model) throws Exception {
 		
+		Board board = new Board();		
+		board.setOriginNo(boardDto.getOriginNo());
+		board.setName(boardDto.getName());
+		board.setContent(boardDto.getContent());
+		board.setCnt(0);
+		board.setGroupLayer(boardDto.getGroupLayer() + (long) 1);
+		if(board.getGroupLayer() > 0) {
+			for(int i = 0 ; i > board.getGroupLayer() ; i++) {
+				
+			}
+		}
+		board.setGroupOrd(boardRepository.getCount(board.getOriginNo(), board.getGroupLayer()));
+		System.out.println(board);
 		
-		Board board = boardDto.createBoard();
-		System.out.println("=============================================================="+model);
-		System.out.println("=============================================================="+board);
+//		boardRepository.gety
 		Member member = memberRepository.findById(id);
 		
 		board.setMember(member);
 		
 		boardRepository.save(board);
 		
-//		for (int i = 0; i < attachList.size(); i++) {
-//			Attach attach = new Attach();
-//			attach.setBoard(board);
-//			
-//			if (i == 0)
-//				attach.setThumb("Y");
-//			else
-//				attach.setThumb("N");
-//			attachService.saveAttach(attach, attachList.get(i));
-//		}
+		for (int i = 0; i < attachList.size(); i++) {
+			Attach attach = new Attach();
+			attach.setBoard(board);
+			
+			if (i == 0)
+				attach.setThumb("Y");
+			else
+				attach.setThumb("N");
+			attachService.saveAttach(attach, attachList.get(i));
+		}
 
 		return board.getNum();
 	}

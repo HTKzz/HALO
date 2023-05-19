@@ -9,8 +9,10 @@ import org.modelmapper.ModelMapper;
 import com.asia.entity.BaseEntity;
 import com.asia.entity.Board;
 import com.asia.entity.Member;
+import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -18,6 +20,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@RequiredArgsConstructor
 public class BoardDto extends BaseEntity {
 	
 	private String name;
@@ -52,5 +55,11 @@ public class BoardDto extends BaseEntity {
 	
 	public static BoardDto of(Board board) {
 		return modelMapper.map(board, BoardDto.class);
+	}
+	
+	@QueryProjection
+	public BoardDto(Long num, Long groupOrd) {
+		this.num = num;
+		this.groupOrd = groupOrd;
 	}
 }

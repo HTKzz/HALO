@@ -138,13 +138,13 @@ a {
 	margin-top: 50px;
 }
 
-.repImgDiv {
+.image {
 	margin-right: 15px;
 	height: auto;
 	width: 50%;
 }
 
-.repImg {
+.img {
 	width: 100%;
 	height: 350px;
 }
@@ -161,9 +161,11 @@ a {
 	<form method="get" action="/boards/detail" role="form">
 		<!-- <input type="hidden" id="mem_num" th:value="${boardDto.mem_num}"> -->
 		<input type="hidden" id="boardNum" th:value="${boardDto.num}">
+		<input type="hidden"  name="groupOrd" th:value="${boardDto.groupOrd}">
+		<input type="hidden" name="groupLayer" th:value="${boardDto.groupLayer}">
 		<div>
-			<div class="repImgDiv">
-				<img th:src="${boardDto.attachDtoList[0].url}" class="rounded repImg"
+			<div class="group-detail image">
+				<img th:src="${boardDto.attachDtoList[0].url}" class="div-rep img"
 					th:alt="${boardDto.name}">
 			</div>
 		

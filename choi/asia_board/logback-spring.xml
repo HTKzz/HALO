@@ -5,7 +5,7 @@
 	<appender name="console"
 		class="ch.qos.logback.core.ConsoleAppender">
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>DEBUG</level>
+			<level>INFO</level>
 		</filter>
 		<encoder>
 			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] %logger
@@ -15,7 +15,7 @@
 	<appender name="INFO_LOG"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>DEBUG</level>
+			<level>INFO</level>
 		</filter>
 		<file>${LOG_PATH}/info.log</file>
 		<append>true</append>
@@ -32,7 +32,7 @@
 	</appender>
 	<!-- TRACE > DEBUG > INFO > WARN > ERROR > OFF -->
 	<!-- Root Logger -->
-	<root level="DEBUG">
+	<root level="INFO">
 		<appender-ref ref="console" />
 		<appender-ref ref="INFO_LOG" />
 	</root>
