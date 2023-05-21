@@ -74,39 +74,34 @@ public class VocService {
 		Long lparentNo = Long.valueOf(parentNo);
 		Long lnum = Long.valueOf(num);
 
-		Voc parentVoc = vocRepository.findByNum(lparentNo);
-		Voc presentVoc = vocRepository.findByNum(lnum);
+		Voc parentVoc = vocRepository.findByNum(lnum); //원조글
+		Voc presentVoc = vocRepository.findByNum(lparentNo); //답글 다는글 
 
 		Voc voc = vocFormDto.createVoc();
 		String reply = "";
 
-		System.out.println(parentVoc);
-		System.out.println(presentVoc);
+		System.out.println(parentVoc + "원조글");
+		System.out.println(presentVoc + "답글 다는글");
 
 		voc.setName(voc.getName());
-		voc.setOriginNo(parentVoc.getOriginNo());
-		
-		for (int i = 1; i < 6; i++) {
-			if (parentVoc.getGroupLayer() == i) {
-				System.out.println("요기");
-				voc.setGroupOrd(parentVoc.getGroupOrd());
-			} else {
-				System.out.println("조기");
-				voc.setGroupOrd(parentVoc.getGroupOrd() + 1);
-			}
-		}
-		voc.setGroupLayer(parentVoc.getGroupLayer() + 1);
+		voc.setOriginNo(presentVoc.getOriginNo());
+		voc.setGroupOrd(presentVoc.getGroupOrd());
+		voc.setGroupLayer(presentVoc.getGroupLayer());
 		vocRepository.save(voc);
-
+		vocRepository.updateGroupOrd(voc.getOriginNo(), presentVoc.getGroupOrd());
+		
+		if(presentVoc.getGroupLayer() == voc.getGroupLayer()) {
+			System.out.println("요기");
+			voc.setGroupOrd(presentVoc.getGroupOrd() + 1);
+			voc.setGroupLayer(presentVoc.getGroupLayer() + 1);
+		}
+		
 		for (int i = 0; i < voc.getGroupLayer(); i++) {
 			reply += "RE : ";
 		}
-
+		
 		voc.setName(reply + voc.getName());
 		vocRepository.save(voc);
-		if (!voc.getGroupOrd().equals(presentVoc.getGroupOrd())) {
-			vocRepository.updateGroupOrd(voc.getOriginNo(), parentVoc.getGroupOrd());
-		}
 
 		// 이미지등록
 		for (int i = 0; i < attachFileList.size(); i++) {
