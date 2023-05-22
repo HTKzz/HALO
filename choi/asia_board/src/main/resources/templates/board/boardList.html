@@ -70,7 +70,7 @@ a {
 			<thead style="width:100%;">
 				<tr style="width:100%;">
 					<th style="width:20%;">글번호</th>
-					<th style="width:20%;">썸네일</th>
+					<!-- <th style="width:20%;">썸네일</th> -->
 					<th style="width:20%;">제목</th>
 					<th style="width:20%;">조회수</th>
 				</tr>
@@ -79,15 +79,15 @@ a {
 				<tr th:each="board:${boardList}">
 					
 					
-					<td style="width:20%;" th:text="${board.num}">글번호임</td>
-					<td style="width:20%;" class="group-list">
+					<td style="width:20%;" th:text="${board.num}">글번호</td>
+					<!-- <td style="width:20%;" class="group-list">
 						<a th:href="@{/boards/detail/{num}(num=${board.num})}">
 						<img th:src="${board.attachList[0].url}" class="thumbImg" 
 							th:alt="${board.name}"></a>
-					</td>
+					</td> -->
 					<td style="width:20%;">
 						<a th:text="${board.name}" 
-							th:href="@{/boards/detail/{num}(num=${board.num})}">제목임</a>
+							th:href="@{/boards/detail/{num}(num=${board.num})}">제목</a>
 					</td>
 					<td style="width:20%;" th:text="${board.cnt}">조회수</td>
 

@@ -38,25 +38,6 @@ public class BoardController {
 	private final BoardService boardService;
 	private final AttachService attachService;
 
-//	// 게시판 리스트 불러오기
-//	@GetMapping(value = "/lists")
-//	public String boardlist(Model model) {
-//		LOGGER.info("/boards/lists 메서드 호출");
-//		
-//		
-//		model.addAttribute("boardList", boardService.boardList());
-//		return "board/boardList";
-//	}
-
-//  // 리스트 불러오기
-//		@GetMapping(value = "/board")
-//		public String boardList(BoardDto boardDto, Model model) {
-//
-//			List<Board> List = boardService.boardLists();
-//			model.addAttribute("boardDto", List);
-//			return "board/boardList";
-//		}
-
 	// 게시판 리스트 불러오기
 	@GetMapping(value = "/lists")
 	public String boardlist(Model model,

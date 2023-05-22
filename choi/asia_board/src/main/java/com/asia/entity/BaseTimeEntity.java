@@ -1,5 +1,6 @@
 package com.asia.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -21,7 +22,7 @@ public abstract class BaseTimeEntity {
 	
 	@CreatedDate
 	@Column(updatable = false)
-	private LocalDateTime regTime;
+	private LocalDate regTime;
 	
 	@LastModifiedDate
 	private LocalDateTime updateTime;

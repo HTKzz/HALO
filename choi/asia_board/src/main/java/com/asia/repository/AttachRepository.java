@@ -13,6 +13,7 @@ public interface AttachRepository extends JpaRepository<Attach, Long> {
 	List<Attach> findByBoardNumOrderByNumAsc(Long num); 
 	
 	Attach findByNumAndThumb(Long num, String thumb);
+	Attach findByNum(Long num);
 	
 	@Query("select new com.asia.dto.AttachDto(num, name) from Attach where board_id = :num")
 	List<AttachDto> getAttachLists(Long num);

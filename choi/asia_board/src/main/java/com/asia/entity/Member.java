@@ -33,7 +33,7 @@ allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
 public class Member extends BaseEntity {
 	
 	@Id
-	@Column(name="member_id")
+	@Column(name="member_num")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN1")
 	private Long num;
 	

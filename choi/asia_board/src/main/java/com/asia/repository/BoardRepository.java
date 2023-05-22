@@ -26,6 +26,8 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	@Query(value="SELECT * FROM board ORDER BY origin_no DESC, group_ord ASC", nativeQuery=true)
 	long getSort(Long origin_no, Long group_ord, Long group_layer);
 	
+//	@Query(value="")
+	
 //	@Query(value="select LEVEL, group_ord, group_ord, origin_no, from Board START WITH origin_no=0 connect by prior board_id=parentNO"
 //			+ " order siblings by board_id DESC;", nativeQuery=true)
 //	Long getGroupOrd(Long groupOrd);

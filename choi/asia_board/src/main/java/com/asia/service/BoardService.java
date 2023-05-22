@@ -1,5 +1,6 @@
 package com.asia.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +73,8 @@ public class BoardService {
 		board.setOriginNo(board.getNum());
 		board.setGroupLayer((long) 0);
 		board.setGroupOrd((long) 0);
+		LocalDate d_date1 = LocalDate.now(); // 현재 날짜
+		board.setD_date(d_date1);
 		
 		boardRepository.save(board);
 		
@@ -171,14 +174,14 @@ public class BoardService {
 		System.out.println(board);
 		
 		board.updateBoard(boardDto);
-
+		board.setRegTime(boardDto.getRegTime());
 		List<Long> attachNums = boardDto.getAttachNums();
 		
 		for (int i = 0; i < attachList.size(); i++) {
 
 			attachService.updateAttach(attachNums.get(i), attachList.get(i));
 		}
-
+		
 		return board.getNum();
 	}
 	

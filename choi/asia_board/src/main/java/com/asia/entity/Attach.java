@@ -28,7 +28,7 @@ allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
 public class Attach {
 	
 	@Id
-	@Column(name="attach_id")
+	@Column(name="attach_num")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN3")
 	private Long num;
 	
@@ -41,7 +41,7 @@ public class Attach {
 	private String thumb;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="board_id")
+	@JoinColumn(name="board_num")
 	private Board board;
 	
 	public static Attach addBoard(AttachDto attachDto) {

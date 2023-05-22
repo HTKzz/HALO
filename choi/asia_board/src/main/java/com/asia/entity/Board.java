@@ -1,6 +1,6 @@
 package com.asia.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,7 +39,7 @@ allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
 public class Board extends BaseEntity {
 	
 	@Id
-	@Column(name="board_id")
+	@Column(name="board_num")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN2")
 	private Long num;
 	
@@ -47,7 +47,7 @@ public class Board extends BaseEntity {
 	
 	private String content;
 	
-	private Date d_date;
+	private LocalDate d_date;
 	
 	@Column(columnDefinition = "integer default 0")
 	private Integer cnt;
@@ -58,21 +58,13 @@ public class Board extends BaseEntity {
  
     private Long groupLayer;
 	
-//	@PrePersist //insert 전에 먼저 실행 해 준다.
-//    public void preCnt() {
-//        this.cnt = this.cnt == null ? 0 : this.cnt;
-//        this.parentNO = this.parentNO == null ? 0 : this.parentNO;
-//    }
-	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="member_id")
+	@JoinColumn(name="member_num")
 	private Member member;
 	
 	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
 	@ToString.Exclude
 	private List<Attach> attachList;
-	
-//	private List<Attach> attachFileList = new ArrayList<>();
 	
 	@Enumerated(EnumType.STRING)
 	private Stat stat;
@@ -80,15 +72,12 @@ public class Board extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	
 	//새 게시글 쓰기
 	public static Board addBoard(BoardDto boardDto) {
-		
 		
 		Board board = new Board();
 		board.setName(boardDto.getName());
 		board.setContent(boardDto.getContent());
-		board.setD_date(boardDto.getD_date());
 		board.setOriginNo(boardDto.getOriginNo());
 		board.setCnt(board.cnt);
 		board.getRole();
@@ -101,7 +90,6 @@ public class Board extends BaseEntity {
 		this.num = boardDto.getNum();
 		this.name = boardDto.getName();
 		this.content = boardDto.getContent();
-		this.d_date = boardDto.getD_date();
 	}
 	
 	//글 삭제하기

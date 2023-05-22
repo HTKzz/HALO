@@ -71,9 +71,15 @@ public class AttachService {
 			
 			fileService.deleteFile(attachLocation + "/" + attachList.get(i).getName());
 		}
-		
-		
 			
 	}
-
+	
+	public Attach download(Long num) throws Exception{
+		
+		Attach file1 = attachRepository.findByNum(num);
+//		String fileName = file1.getName();
+		
+		return file1;
+	}
+	
 }

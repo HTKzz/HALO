@@ -1,7 +1,7 @@
 package com.asia.dto;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -27,7 +27,7 @@ public class BoardDto extends BaseEntity {
 	
 	private String content;
 	
-	private Date d_date;
+	private LocalDate d_date;
 	
 	private Integer cnt;
 	
