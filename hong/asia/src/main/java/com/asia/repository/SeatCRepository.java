@@ -13,10 +13,10 @@ public interface SeatCRepository extends JpaRepository<SeatC, Long> {
 	
 	@Query("select new com.asia.dto.CountDto(application.num, count(seat)) from SeatC "
 			+ "where stat = 'seat' "
-			+ "group by application_id")
+			+ "group by application_num")
 	List<CountDto> getCount();
 	
-	@Query("select new com.asia.dto.SeatCDto(num, stat, seat) from SeatC where application_id = :num")
+	@Query("select new com.asia.dto.SeatCDto(num, stat, seat) from SeatC where application_num = :num")
 	List<SeatCDto> getSeat(int num);
 
 	SeatC findByNum(Long num);

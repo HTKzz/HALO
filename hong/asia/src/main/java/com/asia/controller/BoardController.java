@@ -56,6 +56,7 @@ public class BoardController {
 	@GetMapping(value="/application/{name}")
 	public String applicationDetail(Model model, @PathVariable("name") String name) {
 		List<ApplicationDto> application = applicationService.getApplicationDtl(name);
+		System.out.println(application);
 		model.addAttribute("application", application.get(0));
 		
 		List<ApplicationDto> application1 = applicationService.getApplicationSelect(name);
@@ -111,5 +112,4 @@ public class BoardController {
 		
 		return "application/applicationDetail";
 	}
-	
 }

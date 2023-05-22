@@ -86,25 +86,16 @@
 				</div>
 			</div>
 		</div>
-
-
 		<div th:if="${#strings.isEmpty(vocFormDto.num)}"
 			style="text-align: center">
 			<button th:formaction="@{/voc/reply/new}" type="submit"
 				class="btn btn-primary">등록</button>
 		</div>
-
 		<div th:unless="${#strings.isEmpty(vocFormDto.num)}"
 			style="text-align: center">
 			<button th:formaction="@{'/voc/update/' + ${vocFormDto.num} }"
 				type="submit" class="btn btn-primary">수정</button>
-		</div> 
-
-		<!-- <div style="text-align: center">
-			<input type="submit" class="btn btn-primary" id="btn" value="등록">
-		</div>  -->
-
-
+		</div>
 		<input type="hidden" th:name="${_csrf.parameterName}"
 			th:value="${_csrf.token}">
 

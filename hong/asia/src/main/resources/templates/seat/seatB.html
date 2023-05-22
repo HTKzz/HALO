@@ -204,29 +204,9 @@
     <script th:inline="javascript">
         document.addEventListener('DOMContentLoaded', () => {
 
-            //var b = document.querySelectorAll('.selectedSeat');
-
             const seatContainer = document.querySelector('.seatContainer');
 
-            //            const movie = document.getElementById('movie'); // 선택할 영화
-            //            let moviePrice = Number(movie.value); // 영화가격 
-            //
-            //            let count = document.querySelector('#count'); // 인원수
-            //            let costs = document.querySelector('#costs'); // 가격
-
-            // 선택한 좌석수 텍스트 변경해주기
-
-            //            function countSeatPrice() {
-            //                const selectedSeatCount = document.querySelectorAll('.selectedSeat').length;
-            //
-            //                count.textContent = selectedSeatCount;
-            //                costs.textContent = selectedSeatCount * moviePrice;
-            //
-            //            }
-
-
             //좌석 클릭했을때
-
             seatContainer.addEventListener('click', (e) => {
                 var a = $('#hdprice').val();
 
@@ -258,27 +238,7 @@
                     }
                     $('input[id=seat]').attr('value', List);
                 }
-
-                //                countSeatPrice();
             })
-
-            // 영화 변경할때
-
-            //            movie.addEventListener('change', (e) => {
-            //
-            //                moviePrice = Number(e.target.value);
-            //
-            //                countSeatPrice()
-            //
-            //            })
-
-            //            document.getElementById('btn').onclick = function() {
-            //
-            //            /* document.getElementById('frm').submit(); */
-            //
-            //            return false;
-            //            };
-
         })
 
         function fnReplace(val) {

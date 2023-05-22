@@ -1,10 +1,5 @@
 package com.asia.dto;
 
-import org.modelmapper.ModelMapper;
-
-import com.asia.entity.Reservation;
-import com.querydsl.core.annotations.QueryProjection;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -64,6 +59,5 @@ public class UpdateDto {
 	private String A46;
 	private String A47;
 	private String A48;
-	
 	
 }

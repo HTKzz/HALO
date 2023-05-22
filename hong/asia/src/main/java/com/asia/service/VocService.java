@@ -37,13 +37,6 @@ public class VocService {
 	}
 
 	// 새글등록
-//	public Voc saveVoc(VocFormDto vocFormDto) throws Exception{
-//		Voc voc = vocFormDto.createVoc(); 
-//		
-//		return vocRepository.save(voc);
-//	}
-
-	// 새글등록
 	public Long saveVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList) throws Exception {
 
 		// 새글등록
@@ -68,20 +61,13 @@ public class VocService {
 		return voc.getNum();
 	}
 
-	public Long saveReplyVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, int parentNo, int num)
+	public Long saveReplyVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, Long parentNo)
 			throws Exception {
 
-		Long lparentNo = Long.valueOf(parentNo);
-		Long lnum = Long.valueOf(num);
-
-		Voc parentVoc = vocRepository.findByNum(lnum); //원조글
-		Voc presentVoc = vocRepository.findByNum(lparentNo); //답글 다는글 
+		Voc presentVoc = vocRepository.findByNum(parentNo); //답글 다는글 
 
 		Voc voc = vocFormDto.createVoc();
 		String reply = "";
-
-		System.out.println(parentVoc + "원조글");
-		System.out.println(presentVoc + "답글 다는글");
 
 		voc.setName(voc.getName());
 		voc.setOriginNo(presentVoc.getOriginNo());
@@ -175,8 +161,6 @@ public class VocService {
 	}// 조회조건과 페이지정보를 파라미터로 받아서 데이터를 조회하는 getBoardPage()메서드 추가
 
 	public Page<Voc> getVocLists(Pageable pageable) {
-//		List list = vocRepository.selectAllVocList();
-//		System.out.println(list);
 
 		return vocRepository.getVocLists(pageable);
 	}

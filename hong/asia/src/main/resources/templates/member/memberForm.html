@@ -82,16 +82,11 @@
 				class="fieldError">Incorrect data</p>
 		</div>
 		<div class="form-group">
-			<label th:for="birth">생년월일</label> <input type="text"
+			<label th:for="birth">생년월일</label> <input type="date"
 				th:field="*{birth}" class="form-control" placeholder="yyyy-mm-dd">
 			<p th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}"
 				class="fieldError">Incorrect data</p>
 		</div>
-		<!-- <div class="form-group">
-			<label th:for="addr">주소</label>
-			<input type="text" th:field="*{addr}" class="form-control" placeholder="주소 입력해주세요">
-			<p th:if="${#fields.hasErrors('addr')}" th:errors="*{addr}" class="fieldError">Incorrect data</p>
-		</div> -->
 		<div class="form-group">
 			<input class="form-control" style="display: inline;"
 				placeholder="우편번호" name="addr1" id="addr1" type="text"

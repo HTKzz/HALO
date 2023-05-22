@@ -8,10 +8,10 @@ html {
 	margin: 0;
 }
 
-body {
+/* body {
 	min-height: 100%;
 	background-color: white;
-}
+} */
 
 .footer {
 	position: absolute;
@@ -27,15 +27,15 @@ ul {
 	
 }
 
-.nav-link {
+/* .nav-link {
 	display: flex;
 	text-decoration: none;
 	width: 100px;
-}
+} */
 
 .content {
 	margin-bottom: 100px;
-	margin-top: 50px;
+	margin-top: 200px;
 	margin-left: 100px;
 	margin-right: 200px;
 }

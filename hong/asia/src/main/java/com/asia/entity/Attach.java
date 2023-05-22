@@ -29,7 +29,7 @@ import lombok.ToString;
 public class Attach {
 	
 	@Id
-	@Column(name="attach_id")
+	@Column(name="attach_num")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN7")
 	private Long num;
 	
@@ -42,11 +42,11 @@ public class Attach {
 	private String thumb;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="application_id")
+	@JoinColumn(name="application_num")
 	private Application application;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="voc_id")
+	@JoinColumn(name="voc_num")
 	private Voc voc;
 	
 	public void updateAttach(String oriName, String name, String url) {

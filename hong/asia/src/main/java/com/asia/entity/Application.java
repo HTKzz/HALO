@@ -35,15 +35,15 @@ import lombok.ToString;
 public class Application {
 	
 	@Id
-	@Column(name="application_id")
+	@Column(name="application_num")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN1")
 	private Long num;
 	
 	private String name;
 	
-	private String startdate;
+	private String sdate;
 	
-	private String enddate;
+	private String edate;
 	
 	private String udate;
 	
@@ -52,7 +52,7 @@ public class Application {
 	private int price;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="member_id")
+	@JoinColumn(name="member_num")
 	private Member member;
 	
 	@OneToMany(mappedBy ="application", cascade=CascadeType.ALL)
@@ -62,8 +62,8 @@ public class Application {
 	public static Application saveApplication(ApplicationDto applicationDto) {
 		Application application = new Application();
 		application.setName(applicationDto.getName());
-		application.setStartdate(applicationDto.getStartdate());
-		application.setEnddate(applicationDto.getEnddate());
+		application.setSdate(applicationDto.getSdate());
+		application.setEdate(applicationDto.getEdate());
 		application.setUdate(applicationDto.getUdate());
 		application.setSeatDetail(applicationDto.getSeatDetail());
 		

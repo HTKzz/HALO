@@ -1,10 +1,5 @@
 package com.asia.dto;
 
-import org.modelmapper.ModelMapper;
-
-import com.asia.entity.Application;
-import com.asia.entity.Reservation;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

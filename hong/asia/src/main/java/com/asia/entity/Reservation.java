@@ -30,7 +30,7 @@ import lombok.ToString;
 public class Reservation extends BaseEntity {
 
 	@Id
-	@Column(name = "reservation_id")
+	@Column(name = "reservation_num")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN6")
 	private Long num;
 
@@ -45,11 +45,11 @@ public class Reservation extends BaseEntity {
 	private String stat;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="member_id")
+	@JoinColumn(name="member_num")
 	private Member member;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="application_id")
+	@JoinColumn(name="application_num")
 	private Application application;
 
 }

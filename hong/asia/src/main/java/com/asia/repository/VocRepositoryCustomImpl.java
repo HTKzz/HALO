@@ -78,17 +78,17 @@ public class VocRepositoryCustomImpl implements VocRepositoryCustom{
 	
 	@Override
 	public Page<Voc> getVocLists(Pageable pageable){
-		QueryResults<Voc> results = queryFactory // queryFactory 이용해서 쿼리 생성
-				.selectFrom(QVoc.voc) //글 데이터 조회하기 위해 QVoc의 voc 지정
-				.orderBy(QVoc.voc.originNo.desc(), QVoc.voc.groupOrd.asc()) //우리는 num
-				.offset(pageable.getOffset()) // 데이터를 가져 올 시작 인덱스를 지정
-				.limit(pageable.getPageSize()) // 한번에 가져 올 최대 개수 지정
-				.fetchResults(); // 조회한 리스트 및 전체 개수를 포함하는 QueryResult를 반환, 글 데이터 리스트 조회 및 글 데이터 전체 개수를 조회하는 2번의 쿼리문 실행
+		QueryResults<Voc> results = queryFactory
+				.selectFrom(QVoc.voc)
+				.orderBy(QVoc.voc.originNo.desc(), QVoc.voc.groupOrd.asc())
+				.offset(pageable.getOffset())
+				.limit(pageable.getPageSize())
+				.fetchResults();
 		
 		List<Voc> contents = results.getResults();
 		long total = results.getTotal();
 		
-		return new PageImpl<>(contents, pageable, total);//조회한 데이터를 Page 클래스의 구현체인 PageImpl로 반환
+		return new PageImpl<>(contents, pageable, total);
 						
 	}
 }

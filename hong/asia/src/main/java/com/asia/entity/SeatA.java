@@ -30,7 +30,7 @@ import lombok.ToString;
 public class SeatA {
 
 	@Id
-	@Column(name = "seatA_id")
+	@Column(name = "seatA_num")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN3")
 	private Long num;
 
@@ -39,7 +39,7 @@ public class SeatA {
 	private String seat;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "application_id")
+	@JoinColumn(name = "application_num")
 	private Application application;
 
 	public static SeatA createSeatA(SeatADto SeatADto) {
@@ -55,8 +55,4 @@ public class SeatA {
 	public void updateSeat(String a) {
 		this.stat = a;
 	}
-
-//	public void updateSeat(UpdateDto UpdateDto) {
-//		this.stat = UpdateDto.this;
-//	}
 }

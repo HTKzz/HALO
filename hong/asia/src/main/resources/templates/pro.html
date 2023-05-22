@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<head>
 <meta charset="UTF-8">
-<th:block layout:fragment="css">
-	<style>
-		
-	</style>
-</th:block>
-
-<div class="header" th:fragment="header">
-
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>헤더 영역</title>
 <link th:href="@{/css/header.css}" rel="stylesheet">
 <link th:href="@{/css/menu.css}" rel="stylesheet">
-	<body>
-		<!-- header -->
-		<header>
+</head>
+<body>
+	<!-- header -->
+	<header>
 			<div class="container">
 				<h1>
 					<button data-animation-scroll="true" data-target="#main">
@@ -26,20 +21,10 @@
 				</h1>
 
 				<ul>
-					<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a
-						class="nav-link" href="/admin/reservationMng">상품 관리</a></li>
-					<li class="nav-item" sec:authorize="isAuthenticated()"><a
-						class="nav-link" href="/cart">장바구니</a></li>
-					<li class="nav-item" sec:authorize="isAuthenticated()"><a
-						class="nav-link" href="/applications/new">상품등록</a></li>
-					<li class="nav-item" sec:authorize="isAuthenticated()"><a
-						class="nav-link" href="/boards/application">상품목록</a></li>
-					<li class="nav-item" sec:authorize="isAuthenticated()"><a
-						class="nav-link" href="/voc/new">voc 글쓰기</a></li>
-					<li class="nav-item" sec:authorize="isAuthenticated()"><a
-						class="nav-link" href="/voc/list">voc 글목록</a></li>
-					<li class="nav-item" sec:authorize="isAuthenticated()"><a
-						class="nav-link" href="/voc/manage">voc 관리</a></li>
+					<li><a href="#">상품 등록</a></li>
+					<li><a href="#">상품 관리</a></li>
+					<li><a href="#">장바구니</a></li>
+					<li><a href="#">구매이력</a></li>
 					<li class="nav-item" sec:authorize="isAnonymous()"><a
 						class="nav-link" href="/members/login">로그인</a></li>
 					<li class="nav-item" sec:authorize="isAuthenticated()"><a
@@ -92,9 +77,7 @@
 					</ul>
 				</nav>
 			</div>
-		</header>
-		<!-- //end header -->
-	</body>
-</div>
-
+	</header>
+	<!-- //end header -->
+</body>
 </html>

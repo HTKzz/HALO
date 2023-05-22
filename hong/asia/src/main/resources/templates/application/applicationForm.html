@@ -20,10 +20,11 @@
             if (errorMessage != null) {
                 alert(errorMessage);
             }
+            
+        	bindDomEvent();
 
             document.getElementById('btn').onclick = function() {
             	
-            	bindDomEvent();
             	
                 document.getElementById('frm').submit();
                 return false;
@@ -41,8 +42,9 @@
 				
 				if(fileExt != "jpg" && fileExt != "jpeg" && fileExt != "gif" && fileExt != "png" && fileExt != "bmp"){
 					alert("이미지 파일만 등록이 가능합니다.");
+					$(this).val("");
 					return;
-				}
+				} 
 				$(this).siblings(".custom-file-label").html(fileName);
 			});
 		}
@@ -58,13 +60,13 @@
 		</div>
 		<div class="form-group">
 			<label th:for="date">시작일</label>
-			<input type="text" th:field="*{startdate}" class="form-control" placeholder="yyyy-mm-dd">
-			<p th:if="${#fields.hasErrors('startdate')}" th:errors="*{startdate}" class="fieldError">Incorrect data</p>
+			<input type="date" th:field="*{sdate}" class="form-control" placeholder="yyyy-mm-dd">
+			<p th:if="${#fields.hasErrors('sdate')}" th:errors="*{sdate}" class="fieldError">Incorrect data</p>
 		</div>
 		<div class="form-group">
 			<label th:for="date">종료일</label>
-			<input type="text" th:field="*{enddate}" class="form-control" placeholder="yyyy-mm-dd">
-			<p th:if="${#fields.hasErrors('enddate')}" th:errors="*{enddate}" class="fieldError">Incorrect data</p>
+			<input type="date" th:field="*{edate}" class="form-control" placeholder="yyyy-mm-dd">
+			<p th:if="${#fields.hasErrors('edate')}" th:errors="*{edate}" class="fieldError">Incorrect data</p>
 		</div>
 		<div class="form-group">
 			<label th:for="seatDetail">좌석</label>

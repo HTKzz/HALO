@@ -60,7 +60,6 @@ public class AttachService {
 	public void attachDelete(Long num) throws Exception {
 		
 		List<AttachDto> attachLists = attachRepository.getLists(num);
-		System.out.println(attachLists);
 
 		for (int i = 0; i < attachLists.size(); i++) {
 

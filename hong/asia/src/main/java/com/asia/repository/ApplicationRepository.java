@@ -10,18 +10,18 @@ import com.asia.entity.Application;
 
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
 	
-	@Query("select distinct new com.asia.dto.ApplicationDto(name, startdate, enddate) from Application")
+	@Query("select distinct new com.asia.dto.ApplicationDto(name, sdate, edate) from Application")
 	List<ApplicationDto> getList1();
 	
-	@Query("select distinct new com.asia.dto.ApplicationDto(num, name, startdate, enddate, udate) from Application "
+	@Query("select distinct new com.asia.dto.ApplicationDto(num, name, sdate, edate, udate) from Application "
 			+ "where name = :name")
 	List<ApplicationDto> getList2(String name);
 	
-	@Query("select distinct new com.asia.dto.ApplicationDto(num, name, startdate, enddate, udate, seatDetail) from Application "
+	@Query("select distinct new com.asia.dto.ApplicationDto(num, name, sdate, edate, udate, seatDetail) from Application "
 			+ "where name = :name")
 	List<ApplicationDto> getApplication(String name);
 	
-	Application findByNum(long anum);
+	Application findByNum(Long anum);
 	
 }
 

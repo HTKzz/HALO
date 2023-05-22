@@ -41,8 +41,8 @@ public class ApplicationService {
 		Member member = memberRepository.findById(name);
 
 		String seat = applicationDto.getSeatDetail();
-		String startdate = applicationDto.getStartdate();
-		String enddate = applicationDto.getEnddate();
+		String startdate = applicationDto.getSdate();
+		String enddate = applicationDto.getEdate();
 		SimpleDateFormat sdfYMD = new SimpleDateFormat("yyyy-MM-dd");
 
 		Date firstDate = sdfYMD.parse(startdate);

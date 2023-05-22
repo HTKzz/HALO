@@ -20,8 +20,6 @@ public class SeatADto {
 	
 	private String seat;
 	
-	private Application applicationnum;
-	
 	@QueryProjection
 	public SeatADto(Long num, String seat) {
 		this.num = num;

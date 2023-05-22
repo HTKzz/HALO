@@ -20,8 +20,6 @@
 			if(errorMessage != null){
 				alert(errorMessage);
 			}
-			
-			
 		});
 	</script>
 </th:block>
@@ -43,14 +41,8 @@
 				<tbody>
 					<tr th:each="list : ${applicationList}">
 						<td><a th:href="@{/boards/application/{name}(name=${list.name})}"><span th:text="${list.name}"></span></a></td>
-						<td><span th:text="${list.startdate}"></span></td>
-						<td><span th:text="${list.enddate}"></span></td>
-
-						<!-- <td><span th:if="${list.registerTime == list.updateTime}"
-							th:text="${#temporals.format(list.RegisterTime, 'yyyy-MM-dd HH:mm')}"></span>
-							<span th:if="${list.registerTime != list.updateTime}"
-							th:text="${#temporals.format(list.updateTime, 'yyyy-MM-dd HH:mm')}"></span>
-						</td> -->
+						<td><span th:text="${list.sdate}"></span></td>
+						<td><span th:text="${list.edate}"></span></td>
 					</tr>
 				</tbody>
 			</table><br><br><br><br><br>

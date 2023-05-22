@@ -23,17 +23,15 @@ public class ApplicationDto {
 	
 	private String name;
 
-	private String startdate;
+	private String sdate;
 
-	private String enddate;
+	private String edate;
 
 	private String udate;
 
 	private String seatDetail;
 	
 	private int price;
-	
-//	private Long member;
 	
 	private List<AttachDto> attachDtoList = new ArrayList<>();
 
@@ -50,28 +48,28 @@ public class ApplicationDto {
 	}
 	
 	@QueryProjection
-	public ApplicationDto(Long num, String name, String startdate, String enddate, String udate) {
+	public ApplicationDto(Long num, String name, String sdate, String edate, String udate) {
 		this.num = num;
 		this.name = name;
-		this.startdate = startdate;
-		this.enddate = enddate;
+		this.sdate = sdate;
+		this.edate = edate;
 		this.udate = udate;
 	}
 	
 	@QueryProjection
-	public ApplicationDto(Long num, String name, String startdate, String enddate, String udate, String seatDetail) {
+	public ApplicationDto(Long num, String name, String sdate, String edate, String udate, String seatDetail) {
 		this.num = num;
 		this.name = name;
-		this.startdate = startdate;
-		this.enddate = enddate;
+		this.sdate = sdate;
+		this.edate = edate;
 		this.udate = udate;
 		this.seatDetail = seatDetail;
 	}
 	
 	@QueryProjection
-	public ApplicationDto(String name, String startdate, String enddate) {
+	public ApplicationDto(String name, String sdate, String edate) {
 		this.name = name;
-		this.startdate = startdate;
-		this.enddate = enddate;
+		this.sdate = sdate;
+		this.edate = edate;
 	}
 }

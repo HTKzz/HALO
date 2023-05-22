@@ -31,24 +31,18 @@ input {
 </th:block>
 <div layout:fragment="content">
 	<form action="/reservations/new1" role="form" method="post" th:object="${application}" id="frm">
-		<!-- <input type="text" th:field="*{name}" readOnly>
-		<input type="text" th:field="*{startdate}" readOnly>
-		<input type="text" th:field="*{enddate}" readOnly>
-		<span th:text="${name}"></span>
-		<span th:text="${startdate}"></span> -->
-		<!-- <input type="hidden" th:field="*{num}" id="num" name="num"> -->
 		<div class="text-right">
 				<div class="h4 text-danger text-left">프로그램명
 					<input type="hidden" th:field="*{name}" id="name" name="name">
 					<input type="text" th:field="*{name}" readOnly>
 				</div>
 				<div class="h4 text-danger text-left">시작일
-					<input type="hidden" th:field="*{startdate}" id="startdate" name="startdate">
-					<input type="text" th:field="*{startdate}" readOnly>
+					<input type="hidden" th:field="*{sdate}" id="sdate" name="sdate">
+					<input type="text" th:field="*{sdate}" readOnly>
 				</div>
 				<div class="h4 text-danger text-left">종료일
-					<input type="hidden" th:field="*{enddate}" id="enddate" name="enddate">
-					<input type="text" th:field="*{enddate}" readOnly>
+					<input type="hidden" th:field="*{edate}" id="edate" name="edate">
+					<input type="text" th:field="*{edate}" readOnly>
 				</div>
 				<input type="hidden" th:field="*{seatDetail}">
 				<select th:name="test">
