@@ -31,6 +31,7 @@ input {
 </th:block>
 <div layout:fragment="content">
 	<form action="/reservations/new" role="form" method="post" th:object="${application}" id="frm">
+	
 		<div class="text-right">
 				<div class="h4 text-danger text-left">프로그램명
 					<input type="hidden" th:field="*{name}" id="name" name="name">
