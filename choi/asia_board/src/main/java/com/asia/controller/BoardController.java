@@ -99,6 +99,7 @@ public class BoardController {
 
 		LOGGER.info("보드 컨트롤러 디테일 메서드 호출");
 		boardDto = boardService.getBoardDetail(num);
+		LOGGER.info("boardDto에 들어온 값 {}", boardDto);
 		boardService.updateCnt(num);
 		model.addAttribute("boardDto", boardDto);
 		return "board/boardDetailForm";

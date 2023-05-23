@@ -114,7 +114,6 @@
     list-style: none;
     border: 0;
     text-decoration: none;
-    
 }
 
 form{
@@ -128,17 +127,10 @@ a {
 }
 
 .headerr{
-	position:relative;
 	float: left;
 	width: 100%;
 	border-bottom: 1px solid black;
-	padding: 20px 15px 20px;
-}
-
-.deco{
-	position: absolute;
-	width: 742px;
-    background: url(D:\www\images\수진이 강쥐(순한맛).png) no-repeat center;
+	padding: 120px 15px 20px;
 }
 
 .back-to-list{
@@ -197,6 +189,9 @@ dd{
 .bodyContent{
 	float: left;
 	width: 100%;
+	text-indent: 25px;
+	font-size: 1.2em;
+	
 	padding: 30px 0px 30px;
 	border-bottom: 1px solid #e2e2e2;
 }
@@ -243,7 +238,23 @@ pre{
 .download{
 	float: left;
 	width: 100%;
-	padding: 15px 0px 15px;
+	padding: 15px 0px 25px;
+	border-bottom: 1px solid #e2e2e2;
+}
+
+.download_text{
+	width: 100%;
+	line-height: 50px;
+}
+
+.download_inner{
+	width: 100%;
+	display: block;
+}
+
+.inner_text{
+	width: 100%;
+	padding: 30px 20px 30px;
 }
 
 </style>
@@ -318,13 +329,38 @@ pre{
 		
 		<div>
 			<div class="download">
-				<span>다운로드</span>
-				<span th:each="attach : ${boardDto.attachDtoList}">
+				<span class="download_text">다운로드</span>
+				<span class="download_inner" th:each="attach : ${boardDto.attachDtoList}">
 				
 					<a th:if="${not #strings.isEmpty(attach.url)}" th:href="@{/download/{num}(num=${attach.num})}"
 				 	th:text="${attach.oriname}"></a>
 				</span>
 			</div>
+		</div>
+		
+		<div class="detailPrev">
+			<ul class="detailPrev_inner">
+				<li>
+					<a th:href="@{/boards/detail/{num}(num=${boardDto.num-1})}">
+						<span th:if="${boardDto.num-1 != 0}">
+							<span class="detailPrev inner_text" th:if="${boardDto.allBoardCnt >= boardDto.num}">이전글</span>
+							<span class="detailPrev inner_text" th:text="${boardDto.prevContent}"></span>
+						</span>
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/boards/detail/{num}(num=${boardDto.num+1})}">
+						<span class="detailNext inner_text" th:if="${boardDto.allBoardCnt > boardDto.num}">다음글</span>
+						<span class="detailNext inner_text" th:text="${boardDto.nextContent}"></span>
+					</a>
+				</li>
+				 <li>
+				 	<a>
+						<!-- <span class="detailPrev_inner_text" th:if="${boardDto.num(${num-1})"
+							 th:alt="이전글">이전글</span> -->
+					</a>
+				</li>
+			</ul>
 		</div>
 		
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
