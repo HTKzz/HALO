@@ -77,7 +77,7 @@ public class BoardController {
 
 		if (attachList.get(0).isEmpty() && boardDto.getNum() == null) {
 			model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력 값 입니다.");
-			return "item/itemForm";
+			return "board/boardForm";
 		}
 
 		try {
