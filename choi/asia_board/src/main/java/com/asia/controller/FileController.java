@@ -51,7 +51,6 @@ public class FileController {
 			LOGGER.info("ResponseEntity headers : {} ", headers);
 			LOGGER.info("ResponseEntity filePath : {} ", filePath);
 			
-			
 			return new ResponseEntity<Object>(resource, headers, HttpStatus.OK);
 		
 		} catch(Exception e) {

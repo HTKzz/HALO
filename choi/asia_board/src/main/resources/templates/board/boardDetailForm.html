@@ -201,7 +201,7 @@ pre{
 				<h1 class="detail-title" th:text="${boardDto.name}"></h1>
 				<dl class="view-date">
 					<dt>작성일 : </dt>
-					<dd th:text="${boardDto.regTime}"></dd>
+					<dd th:text="${#temporals.format(boardDto.regTime, 'yyyy-MM-dd')}"></dd>
 				</dl>
 				<!-- <span class="date">
 					작성일 : <span th:text="${boardDto.d_date}"></span>
