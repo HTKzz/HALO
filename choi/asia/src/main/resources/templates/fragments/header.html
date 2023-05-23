@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<meta charset="UTF-8">
+<div class="header" th:fragment="header">
+	<ul class="">
+		<li class="nav-item" sec:authorize="isAnonymous()"><a
+			class="nav-link" href="/members/identify">로그인</a></li>
+		
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a
+			class="nav-link" href="/">관리자홈 메인</a></li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a
+			class="nav-link" href="/admin/item/new">상품 등록</a></li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a
+			class="nav-link" href="/admin/items">상품 관리</a></li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a
+			class="nav-link" href="/members/logout">로그아웃</a></li>
+			
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_USER')"><a
+			class="nav-link" href="/">홈 메인</a></li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_USER')"><a
+			class="nav-link" href="/cart">장바구니</a></li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_USER')"><a
+			class="nav-link" href="/orders">구매이력</a></li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_USER')"><a
+			class="nav-link" href="/members/logout">로그아웃</a></li>
+			
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_COMPANY')"><a
+			class="nav-link" href="/">홈 메인</a></li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_COMPANY')"><a
+			class="nav-link" href="/">상품신청</a></li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_COMPANY')"><a
+			class="nav-link" href="/members/logout">로그아웃</a></li>
+			
+	</ul>
+</div>
+</html>
