@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout1}">
+
+<th:block layout:fragment="css">
+    <style>
+        .page-item {
+            display: flex;
+            float: left;
+        }
+
+        span {
+        }
+		
+		select {
+			margin-right: 10px;
+		}
+		
+    </style>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        /*  $(document).ready(function() {
+            $("#searchBtn").on("click", function(e) {
+                e.preventDefault();
+                page(0);
+            });
+        });
+
+        function page(page) {
+            /* var searchDateType = $("#searchDateType").val();
+            var stat = $("#stat").val();
+            var searchBy = $("#searchBy").val();
+            var searchQuery = $("#searchQuery").val(); 
+            location.href = "/admin/reservationMng/" + page + "?searchDateType=" +
+                searchDateType + "&stat=" + stat +
+                "&searchBy=" + searchBy + "&searchQuery=" + searchQuery
+        }   쓸수도 있음*/
+
+    </script>
+</th:block>
+
+<div layout:fragment="content">
+    <form th:action="@{'/admin/items/' + ${reservations.number}}" role="form" method="get" th:object="${reservations}">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>예매번호</td>
+                    <td>상품명</td>
+                    <td>예매일</td>
+                    <td>공연일</td>
+                    <td>상태</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="reservation, status: ${reservations.getContent()}">
+                    <td th:text="${reservation.num}"></td>
+                    <td><a th:href="'/admin/item/'+${reservation.num}" th:text="${reservation.application.name}"></a></td>
+                    <td th:text="${reservation.rdate}"></td>
+                    <td th:text="${reservation.application.udate}"></td>
+                    <td th:text="${reservation.stat}"></td>
+                    <td><button type="submit" th:formaction="@{/reservations/delete/{id}(id=${reservation.num})}" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">삭제하기</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagebtn">
+			<th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
+            <a th:if="${page==0? page==1 : page != nowPage}" th:href="@{/admin/reservationMng(page=${page-1})}" th:text ="${page}"></a>
+            <strong th:if="${page==nowPage}" th:text ="${page}" style="color:red"></strong>
+       		 </th:block>
+		</div><br>
+		<!-- <div class="form-inline justify-content-center" th:object="${reservationSearchDto}">
+			<select th:field="*{searchDateType}" class="form-control" style="width: auto;">
+				<option value="all">전체기간</option>
+				<option value="1d">1일</option>
+				<option value="1w">1주</option>
+				<option value="1m">1개월</option>
+				<option value="6m">6개월</option>
+			</select> <select th:field="*{stat}" class="form-control" style="width: auto;">
+				<option value="">판매상태(전체)</option>
+				<option value="SELL">판매</option>
+				<option value="SOLD_OUT">품절</option>
+			</select> <select th:field="*{searchBy}" class="form-control" style="width: auto;">
+				<option value="itemNm">상품명</option>
+				<option value="createdBy">등록자</option>
+			</select> <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
+			<button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
+		</div> -->
+	</form>
+</div>

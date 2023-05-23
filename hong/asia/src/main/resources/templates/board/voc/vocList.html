@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+	<style>
+		.fieldError {
+			color: #bd2130;
+		}
+		
+		 .layout {
+			width: 500px;
+			margin: 0 auto;
+			margin-top: 40px;
+		}
+		
+		select {
+			margin-right: 10px;
+		}
+	</style>
+</th:block>
+
+
+
+	<meta charset="UTF-8">
+
+
+	<div layout:fragment="content">
+
+		
+			<div class="layout">
+				<table>
+					<thead>
+						<tr>
+							<th>글번호</th>
+							<th>제목</th>
+							<th>조회수</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="voc:${list}">
+							<td th:text="${voc.num}">1</td>
+
+							<td>
+															<!-- 매핑이 controller에 내가 지정한거 --> 
+								<a th:text="${voc.name}" th:href="@{/voc/detail/{num}(num=${voc.num})}"></a>
+							</td>
+							<td th:text="${voc.cnt}"></td>
+
+						</tr>
+					</tbody>
+				</table>
+
+				<input type="hidden" th:name="${_csrf.parameterName}"
+					th:value="${_csrf.token}">
+
+
+				<!-- 페이지 -->
+				<div class="pagebtn">
+					<th:block th:each="page:${#numbers.sequence(startPage, endPage)}">
+					<a th:if="${page==0 ? page==1 : page != nowPage}" th:href="@{/voc/list(page=${page-1})}" th:text="${page}"></a>
+					<strong th:if = "${page==nowPage}" th:text="${page}" style="color:red"></strong>
+					</th:block>
+				</div>
+
+
+			</div>
+		
+	</div>
+</html>
+
+
+
+
+
+
+
