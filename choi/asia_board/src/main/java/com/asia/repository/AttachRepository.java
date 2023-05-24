@@ -15,6 +15,6 @@ public interface AttachRepository extends JpaRepository<Attach, Long> {
 	Attach findByNumAndThumb(Long num, String thumb);
 	Attach findByNum(Long num);
 	
-	@Query("select new com.asia.dto.AttachDto(num, name) from Attach where board_id = :num")
+	@Query("select new com.asia.dto.AttachDto(num, name) from Attach where board_num = :num")
 	List<AttachDto> getAttachLists(Long num);
 }

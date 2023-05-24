@@ -1,0 +1,53 @@
+.boardList{
+	margin-top: 150px;
+}
+
+.all{
+	width: 90%;
+	height: 700px;
+	margin-left: 10%;
+	margin-top: 50px;
+}
+
+tr>th{
+	
+	text-align: center;
+}
+
+tr>td{
+	
+	text-align: center;
+}
+	
+a {
+	text-decoration: none;
+}
+
+.write {
+	width:100%;
+	text-align:center;
+	font-size: 1.2em;
+}
+
+.group-show {
+	display: inline-block;
+	width: 30%;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+}
+
+.write {
+	height: 40px;
+	line-height: 40px;
+}
+
+.thumbImg{
+	width: 200px;
+	height:200px;
+	margin:20px;
+}
+
+.pagebtn{
+	text-align: center;
+}

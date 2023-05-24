@@ -3,75 +3,19 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout1}">
 <meta charset="UTF-8">
-<title>게시판</title>
-<th:block layout:fragment="css">
-	<style>
-
-form{
-	
-}
-
-.all{
-	width: 90%;
-	height: 700px;
-	margin-left: 10%;
-	margin-top: 50px;
-	
-}
-
-tr>th{
-	
-	text-align: center;
-}
-
-tr>td{
-	
-	text-align: center;
-}
-	
-a {
-	text-decoration: none;
-}
-
-.write {
-	width:100%;
-	text-align:center;
-	font-size: 1.2em;
-}
-
-.group-show {
-	display: inline-block;
-	width: 30%;
-	height: 50px;
-	text-align: center;
-	line-height: 50px;
-}
-
-.write {
-	height: 40px;
-	line-height: 40px;
-}
-
-.thumbImg{
-	width: 200px;
-	height:200px;
-	margin:20px;
-}
-
-.pagebtn{
-	text-align: center;
-}
-
-</style>
-</th:block>
+<head>
+	<link th:href="@{/css/boardDetail.css}" rel="stylesheet">
+</head>
 <div layout:fragment="content" class="all">
-	<form role="form" method="get" action="/boards">
+
+	<form class="boardList" role="form" method="get" action="/boards">
+	
 		<table style="width:100%;">
 			<thead style="width:100%;">
 				<tr style="width:100%;">
 					<th style="width:20%;">글번호</th>
 					<!-- <th style="width:20%;">썸네일</th> -->
-					<th style="width:20%;">제목</th>
+					<th style="letter-spacing: 25px; width:40%;">제목</th>
 					<th style="width:20%;">조회수</th>
 				</tr>
 			</thead>
@@ -85,11 +29,11 @@ a {
 						<img th:src="${board.attachList[0].url}" class="thumbImg" 
 							th:alt="${board.name}"></a>
 					</td> -->
-					<td style="width:20%;">
+					<td style="text-align:left; width:40%;">
 						<a th:text="${board.name}" 
 							th:href="@{/boards/detail/{num}(num=${board.num})}">제목</a>
 					</td>
-					<td style="width:20%;" th:text="${board.cnt}">조회수</td>
+					<td style="width:20%;" th:text="${board.cnt}">조회</td>
 
 				</tr>
 			</tbody>

@@ -123,10 +123,9 @@ form{
 
 a {
 	text-decoration: none;
-	color: #888888;
 }
 
-.headerr{
+.detail-header{
 	float: left;
 	width: 100%;
 	border-bottom: 1px solid black;
@@ -135,6 +134,7 @@ a {
 
 .back-to-list{
 	float: right;
+	margin-right: 20px;
 }
 
 .detail-title{
@@ -254,7 +254,7 @@ pre{
 
 .inner_text{
 	width: 100%;
-	padding: 30px 20px 30px;
+	margin: 30px 20px 30px;
 }
 
 </style>
@@ -266,9 +266,9 @@ pre{
 		<input type="hidden" id="boardNum" th:value="${boardDto.num}">
 		<input type="hidden"  name="groupOrd" th:value="${boardDto.groupOrd}">
 		<input type="hidden" name="groupLayer" th:value="${boardDto.groupLayer}">
-		<div class="headerr">
+		<div class="detail-header">
 			<h1>공지사항</h1>
-			<a th:href="@{/boards/lists}" class="back-to-list">목록</a>
+			
 		</div>
 		<div class="title-wrapper">
 			<div class="group-detail title">
@@ -348,9 +348,11 @@ pre{
 						</span>
 					</a>
 				</li>
+				<a th:href="@{/boards/lists}" class="back-to-list">목록</a>
 				<li>
 					<a th:href="@{/boards/detail/{num}(num=${boardDto.num+1})}">
 						<span class="detailNext inner_text" th:if="${boardDto.allBoardCnt > boardDto.num}">다음글</span>
+						
 						<span class="detailNext inner_text" th:text="${boardDto.nextContent}"></span>
 					</a>
 				</li>

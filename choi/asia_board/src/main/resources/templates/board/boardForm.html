@@ -103,7 +103,7 @@
 	</div>
 	
 	<div th:if="${#strings.isEmpty(boardDto.num)}" style="text-align: center">
-    	<button th:formaction="@{/boards/submitBoard}" type="submit" class="btn btn-primary">저장</button>
+    	<button th:formaction="@{/boards/submitBoard}" type="submit" class="btn btn-primary">등록</button>
 	</div>
 	<div th:unless="${#strings.isEmpty(boardDto.num)}" style="text-align: center">
 		<div th:if="${#strings.isEmpty(boardDto.name)}" style="text-align: center">
