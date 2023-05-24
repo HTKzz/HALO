@@ -1,12 +1,19 @@
+* {
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+}
+
 html {
 	position: relative;
 	min-height: 100%;
 	margin: 0;
 }
 
-body {
+/* body {
 	min-height: 100%;
-}
+	background-color: white;
+} */
 
 .footer {
 	position: absolute;
@@ -18,14 +25,15 @@ body {
 	text-align: center;
 }
 
-.nav-link {
+/* .nav-link {
+	display: flex;
 	text-decoration: none;
-}
-
+	width: 100px;
+} */
 
 .content {
 	margin-bottom: 100px;
-	margin-top: 50px;
-	margin-left: 200px;
+	margin-top: 200px;
+	margin-left: 100px;
 	margin-right: 200px;
 }

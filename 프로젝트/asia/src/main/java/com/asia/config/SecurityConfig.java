@@ -34,14 +34,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		;
 		
 		http.authorizeRequests()
-			.mvcMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
-			.mvcMatchers("/admin/**").hasRole("ADMIN")
+		.mvcMatchers("/voc/**").hasRole("ADMIN")
+		.mvcMatchers("/", "/members/**", "/mail/**").permitAll()
 			.anyRequest().authenticated()
 		;
 		
-		http.exceptionHandling()
-			.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
-		;
+		http.exceptionHandling() // 인증되지 않은 사용자가 리소스에 접근하였을 때 수행되는 핸들러 등록
+//		.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+//		.accessDeniedHandler(new CustomAccessDeniedHandler()); 
+		.accessDeniedPage("/error_user");
 	}
 
 	@Bean
