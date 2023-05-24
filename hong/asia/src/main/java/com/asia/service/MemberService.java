@@ -42,6 +42,11 @@ public class MemberService implements UserDetailsService {
 		if (findMember != null) {
 			throw new IllegalStateException("이미 사용된 전화번호입니다.");
 		}
+		findMember = null;
+		findMember = memberRepository.findByTel(member.getCid());
+		if (findMember != null) {
+			throw new IllegalStateException("이미 사용된 사업자등록번호입니다.");
+		}
 	}
 
 	// 로그인
@@ -51,14 +56,33 @@ public class MemberService implements UserDetailsService {
 			throw new UsernameNotFoundException(id);
 		}
 
-		return User.builder()
-				.username(member.getId())
-				.password(member.getPassword())
-				.roles(member.getRole().toString())
+		return User.builder().username(member.getId()).password(member.getPassword()).roles(member.getRole().toString())
 				.build();
 	}
 
 	public boolean checkIdDuplicate(String id) {
 		return memberRepository.existsById(id);
+	}
+
+	public Member findByNameAndEmail(String name, String email) {
+		Member member = memberRepository.findByNameAndEmail(name, email);
+		if (member != null) {
+			return member;
+		} else {
+			throw new NullPointerException("가입된 회원이 아닙니다");
+		}
+	}
+
+	public Member findByIdAndEmail(String id, String email) {
+		Member member = memberRepository.findByIdAndEmail(id, email);
+		if (member != null) {
+			return member;
+		} else {
+			throw new NullPointerException("가입된 회원이 아닙니다");
+		}
+	}
+	
+	public Member updateMember(Member member) {
+		return memberRepository.save(member);
 	}
 }

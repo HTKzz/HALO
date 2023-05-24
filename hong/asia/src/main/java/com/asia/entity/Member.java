@@ -40,6 +40,9 @@ public class Member extends BaseEntity {
 
 	@Column(unique = true, nullable = false)
 	private String id;
+	
+	@Column(unique = true)
+	private String cid;
 
 	@Column(nullable = false)
 	private String name;
@@ -71,6 +74,7 @@ public class Member extends BaseEntity {
 	public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
 		Member member = new Member();
 		member.setId(memberFormDto.getId());
+		member.setCid(memberFormDto.getCid());
 		member.setName(memberFormDto.getName());
 		member.setEmail(memberFormDto.getEmail());
 		member.setTel(memberFormDto.getTel());
@@ -80,7 +84,7 @@ public class Member extends BaseEntity {
 		member.setAgree(memberFormDto.getAgree());
 		String password = passwordEncoder.encode(memberFormDto.getPassword());
 		member.setPassword(password);
-		member.setRole(Role.USER);
+		member.setRole(memberFormDto.getRole());
 		member.setStat(Stat.회원);
 		return member;
 	}

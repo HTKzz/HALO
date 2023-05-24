@@ -1,0 +1,178 @@
+
+.findbox {
+            margin: auto;
+            width: 70%;
+            height: 619px;
+            margin-top: 100px;
+        }
+    
+        .IdPw_title {
+            text-align: center;
+        }
+    
+        .IdPw_title>span {
+            font-size: 30px;
+        }
+    
+        .mem_title {
+            height: 50px;
+            margin-top: 50px;
+            text-align: center
+        }
+    
+        .mem_a {
+            width: 100%;
+            height: 100%;
+
+        }
+    
+        .mem_a > .com{
+            margin-left: 1%;
+        }
+
+        .mem_a > button{
+            border: none;
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-family: "paybooc-Light", sans-serif;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.25s;
+            background-color: aliceblue;
+            color: #1e6b7b;
+        }
+
+        .mem_a > button{
+            margin-left: 3%;
+        }
+
+        .mem_a > button:hover{
+            letter-spacing: 2px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .mem_a > button:active{
+            transform: scale(1.5);
+        }
+
+        .com_find_body {
+            height: 475px;
+        }
+    
+        .com_form_ {
+            width: 100%;
+        }
+
+        .com_ck {
+            margin-top: 20px;
+            margin-left: 45%;
+        }
+        .com_ck > button {
+        	width : 100px;
+        	height : 30px;
+        	background: #99DDEE;
+        	border-radius: 5px;
+        	color: #666;
+        }
+
+    .com_ck > button:hover{
+    	color: #fff;
+    	background-color: #39A3C0;
+    }
+
+        .com_form_id {
+            margin-top: 50px;
+            width: 100%;
+        }
+    
+        .com_form_a {
+            float: left;
+            margin-left: 35%;
+            width: 13%;
+        }
+    
+        .com_form_email {
+            margin-top: 10px;
+        }
+    
+        
+        .per_find_body_id {
+            height: 475px;
+        }
+    
+        .per_find_body_pw {
+            height: 475px;
+        }
+
+        .id_per_form_ {
+            width: 100%;
+        }
+
+        .pw_per_form_ {
+            width: 100%;
+        }
+
+        .per_ck {
+            margin-top: 20px;
+            margin-left: 45%;
+        }
+        .per_ck > button {
+        	width : 100px;
+        	height : 30px;
+        	background: #99DDEE;
+        	border-radius: 5px;
+        	color: #666;
+        }
+        .per_ck > button:hover{
+    	color: #fff;
+    	background-color: #39A3C0;
+    }
+    
+        .per_form_id {
+            margin-top: 50px;
+            width: 100%;
+        }
+    
+        .per_form_a {
+            float: left;
+            margin-left: 35%;
+            width: 13%;
+        }
+    
+        .per_form_email {
+            margin-top: 10px;
+        }
+
+        .ck_id{
+            margin-top: 30px;
+            text-align: center;
+        }
+	
+		.ck_id > input{
+            margin-left: 30px;;
+        }
+        
+    .error_div{
+		text-align : center;
+    	margin-top : 20px;
+    	display: block;
+    	color: red;
+    }
+    .error{
+    	display : none;
+		color :red;
+    }
+    .succ_div{
+    	text-align : center;
+    	margin-top : 20px;
+    	display: block;
+    	color: green;
+    }
+    .succ{
+    	display : none;
+		color : green;
+    }
+        
