@@ -45,8 +45,9 @@ public class BoardController {
 		LOGGER.info("/boards/lists 메서드 호출");
 
 		Page<Board> lists = boardService.boardList(pageable);
-
+		
 		model.addAttribute("boardList", lists);
+		
 
 		int nowPage = lists.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 4, 1);

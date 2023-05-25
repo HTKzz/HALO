@@ -4,6 +4,7 @@
 
 .vocForm{
 	width: 90%;
+	min-width: 820px;
 	margin-left: 10%;
 	margin-top: 50px;
 }
@@ -20,12 +21,11 @@
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
-	
 	border-bottom: 1px solid #e2e2e2;
 }
 
 .vocListForm {
-	width: 100%;
+	width: 90%;
 }
 
 .vocList-head {
@@ -71,6 +71,7 @@
 }
 
 .pagebtn{
+	width: 90%;
 	text-align: center;
 }
 
@@ -82,7 +83,7 @@
 }
 
 .voc-write{
-	width:100%;
+	width:90%;
 	height: 50px;
 	text-align:center;
 	font-size: 1.2em;

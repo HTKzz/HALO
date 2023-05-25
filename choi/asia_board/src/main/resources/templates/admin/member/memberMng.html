@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+<meta charset="UTF-8">
+<head>
+	
+</head>
+<div layout:fragment="content" class="vocForm">
+<link th:href="@{/css/memberMng.css}" rel="stylesheet">
+	<form class="memberMngForm" role="form" method="get" action="/boards">
+	
+		<table class="vocListForm">
+			<thead class="vocList-head">
+				<tr class="vocHead-tr">
+					<th class="vocHead_no">글번호</th>
+					<!-- <th style="width:20%;">썸네일</th> -->
+					<th class="vocHead_title">제목</th>
+					<th class="vocHead_no">조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="vocListBody" th:each="board:${boardList}">
+					
+					<td class="vocListBody-no" th:text="${board.num}">글번호</td>
+					<td class="vocListBody-title">
+						<a th:text="${board.name}" 
+							th:href="@{/boards/detail/{num}(num=${board.num})}">제목</a>
+					</td>
+					<td class="vocListBody-no" th:text="${board.cnt}">조회</td>
+
+				</tr>
+			</tbody>
+
+
+
+		</table>
+		<div class="vocList pagebtn">
+			<th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
+				<a th:if="${page==0? page==1 : page != nowPage}"
+					th:href="@{/boards/lists(page=${page-1})}" th:text="${page}"></a>
+				<strong th:if="${page==nowPage}" th:text="${page}"
+					class="vocbtn_strong"></strong>
+			</th:block>
+		</div>
+		<div class="vocList write">
+			<div class="voc-write">
+				<a href="/boards/write">글쓰기</a>
+			</div>
+		</div>
+
+
+	</form>
+</div>
+</html>
