@@ -1,0 +1,27 @@
+.nav-item-inner {
+	float: left;
+	padding: 5px 20px;
+	margin: 40px -55px;
+	line-height: 20px;
+	text-align: center;
+}
+
+.nav-link {
+	margin: 20px;
+	text-align: center;
+}
+
+.nav-item-depth2 {
+	list-style: none;
+	left: 120px;
+	padding: 10px;
+	position: absolute;
+	display: inline-block;
+	background-color: red;
+}
+
+
+.nav-item-depth2>a:hover{
+		display:block;
+        color: lightsalmon;
+    }

@@ -157,11 +157,19 @@ public class BoardService {
 		}
 
 		Board board = boardRepository.findByNum(num);
-		 
+		long allBoardCnt = boardRepository.getList();
+		String prevContent = boardRepository.getPrevContent(num);
+		String nextContent = boardRepository.getNextContent(num);
+		
 		BoardDto boardDto = BoardDto.of(board);
+		boardDto.setAllBoardCnt(allBoardCnt);
+		boardDto.setPrevContent(prevContent);
+		boardDto.setNextContent(nextContent);
 		boardDto.setAttachDtoList(attachDtoList);
 		
-		LOGGER.info("서비스에서 num에 들어온 값 {}", num);
+		LOGGER.info("디테일에서 num에 들어온 값 {}", num);
+		LOGGER.info("디테일서비스에서 boardDto에 들어온 값 {}", boardDto);
+		
 		return boardDto;
 	}
 	

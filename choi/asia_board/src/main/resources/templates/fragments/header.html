@@ -1,34 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
 <meta charset="UTF-8">
+<head>
+	<link th:href="@{/css/header.css}" rel="stylesheet">
+</head>
+
+<body>
 
 <div class="header" th:fragment="header">
-	<div class="" style="height:60px;">
+<script th:src="@{/js/header.js}" type="text/javascript"></script>
+	<div class="" style="height: 60px;">
 		<span class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-			<a class="nav-link" style="margin:15px;" href="/admin/item/new">상품 등록</a>
-		</span>
-		
+			<a class="nav-link" style="margin: 15px;" href="/admin/item/new">상품
+				등록</a>
+		</span> 
 		<span class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-			<a class="nav-link" style="margin:15px;" href="/admin/items">상품 관리</a>
-		</span>
-		
-		<span class="nav-item" sec:authorize="isAuthenticated()">
-			<a class="nav-link" style="margin:15px;" href="/cart">장바구니</a>
-		</span>
-		
-		<span class="nav-item" sec:authorize="isAuthenticated()">
-			<a class="nav-link" style="margin:15px;" href="/orders">구매이력</a>
-		</span>
-		
-		<span class="nav-item" sec:authorize="isAnonymous()">
-			<a class="nav-link" style="margin:15px; margin-left:50px;" href="/members/login">로그인</a>
-		</span>
-		
-		<span class="nav-item" sec:authorize="isAuthenticated()">
-			<a class="nav-link" style="float:right; margin-right:100px;" href="/members/logout">로그아웃</a>
+			<a class="nav-link" style="margin: 20px; text-align: center;"
+			href="/boards/lists">상품 관리</a>
+			<ul class="nav-item-inner"	style="float: left; padding: 5px 20px; margin: 40px -55px;
+											 line-height: 20px; text-align: center;">
+				<li class="nav-item-depth2"
+					style="list-style: none; left: 120px; padding: 10px; position: absolute; display: none; background-color: red;">
+					
+					<a href="/boards/lists">공지사항</a>
+				</li>
+			</ul>
+		</span> 
+		<span class="nav-item" sec:authorize="isAuthenticated()"> <a
+			class="nav-link" style="margin: 15px;" href="/cart">장바구니</a>
+		</span> 
+		<span class="nav-item" sec:authorize="isAuthenticated()"> <a
+			class="nav-link" style="margin: 15px;" href="/orders">구매이력</a>
+		</span> 
+		<span class="nav-item" sec:authorize="isAnonymous()"> <a
+			class="nav-link" style="margin: 15px; margin-left: 50px;"
+			href="/members/login">로그인</a>
+		</span> 
+		<span class="nav-item" sec:authorize="isAuthenticated()"> <a
+			class="nav-link logout" style="float: right; margin-right: 100px;"
+			href="/members/logout">로그아웃</a>
 		</span>
 	</div>
 </div>
+</body>
 </html>

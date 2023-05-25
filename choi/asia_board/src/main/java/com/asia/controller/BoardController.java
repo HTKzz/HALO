@@ -77,7 +77,7 @@ public class BoardController {
 
 		if (attachList.get(0).isEmpty() && boardDto.getNum() == null) {
 			model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력 값 입니다.");
-			return "item/itemForm";
+			return "board/boardForm";
 		}
 
 		try {
@@ -99,6 +99,7 @@ public class BoardController {
 
 		LOGGER.info("보드 컨트롤러 디테일 메서드 호출");
 		boardDto = boardService.getBoardDetail(num);
+		LOGGER.info("boardDto에 들어온 값 {}", boardDto);
 		boardService.updateCnt(num);
 		model.addAttribute("boardDto", boardDto);
 		return "board/boardDetailForm";
