@@ -1,10 +1,12 @@
 package com.asia.controller;
 
+import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
+
 import javax.annotation.PostConstruct;
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +14,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.asia.constant.Role;
 import com.asia.dto.MemberFormDto;
 import com.asia.entity.Member;
+import com.asia.service.MailService;
 import com.asia.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +32,7 @@ public class MemberController {
 //	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private final MemberService memberService;
+	private final MailService mailService;
 	private final PasswordEncoder passwordEncoder;
 	
 	//임의로 관리자 생성
@@ -43,6 +49,7 @@ public class MemberController {
 		memberFormDto.setEmail("123@naver.com");
 		memberFormDto.setTel("0105555555");
 		memberFormDto.setBirth("1996-05-23");
+		memberFormDto.setCid("1111");
 		memberFormDto.setAddr("관저동");
 		Member member = Member.createMember(memberFormDto , passwordEncoder);
 		String password = passwordEncoder.encode(memberFormDto.getPassword());
@@ -54,7 +61,10 @@ public class MemberController {
 	//회원가입 페이지 불러오기
 	@GetMapping(value = "/new")
 	public String memberForm(Model model) {
-		model.addAttribute("memberFormDto", new MemberFormDto());
+		MemberFormDto memberFormDto = new MemberFormDto();
+		memberFormDto.setRole(Role.USER);
+		memberFormDto.setAgree("Y");
+		model.addAttribute("memberFormDto", memberFormDto);
 		return "member/memberForm";
 	}
 
@@ -87,5 +97,29 @@ public class MemberController {
 		model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
 		return "/member/memberLoginForm";
 	}
-
+	
+	@GetMapping(value="/idpw")
+	public String findIdPw() {
+		return "/member/findIdPw";
+	}
+	
+	@PostMapping(value="/findid")
+	@ResponseBody
+	public HashMap<String, Object> findId(@RequestParam("name") String name, @RequestParam("email") String email) throws MessagingException {
+		Member member = memberService.findByNameAndEmail(name, email);
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("result", mailService.sendFindIdMail(email, member));
+		return map;
+	}
+	
+	@PostMapping(value="/findpw")
+	@ResponseBody
+	public String findPw(String id, String email) throws MessagingException, InterruptedException, ExecutionException {
+		Member member = memberService.findByIdAndEmail(id, email);
+		String password = mailService.sendFindPwMail(email, member).get();
+		String pw = passwordEncoder.encode(password);
+		member.setPassword(pw);
+		memberService.updateMember(member);
+		return "success";
+	}
 }
