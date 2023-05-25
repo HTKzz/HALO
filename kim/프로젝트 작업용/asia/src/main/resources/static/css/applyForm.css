@@ -1,0 +1,281 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+@import url('https://webfontworld.github.io/kopus/KoPubWorldBatang.css');
+
+@font-face {
+	font-family: 'SF_HambakSnow';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'ghanachoco';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.filebox .upload-name {
+	display: inline-block;
+	height: 40px;
+	padding: 0 10px;
+	vertical-align: middle;
+	border: 1px solid #dddddd;
+	width: 100%;
+	color: #999999;
+}
+
+.filebox label {
+	display: inline-block;
+	padding: 10px 20px;
+	color: #fff;
+	vertical-align: middle;
+	background-color: #999999;
+	cursor: pointer;
+	height: 40px;
+	margin-left: 10px;
+}
+
+.filebox input[type="file"] {
+	position: absolute;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+}
+
+.input-group-text {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	/* border-bottom: 1px solid #bbb; */
+}
+
+.input-group-text-detail {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	/* border-bottom: 1px solid #bbb; */
+}
+
+.applyForm-input {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	border-bottom: 1px solid #bbb;
+}
+
+.applyForm-input-detail {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	border-bottom: 1px solid #bbb;
+	border-top: 1px solid #bbb;
+	border-right: 1px solid #bbb;
+	border-left: 1px solid #bbb;
+}
+
+/* #input-seat {
+	display: none;
+} */
+
+/*--------- default setting ---------*/
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	/* outline: silver solid 1px; */
+}
+
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: black;
+	letter-spacing: 0.1px;
+	word-break: keep-all;
+	padding: 50px 5%;
+	margin: 0 auto;
+}
+
+h1 {
+	font-family: 'SF_HambakSnow';
+	font-size: 3rem;
+	line-height: 3.5rem;
+	padding-bottom: 40px;
+	text-align: center;
+}
+
+h3 {
+	font-family: 'KoPubWorldBatang';
+	font-size: 1.5rem;
+	line-height: 2.5rem;
+	padding: 30px 0;
+	text-align: center;
+}
+
+.application-txt h4 {
+	font-family: 'SF_HambakSnow';
+	font-size: 1.7rem;
+	line-height: 2rem;
+	text-align: center;
+}
+
+h5 {
+	font-size: 0.95rem;
+	line-height: 1.5rem;
+	font-weight: 400;
+}
+
+button {
+	display: inline-block;
+	height: 50px;
+	font-size: 1rem;
+	font-weight: bold;
+	background: none;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	transition: 0.4s;
+	cursor: pointer;
+}
+
+button:hover {
+	background: #222;
+	color: #fff;
+}
+
+input::placeholder, textarea::placeholder {
+	color: #888;
+}
+
+li {
+	list-style: none;
+}
+
+/*--------- common class setting ---------*/
+article {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 200px 0;
+}
+
+.contents {
+	border-radius: 10px;
+	border: 1px solid #999;
+	padding: 50px 5%;
+}
+
+.inner {
+	padding-top: 30px;
+}
+
+.application-txt {
+	padding-top: 20px;
+}
+
+.sans {
+	font-family: 'Noto Sans KR', sans-serif;
+	text-align: left;
+	padding: 10px 0;
+	border-bottom: 2px solid #666;
+}
+
+input, select {
+	height: 40px;
+	font-size: 1rem;
+	padding-left: 7px;
+}
+
+select, textarea {
+	border: 1px solid #bbb;
+	border-radius: 5px;
+	width: 100%;
+}
+
+textarea {
+	margin-top: 15px;
+	height: 200px;
+	padding: 10px 0 0 10px;
+	resize: none;
+	font-size: 1rem;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+/*--------- Board ---------*/
+.applyForm-title {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	border-bottom: 1px solid #bbb;
+}
+
+.btn-upload {
+	margin: 10px 10px 0 0;
+	width: 60px;
+	height: 60px;
+	background: #eee;
+	color: #aaa;
+	font-size: 2rem;
+	border: 0;
+	border-radius: 5px;
+	font-weight: 500;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: 0.2s;
+}
+
+.btn-upload:hover {
+	background: #777;
+	color: #fff;
+}
+
+.custom-file-label:hover {
+	background: #777;
+	color: #fff;
+}
+
+.btn {
+	display: flex;
+	justify-content: center;
+}
+
+.btn button {
+	width: 48.5%;
+	border: 0;
+	margin-top: 30px;
+	transition: 0.5s;
+}
+
+.btn button[name=sign] {
+	background: #666;
+	color: white;
+}
+
+.btn button[name=sign]:hover {
+	background: #111;
+	color: white;
+}
+
+.file {
+	display: flex;
+	margin: 20px 0;
+}

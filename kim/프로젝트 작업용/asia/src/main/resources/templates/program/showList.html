@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/programCardList.css}">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopy shop any where</title>
+    <meta name="keywords" content="shopping mall, jacket, men, women">
+    <meta name="description" content="shop any where for women and men's ware">
+    <meta name="robots" content="index, follow">
+
+    open graph
+    <meta property="og:title" content="Shopy shop any where" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="shop any where for women and men's ware" />
+    <meta property="og:url" content="http://www.shopy.com" />
+    <meta property="og:image" content="http://www.shopy.com/images/logo.png" />
+
+    favicon
+    <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    fontawesome
+    <script src="js/all.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/main.js"></script>
+
+    bootstrap grid
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/star-rating.min.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="css/main.css"> -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> -->
+</head>
+<body>
+<div layout:fragment="content">
+    <main class="container">
+        <section class="new_arrivals">
+            <h2 class="content-title"><span>ACC's Show</span></h2>
+            <p class="content-desc">공연</p>
+           
+            <!--Pattern HTML-->
+<!-- <div id="pattern" class="pattern">
+    <ul class="list img-list">
+        <li>
+            <a href="#" class="inner">
+                <div class="li-img">
+                    <img src="http://placehold.it/600x600" alt="Image Alt Text" />
+                </div>
+                <div class="li-text">
+                    <h4 class="li-head">Title of Content</h4>
+                    <p class="li-sub">Summary of content</p>
+                </div>
+            </a>
+        </li>
+     </ul>
+</div> -->
+        
+        
+  
+                <div id="pattern" class="pattern">
+                	<ul class="card-img-list">
+						<th:block th:each="showlist, status: ${application4.getContent()}">
+							<li>
+								<div class="card">
+									<a class="card-inner" th:href="'/board/program/application/' +${showlist.num}">
+										<div class="card-head">
+											<img th:src="${showlist.url}" class="card-img" th:alt="${showlist.name}">
+										</div>
+										<div class="card-body">
+											<h4 class="card-title">[[${showlist.name}]]</h4>
+											<p class="card-price">[[${showlist.price}]]원</p>
+										</div>
+									</a>
+								</div>
+							</li>
+						</th:block>
+					</ul>
+				</div>
+                        
+                <!-- <li id="product_02" class="col-md-3 small">
+                    <div class="list_contents">
+                        <div class="default">
+                            <a href="details.html"><img src="images/jacket_01.jpg" alt="jacket"></a>       
+                            <a href="details.html"><h3>Reebok Track Jacket</h3></a> 
+                            <h4>100$</h4>
+                        </div>
+                        <div class="hover">
+                            <p>sizes :<span class="size">s - m - l - xl</span></p>
+                            <p class="color">
+                                <span class="red">red</span>
+                                <span class="darkmagenta">darkmagenta</span>
+                                <span class="lightskyblue">lightskyblue</span>
+                                <span class="lightgreen">lightgreen</span>
+                            </p>
+                            <hr/>
+                            <ul>
+                                <li><a href="" class="sprites share">share</a></li>
+                                <li><a href="" class="sprites addcart">addcart</a></li>
+                                <li><a href="" class="sprites wishlist">wishlist</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                
+                
+                
+			</ul>
+            <button><span class="sprites load_more">Load more</span></button> -->
+        </section>
+
+  <div class="page_wrap">
+        <ul class="pagination justify-content-center">
+        
+            <li class="page-item" th:classappend="${startPage == application4.pageable.pageNumber + 1} ? 'disabled'">
+                <a class="page-link" th:href="@{/board/program/showlist(page=${application4.pageable.pageNumber - 1})}" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            
+           
+            <li class="page-item" th:classappend="${page == application4.pageable.pageNumber + 1} ? 'active'" th:each= "page : ${#numbers.sequence(startPage, endPage)}">
+                <a class="page-link" th:href="@{/board/program/showlist(page=${page-1})}"
+                th:text=${page} aria-current="page">1</a>
+            </li>
+            
+ 
+            <li class="page-item" th:classappend="${endPage == application4.pageable.pageNumber + 1} ? 'disabled'">
+                <a class="page-link" th:href="@{/board/program/showlist(page=${application4.pageable.pageNumber + 1})}">Next</a>
+            </li>
+            
+        </ul>
+</div>
+
+ <!-- <div class=searchbar>
+    검색기능-5
+    <form th:action="@{/board/program/showlist}" method="get">
+
+        <select id="searchType" name="searchType" title="검색 유형 선택">
+        	<option value="">전체 검색</option>
+        	<option value="name">제목</option>
+        	<option value="programCategory">카테고리</option>
+        	<option value="createdBy">등록자</option>
+        </select>
+        
+        <input type="text" name="searchKeyword">
+        <button type="submit">검색</button>
+        
+    </form>
+    </div> -->
+
+        
+        
+    </main>
+    </div>
+    <footer></footer>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script> -->
+</body>
+</html>

@@ -163,3 +163,7 @@ caption {
 .file_list a {
 	display: inherit !important;
 }
+
+label {
+	vertical-align: middle;
+}

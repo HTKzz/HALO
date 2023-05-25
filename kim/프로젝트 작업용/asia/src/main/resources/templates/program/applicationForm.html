@@ -2,7 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout1}">
+	
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0">
+  <title>프로그램 신청/수정 페이지(Board)</title>
+  <link rel="stylesheet" th:href="@{/css/applyForm.css}">
+  <link rel="stylesheet" th:href="@{/css/header.css}">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+</head>
 
 <!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
@@ -28,139 +37,156 @@
     	        	return;
     	        }
     	        
-    	        $(this).siblings(".custom-file-label").html(fileName); <!-- 라벨 태그 안의 내용을 jquery의 .html()을 이용하여 파일명을 입력해준다. -->
+    	        /* $(this).siblings(".upload-name").html(fileName); <!-- 라벨 태그 안의 내용을 jquery의 .html()을 이용하여 파일명을 입력해준다. --> */
+    	        $(this).siblings(".upload-name").val(fileName); <!-- 라벨 태그 안의 내용을 jquery의 .html()을 이용하여 파일명을 입력해준다. -->
     	});
     }
+    
+    $("#select-programCategory").change(function() {
+		let category = $("#select-programCategory option:selected").val();
+		if(category == "공연") {
+			$("#select-seat").show(); //카테고리 선택시 검색어입력창 숨기기
+		}else {
+			$("#select-seat").hide();
+		}
+	});
+    
+    /* $(function(){	
+    	$(document).on("change", "select[name=select-programCategory]", function(){
+    		var value = $(this).find("option:selected").val();
+    		var inputseat = $(this).closest('.selectBox').find('.inputText');
+    		var flag = false;
+    		if (value == 0) {
+    			flag = true;
+    			$(inputText).val('');
+    		}
+    		
+    		$(inputText).attr("disabled", flag);
+    	});
+
+    }) */
+
     
   </script>
 </th:block>
 
-<!-- 사용자 CSS 추가 -->
-<th:block layout:fragment="css">
-	<style>
-.input-group {
-	margin-bottom: 15px
-}
-
-.img-div {
-	margin-bottom: 10px
-}
-
-.fieldError {
-	color: #bd2130;
-}
-</style>
-</th:block>
+<body>
 
 <div layout:fragment="content">
 
-	<form role="form" method="post" enctype="multipart/form-data"
+  <article class="board">
+    <h1>Program Apply</h1>
+    <section class="contents">
+    <form class="application-txt" name="applicationForm" role="form" method="post" enctype="multipart/form-data"
 		th:object="${applicationDto}">
+      <h4>프로그램 신청</h4>
+      <input type="hidden" th:field="*{num}">
+      <div class="inner">
 
-		<p class="h2">프로그램 신청</p>
+		<span class="input-group-text">카테고리</span>
+        <select class="applyForm-input" name="select-programCategory" th:onchange="onchangeProgramCategory(this.value)" th:field="*{programCategory}">
+          <option value="공연">공연</option>
+          <option value="전시">전시</option>
+          <option value="행사">행사</option>
+        </select><br><br>
+        
+        
+        <span class="input-group-text">장소</span>
+        <select class="applyForm-input" name="select" th:field="*{place}">
+          <option th:value="태기관">태기관</option>
+          <option th:value="원석원석관">원석원석관</option>
+          <option th:value="지영영관">지영영관</option>
+        </select><br>
+        
+        <div class=inputseat>
+        <span class="input-group-text">좌석</span>
+        <select class="applyForm-input" id="select-seat" name="select" th:field="*{seatDetail}">
+          <option th:value="null">좌석정보를 입력해주세요.</option>
+          <option th:value="A">A</option>
+          <option th:value="B">B</option>
+          <option th:value="C">C</option>
+        </select></div><br><br>
 
-		<input type="hidden" th:field="*{num}">
-
-		<div class="input-group">
-			<select th:field="*{programCategory}" class="custom-select">
-				<option value="공연">공연</option>
-				<option value="전시">전시</option>
-				<option value="행사">행사</option>
-			</select>
-		</div>
-
-		<div class="input-group">
-			<div class="input-group-prepend">
-				<span class="input-group-text">상품명</span>
+          <span class="input-group-text">프로그램명</span>
+          <input type="text" th:field="*{name}" name="title" class="applyForm-input" placeholder="프로그램명을 입력하세요."><br>
+          
+          <span class="input-group-text">가격</span><br>
+          <input type="number" th:field="*{price}" name="price" class="applyForm-input" placeholder="프로그램 가격을 입력하세요."><br>
+          
+          <span class="input-group-text">관람등급</span><br>
+          <input type="text" th:field="*{rat}" name="rat" class="applyForm-input" placeholder="프로그램의 관람등급을 입력하세요."><br><br>
+          
+          <span class="input-group-text">프로그램 기간</span><br>
+          <input type="date" aria-required="true" th:field="*{sdate}" name="sdate" class="applyForm-input" placeholder="프로그램 시작일을 입력하세요.(yyyy-mm-dd)">
+          <input type="date" th:field="*{edate}" name="edate" class="applyForm-input" placeholder="프로그램 종료일을 입력하세요.(yyyy-mm-dd)"><br><br>
+          
+          <span class="input-group-text">관람시간</span><br>
+          <input type="number" th:field="*{run}" name="run" class="applyForm-input" placeholder="프로그램 관람시간을 입력하세요."><br><br>
+          
+          <span class="input-group-text">상세정보</span>
+          <textarea th:field="*{detail}" name="content" id="textarea" placeholder="프로그램 상세정보를 입력하세요."></textarea><br><br>
+          
+          <!-- <div th:if="${#lists.isEmpty(applicationDto.attachDtoList)}">
+		  	<div class="file" th:each="numb: ${#numbers.sequence(1,5)}">
+            	<div class="custom-file">
+        			<label for="file1" th:text="프로그램이미지 + ${numb}"></label>
+        			<input type="file" class="custom-file-input" name="attachFile" id="picture">
+      			</div>
+    		</div>
+  		</div> -->
+          
+        <span class="input-group-text">첨부파일</span>
+        <div class="filebox" th:if="${#lists.isEmpty(applicationDto.attachDtoList)}">
+        	<div class="file" th:each="numb: ${#numbers.sequence(1,5)}">
+    			<input class="upload-name" value="첨부파일" placeholder="첨부파일" />
+   				<label th:for="file + ${numb}" class="custom-file-label" th:text="파일찾기"></label> 
+    			<input type="file" class="custom-file-input" name="attachFile" th:id="file + ${numb}" />
 			</div>
-			<input type="text" th:field="*{name}" class="form-control"
-				placeholder="상품명을 입력해주세요">
 		</div>
-		<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-			class="fieldError">Incorrect data</p>
-
-		<div class="input-group">
-			<div class="input-group-prepend">
-				<span class="input-group-text">가격</span>
+		
+		<div class="filebox" th:if="${not #lists.isEmpty(applicationDto.attachDtoList)}">
+        	<div class="file" th:each="attachDto, status: ${applicationDto.attachDtoList}">
+        		<input type="hidden" name="attachIds" th:value="${attachDto.num}">
+    			<input class="upload-name" th:value="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '프로그램이미지' + ${status.index+1}" placeholder="첨부파일" />
+   				<label th:for="file + ${status.index+1}" class="custom-file-label" th:text="파일찾기"></label> 
+    			<input type="file" class="custom-file-input" name="attachFile" th:id="file + ${status.index+1}" />
 			</div>
-			<input type="number" th:field="*{price}" class="form-control"
-				placeholder="상품의 가격을 입력해주세요">
 		</div>
-		<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
-			class="fieldError">Incorrect data</p>
+          
+          
+          
+          
 
-		<div class="input-group">
-			<div class="input-group-prepend">
-				<span class="input-group-text">관람등급</span>
-			</div>
-			<input type="text" th:field="*{rat}" class="form-control"
-				placeholder="상품의 관람등급을 입력해주세요">
-		</div>
-		<p th:if="${#fields.hasErrors('rat')}" th:errors="*{rat}"
-			class="fieldError">Incorrect data</p>
+          <!-- <div th:if="${#lists.isEmpty(applicationDto.attachDtoList)}" >
+            <div class="file" th:each="numb: ${#numbers.sequence(1,5)}">
+            <div class="cusfile">
+            	<input id="picture" type="file" name="attachFile"/>
+            	<label for="picture"><div class="btn-upload">+</div></label>
+            </div>
+            </div>
+          </div> -->
 
-		<div class="input-group">
-			<div class="input-group-prepend">
-				<span class="input-group-text">관람시간</span>
-			</div>
-			<input type="number" th:field="*{run}" class="form-control"
-				placeholder="상품의 관람시간을 입력해주세요">
-		</div>
-		<p th:if="${#fields.hasErrors('run')}" th:errors="*{run}"
-			class="fieldError">Incorrect data</p>
-
-		<div class="input-group">
-			<div class="input-group-prepend">
-				<span class="input-group-text">상품 상세 정보</span>
-			</div>
-			<textarea class="form-control" aria-label="With textarea"
-				th:field="*{detail}"></textarea>
-		</div>
-		<p th:if="${#fields.hasErrors('detail')}" th:errors="*{detail}"
-			class="fieldError">Incorrect data</p>
-
-
-	<div th:if="${#lists.isEmpty(applicationDto.attachDtoList)}"> 상품 이미지 정보를 담고 있는 리스트가 비어 있다면 상품 등록한다.
-    <div class="form-group" th:each="numb: ${#numbers.sequence(1,5)}">
-      <div class="custom-file img-div">
-        <input type="file" class="custom-file-input" name="attachFile">
-        <label class="custom-file-label" th:text="프로그램이미지 + ${numb}"></label>
-      </div>
-    </div>
-  </div>
-
-  <div th:if = "${not #lists.isEmpty(applicationDto.attachDtoList)}">
-    <div class="form-group" th:each="attachDto, status: ${applicationDto.attachDtoList}">
-      <div class="custom-file img-div">
-       <input type="file" class="custom-file-input" name="attachFile">
-	     <input type="hidden" name="attachIds" th:value="${attachDto.num}">
-	     <label class="custom-file-label" th:text="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '프로그램이미지' + ${status.index+1}"></label>
-			<!-- 타임리프 유틸리티 객체인 #strings.isEmpty(string)을 이용하여 저장이미지 정보가 있다면 파일명을 보여주고 없다면 상품이미지번호출력 -->
-      </div>
-    </div>
-  </div>
-
-		<div th:if="${#strings.isEmpty(applicationDto.num)}" style="text-align: center">
-			<button th:formaction="@{/board/program/apply}" type="submit"
-				class="btn btn-primary">신청</button>
-		</div>
-		<div th:unless="${#strings.isEmpty(applicationDto.num)}" style="text-align: center">
-    		<button th:formaction="@{'/board/program/apply/' + ${applicationDto.num} }" type="submit" class="btn btn-primary">수정</button>
+          <!-- <div th:if = "${not #lists.isEmpty(applicationDto.attachDtoList)}">
+            <div class="file" th:each="attachDto, status: ${applicationDto.attachDtoList}">
+              <label for="picture"><div class="btn-upload">+</div></label>
+              <input type="file" name="attachFile" id="picture" th:value="${attachDto.num}"/>
+            </div>
+          </div> -->
+<!-- </div>
+        </form> -->
+        <div class="btn" th:if="${#strings.isEmpty(applicationDto.num)}" style="text-align: center">
+          <button th:formaction="@{/board/program/apply}" type="submit" name="sign">신청</button>
+        </div>
+        <div class="btn" th:unless="${#strings.isEmpty(applicationDto.num)}" style="text-align: center">
+    		  <button th:formaction="@{'/board/program/apply/' + ${applicationDto.num}}" type="submit" name="sign">수정</button>
   		</div>
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+      </div>
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        </form>
+    </section>
+  </article>
 
-	</form>
+
 </div>
-
-
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-</head>
-<body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>
