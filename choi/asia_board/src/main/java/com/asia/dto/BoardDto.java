@@ -1,6 +1,7 @@
 package com.asia.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class BoardDto extends BaseEntity {
+public class BoardDto{
 	
 	private String name;
 	
@@ -48,6 +49,8 @@ public class BoardDto extends BaseEntity {
     private String nextContent;
 	
 	private Member member;
+	
+	private LocalDateTime regTime;
 	
 	private List<AttachDto> attachDtoList = new ArrayList<>();
 	

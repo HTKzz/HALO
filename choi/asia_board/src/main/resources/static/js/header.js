@@ -1,10 +1,10 @@
 $(document).ready(function(){
-    $('.nav-item').mouseenter(function(){
-    	$('nav-item-inner').slideDown(600);
+    $('.nav-item2').mouseenter(function(){
+    	$('.nav-item2-menu2').stop().slideDown(600);
     });
     
-    $('.nav-item').mouseleave(function(){
-    	$('nav-item-inner').slideUp(300);
+    $('.nav-item2').mouseleave(function(){
+    	$('.nav-item2-menu2').stop().slideUp(300);
     });
 });
 

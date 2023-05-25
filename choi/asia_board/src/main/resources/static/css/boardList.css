@@ -1,0 +1,89 @@
+.boardList{
+	margin-top: 100px;
+}
+
+.vocForm{
+	width: 90%;
+	margin-left: 10%;
+	margin-top: 50px;
+}
+
+.vocHead-tr > th{
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	border-bottom: 1px solid #e2e2e2;
+	
+}
+
+.vocListBody > td{
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	
+	border-bottom: 1px solid #e2e2e2;
+}
+
+.vocListForm {
+	width: 100%;
+}
+
+.vocList-head {
+	width: 100%;
+}
+
+.vocHead-tr {
+	width: 100%;
+}
+
+.vocHead_no{
+	width: 15%;
+}
+
+.vocHead_title {
+	letter-spacing: 15px;
+	width: 40%;
+}
+
+.vocListBody-no {
+	width: 15%;
+}
+
+.vocListBody{
+	
+}
+
+.vocListBody > .vocListBody-title{
+	text-align: left;
+	font-weight: 600;
+	border-left: 1px solid #e2e2e2;
+	border-right: 1px solid #e2e2e2;
+}
+
+.vocListBody > td{
+	font-size: 20px;
+}
+
+.vocListBody-title {
+	letter-spacing: 6px;
+	width: 40%;
+}
+
+.pagebtn{
+	text-align: center;
+}
+
+.vocbtn_strong {
+	text-align:center;
+	width: 100%;
+	color: darkslateblue;
+	font-size: 2em;
+}
+
+.voc-write{
+	width:100%;
+	height: 50px;
+	text-align:center;
+	font-size: 1.2em;
+	line-height: 50px;
+}

@@ -1,27 +1,48 @@
-.nav-item-inner {
+.nav-form {
+	height: 60px;
+}
+
+.nav-item2-inner {
 	float: left;
-	padding: 5px 20px;
-	margin: 40px -55px;
+	padding: 15px 20px;
+	margin: 25px -55px;
 	line-height: 20px;
 	text-align: center;
 }
 
 .nav-link {
-	margin: 20px;
+	position: relative;
+	margin: 15px;
 	text-align: center;
 }
 
-.nav-item-depth2 {
+.nav-item2-menu2 {
 	list-style: none;
+	display: none;
+	top: 50px;
 	left: 120px;
 	padding: 10px;
 	position: absolute;
-	display: inline-block;
-	background-color: red;
+	background-color: #e2e2e2;
 }
 
+.nav-item2-menu2>a:hover {
+	display: block;
+	color: gray;
+}
 
-.nav-item-depth2>a:hover{
-		display:block;
-        color: lightsalmon;
-    }
+.menu2_inner {
+	display: block;
+	font-size: 14px;
+}
+
+.login {
+	margin: 15px;
+	margin-left: 50px;
+}
+
+.logout {
+	top: -14px;
+	float: right;
+	margin-right: 100px;
+}
