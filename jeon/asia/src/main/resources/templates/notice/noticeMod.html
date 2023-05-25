@@ -40,9 +40,9 @@
 <div layout:fragment="content">
 
 	<div class="layout">
-		<form action="@{/notice/update/{num}(num=${notice.num)}" method="post">
-			<input name="name" type="text" th:value=${notice.name}>
-			<textarea name="content" th:text=${notice.content></textarea>
+		<form action="@{/voc/update/{num}(num=${voc.num)}" method="post">
+			<input name="name" type="text" th:value=${voc.name}>
+			<textarea name="content" th:text=${voc.content></textarea>
 			<button type="submit">수정</button>
 		
 		</form>
