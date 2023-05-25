@@ -1,23 +1,13 @@
 /* header.css */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
 
 
 li {
   list-style:none;
 }
 
-.container{
-  width:1140px;
-  margin:0 auto;
-}
-
 header{
-  position:absolute; /* 13.3.3 absolute -> fixed */
-  color:black; /* 13.3.3 black -> white */
+  position:absolute; 
+  color:black;
   top:0;
   z-index:1;
   width:100%;

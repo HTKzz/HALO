@@ -6,112 +6,110 @@
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
 	<style>
-	
-	</style>
+</style>
 </th:block>
 
 <!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
 	<script th:inline="javascript">
-	$(document).ready(function() {
-        var submitEmail = false;
+        $(document).ready(function() {
+            var submitEmail = false;
 
-        var errorMessage = [[${errorMessage}]];
-		if(errorMessage != null){
-			alert(errorMessage);
-		}
-        
-        if (errorMessage != null) {
-            alert(errorMessage);
-        }
+            var errorMessage = [[${errorMessage}]];
+			if(errorMessage != null){
+				alert(errorMessage);
+			}
+            
+            if (errorMessage != null) {
+                alert(errorMessage);
+            }
 
-        function showErrorMsg(obj, msg) {
-            obj.attr("class", "error");
-            obj.html(msg);
-            obj.show();
-        }
+            function showErrorMsg(obj, msg) {
+                obj.attr("class", "error");
+                obj.html(msg);
+                obj.show();
+            }
 
-        function showSuccMsg(obj, msg) {
-            obj.attr("class", "succ");
-            obj.html(msg);
-            obj.show();
-        }
+            function showSuccMsg(obj, msg) {
+                obj.attr("class", "succ");
+                obj.html(msg);
+                obj.show();
+            }
 
-        $("#emailsend").click(function() {
-            var email = $("#email").val();
-            var eMsg = $("#emailMsg");
-            var eMsg2 = $("#emailMsg2");
-            $.ajax({
-                type: "get",
-                url: "/mail/sendmail",
-                data: {
-                    "email": email
-                },
-                success: function(result) {
-                    showSuccMsg(eMsg2, "인증번호를 입력해주세요.");
-                },
-                error: function() {
-                    showErrorMsg(eMsg, "이메일 발송에 실패하였습니다. 이메일 정보를 다시 확인해주세요.");
-                }
-            });
-        });
-
-
-        $("#emailcheck").click(function() {
-            var emailcode = $("#emailcode").val();
-            var eMsg = $("#emailCheckMsg");
-            var eMsg2 = $("#emailCheckMsg2");
-            $.ajax({
-                type: "get",
-                url: "/mail/checkcode",
-                data: {
-                    "emailcode": emailcode
-                },
-                success: function(result) {
-                    if (result.result == true) {
-                        showSuccMsg(eMsg2, "인증번호가 일치합니다");
-                        submitEmail = true;
-                        eMsg.hide();
-                    } else {
-                        showErrorMsg(eMsg, "인증번호가 일치하지 않습니다.");
+            $("#emailsend").click(function() {
+                var email = $("#email").val();
+                var eMsg = $("#emailMsg");
+                var eMsg2 = $("#emailMsg2");
+                $.ajax({
+                    type: "get",
+                    url: "/mail/sendmail",
+                    data: {
+                        "email": email
+                    },
+                    success: function(result) {
+                        showSuccMsg(eMsg2, "인증번호를 입력해주세요.");
+                    },
+                    error: function() {
+                        showErrorMsg(eMsg, "이메일 발송에 실패하였습니다. 이메일 정보를 다시 확인해주세요.");
                     }
-                },
-                error: function() {
-                    showErrorMsg(eMsg, "먼저 인증번호를 발송해주세요.");
-                }
+                });
             });
-        });
 
 
-        document.getElementById('btn').onclick = function() {
-            var eMsg = $("#emailCheckMsg");
-            if (submitEmail == false) {
-                showErrorMsg(eMsg, "이메일 인증이 되어야 합니다.");
+            $("#emailcheck").click(function() {
+                var emailcode = $("#emailcode").val();
+                var eMsg = $("#emailCheckMsg");
+                var eMsg2 = $("#emailCheckMsg2");
+                $.ajax({
+                    type: "get",
+                    url: "/mail/checkcode",
+                    data: {
+                        "emailcode": emailcode
+                    },
+                    success: function(result) {
+                        if (result.result == true) {
+                            showSuccMsg(eMsg2, "인증번호가 일치합니다");
+                            submitEmail = true;
+                            eMsg.hide();
+                        } else {
+                            showErrorMsg(eMsg, "인증번호가 일치하지 않습니다.");
+                        }
+                    },
+                    error: function() {
+                        showErrorMsg(eMsg, "먼저 인증번호를 발송해주세요.");
+                    }
+                });
+            });
+
+            document.getElementById('btn').onclick = function() {
+                var eMsg = $("#emailCheckMsg");
+                if (submitEmail == false) {
+                    showErrorMsg(eMsg, "이메일 인증이 되어야 합니다.");
+                    return false;
+                }
+
+                var today = new Date();
+                var currentYear = today.getFullYear()
+
+                if (document.getElementById('birth')) {
+                    var birth = document.getElementById('birth').value;
+
+                    var age = currentYear - Number(birth.slice(0, 4));
+
+                    document.getElementById('age').value = age + 1;
+                }
+
+                var addr2 = document.getElementById('addr2').value;
+
+                var addr3 = document.getElementById('addr3').value;
+
+                document.getElementById('addr').value = addr2 + " " + addr3;
+
+                document.getElementById('frm').submit();
                 return false;
-            }
+            };
 
-            var today = new Date();
-            var currentYear = today.getFullYear()
-
-            if (document.getElementById('birth')) {
-                var birth = document.getElementById('birth').value;
-
-                var age = currentYear - Number(birth.slice(0, 4));
-
-                document.getElementById('age').value = age + 1;
-            }
-
-            var addr2 = document.getElementById('addr2').value;
-
-            var addr3 = document.getElementById('addr3').value;
-
-            document.getElementById('addr').value = addr2 + " " + addr3;
-
-            document.getElementById('frm').submit();
-            return false;
-        };
-
-    });
+        });
 
     </script>
 </th:block>
@@ -119,7 +117,7 @@
 	<link th:href="@{/css/memberForm.css}" rel="stylesheet">
 	<div class="mFcontainer">
 		<form action="/members/add" role="form" method="post"
-			class="memberForm" th:object="${memberFormDto}" id="frm">
+			class="memberForm" th:object="${companyFormDto}" id="frm">
 
 			<div class="mFfields">
 				<div class="form-group">
@@ -136,7 +134,7 @@
 						class="fieldError">Incorrect data</p>
 				</div>
 				<div class="form-group">
-					<label th:for="name">이름</label> <input type="text"
+					<label th:for="name">법인명</label> <input type="text"
 						th:field="*{name}" class="form-control" placeholder="이름을 입력해주세요">
 					<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
 						class="fieldError">Incorrect data</p>
@@ -179,19 +177,19 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label th:for="cid">사업자등록번호</label> <input type="text"
+						th:field="*{cid}" class="form-control" placeholder="사업자등록번호를 입력해주세요">
+					<p th:if="${#fields.hasErrors('cid')}" th:errors="*{cid}"
+						class="fieldError">Incorrect data</p>
+				</div>
+				
+				<div class="form-group">
 					<label th:for="tel">전화번호</label> <input type="text"
 						th:field="*{tel}" class="form-control" placeholder="전화번호 입력해주세요">
 					<p th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"
 						class="fieldError">Incorrect data</p>
 				</div>
 				<div class="form-group">
-					<label th:for="birth">생년월일</label> <input type="date"
-						th:field="*{birth}" class="form-control">
-					<p th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}"
-						class="fieldError">Incorrect data</p>
-				</div>
-				<div class="form-group">
-				<label th:for="birth">주소</label>
 					<input class="form-control" style="display: inline;"
 						placeholder="우편번호" name="addr1" id="addr1" type="text"
 						readonly="readonly"> <input class="form-control"
@@ -206,12 +204,6 @@
 						onclick="execPostCode();">
 						<i class="fa fa-search"></i> 우편번호 찾기
 					</button>
-				</div>
-				<div class="form-group" id="dage">
-					<label th:for="age"></label> <input type="hidden" th:field="*{age}"
-						class="form-control" value="" name="age">
-					<p th:if="${#fields.hasErrors('age')}" th:errors="*{age}"
-						class="fieldError">Incorrect data</p>
 				</div>
 
 			</div>
