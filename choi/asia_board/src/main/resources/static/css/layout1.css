@@ -26,6 +26,7 @@ html {
 
 .content {
    margin-top: 10px;
+   margin-bottom: 100px;
 }
 
 .content > div {
