@@ -39,16 +39,16 @@
 
 <body>
 <div layout:fragment="content">
-<section class="contents">
+<div>
+<section class="vocForm-contents">
 	<p><h4>글 작성하기</h4></p>
-	<div class="inner">
-	<form class="txt" role="form" method="post" action="/voc/new" enctype="multipart/form-data" th:object="${vocFormDto}">
-
+	<div class="vocForm-inner">
+	<form class="vocForm-txt" role="form" method="post" action="/voc/new" enctype="multipart/form-data" th:object="${vocFormDto}">
 		<input type="hidden" th:field="*{num}">
 
 		<div>
-			<div class="vocform-name">
-				<input type="text" th:field="*{name}" class="vocform-name-input" placeholder="제목을 입력해주세요">
+			<div class="vocForm-name">
+				<input type="text" th:field="*{name}" class="vocForm-name-input" placeholder="제목을 입력해주세요">
 			</div>
 			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>
 		</div>
@@ -56,24 +56,25 @@
 		
 		<div class="vocform-content">
 			<textarea th:field="*{content}" class="vocform-content-text" aria-label="With textarea" placeholder="내용을 입력해주세요"></textarea>
-		</div>
 			<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="fieldError">Incorrect data</p>
+		</div>
 			
 			
-		<div class="filebox" th:if="${#lists.isEmpty(vocFormDto.attachDtoList)}" >
+			
+		<div class="vocForm-filebox" th:if="${#lists.isEmpty(vocFormDto.attachDtoList)}" >
             <div class="file" th:each="numb: ${#numbers.sequence(1,5)}">
                <label th:for="picture + ${numb}"><div class="btn-upload">+</div></label>
                <input class="custom-file-input" th:id="picture + ${numb}" type="file" name="attachFile"/>
-               <input class="custom-file-label" value="첨부파일" placeholder="첨부파일" />
+               <input class="custom-file-label" value="첨부파일" placeholder="첨부파일" readonly="readonly" />
             </div>
           </div>
 			
-		<div class="filebox" th:if="${not #lists.isEmpty(vocFormDto.attachDtoList)}">
+		<div class="vocForm-filebox" th:if="${not #lists.isEmpty(vocFormDto.attachDtoList)}">
 			<div class="file" th:each="attachDto, status:${vocFormDto.attachDtoList}">
 				<input type="hidden" name="attachIds" th:value="${attachDto.num}">
 				<label th:for="${not #strings.isEmpty(attachDto.oriname)} ? ${attachDto.oriname} : '첨부파일' + ${status.index+1}"><div class="btn-upload">+</div></label>
 				<input type="file" class="custom-file-input" th:id="${not #strings.isEmpty(attachDto.oriname)} ? ${attachDto.oriname} : '첨부파일' + ${status.index+1}" name="attachFile">
-				<input class="custom-file-label" th:value="${not #strings.isEmpty(attachDto.oriname)} ? ${attachDto.oriname} : '첨부파일' + ${status.index+1}" placeholder="첨부파일">
+				<input class="custom-file-label" th:value="${not #strings.isEmpty(attachDto.oriname)} ? ${attachDto.oriname} : '첨부파일' + ${status.index+1}" placeholder="첨부파일" readonly="readonly">
 			</div>
 		</div>
 		
@@ -100,6 +101,7 @@
 	</form>
 	</div>
 </section>
+</div>
 </div>
 
 </body>

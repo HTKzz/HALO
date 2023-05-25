@@ -82,7 +82,8 @@ public class VocController {
 	}
 	
 	// 리스트불러오기 페이징넣어서
-		@GetMapping(value = {"/list", "/list/{page}"})
+//		@GetMapping(value = {"/list", "/list/{page}"})
+		@GetMapping("/list")
 		public String listVoc(@PageableDefault(page = 0, size = 8, sort = "num", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
 			
 			Page<Voc> list = vocService.getVocLists(pageable);
@@ -90,6 +91,7 @@ public class VocController {
 			//model.addAttribute("list", vocService.vocList()); 위에 page에서 이미 전부 담아와서 다시 조회해서 넣어줄필요없음 
 			System.out.println(list);
 			//페이징
+			
 			int nowPage = list.getPageable().getPageNumber() + 1;
 			int startPage = Math.max(nowPage - 4, 1);
 			int endPage = Math.min(nowPage + 9, list.getTotalPages());

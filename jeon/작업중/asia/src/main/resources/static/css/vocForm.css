@@ -1,12 +1,6 @@
 .fieldError {
 	color: #bd2130;
 }
-/* .input-group{
-			margin-bottom: 15px;
-		}
-		.img-div{
-		margin-bottom: 10px;
-		} */
 
 /*--------- default setting ---------*/
 * {
@@ -25,22 +19,6 @@ body {
 	word-break: keep-all;
 	padding: 50px 5%;
 	margin: 0 auto;
-}
-
-h1 {
-	font-family: 'SF_HambakSnow';
-	font-size: 3rem;
-	line-height: 3.5rem;
-	padding-bottom: 40px;
-	text-align: center;
-}
-
-h3 {
-	font-family: 'KoPubWorldBatang';
-	font-size: 1.5rem;
-	line-height: 2.5rem;
-	padding: 30px 0;
-	text-align: center;
 }
 
 h4 {
@@ -84,24 +62,25 @@ li {
 article {
 	margin: 200px 0;
 } /* 안써 */
-.contents {
+
+.vocForm-contents {
 	border-radius: 10px;
 	border: 1px solid #999;
 	padding: 50px 5%;
 }
 
-.inner {
+.vocForm-inner {
 	padding-top: 30px;
 }
 
-.txt {
+.vocForm-txt {
 	padding-top: 20px;
 }
 
-.bold {
+/* .bold {
 	display: inline-block;
 	font-weight: bold;
-}
+} */
 
 .gray {
 	color: #aaa;
@@ -168,7 +147,12 @@ input[type=checkbox] {
     height: 40px;
     margin-left: 10px;
 } */
-.filebox input[type="file"] {
+.file{
+	padding-left: 10px;
+	padding-top: 20px; 
+}
+
+.vocForm-filebox input[type="file"] {
 	position: absolute;
 	width: 0;
 	height: 0;
@@ -177,7 +161,7 @@ input[type=checkbox] {
 	border: 0;
 }
 
-.vocform-name-input {
+.vocForm-name-input {
 	width: 100%;
 	margin-bottom: 20px;
 	border: 0;
@@ -211,9 +195,9 @@ input[type=checkbox] {
 	color: #fff;
 }
 
-.custom-file-input {
+/* .custom-file-input {
 	display: none;
-}
+} */
 
 .custom-file-label {
 	
