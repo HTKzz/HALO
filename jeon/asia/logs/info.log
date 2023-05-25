@@ -1,0 +1,88 @@
+[2023-05-25 09:17:05.762] [INFO ] [background-preinit] org.hibernate.validator.internal.util.Version
+				HV000001: Hibernate Validator 6.2.5.Final
+[2023-05-25 09:17:05.764] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Starting AsiaApplication using Java 11.0.17 on DESKTOP-0GU3E42 with PID 8132 (C:\Users\BIG603-12\Desktop\깃깃\jeon\asia\target\classes started by BIG603-12 in C:\Users\BIG603-12\Desktop\깃깃\jeon\asia)
+[2023-05-25 09:17:05.767] [INFO ] [restartedMain] com.asia.AsiaApplication
+				No active profile set, falling back to 1 default profile: "default"
+[2023-05-25 09:17:06.305] [INFO ] [restartedMain] org.springframework.boot.devtools.restart.ChangeableUrls
+				The Class-Path manifest attribute in C:\Users\BIG603-12\.m2\repository\com\oracle\database\jdbc\ojdbc8\21.5.0.0\ojdbc8-21.5.0.0.jar referenced one or more files that do not exist: file:/C:/Users/BIG603-12/.m2/repository/com/oracle/database/jdbc/ojdbc8/21.5.0.0/oraclepki.jar
+[2023-05-25 09:17:06.306] [INFO ] [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor
+				Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2023-05-25 09:17:06.306] [INFO ] [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor
+				For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2023-05-25 09:17:07.284] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2023-05-25 09:17:07.360] [INFO ] [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate
+				Finished Spring Data repository scanning in 69 ms. Found 4 JPA repository interfaces.
+[2023-05-25 09:17:08.157] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat initialized with port(s): 8090 (http)
+[2023-05-25 09:17:08.179] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Initializing ProtocolHandler ["http-nio-8090"]
+[2023-05-25 09:17:08.180] [INFO ] [restartedMain] org.apache.catalina.core.StandardService
+				Starting service [Tomcat]
+[2023-05-25 09:17:08.180] [INFO ] [restartedMain] org.apache.catalina.core.StandardEngine
+				Starting Servlet engine: [Apache Tomcat/9.0.74]
+[2023-05-25 09:17:08.308] [INFO ] [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Initializing Spring embedded WebApplicationContext
+[2023-05-25 09:17:08.308] [INFO ] [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext
+				Root WebApplicationContext: initialization completed in 2001 ms
+[2023-05-25 09:17:08.364] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-1 - Starting...
+[2023-05-25 09:17:08.374] [WARN ] [restartedMain] com.zaxxer.hikari.util.DriverDataSource
+				Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+[2023-05-25 09:17:08.606] [INFO ] [restartedMain] com.zaxxer.hikari.HikariDataSource
+				HikariPool-1 - Start completed.
+[2023-05-25 09:17:08.614] [INFO ] [restartedMain] org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+				H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@localhost:1521:xe'
+[2023-05-25 09:17:08.772] [INFO ] [restartedMain] org.hibernate.jpa.internal.util.LogHelper
+				HHH000204: Processing PersistenceUnitInfo [name: default]
+[2023-05-25 09:17:08.845] [INFO ] [restartedMain] org.hibernate.Version
+				HHH000412: Hibernate ORM core version 5.6.15.Final
+[2023-05-25 09:17:09.034] [INFO ] [restartedMain] org.hibernate.annotations.common.Version
+				HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[2023-05-25 09:17:09.152] [INFO ] [restartedMain] org.hibernate.dialect.Dialect
+				HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+[2023-05-25 09:17:09.454] [WARN ] [restartedMain] org.hibernate.orm.deprecation
+				HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-25 09:17:09.456] [WARN ] [restartedMain] org.hibernate.orm.deprecation
+				HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-25 09:17:09.456] [WARN ] [restartedMain] org.hibernate.orm.deprecation
+				HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-25 09:17:09.456] [WARN ] [restartedMain] org.hibernate.orm.deprecation
+				HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+[2023-05-25 09:17:10.039] [INFO ] [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator
+				HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[2023-05-25 09:17:10.049] [INFO ] [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
+				Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2023-05-25 09:17:10.089] [WARN ] [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[2023-05-25 09:17:11.065] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-25 09:17:11.065] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/css/**']
+[2023-05-25 09:17:11.066] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-25 09:17:11.066] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/js/**']
+[2023-05-25 09:17:11.066] [WARN ] [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity
+				You are asking Spring Security to ignore Ant [pattern='/img/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+[2023-05-25 09:17:11.066] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will not secure Ant [pattern='/img/**']
+[2023-05-25 09:17:11.108] [INFO ] [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain
+				Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@405bf884, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@422458c7, org.springframework.security.web.context.SecurityContextPersistenceFilter@23d86361, org.springframework.security.web.header.HeaderWriterFilter@6aa745f6, org.springframework.security.web.csrf.CsrfFilter@19798223, org.springframework.security.web.authentication.logout.LogoutFilter@c825c8a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@59ed3807, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4457e79f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6d9dfaf9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5623b770, org.springframework.security.web.session.SessionManagementFilter@4bd9609a, org.springframework.security.web.access.ExceptionTranslationFilter@bbd1223, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@67bc5b6b]
+[2023-05-25 09:17:11.466] [INFO ] [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer
+				LiveReload server is running on port 35729
+[2023-05-25 09:17:11.482] [INFO ] [restartedMain] org.apache.coyote.http11.Http11NioProtocol
+				Starting ProtocolHandler ["http-nio-8090"]
+[2023-05-25 09:17:11.500] [INFO ] [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer
+				Tomcat started on port(s): 8090 (http) with context path ''
+[2023-05-25 09:17:11.511] [INFO ] [restartedMain] com.asia.AsiaApplication
+				Started AsiaApplication in 6.227 seconds (JVM running for 7.988)
+[2023-05-25 09:24:55.933] [INFO ] [http-nio-8090-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2023-05-25 09:24:55.933] [INFO ] [http-nio-8090-exec-1] org.springframework.web.servlet.DispatcherServlet
+				Initializing Servlet 'dispatcherServlet'
+[2023-05-25 09:24:55.935] [INFO ] [http-nio-8090-exec-1] org.springframework.web.servlet.DispatcherServlet
+				Completed initialization in 2 ms
+[2023-05-25 09:24:56.670] [WARN ] [http-nio-8090-exec-1] nz.net.ultraq.thymeleaf.layoutdialect.fragments.FragmentProcessor
+				You don't need to put the layout:fragment/data-layout-fragment attribute into the <head> section - the decoration process will automatically copy the <head> section of your content templates into your layout page.

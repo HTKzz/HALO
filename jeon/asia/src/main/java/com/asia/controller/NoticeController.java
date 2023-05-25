@@ -73,7 +73,7 @@ public class NoticeController {
 //	쿼리 스트링의 경우엔 localhost:8080/board/modify?id=1의 형식으로 나오게 된다.
 	
 	//수정
-	@GetMapping("/update")
+	@GetMapping("/update/{num}")
 	public String modNotice(@PathVariable("num") Long num,Model model) {
 		
 		try {

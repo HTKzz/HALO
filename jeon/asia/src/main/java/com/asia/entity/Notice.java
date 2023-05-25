@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.asia.dto.NoticeFormDto;
@@ -21,11 +22,16 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@SequenceGenerator(name = "USER_SEQ_GEN2", // 시퀀스 제너레이터 이름
+sequenceName = "USER_SEQ2", // 시퀀스 이름
+initialValue = 1, // 시작값
+allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
+)
 public class Notice extends BaseEntity {
 	
 	@Id
 	@Column(name="ntc_num")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN2")
 	private Long num; //글번호
 	
 	@Column(nullable = false)
