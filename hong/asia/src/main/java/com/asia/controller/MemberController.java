@@ -77,22 +77,30 @@ public class MemberController {
 		}
 
 	//회원가입
-	@PostMapping(value = "/add")
-	public String newMember(@Valid MemberFormDto memberFormDto, @Valid CompanyFormDto companyFormDto, BindingResult bindingResult, Model model) {
+	@PostMapping(value = "/memberadd")
+	public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {
 			return "member/memberForm";
 		}
 		try {
-			if(companyFormDto.getCid() == null) {
-				System.out.println("개인");
 				Member member = Member.createMember(memberFormDto, passwordEncoder);
 				memberService.saveMember(member);
-			} else {
-				System.out.println("법인");
+		} catch (IllegalStateException e) {
+			model.addAttribute("errorMessage", e.getMessage());
+			return "member/memberForm";
+		}
+		return "redirect:/";
+	}
+	
+	@PostMapping(value = "/companyadd")
+	public String newCompany(@Valid CompanyFormDto companyFormDto, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "member/memberForm";
+		}
+		try {
 				Member member = Member.createCompany(companyFormDto, passwordEncoder);
 				memberService.saveMember(member);
-			}
 		} catch (IllegalStateException e) {
 			model.addAttribute("errorMessage", e.getMessage());
 			return "member/memberForm";

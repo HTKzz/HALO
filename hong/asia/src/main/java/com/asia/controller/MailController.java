@@ -23,7 +23,6 @@ public class MailController {
 	@GetMapping(value="/sendmail")
 	@ResponseBody
 	public String mailAuth(String email) throws Exception {
-		System.out.println("일단 들어옴");
 	    String authKey = mailService.sendAuthMail(email); 
 	    return authKey;
 	}
