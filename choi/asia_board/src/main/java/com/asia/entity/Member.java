@@ -34,7 +34,7 @@ import lombok.ToString;
 public class Member extends BaseEntity {
 
 	@Id
-	@Column(name = "member_id")
+	@Column(name = "member_num")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN1")
 	private Long num;
 
@@ -86,6 +86,7 @@ public class Member extends BaseEntity {
 		member.setPassword(password);
 		member.setRole(memberFormDto.getRole());
 		member.setStat(Stat.회원);
+		member.setRegTime(member.getRegTime());
 		return member;
 	}
 }

@@ -1,15 +1,15 @@
-.boardList{
+.noticeList{
 	margin-top: 100px;
 }
 
-.vocForm{
+.noticeForm{
 	width: 90%;
 	min-width: 820px;
 	margin-left: 10%;
 	margin-top: 50px;
 }
 
-.vocHead-tr > th{
+.noticeHead-tr > th{
 	height: 60px;
 	line-height: 60px;
 	text-align: center;
@@ -17,54 +17,54 @@
 	
 }
 
-.vocListBody > td{
+.noticeListBody > td{
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
 	border-bottom: 1px solid #e2e2e2;
 }
 
-.vocListForm {
+.noticeListForm {
 	width: 90%;
 }
 
-.vocList-head {
+.noticeList-head {
 	width: 100%;
 }
 
-.vocHead-tr {
+.noticeHead-tr {
 	width: 100%;
 }
 
-.vocHead_no{
+.noticeHead_no{
 	width: 15%;
 }
 
-.vocHead_title {
+.noticeHead_title {
 	letter-spacing: 15px;
 	width: 40%;
 }
 
-.vocListBody-no {
+.noticeListBody-no {
 	width: 15%;
 }
 
-.vocListBody{
+.noticeListBody{
 	
 }
 
-.vocListBody > .vocListBody-title{
+.noticeListBody > .noticeListBody-title{
 	text-align: left;
 	font-weight: 600;
 	border-left: 1px solid #e2e2e2;
 	border-right: 1px solid #e2e2e2;
 }
 
-.vocListBody > td{
+.noticeListBody > td{
 	font-size: 20px;
 }
 
-.vocListBody-title {
+.noticeListBody-title {
 	padding-left: 30px;
 	letter-spacing: 6px;
 	width: 40%;
@@ -75,14 +75,14 @@
 	text-align: center;
 }
 
-.vocbtn_strong {
+.noticebtn_strong {
 	text-align:center;
 	width: 100%;
 	color: darkslateblue;
 	font-size: 2em;
 }
 
-.voc-write{
+.notice-write{
 	width:90%;
 	height: 50px;
 	text-align:center;

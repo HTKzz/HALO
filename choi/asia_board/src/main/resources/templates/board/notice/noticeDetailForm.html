@@ -106,69 +106,54 @@
 </th:block>
 
 <div layout:fragment="content">
-<link th:href="@{/css/boardDetail.css}" rel="stylesheet">
-	<form method="get" action="/boards/detail" role="form">
-		<!-- <input type="hidden" id="mem_num" th:value="${boardDto.mem_num}"> -->
-		<input type="hidden" id="boardNum" th:value="${boardDto.num}">
-		<input type="hidden"  name="groupOrd" th:value="${boardDto.groupOrd}">
-		<input type="hidden" name="groupLayer" th:value="${boardDto.groupLayer}">
+<link th:href="@{/css/noticeDetail.css}" rel="stylesheet">
+	<form method="get" action="/notices/detail" role="form">
+		<!-- <input type="hidden" id="mem_num" th:value="${noticeDto.mem_num}"> -->
+		<input type="hidden" id="noticeNum" th:value="${noticeDto.num}">
+		<input type="hidden"  name="groupOrd" th:value="${noticeDto.groupOrd}">
+		<input type="hidden" name="groupLayer" th:value="${noticeDto.groupLayer}">
 		<div class="detail-header">
 			<h1>공지사항</h1>
 			
 		</div>
 		<div class="title-wrapper">
 			<div class="group-detail title">
-				<h1 class="detail-title" th:text="${boardDto.name}"></h1>
+				<h1 class="detail-title" th:text="${noticeDto.name}"></h1>
 			</div>
 		</div>
 		<div class="view-wrapper">
 			<div >
-				<span class="view-date"  th:text="${#temporals.format(boardDto.regTime, 'yyyy-MM-dd')}"></span>
-				<span class="view-views" th:text="${boardDto.cnt}"></span>
+				<span class="view-date"  th:text="${#temporals.format(noticeDto.regTime, 'yyyy-MM-dd')}"></span>
+				<span class="view-views" th:text="${noticeDto.cnt}"></span>
 				<span class="view-views vie">view</span>
 			</div>
 		</div>
-				<!-- <span class="date">
-					작성일 : <span th:text="${boardDto.d_date}"></span>
-				</span>
-				
-				<span class="top">
-					작성자 : <span th:text="${boardDto.member.id}" style="width:20%;"></span>
-				</span>
-				<span class="title">
-					<span class="detail-title" th:text="${boardDto.name}"></span>
-				</span> -->
 			
 		<div>
 			<div class="bodyContent">
 				<!-- 내용 : &nbsp; -->
-				<pre><span class="bodyContent_inner" th:text="${boardDto.content}"></span></pre>	
+				<pre><span class="bodyContent_inner" th:text="${noticeDto.content}"></span></pre>	
 			</div>
 		</div>
-			<!-- <div th:each="attach : ${boardDto.attachDtoList}" class="text-center">
-				<img th:if="${not #strings.isEmpty(attach.url)}"
-					th:src="${attach.url}" class="rounded mgb-15" width="800">
-			</div> -->
 		
-		<!-- <div th:if="${Member.num == boardDto.mem_num}"> -->
 		<div>
 			<div class="group-button">
 			<span class="button">
-				<a th:href="@{/boards/modForm/{num}(num=${boardDto.num})}">수정하기</a>
+				<a th:href="@{/notices/modNotice/{num}(num=${noticeDto.num})}">수정하기</a>
 			</span>
 		
 			<span class="button">
-				<a th:href="@{'/boards/replyForm/' + ${boardDto.num}}">답글쓰기</a>
-				<!-- <button th:formaction="@{'/boards/replyForm/' + ${boardDto.num}}" type="submit" class="btn btn-primary">답글쓰기</button> -->
+				<a th:href="@{'/notices/replyForm/' + ${noticeDto.num}}">답글쓰기</a>
+				
 			</span>
 		
 			<span class="button">
-				<a th:href="@{/boards/lists}">돌아가기</a>
+				<a th:href="@{/notices/lists}">돌아가기</a>
 			</span>
 		
 			<span class="button">
-				<a th:href="@{'/boards/deleteBoard/' + ${boardDto.num}}">삭제하기</a>
-				<!-- <button th:formaction="@{'/boards/deleteBoard/' + ${boardDto.num}}" type="submit" class="btn btn-primary">삭제</button> -->
+				<a th:href="@{'/notices/deleteNotice/' + ${noticeDto.num}}">삭제하기</a>
+				
 			</span>
 			</div>
 		</div>
@@ -176,7 +161,7 @@
 		<div>
 			<div class="download">
 				<span class="download_text">다운로드</span>
-				<span class="download_inner" th:each="attach : ${boardDto.attachDtoList}">
+				<span class="download_inner" th:each="attach : ${noticeDto.attachDtoList}">
 				
 					<a th:if="${not #strings.isEmpty(attach.url)}" th:href="@{/download/{num}(num=${attach.num})}"
 				 	th:text="${attach.oriname}"></a>
@@ -187,24 +172,24 @@
 		<div class="detailPrev">
 			<ul class="detailPrev_inner">
 				<li>
-					<a th:href="@{/boards/detail/{num}(num=${boardDto.num-1})}">
-						<span th:if="${boardDto.num-1 != 0}">
-							<span class="detailPrev inner_text" th:if="${boardDto.allBoardCnt >= boardDto.num}">이전글</span>
-							<span class="detailPrev inner_text" th:text="${boardDto.prevContent}"></span>
+					<a th:href="@{/notices/detail/{num}(num=${noticeDto.num-1})}">
+						<span th:if="${noticeDto.num-1 != 0}">
+							<span class="detailPrev inner_text" th:if="${noticeDto.allNoticeCnt >= noticeDto.num}">이전글</span>
+							<span class="detailPrev inner_text" th:text="${noticeDto.prevContent}"></span>
 						</span>
 					</a>
 				</li>
-				<a th:href="@{/boards/lists}" class="back-to-list">목록</a>
+				<a th:href="@{/notices/lists}" class="back-to-list">목록</a>
 				<li>
-					<a th:href="@{/boards/detail/{num}(num=${boardDto.num+1})}">
-						<span class="detailNext inner_text" th:if="${boardDto.allBoardCnt > boardDto.num}">다음글</span>
+					<a th:href="@{/notices/detail/{num}(num=${noticeDto.num+1})}">
+						<span class="detailNext inner_text" th:if="${noticeDto.allNoticeCnt > noticeDto.num}">다음글</span>
 						
-						<span class="detailNext inner_text" th:text="${boardDto.nextContent}"></span>
+						<span class="detailNext inner_text" th:text="${noticeDto.nextContent}"></span>
 					</a>
 				</li>
 				 <li>
 				 	<a>
-						<!-- <span class="detailPrev_inner_text" th:if="${boardDto.num(${num-1})"
+						<!-- <span class="detailPrev_inner_text" th:if="${noticeDto.num(${num-1})"
 							 th:alt="이전글">이전글</span> -->
 					</a>
 				</li>

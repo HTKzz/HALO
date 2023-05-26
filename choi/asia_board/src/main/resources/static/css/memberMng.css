@@ -1,0 +1,21 @@
+form{
+	float: left;
+	width: 80%;
+	margin: 0 auto;
+	margin-left: 10%;
+	padding: 0 auto;
+	text-align: center;
+}
+
+.memberMng{
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.memberMng-select{
+	margin-bottom: 30px;
+}
+
+.memberMng-search{
+	width: 200px;
+}

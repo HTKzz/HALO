@@ -41,10 +41,10 @@ public class Attach {
 	private String thumb;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="board_num")
-	private Board board;
+	@JoinColumn(name="notice_num")
+	private Notice notice;
 	
-	public static Attach addBoard(AttachDto attachDto) {
+	public static Attach addNotice(AttachDto attachDto) {
 		
 		Attach attach = new Attach();
 		attach.setName(attachDto.getName());

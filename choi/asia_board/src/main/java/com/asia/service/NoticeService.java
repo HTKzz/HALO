@@ -17,70 +17,52 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.AttachDto;
-import com.asia.dto.BoardDto;
+import com.asia.dto.NoticeDto;
 import com.asia.entity.Attach;
-import com.asia.entity.Board;
 import com.asia.entity.Member;
+import com.asia.entity.Notice;
 import com.asia.repository.AttachRepository;
-import com.asia.repository.BoardRepository;
 import com.asia.repository.MemberRepository;
+import com.asia.repository.NoticeRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class BoardService {
+public class NoticeService {
 
-	private final BoardRepository boardRepository;
+	private final NoticeRepository noticeRepository;
 	private final MemberRepository memberRepository;
 	private final AttachRepository attachRepository;
 	private final AttachService attachService;
-	private final Logger LOGGER = LoggerFactory.getLogger(BoardService.class);
-
-	// 게시판 글 썼을 때 저장 멤버랑 엮기
-//	public String writeBoard(BoardDto boardDto, String id) {
-//
-//		Member member = memberRepository.findById(id);
-//		
-//		Board board = boardDto.createBoard();
-//		
-//		board.setMember(member);
-//		boardRepository.save(board);
-//		return null;
-//	}
-
-//	// 게시판 리스트 싹 다 불러오기
-//	public List<Board> boardLists() {
-//
-//		return boardRepository.findAll();
-//	}
+	private final Logger LOGGER = LoggerFactory.getLogger(NoticeService.class);
 	
-	// 게시판 글 썻을 때 저장하기.
-	public Long writeBoard(@Valid BoardDto boardDto, List<MultipartFile> attachList, String id) throws Exception {
+	// 공지글 저장하기.
+	public Long writenotice(@Valid NoticeDto noticeDto, List<MultipartFile> attachList, String id) throws Exception {
 
-		Board board = boardDto.createBoard();
-		System.out.println(board);
+		Notice notice = noticeDto.createNotice();
+		System.out.println(notice);
 		
 		Member member = memberRepository.findById(id);
 		
 		
-		board.setMember(member);
-		board.setCnt(0);
-//		
-		boardRepository.save(board);
+		notice.setMember(member);
+		notice.setCnt(0);
 		
-		board.setOriginNo(board.getNum());
-		board.setGroupLayer((long) 0);
-		board.setGroupOrd((long) 0);
+		noticeRepository.save(notice);
+		
+		notice.setOriginNo(notice.getNum());
+		notice.setGroupLayer((long) 0);
+		notice.setGroupOrd((long) 0);
 		LocalDate d_date1 = LocalDate.now(); // 현재 날짜
-		board.setD_date(d_date1);
+		notice.setD_date(d_date1);
 		
-		boardRepository.save(board);
+		noticeRepository.save(notice);
 		
 		for (int i = 0; i < attachList.size(); i++) {
 			Attach attach = new Attach();
-			attach.setBoard(board);
+			attach.setNotice(notice);
 			
 			if (i == 0) // 첫 번째 이미지일 경우 대표 상품 이미지 여부 값을 Y로 세팅한다. 나머지 상품 이미지는 N으로 설정한다.
 				attach.setThumb("Y");
@@ -89,36 +71,36 @@ public class BoardService {
 			attachService.saveAttach(attach, attachList.get(i));
 		}
 		
-		return board.getNum();
+		return notice.getNum();
 	}
 	
 	// 게시판 답글
-	public Long replyBoard(@Valid BoardDto boardDto, List<MultipartFile> attachList, String id, Model model) throws Exception {
+	public Long replynotice(@Valid NoticeDto noticeDto, List<MultipartFile> attachList, String id, Model model) throws Exception {
 		
-		Board board = new Board();		
-		board.setOriginNo(boardDto.getOriginNo());
-		board.setName(boardDto.getName());
-		board.setContent(boardDto.getContent());
-		board.setCnt(0);
-		board.setGroupLayer(boardDto.getGroupLayer() + (long) 1);
-		if(board.getGroupLayer() > 0) {
-			for(int i = 0 ; i > board.getGroupLayer() ; i++) {
+		Notice notice = new Notice();		
+		notice.setOriginNo(noticeDto.getOriginNo());
+		notice.setName(noticeDto.getName());
+		notice.setContent(noticeDto.getContent());
+		notice.setCnt(0);
+		notice.setGroupLayer(noticeDto.getGroupLayer() + (long) 1);
+		if(notice.getGroupLayer() > 0) {
+			for(int i = 0 ; i > notice.getGroupLayer() ; i++) {
 				
 			}
 		}
-		board.setGroupOrd(boardRepository.getCount(board.getOriginNo(), board.getGroupLayer()));
-		System.out.println(board);
+		notice.setGroupOrd(noticeRepository.getCount(notice.getOriginNo(), notice.getGroupLayer()));
+		System.out.println(notice);
 		
-//		boardRepository.gety
+//		noticeRepository.gety
 		Member member = memberRepository.findById(id);
 		
-		board.setMember(member);
+		notice.setMember(member);
 		
-		boardRepository.save(board);
+		noticeRepository.save(notice);
 		
 		for (int i = 0; i < attachList.size(); i++) {
 			Attach attach = new Attach();
-			attach.setBoard(board);
+			attach.setNotice(notice);
 			
 			if (i == 0)
 				attach.setThumb("Y");
@@ -127,27 +109,27 @@ public class BoardService {
 			attachService.saveAttach(attach, attachList.get(i));
 		}
 
-		return board.getNum();
+		return notice.getNum();
 	}
 	
 	// 게시판 리스트 싹 다 불러오기 (페이징)
-	public Page<Board> boardList(Pageable pageable){
+	public Page<Notice> noticeList(Pageable pageable){
 		
-		return boardRepository.findAll(pageable);
+		return noticeRepository.findAll(pageable);
 	}
 	
 	// 조회수
 	@Transactional
 	public int updateCnt(Long num) {
 		
-		return boardRepository.updateCnt(num);
+		return noticeRepository.updateCnt(num);
 	}
 	
 	// 게시판 디테일 불러오기
 	@Transactional
-	public BoardDto getBoardDetail(Long num) {
+	public NoticeDto getnoticeDetail(Long num) {
 
-		List<Attach> attachList = attachRepository.findByBoardNumOrderByNumAsc(num);
+		List<Attach> attachList = attachRepository.findByNoticeNumOrderByNumAsc(num);
 		List<AttachDto> attachDtoList = new ArrayList<>();
 
 		for (Attach attach : attachList) {
@@ -156,47 +138,47 @@ public class BoardService {
 			attachDtoList.add(attachDto);
 		}
 
-		Board board = boardRepository.findByNum(num);
-		long allBoardCnt = boardRepository.getList();
-		String prevContent = boardRepository.getPrevContent(num);
-		String nextContent = boardRepository.getNextContent(num);
+		Notice notice = noticeRepository.findByNum(num);
+		long allNoticeCnt = noticeRepository.getList();
+		String prevContent = noticeRepository.getPrevContent(num);
+		String nextContent = noticeRepository.getNextContent(num);
 		
-		BoardDto boardDto = BoardDto.of(board);
-		boardDto.setAllBoardCnt(allBoardCnt);
-		boardDto.setPrevContent(prevContent);
-		boardDto.setNextContent(nextContent);
-		boardDto.setAttachDtoList(attachDtoList);
+		NoticeDto noticeDto = NoticeDto.of(notice);
+		noticeDto.setAllNoticeCnt(allNoticeCnt);
+		noticeDto.setPrevContent(prevContent);
+		noticeDto.setNextContent(nextContent);
+		noticeDto.setAttachDtoList(attachDtoList);
 		
 		LOGGER.info("디테일에서 num에 들어온 값 {}", num);
-		LOGGER.info("디테일서비스에서 boardDto에 들어온 값 {}", boardDto);
+		LOGGER.info("디테일서비스에서 noticeDto에 들어온 값 {}", noticeDto);
 		
-		return boardDto;
+		return noticeDto;
 	}
 	
 	// 게시판 글 수정하기
-	public Long updateBoard(BoardDto boardDto, List<MultipartFile> attachList) throws Exception {
+	public Long updatenotice(NoticeDto noticeDto, List<MultipartFile> attachList) throws Exception {
 
-		Board board = boardRepository.findById(boardDto.getNum())
+		Notice notice = noticeRepository.findById(noticeDto.getNum())
 				.orElseThrow(EntityNotFoundException::new);
 		
-		System.out.println(board);
+		System.out.println(notice);
 		
-		board.updateBoard(boardDto);
-		board.setRegTime(boardDto.getRegTime());
-		List<Long> attachNums = boardDto.getAttachNums();
+		notice.updateNotice(noticeDto);
+		notice.setRegTime(noticeDto.getRegTime());
+		List<Long> attachNums = noticeDto.getAttachNums();
 		
 		for (int i = 0; i < attachList.size(); i++) {
 
 			attachService.updateAttach(attachNums.get(i), attachList.get(i));
 		}
 		
-		return board.getNum();
+		return notice.getNum();
 	}
 	
 	// 게시판 글 삭제하기
-	public void deleteBoard(Long num)throws Exception{
+	public void deletenotice(Long num)throws Exception{
 		
-		boardRepository.deleteByNum(num);
+		noticeRepository.deleteByNum(num);
 		
 	}
 	

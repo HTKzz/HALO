@@ -35,7 +35,7 @@
 </th:block>
 
 <div layout:fragment="content">
-	<form role="form" method="post" action="/boards/replyBoard" th:object="${boardDto}" enctype="multipart/form-data">
+	<form role="form" method="post" action="/notices/replyNotice" th:object="${noticeDto}" enctype="multipart/form-data">
 	
 	<h3>답글 페이지</h3>
 	
@@ -59,7 +59,7 @@
 	</div>
 	<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="fieldError">Incorrect data</p>
 	
-	<div th:if="${#lists.isEmpty(boardDto.attachDtoList)}"> <!-- 상품 이미지 정보를 담고 있는 리스트가 비어 있다면 상품 등록한다. -->
+	<div th:if="${#lists.isEmpty(noticeDto.attachDtoList)}"> <!-- 상품 이미지 정보를 담고 있는 리스트가 비어 있다면 상품 등록한다. -->
 		<div class="form-group" th:each="num: ${#numbers.sequence(1,5)}">
 			<div class="custom-file img-div">
 				<input type="file" class="custom-file-input" name="attachFile">

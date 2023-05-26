@@ -7,9 +7,8 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 
-import com.asia.entity.BaseEntity;
-import com.asia.entity.Board;
 import com.asia.entity.Member;
+import com.asia.entity.Notice;
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.Getter;
@@ -22,7 +21,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class BoardDto{
+public class NoticeDto{
 	
 	private String name;
 	
@@ -42,7 +41,7 @@ public class BoardDto{
 	 
     private Long groupLayer;
     
-    private Long allBoardCnt;
+    private Long allNoticeCnt;
     
     private String prevContent;
     
@@ -58,16 +57,16 @@ public class BoardDto{
 	
 	private static ModelMapper modelMapper = new ModelMapper();
 	
-	public Board createBoard() {
-		return modelMapper.map(this, Board.class);
+	public Notice createNotice() {
+		return modelMapper.map(this, Notice.class);
 	}
 	
-	public static BoardDto of(Board board) {
-		return modelMapper.map(board, BoardDto.class);
+	public static NoticeDto of(Notice notice) {
+		return modelMapper.map(notice, NoticeDto.class);
 	}
 	
 	@QueryProjection
-	public BoardDto(Long num, Long groupOrd) {
+	public NoticeDto(Long num, Long groupOrd) {
 		this.num = num;
 		this.groupOrd = groupOrd;
 	}
