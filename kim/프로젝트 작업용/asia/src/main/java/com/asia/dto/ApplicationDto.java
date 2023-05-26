@@ -61,7 +61,7 @@ public class ApplicationDto {
 	}   // dto -> entity
 	
 	public static ApplicationDto of(Application application) {
-		return modelMapper.map(application,  ApplicationDto.class);
+		return modelMapper.map(application, ApplicationDto.class);
 		// entity -> dto
 	}
 	

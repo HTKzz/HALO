@@ -139,7 +139,6 @@ public class ApplicationController {
 		
 		// 검색기능
         Page<Application> applications = null;
-        
         // searchKeyword = 검색하는 단어
         if(searchKeyword == null){
         	applications = applicationService.applicationList(pageable); // 기존의 리스트보여줌
@@ -226,8 +225,8 @@ public class ApplicationController {
             model.addAttribute("nowPage", nowPage);
             model.addAttribute("startPage", startPage);
             model.addAttribute("endPage", endPage);
-
-            System.out.println(showapplications.getContent());
+            
+            System.out.println(showapplications.getContent().get(0));
             return "program/showList";
     	
     }
@@ -240,14 +239,8 @@ public class ApplicationController {
     	
             //큰카테고리에 해당하는 상품 가져오기.
     		programCategory = "전시";
-//            List<Application> ShowList = applicationService.findByProgramCategory(programCategory);
-//            List<Application> applicationDto = applicationService.findByProgramCategory(programCategory);
-//            ApplicationDto applicationDto = applicationService.getApplicationDtl(List(num));
-//            ApplicationDto applicationDto = applicationService.getShowList(num);
+    		
             Page<MainApplicationDto> showapplications = applicationService.showApplicationList(pageable, programCategory);
-            
-//            Page<Attach> showattachs = attachService.showAttachList(pageable, num);
-//            model.addAttribute("application3", ShowList);
             
             int nowPage = showapplications.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
             int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환

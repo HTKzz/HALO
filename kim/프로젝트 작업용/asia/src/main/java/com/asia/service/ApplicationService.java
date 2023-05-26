@@ -163,6 +163,7 @@ public class ApplicationService {
 	public Page<Application> applicationSearchList(String searchKeyword, Pageable pageable){
 		return applicationRepository.findByNameContaining(searchKeyword, pageable);
 	}
+	
 	public Page<Application> applicationCategorySearchList(String searchKeyword, Pageable pageable){
 		return applicationRepository.findByNameContaining(searchKeyword, pageable);
 	}

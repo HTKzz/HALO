@@ -1,31 +1,16 @@
 @charset "UTF-8";
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap')
+	;
 
-@import url('https://webfontworld.github.io/kopus/KoPubWorldBatang.css');
+@import url('https://webfontworld.github.io/kopus/KoPubWorldBatang.css')
+	;
 
 @font-face {
 	font-family: 'SF_HambakSnow';
 	src:
 		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'GmarketSansMedium';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'ghanachoco';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff')
 		format('woff');
 	font-weight: normal;
 	font-style: normal;
@@ -61,28 +46,22 @@
 	border: 0;
 }
 
-.input-group-text {
+.applicationForm-input-group-text {
+	line-height: 30px;
 	width: 100%;
 	margin-bottom: 20px;
 	border: 0;
 	/* border-bottom: 1px solid #bbb; */
 }
 
-.input-group-text-detail {
-	width: 100%;
-	margin-bottom: 20px;
-	border: 0;
-	/* border-bottom: 1px solid #bbb; */
-}
-
-.applyForm-input {
+.applicationForm-input {
 	width: 100%;
 	margin-bottom: 20px;
 	border: 0;
 	border-bottom: 1px solid #bbb;
 }
 
-.applyForm-input-detail {
+.applicationForm-input-detail {
 	width: 100%;
 	margin-bottom: 20px;
 	border: 0;
@@ -92,30 +71,14 @@
 	border-left: 1px solid #bbb;
 }
 
-/* #input-seat {
-	display: none;
-} */
-
 /*--------- default setting ---------*/
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	/* outline: silver solid 1px; */
 }
 
-body {
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 1rem;
-	line-height: 1.5rem;
-	color: black;
-	letter-spacing: 0.1px;
-	word-break: keep-all;
-	padding: 50px 5%;
-	margin: 0 auto;
-}
-
-h1 {
+.applicationForm-title-h1 {
 	font-family: 'SF_HambakSnow';
 	font-size: 3rem;
 	line-height: 3.5rem;
@@ -123,28 +86,14 @@ h1 {
 	text-align: center;
 }
 
-h3 {
-	font-family: 'KoPubWorldBatang';
-	font-size: 1.5rem;
-	line-height: 2.5rem;
-	padding: 30px 0;
-	text-align: center;
-}
-
-.application-txt h4 {
+.applicationForm-txt h4 {
 	font-family: 'SF_HambakSnow';
 	font-size: 1.7rem;
 	line-height: 2rem;
 	text-align: center;
 }
 
-h5 {
-	font-size: 0.95rem;
-	line-height: 1.5rem;
-	font-weight: 400;
-}
-
-button {
+.applicationForm-button {
 	display: inline-block;
 	height: 50px;
 	font-size: 1rem;
@@ -156,60 +105,58 @@ button {
 	cursor: pointer;
 }
 
-button:hover {
+.applicationForm-button:hover {
 	background: #222;
 	color: #fff;
 }
 
-input::placeholder, textarea::placeholder {
+.applicationForm-input option {
 	color: #888;
 }
 
-li {
+.applicationForm-board input::placeholder, .applicationForm-board textarea::placeholder
+	{
+	color: #888;
+}
+
+.applicationForm-board li {
 	list-style: none;
 }
 
 /*--------- common class setting ---------*/
-article {
+.applicationForm-board {
 	width: 1000px;
 	margin: 0 auto;
 	padding: 200px 0;
 }
 
-.contents {
+.applicationForm-contents {
 	border-radius: 10px;
 	border: 1px solid #999;
 	padding: 50px 5%;
 }
 
-.inner {
+.applicationForm-inner {
 	padding-top: 30px;
 }
 
-.application-txt {
+.applicationForm-txt {
 	padding-top: 20px;
 }
 
-.sans {
-	font-family: 'Noto Sans KR', sans-serif;
-	text-align: left;
-	padding: 10px 0;
-	border-bottom: 2px solid #666;
-}
-
-input, select {
+.applicationForm-board input, .applicationForm-board select {
 	height: 40px;
 	font-size: 1rem;
 	padding-left: 7px;
 }
 
-select, textarea {
+.applicationForm-board select, .applicationForm-board textarea {
 	border: 1px solid #bbb;
 	border-radius: 5px;
 	width: 100%;
 }
 
-textarea {
+.applicationForm-board textarea {
 	margin-top: 15px;
 	height: 200px;
 	padding: 10px 0 0 10px;
@@ -218,34 +165,16 @@ textarea {
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-/*--------- Board ---------*/
-.applyForm-title {
-	width: 100%;
-	margin-bottom: 20px;
-	border: 0;
-	border-bottom: 1px solid #bbb;
-}
-
-.btn-upload {
-	margin: 10px 10px 0 0;
-	width: 60px;
-	height: 60px;
-	background: #eee;
-	color: #aaa;
-	font-size: 2rem;
-	border: 0;
-	border-radius: 5px;
-	font-weight: 500;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transition: 0.2s;
-}
-
-.btn-upload:hover {
-	background: #777;
-	color: #fff;
+/*--------- 첨부파일 ---------*/
+.custom-file-label {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: black;
+	letter-spacing: 0.1px;
+	word-break: keep-all;
+	padding: 50px 5%;
+	margin: 0 auto;
 }
 
 .custom-file-label:hover {
@@ -253,29 +182,30 @@ textarea {
 	color: #fff;
 }
 
-.btn {
+.applicationForm-btn {
 	display: flex;
 	justify-content: center;
 }
 
-.btn button {
+.applicationForm-button {
 	width: 48.5%;
 	border: 0;
 	margin-top: 30px;
 	transition: 0.5s;
 }
 
-.btn button[name=sign] {
+.applicationForm-button[name=sign] {
 	background: #666;
 	color: white;
 }
 
-.btn button[name=sign]:hover {
+.applicationForm-button[name=sign]:hover {
 	background: #111;
 	color: white;
 }
 
-.file {
+.attachfile {
 	display: flex;
 	margin: 20px 0;
+	padding: 7px;
 }

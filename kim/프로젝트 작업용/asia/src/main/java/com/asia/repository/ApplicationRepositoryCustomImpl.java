@@ -127,7 +127,9 @@ public class ApplicationRepositoryCustomImpl implements ApplicationRepositoryCus
 								application.name,
 								application.detail,
 								attach.url,
-								application.price)
+								application.price,
+								application.sdate,
+								application.edate)
 		)
 		.from(attach)
 		.join(attach.application, application)   // itemImg와 item을 내부 조인한다.
