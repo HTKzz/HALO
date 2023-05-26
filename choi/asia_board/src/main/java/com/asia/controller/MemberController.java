@@ -51,6 +51,7 @@ public class MemberController {
 		memberFormDto.setBirth("1996-05-23");
 		memberFormDto.setCid("1111");
 		memberFormDto.setAddr("관저동");
+		memberFormDto.setJoin("");
 		Member member = Member.createMember(memberFormDto , passwordEncoder);
 		String password = passwordEncoder.encode(memberFormDto.getPassword());
 		member.setPassword(password);

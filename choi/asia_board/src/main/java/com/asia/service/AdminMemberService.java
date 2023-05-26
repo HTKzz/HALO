@@ -27,26 +27,26 @@ public class AdminMemberService {
 	}
 
 	public Page<Member> searchMemberByTel(String memberMngSearch, Pageable pageable) {
-		return memberRepository.findByTelContaining(memberMngSearch, pageable); // 이름으로 찾아오기
+		return memberRepository.findByTelContaining(memberMngSearch, pageable); // 전화번호로 찾아오기
 	}
 
 	public Page<Member> searchMemberByEmail(String memberMngSearch, Pageable pageable) {
-		return memberRepository.findByEmailContaining(memberMngSearch, pageable); // 이름으로 찾아오기
+		return memberRepository.findByEmailContaining(memberMngSearch, pageable); // 이메일로 찾아오기
 	}
 
 	public Page<Member> searchMemberByBirth(String memberMngSearch, Pageable pageable) {
-		return memberRepository.findByBirthContaining(memberMngSearch, pageable); // 이름으로 찾아오기
+		return memberRepository.findByBirthContaining(memberMngSearch, pageable); // 생년으로 찾아오기
 	}
 
-	public Page<Member> searchMemberByRegTime(String memberMngSearch, Pageable pageable) {
-		return memberRepository.findByRegTimeContaining(memberMngSearch, pageable); // 이름으로 찾아오기
+	public Page<Member> searchMemberByJoin(String memberMngSearch, Pageable pageable) {
+		return memberRepository.findByJoinContaining(memberMngSearch, pageable); // 가입일로 찾아오기
 	}
-
+	
 	public Page<Member> searchMemberByStat(String memberMngSearch, Pageable pageable) {
-		return memberRepository.findByStatContaining(memberMngSearch, pageable); // 이름으로 찾아오기
+		return memberRepository.findByStatContaining(memberMngSearch, pageable); // 상태로 찾아오기
 	}
 
 	public Page<Member> searchMemberByRole(String memberMngSearch, Pageable pageable) {
-		return memberRepository.findByRoleContaining(memberMngSearch, pageable); // 이름으로 찾아오기
+		return memberRepository.findByRoleContaining(memberMngSearch, pageable); // 권한으로 찾아오기
 	}
 }

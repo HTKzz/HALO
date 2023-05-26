@@ -6,7 +6,7 @@
 <head>
 	
 </head>
-<div layout:fragment="content" class="vocForm">
+<div layout:fragment="content" class="memberMng">
 <link th:href="@{/css/memberMng.css}" rel="stylesheet">
 	<form class="memberMngForm" role="form" method="post" action="/admin/searchMember">
 	<div>
@@ -15,7 +15,7 @@
 			<option th:value="tel">전화번호
 			<option th:value="email">이메일
 			<option th:value="birth">생년월일
-			<option th:value="regTime">가입일
+			<option th:value="join">가입일
 			<option th:value="stat">상태
 			<option th:value="role">권한
 		</select>
@@ -25,14 +25,14 @@
 	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 	</form>
 	
-		<table class="memberMng">
+		<table class="memberMng-table">
 			<thead class="memberMng-head">
 				<tr class="memberMng-tr">
 					<th class="memberMng-name">이름</th>
 					<th class="memberMng-tel">전화번호</th>
 					<th class="memberMng-email">이메일</th>
 					<th class="memberMng-birth">생년월일</th>
-					<th class="memberMng-join">가입일</th>
+					<th class="memberMng-join">가입일시</th>
 					<th class="memberMng-stat">상태</th>
 					<th class="memberMng-role">권한</th>
 				</tr>
@@ -44,7 +44,7 @@
 					<td class="memberMng-tel" th:text="${mng.tel}">전화번호</td>
 					<td class="memberMng-email" th:text="${mng.email}">이메일</td>
 					<td class="memberMng-birth" th:text="${mng.birth}">생년월일</td>
-					<td class="memberMng-join" th:text="${mng.regTime}">가입일</td>
+					<td class="memberMng-join" th:text="${mng.join}">가입일</td>
 					<td class="memberMng-stat" th:text="${mng.stat}">상태</td>
 					<td class="memberMng-role" th:text="${mng.role}">권한</td>
 				</tr>

@@ -1,15 +1,12 @@
-form{
-	float: left;
-	width: 80%;
+.memberMng{
+	width: 1000px;
 	margin: 0 auto;
-	margin-left: 10%;
 	padding: 0 auto;
 	text-align: center;
 }
 
-.memberMng{
+.memberMng-table{
 	width: 100%;
-	margin-bottom: 30px;
 }
 
 .memberMng-select{
@@ -18,4 +15,8 @@ form{
 
 .memberMng-search{
 	width: 200px;
+}
+
+.memberMng-pagebtn{
+	text-align: center;
 }

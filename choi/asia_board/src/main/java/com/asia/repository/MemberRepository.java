@@ -20,7 +20,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 	Page<Member> findByTelContaining(String memberMngSearch, Pageable pageable);
 	Page<Member> findByEmailContaining(String memberMngSearch, Pageable pageable);
 	Page<Member> findByBirthContaining(String memberMngSearch, Pageable pageable);
-	Page<Member> findByRegTimeContaining(String memberMngSearch, Pageable pageable);
+	Page<Member> findByJoinContaining(String memberMngSearch, Pageable pageable);
 	Page<Member> findByStatContaining(String memberMngSearch, Pageable pageable);
 	Page<Member> findByRoleContaining(String memberMngSearch, Pageable pageable);
 	

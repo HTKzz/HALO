@@ -54,27 +54,28 @@ public class AdminController {
 		System.out.println(searchOption);
 		
 		Page<Member> lists = null;
-		if(memberMngSearch.equals("name")) {
+		if(searchOption.equals("name")) {
 			lists = adminMemberService.searchMemberByName(memberMngSearch, pageable);
 		
-		}else if(searchOption == "tel") {
+		}else if(searchOption.equals("tel")) {
 			lists = adminMemberService.searchMemberByTel(memberMngSearch, pageable);
 		
-		}else if(searchOption == "email") {
+		}else if(searchOption.equals("email")) {
 			lists = adminMemberService.searchMemberByEmail(memberMngSearch, pageable);
 		
-		}else if(searchOption == "birth") {
+		}else if(searchOption.equals("birth")) {
 			lists = adminMemberService.searchMemberByBirth(memberMngSearch, pageable);
 		
-		}else if(searchOption == "regTime") {
-			lists = adminMemberService.searchMemberByRegTime(memberMngSearch, pageable);
-		
-		}else if(searchOption == "stat") {
+		}else if(searchOption.equals("join")) {
+			lists = adminMemberService.searchMemberByJoin(memberMngSearch, pageable);
+			
+		}else if(searchOption.equals("stat")) {
 			lists = adminMemberService.searchMemberByStat(memberMngSearch, pageable);
-		
-		}else if(searchOption == "role") {
+			
+			
+		}else if(searchOption.equals("role")) {
 			lists = adminMemberService.searchMemberByRole(memberMngSearch, pageable);
-		
+			
 		}else {
 			return "admin/member/memberMng";
 		}

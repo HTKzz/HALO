@@ -49,5 +49,7 @@ public class MemberFormDto {
 	
 	private String agree;
 	
+	private String join;
+	
 	private Role role;
 }

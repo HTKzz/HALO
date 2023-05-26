@@ -1,5 +1,8 @@
 package com.asia.entity;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -69,7 +72,10 @@ public class Member extends BaseEntity {
 	private Long age;
 
 	private String agree;
-
+	
+	private String join;
+	
+	
 	// 회원가입
 	public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
 		Member member = new Member();
@@ -84,6 +90,9 @@ public class Member extends BaseEntity {
 		member.setAgree(memberFormDto.getAgree());
 		String password = passwordEncoder.encode(memberFormDto.getPassword());
 		member.setPassword(password);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy년 MM월 dd일 HH시 mm분 ss초");
+		String join1 = LocalDateTime.now().format(formatter); // LocalDateTime -> String 타입 변환하기
+		member.setJoin(join1);
 		member.setRole(memberFormDto.getRole());
 		member.setStat(Stat.회원);
 		member.setRegTime(member.getRegTime());
