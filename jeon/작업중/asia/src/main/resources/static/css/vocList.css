@@ -1,33 +1,59 @@
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 .fieldError {
 	color: #bd2130;
 }
 
-section{
-	position: relative;
-	
+body {
+	font-family: Pretendard-Regular;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: black;
+	letter-spacing: 0.1px;
+	word-break: keep-all;
+	padding: 50px 5%;
+	margin: 0 auto;
 }
 
-table {
+/* table {
 	border-collapse: collapse;
 	border-spacing: 0;
+} */
+
+.vocList {
+	margin: 100px;
+	padding: 50px 5%;
+}
+
+.vocList-container {
+	text-align: center;
+	position: relative;
 }
 
 .vocList-title {
-	margin-bottom: 60px;
+	margin-bottom: 40px;
+	text-align: center;
 }
 
 .vocList-title h3 {
-	font-size: 28px;
-	color: #333333;
-	font-weight: 400;
+	font-size: 28px; color : #333333;
+	font-weight: bold;
 	text-align: center;
+	color: #333333;
 }
 
 .vocList-table {
 	font-size: 15px;
 	width: 100%;
-	border-top: 2px solid #333;
+	border-top : 2px solid #333;
 	border-bottom: 1px solid #ccc;
+	
 }
 
 .vocList-table a {
@@ -43,10 +69,12 @@ table {
 }
 
 .voc-tr {
-	text-align: center;
+	/* text-align: center; */
+	
+	
 } /* 이거안먹네 */
 
-.vocList-table .vocList-num {
+.vocList-table .vocList-num .vocList-cnt {
 	width: 100px;
 	text-align: center;
 }
@@ -60,69 +88,66 @@ table {
 }
 
 .vocList-table tbody td {
-	padding-left: 28px;
-	padding-right: 14px;
+	/* padding-left: 28px;
+	padding-right: 14px; */
+	padding : 14px;
 	border-top: 1px solid #e7e7e7;
 	text-align: center;
 }
 
 #voc-name {
 	text-align: left;
+	padding-left: 25px;
 }
 
-/* .vocList-table tbody td {
-  padding-left: 28px;
-  padding-right: 14px;
-  border-top: 1px solid #e7e7e7;
-  text-align: left;
-} */
 
-.voc-write {
-	text-align: center;
-	font-size: 13px;
-	margin: 40px;
-	padding: 8px 18px;
-	border: solid 1px #d7d7d7;
-	position: absolute;
+.page-item:hover a {
+	color: #fdfdfd;
+	background-color: #1d1f20;
+	border: solid 1px #1d1f20;
+}
 
-	right: 10px;
-	
-	font-weight: 400;
-	background: transparent;
-	text-align: center;
-	border-radius: 5px;
-	
-	border: solid 1px #d7d7d7;
-	
+.page-item.active a {
+	color: #fdfdfd;
+	background-color: #1d1f20;
+	border: solid 1px #1d1f20;
+}
+
+.voc-write a {
 	color: #7d7d7d;
 	text-decoration: none;
-	text-transform: uppercase;
-	display: inline-block;
 	text-align: center;
-
+	vertical-align: middle;
+	font-size: 13px;
+	padding: 9px 22px;
+}
+.voc-write a:hover {
+	color: #fdfdfd;
 }
 
 .voc-write:hover {
-	background: #111;
-	color: white;
+
+	color: #fdfdfd;
+	background-color: #1d1f20;
+	border: solid 1px #1d1f20;
+	
 }
 
-.btn-submit {
-	width : 150px;
-	border: 0;
-	margin-top: 20px;
-	transition: 0.5s;
+.voc-write {
+	position: absolute;
+	right: 10px;
+	text-align: center;
+	width: 90px;
+	height: 30px;
 	background: #666;
-	color: white;
-	width: 150px;
+	text-decoration: none;
+	font-weight: bold;
+	background: none;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	transition: 0.4s;
+	cursor: pointer;
 }
-
-.btn-submit:hover {
-	background: #111;
-	color: white;
-}
-
-
 
 /* .voc-write {
 	background-color: red;
@@ -154,20 +179,20 @@ table {
 } */
 
 /* reset */
-* {
-	/* box-sizing: border-box; */
+/* * {
+	box-sizing: border-box;
 	list-style: none;
 	text-decoration: none;
 	padding: 0;
 	margin: 0;
-	box-sizing: border-box;
+	
 }
 
 .clearfix:after {
 	content: '';
 	display: block;
 	clear: both;
-}
+} */
 /* .container {
   width: 1100px;
   margin: 0 auto;

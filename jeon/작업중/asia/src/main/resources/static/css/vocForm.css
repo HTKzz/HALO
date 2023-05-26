@@ -1,3 +1,12 @@
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
 .fieldError {
 	color: #bd2130;
 }
@@ -11,7 +20,7 @@
 }
 
 body {
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: Pretendard-Regular;
 	font-size: 1rem;
 	line-height: 1.5rem;
 	color: black;
@@ -27,11 +36,6 @@ h4 {
 	text-align: center;
 }
 
-h5 {
-	font-size: 0.95rem;
-	line-height: 1.5rem;
-	font-weight: 400;
-}
 
 button {
 	display: inline-block;
@@ -59,43 +63,25 @@ li {
 }
 
 /*--------- common class setting ---------*/
-article {
-	margin: 200px 0;
-} /* 안써 */
 
-.vocForm-contents {
+.vocForm {
+	
+	margin: 220px;
 	border-radius: 10px;
 	border: 1px solid #999;
 	padding: 50px 5%;
 }
 
-.vocForm-inner {
+.vocForm-container {
+	
 	padding-top: 30px;
 }
 
 .vocForm-txt {
+	
 	padding-top: 20px;
 }
 
-/* .bold {
-	display: inline-block;
-	font-weight: bold;
-} */
-
-.gray {
-	color: #aaa;
-}
-
-.red {
-	color: #e6002d;
-}
-
-.sans {
-	font-family: 'Noto Sans KR', sans-serif;
-	text-align: left;
-	padding: 10px 0;
-	border-bottom: 2px solid #666;
-}
 
 img {
 	width: 100%;
@@ -103,6 +89,7 @@ img {
 }
 
 input, select {
+	font-family: Pretendard-Regular;
 	height: 40px;
 	font-size: 1rem;
 	padding-left: 7px;
@@ -119,15 +106,15 @@ textarea {
 	padding: 10px 0 0 7px;
 	resize: none;
 	font-size: 1rem;
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'Pretendard-Regular';
 }
 
-input[type=checkbox] {
+/* input[type=checkbox] {
 	height: auto;
 	transform: scale(1.5);
 	margin: 0 10px;
 	vertical-align: middle;
-}
+} */
 
 /*--------- Board ---------*/
 /* 아래로 대체
@@ -169,11 +156,13 @@ input[type=checkbox] {
 }
 
 .btn-upload {
+	float: left;
 	display: inline-block;
 	vertical-align: middle;
 	text-align: center;
 	margin: 10px 10px;
-	padding-top: 5px; width : 40px;
+	padding-top: 5px;
+	width : 40px;
 	height: 40px;
 	background: #eee;
 	color: #aaa;
@@ -190,17 +179,13 @@ input[type=checkbox] {
 	width: 40px;
 }
 
-.btn-upload:hover {
-	background: #777;
-	color: #fff;
-}
+
 
 /* .custom-file-input {
 	display: none;
 } */
 
 .custom-file-label {
-	
 	vertical-align: middle;
 	width: 94%;
 	border: 0;

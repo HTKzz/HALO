@@ -6,9 +6,8 @@
 	display: inline;
 	padding-left: 0px;
 	text-align: center;
-	
-	
 }
+
 
 .page-item:hover a {
 	color: #fdfdfd;
@@ -32,7 +31,8 @@
 	border-radius: 0.2rem;
 	color: #7d7d7d;
 	text-decoration: none;
-	text-transform: uppercase;
+	font-size: 13px;
+	/* text-transform: uppercase; */
 	display: inline-block;
 	text-align: center;
 	padding: 0.5rem 0.9rem;
