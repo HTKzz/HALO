@@ -40,6 +40,12 @@ public class BoardDto extends BaseEntity {
 	private Long groupOrd;
 	 
     private Long groupLayer;
+    
+    private Long allBoardCnt;
+    
+    private String prevContent;
+    
+    private String nextContent;
 	
 	private Member member;
 	

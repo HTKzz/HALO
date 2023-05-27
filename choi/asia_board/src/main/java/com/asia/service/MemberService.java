@@ -2,12 +2,15 @@ package com.asia.service;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.asia.entity.Board;
 import com.asia.entity.Member;
 import com.asia.repository.MemberRepository;
 
@@ -60,5 +63,10 @@ public class MemberService implements UserDetailsService {
 
 	public boolean checkIdDuplicate(String id) {
 		return memberRepository.existsById(id);
+	}
+	
+	public Page<Member> boardList(Pageable pageable){
+		
+		return memberRepository.findAll(pageable);
 	}
 }

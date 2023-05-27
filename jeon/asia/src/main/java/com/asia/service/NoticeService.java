@@ -51,14 +51,14 @@ public class NoticeService {
 	}
 	
 	
-//	//수정-등록된 상품 불러오는 메서드
-//	@Transactional(readOnly = true) //읽어오는 트랜잭션을 읽기전용으로 설정, 이럴 경우 JPA가 변경감지(더티체킹)를 수행하지 않아서 성능향상
-//	public NoticeFormDto getntcDtl(Long num) {
-//		Notice notice = noticeRepository.findById(num)
-//				.orElseThrow(EntityNotFoundException::new);
-//		NoticeFormDto noticeFormDto=NoticeFormDto.of(notice);
-//		return noticeFormDto;
-//	}
+	//수정-등록된 상품 불러오는 메서드
+	@Transactional(readOnly = true) //읽어오는 트랜잭션을 읽기전용으로 설정, 이럴 경우 JPA가 변경감지(더티체킹)를 수행하지 않아서 성능향상
+	public NoticeFormDto getntcDtl(Long num) {
+		Notice notice = noticeRepository.findById(num)
+				.orElseThrow(EntityNotFoundException::new);
+		NoticeFormDto noticeFormDto=NoticeFormDto.of(notice);
+		return noticeFormDto;
+	}
 	
 	public Long updateNotice(NoticeFormDto noticeFormDto) throws Exception{
 		//글 수정
