@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorate="~{layouts/layout1}">
 <meta charset="UTF-8">
 <head>
@@ -137,7 +138,7 @@
 		<div>
 			<div class="group-button">
 			<span class="button">
-				<a th:href="@{/notices/modNotice/{num}(num=${noticeDto.num})}">수정하기</a>
+				<a sec:authorize="hasAnyAuthority('ROLE_ADMIN')" th:href="@{/notices/modNotice/{num}(num=${noticeDto.num})}">수정하기</a>
 			</span>
 		
 			<span class="button">
@@ -145,7 +146,7 @@
 			</span>
 		
 			<span class="button">
-				<a th:href="@{'/notices/deleteNotice/' + ${noticeDto.num}}">삭제하기</a>
+				<a sec:authorize="hasAnyAuthority('ROLE_ADMIN')" th:href="@{'/notices/deleteNotice/' + ${noticeDto.num}}">삭제하기</a>
 				
 			</span>
 			</div>
