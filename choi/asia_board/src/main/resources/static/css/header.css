@@ -1,6 +1,6 @@
 .nav-form {
 	width: 100%;
-	min-width: 820px;
+	min-width: 1000px;
 	position: fixed;
 	font-weight: 999;
 	height: 100px;
@@ -14,14 +14,6 @@
 	text-align: center;
 }
 
-.nav-item2-inner {
-	float: left;
-	padding: 15px 20px;
-	margin: 25px -55px;
-	line-height: 20px;
-	text-align: center;
-}
-
 .nav-item2-menu2 {
 	list-style: none;
 	display: none;
@@ -30,7 +22,6 @@
 
 .menu2_inner {
 	display: block;
-	font-size: 14px;
 }
 
 .nav-item2-menu2>a:hover {
@@ -41,7 +32,6 @@
 .nav-item2-inner {
 	float: left;
 	padding: 15px 20px;
-	margin: 25px -55px;
 	line-height: 20px;
 	text-align: center;
 }
@@ -50,7 +40,7 @@
 	list-style: none;
 	display: none;
 	top: 70px;
-	left: 120px;
+	left: 248px;
 	padding: 10px;
 	position: absolute;
 	background-color: white;
@@ -66,23 +56,10 @@
 	color: gray;
 }
 
-.nav-item3-inner {
-	float: left;
-	padding: 15px 20px;
-	margin: 25px -55px;
-	line-height: 20px;
-	text-align: center;
-}
-
 .nav-item3-menu3 {
 	list-style: none;
 	display: none;
 	position: absolute;
-}
-
-.menu3_inner {
-	display: block;
-	font-size: 14px;
 }
 
 .nav-item3-menu3>a:hover {
@@ -102,7 +79,7 @@
 	list-style: none;
 	display: none;
 	top: 70px;
-	left: 220px;
+	left: 338px;
 	padding: 10px;
 	position: absolute;
 	background-color: white;

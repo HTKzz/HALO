@@ -9,7 +9,7 @@
 <div layout:fragment="content" class="noticeForm">
 <link th:href="@{/css/notice.css}" rel="stylesheet">
 	<form class="notice" role="form" method="get" action="/notices">
-	
+		
 		<table class="noticeListForm">
 			<thead class="noticeList-head">
 				<tr class="noticeHead-tr">
@@ -39,15 +39,15 @@
 				<a th:if="${page==0? page==1 : page != nowPage}"
 					th:href="@{/notices/lists(page=${page-1})}" th:text="${page}"></a>
 				<strong th:if="${page==nowPage}" th:text="${page}"
-					class="vocbtn_strong"></strong>
+					class="noticeBtn-strong"></strong>
 			</th:block>
 		</div>
-		<div class="vocList write">
-			<div class="voc-write">
+		<div>
+			<div class="notice-write">
 				<a href="/notices/write">글쓰기</a>
 			</div>
 		</div>
-
+	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
 	</form>
 </div>

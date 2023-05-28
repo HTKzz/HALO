@@ -8,8 +8,6 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -36,7 +34,6 @@ public class NoticeService {
 	private final MemberRepository memberRepository;
 	private final AttachRepository attachRepository;
 	private final AttachService attachService;
-	private final Logger LOGGER = LoggerFactory.getLogger(NoticeService.class);
 	
 	// 공지글 저장하기.
 	public Long writenotice(@Valid NoticeDto noticeDto, List<MultipartFile> attachList, String id) throws Exception {
@@ -45,16 +42,13 @@ public class NoticeService {
 		System.out.println(notice);
 		
 		Member member = memberRepository.findById(id);
-		
+		System.out.println(member);
 		
 		notice.setMember(member);
 		notice.setCnt(0);
 		
 		noticeRepository.save(notice);
 		
-		notice.setOriginNo(notice.getNum());
-		notice.setGroupLayer((long) 0);
-		notice.setGroupOrd((long) 0);
 		LocalDate d_date1 = LocalDate.now(); // 현재 날짜
 		notice.setD_date(d_date1);
 		
@@ -78,20 +72,10 @@ public class NoticeService {
 	public Long replynotice(@Valid NoticeDto noticeDto, List<MultipartFile> attachList, String id, Model model) throws Exception {
 		
 		Notice notice = new Notice();		
-		notice.setOriginNo(noticeDto.getOriginNo());
 		notice.setName(noticeDto.getName());
 		notice.setContent(noticeDto.getContent());
 		notice.setCnt(0);
-		notice.setGroupLayer(noticeDto.getGroupLayer() + (long) 1);
-		if(notice.getGroupLayer() > 0) {
-			for(int i = 0 ; i > notice.getGroupLayer() ; i++) {
-				
-			}
-		}
-		notice.setGroupOrd(noticeRepository.getCount(notice.getOriginNo(), notice.getGroupLayer()));
-		System.out.println(notice);
 		
-//		noticeRepository.gety
 		Member member = memberRepository.findById(id);
 		
 		notice.setMember(member);
@@ -131,26 +115,25 @@ public class NoticeService {
 
 		List<Attach> attachList = attachRepository.findByNoticeNumOrderByNumAsc(num);
 		List<AttachDto> attachDtoList = new ArrayList<>();
-
+		
+		
 		for (Attach attach : attachList) {
 
 			AttachDto attachDto = AttachDto.of(attach);
 			attachDtoList.add(attachDto);
 		}
-
+		
 		Notice notice = noticeRepository.findByNum(num);
+		
 		long allNoticeCnt = noticeRepository.getList();
 		String prevContent = noticeRepository.getPrevContent(num);
 		String nextContent = noticeRepository.getNextContent(num);
-		
 		NoticeDto noticeDto = NoticeDto.of(notice);
 		noticeDto.setAllNoticeCnt(allNoticeCnt);
 		noticeDto.setPrevContent(prevContent);
 		noticeDto.setNextContent(nextContent);
 		noticeDto.setAttachDtoList(attachDtoList);
-		
-		LOGGER.info("디테일에서 num에 들어온 값 {}", num);
-		LOGGER.info("디테일서비스에서 noticeDto에 들어온 값 {}", noticeDto);
+		noticeDto.setMember(null);
 		
 		return noticeDto;
 	}

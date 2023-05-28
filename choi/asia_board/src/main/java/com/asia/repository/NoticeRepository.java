@@ -20,12 +20,6 @@ public interface NoticeRepository extends JpaRepository<Notice, Long> {
 	@Query("update Notice n set n.cnt = n.cnt + 1 where n.num = :num")
 	int updateCnt(Long num);
 	
-	@Query("select count(*) from Notice n where n.originNo = :origin_no and n.groupLayer = :group_layer")
-	long getCount(Long origin_no, Long group_layer);
-	
-	@Query(value="SELECT * FROM Notice ORDER BY origin_no DESC, group_ord ASC", nativeQuery=true)
-	long getSort(Long origin_no, Long group_ord, Long group_layer);
-	
 	@Query(value="select count(*) from Notice", nativeQuery=true)
 	long getList();
 	

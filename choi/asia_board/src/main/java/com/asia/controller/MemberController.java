@@ -29,7 +29,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
-//	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private final MemberService memberService;
 	private final MailService mailService;
@@ -56,6 +55,7 @@ public class MemberController {
 		String password = passwordEncoder.encode(memberFormDto.getPassword());
 		member.setPassword(password);
 		member.setRole(Role.ADMIN);
+//		member.setRole("ADMIN"); // role 을 String 으로 넣어주기
 		memberService.saveMember(member);
 	}
 	
@@ -64,6 +64,7 @@ public class MemberController {
 	public String memberForm(Model model) {
 		MemberFormDto memberFormDto = new MemberFormDto();
 		memberFormDto.setRole(Role.USER);
+//		memberFormDto.setRole("USER"); // role 을 String 으로 넣어주기
 		memberFormDto.setAgree("Y");
 		model.addAttribute("memberFormDto", memberFormDto);
 		return "member/memberForm";

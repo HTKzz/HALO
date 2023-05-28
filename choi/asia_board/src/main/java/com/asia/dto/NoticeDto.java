@@ -34,12 +34,6 @@ public class NoticeDto{
 	private Long num;
 	
 	private String createdBy;
-	
-	private Long originNo;
-	
-	private Long groupOrd;
-	 
-    private Long groupLayer;
     
     private Long allNoticeCnt;
     
@@ -66,8 +60,7 @@ public class NoticeDto{
 	}
 	
 	@QueryProjection
-	public NoticeDto(Long num, Long groupOrd) {
+	public NoticeDto(Long num) {
 		this.num = num;
-		this.groupOrd = groupOrd;
 	}
 }

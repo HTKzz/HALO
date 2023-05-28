@@ -52,12 +52,6 @@ public class Notice extends BaseEntity {
 	@Column(columnDefinition = "integer default 0")
 	private Integer cnt;
 	
-    private Long originNo;
-    
-    private Long groupOrd;
- 
-    private Long groupLayer;
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="member_num")
 	private Member member;
@@ -78,7 +72,6 @@ public class Notice extends BaseEntity {
 		Notice notice = new Notice();
 		notice.setName(noticeDto.getName());
 		notice.setContent(noticeDto.getContent());
-		notice.setOriginNo(noticeDto.getOriginNo());
 		notice.setCnt(notice.cnt);
 		notice.getRole();
 		return notice;

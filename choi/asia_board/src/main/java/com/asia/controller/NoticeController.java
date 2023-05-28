@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -34,7 +32,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class NoticeController {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(NoticeController.class);
 	private final NoticeService noticeService;
 	private final AttachService attachService;
 
@@ -42,7 +39,6 @@ public class NoticeController {
 	@GetMapping(value = "/lists")
 	public String noticelist(Model model,
 			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable) {
-		LOGGER.info("/notices/lists 메서드 호출");
 
 		Page<Notice> lists = noticeService.noticeList(pageable);
 		
@@ -63,8 +59,6 @@ public class NoticeController {
 	public String noticeForm(Model model) {
 		
 		model.addAttribute("noticeDto", new NoticeDto());
-		
-		LOGGER.info("/notices/write 의 model에 들어온 값 : {}", model);
 		
 		return "board/notice/noticeForm";
 	}
@@ -99,12 +93,9 @@ public class NoticeController {
 	// 글 상세보기
 	@GetMapping(value = "/detail/{num}")
 	public String noticeDetail(@PathVariable("num") Long num, Model model, NoticeDto noticeDto) {
-
-		LOGGER.info("보드 컨트롤러 디테일 메서드 호출");
 		
 		noticeDto = noticeService.getnoticeDetail(num);
 		
-		LOGGER.info("noticeDto에 들어온 값 {}", noticeDto);
 		
 		noticeService.updateCnt(num);
 		model.addAttribute("noticeDto", noticeDto);
@@ -116,7 +107,6 @@ public class NoticeController {
 	@GetMapping(value = "/modNotice/{num}")
 	public String modForm(@PathVariable("num") Long num, Model model) {
 
-		LOGGER.info("보드 컨트롤러 모드폼 메서드 호출");
 		try {
 
 			NoticeDto noticeDto = noticeService.getnoticeDetail(num);
@@ -137,7 +127,6 @@ public class NoticeController {
 	public String modnotice(@PathVariable("num") Long num, NoticeDto noticeDto, Model model, BindingResult bindingResult,
 			@RequestParam("attachFile") List<MultipartFile> attachList) {
 
-		LOGGER.info("보드 컨트롤러 수정완료 메서드 호출");
 		if (bindingResult.hasErrors()) {
 
 			return "board/notice/noticeForm";
@@ -150,7 +139,6 @@ public class NoticeController {
 		}
 
 		try {
-			LOGGER.info("/modNotice/{num} 의 model 값", attachList);
 			noticeService.updatenotice(noticeDto, attachList);
 
 		} catch (Exception e) {
@@ -172,36 +160,31 @@ public class NoticeController {
 		return "redirect:/notices/lists";
 	}
 
-	// 답글쓰기 폼 풀러오기
-	@GetMapping(value = "/replyForm/{num}")
-	public String replyForm(@PathVariable("num") Long num, Model model) {
-		model.addAttribute("num", num);
-		NoticeDto noticeDto1 = noticeService.getnoticeDetail(num);
-		
-		NoticeDto noticeDto2 = new NoticeDto();
-		
-		noticeDto2.setOriginNo(noticeDto1.getNum());
-		noticeDto2.setGroupLayer(noticeDto1.getGroupLayer());
-		
-		model.addAttribute("noticeDto", noticeDto2);
-		
-		return "board/notice/replyForm";
-		}
-	
-	// 답글 저장
-	@PostMapping(value = "/replyNotice")
-	public String replynotice(Principal principal, @RequestParam("attachFile") List<MultipartFile> attachList, NoticeDto noticeDto, Model model) {
-		try {
-			String id = principal.getName();
-			System.out.println(noticeDto);
-			noticeService.replynotice(noticeDto, attachList, id, model);
-			
-		}catch(Exception e) {
-
-			return "board/notice/replyForm";
-		}
-		
-		return "redirect:/notices/lists";
-	}
-
+	/*
+	 * // 답글쓰기 폼 풀러오기
+	 * 
+	 * @GetMapping(value = "/replyForm/{num}") public String
+	 * replyForm(@PathVariable("num") Long num, Model model) {
+	 * model.addAttribute("num", num);
+	 * 
+	 * NoticeDto noticeDto = new NoticeDto();
+	 * 
+	 * model.addAttribute("noticeDto", noticeDto);
+	 * 
+	 * return "board/notice/replyForm"; }
+	 * 
+	 * // 답글 저장
+	 * 
+	 * @PostMapping(value = "/replyNotice") public String replynotice(Principal
+	 * principal, @RequestParam("attachFile") List<MultipartFile> attachList,
+	 * NoticeDto noticeDto, Model model) { try { String id = principal.getName();
+	 * System.out.println(noticeDto); noticeService.replynotice(noticeDto,
+	 * attachList, id, model);
+	 * 
+	 * }catch(Exception e) {
+	 * 
+	 * return "board/notice/replyForm"; }
+	 * 
+	 * return "redirect:/notices/lists"; }
+	 */
 }

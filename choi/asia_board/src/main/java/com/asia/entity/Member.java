@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.DynamicInsert;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.asia.constant.Role;
@@ -95,6 +94,12 @@ public class Member extends BaseEntity {
 		member.setJoin(join1);
 		member.setRole(memberFormDto.getRole());
 		member.setStat(Stat.회원);
+//		if(memberFormDto.getRole() == "USER") {
+//			member.setRole("USER");
+//		}else {
+//			member.setRole("COMPANY");
+//		}
+		
 		member.setRegTime(member.getRegTime());
 		return member;
 	}

@@ -52,4 +52,5 @@ public class MemberFormDto {
 	private String join;
 	
 	private Role role;
+//	private String role;
 }
