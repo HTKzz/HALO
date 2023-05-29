@@ -27,7 +27,7 @@ public class AttachService {
 	private String attachLocation;
 
 	private final AttachRepository attachRepository;
-	
+
 	private final FileService fileService;
 
 	public void saveAttach(Attach attach, MultipartFile attachFile) throws Exception {
@@ -49,11 +49,10 @@ public class AttachService {
 
 	public void updateAttach(Long num, MultipartFile attachFile) throws Exception {
 		if (!attachFile.isEmpty()) {
-			Attach savedAttach = attachRepository.findById(num)
-					.orElseThrow(EntityNotFoundException::new);
+			Attach savedAttach = attachRepository.findById(num).orElseThrow(EntityNotFoundException::new);
 
 			// 기존 이미지 파일 삭제
-			if (!StringUtils.isEmpty(savedAttach.getName())) {   // 기존에 등록된 프로그램 이미지 파일이 있을 경우 해당파일을 삭제한다.
+			if (!StringUtils.isEmpty(savedAttach.getName())) { // 기존에 등록된 프로그램 이미지 파일이 있을 경우 해당파일을 삭제한다.
 				fileService.deleteFile(attachLocation + "/" + savedAttach.getName());
 			}
 
@@ -63,7 +62,7 @@ public class AttachService {
 			savedAttach.updateAttach(oriName, name, url);
 		}
 	}
-	
+
 	public void deleteAttach(Long num) throws Exception {
 		List<AttachDto> attachLists = attachRepository.getLists(num);
 
@@ -73,6 +72,13 @@ public class AttachService {
 
 			fileService.deleteFile(attachLocation + "/" + attach);
 		}
+	}
+
+	public Attach download(Long num) throws Exception {
+
+		Attach file1 = attachRepository.findByNum(num);
+
+		return file1;
 	}
 
 }

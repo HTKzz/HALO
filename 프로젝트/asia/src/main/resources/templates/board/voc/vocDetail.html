@@ -78,7 +78,7 @@
 		<div th:each="attach : ${voc.attachDtoList}" class="text-center">
 			<!-- <img th:if="${not #strings.isEmpty(attach.url)}"
 				th:src="${attach.url}" class="rounded mgb-15" width="800"> -->
-			<div><a th:href="@{/download/{num}(num=${attach.num})}" th:text="${attach.oriName}"></a></div>
+			<div><a th:href="@{/voc/download/{num}(num=${attach.num})}" th:text="${attach.oriName}"></a></div>
 		</div>
 
 		<div style="text-align: center">
