@@ -1,0 +1,162 @@
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	/* outline: silver solid 1px; */
+}
+
+body {
+	font-family: Pretendard-Regular;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: black;
+	letter-spacing: 0.1px;
+	word-break: keep-all;
+	padding: 50px 5%;
+	margin: 0 auto;
+}
+
+h4 {
+	font-size: 1.3rem;
+	line-height: 2rem;
+	text-align: center;
+}
+
+button {
+	display: inline-block;
+	height: 50px;
+	font-size: 1rem;
+	font-weight: bold;
+	background: none;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	transition: 0.4s;
+	cursor: pointer;
+}
+
+button:hover {
+	background: #222;
+	color: #fff;
+}
+
+input::placeholder, textarea::placeholder {
+	color: #888;
+}
+
+li {
+	list-style: none;
+}
+
+.fieldError {
+	color: #bd2130;
+}
+
+.vocReply {
+	margin-left: 220px;
+	margin-right: 220px;
+	margin-bottom: 220px;
+	border-radius: 10px;
+	border: 1px solid #999;
+	padding: 50px 5%;
+}
+
+.vocReply-container {
+	padding-top: 30px;
+}
+
+.vocReply-txt {
+	padding-top: 20px;
+}
+
+input, select {
+	font-family: Pretendard-Regular;
+	height: 40px;
+	font-size: 1rem;
+	padding-left: 7px;
+}
+
+select, textarea {
+	border: 1px solid #bbb;
+	border-radius: 5px;
+	width: 100%;
+}
+
+textarea {
+	height: 200px;
+	padding: 10px 0 0 7px;
+	resize: none;
+	font-size: 1rem;
+	font-family: Pretendard-Regular;
+}
+
+.file{
+	padding-left: 10px;
+	padding-top: 20px; 
+}
+
+.vocReply-filebox input[type="file"] {
+	position: absolute;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+}
+
+.vocReply-name-input {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	border-bottom: 1px solid #bbb;
+}
+
+.btn-upload {
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	margin: 10px 10px;
+	padding-top: 5px; width : 40px;
+	height: 40px;
+	background: #eee;
+	color: #aaa;
+	font-size: 2rem;
+	border: 0;
+	border-radius: 5px;
+	font-weight: 500;
+	cursor: pointer;
+	/* display: flex; */
+	align-items: center;
+	justify-content: center;
+	transition: 0.2s;
+	text-align: center;
+	width: 40px;
+}
+
+.custom-file-label {
+	vertical-align: middle;
+	width: 94%;
+	border: 0;
+	border-radius: 5px;
+}
+
+.btn-submit {
+	width : 150px;
+	border: 0;
+	margin-top: 20px;
+	transition: 0.5s;
+	background: #666;
+	color: white;
+	width: 150px;
+}
+
+.btn-submit:hover {
+	background: #111;
+	color: white;
+}
