@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.asia.constant.Role;
+import com.asia.dto.CompanyFormDto;
 import com.asia.dto.MemberFormDto;
 import com.asia.entity.Member;
 import com.asia.service.MailService;
@@ -49,7 +50,6 @@ public class MemberController {
 		memberFormDto.setEmail("123@naver.com");
 		memberFormDto.setTel("0105555555");
 		memberFormDto.setBirth("1996-05-23");
-		memberFormDto.setCid("1111");
 		memberFormDto.setAddr("관저동");
 		Member member = Member.createMember(memberFormDto , passwordEncoder);
 		String password = passwordEncoder.encode(memberFormDto.getPassword());
@@ -58,26 +58,49 @@ public class MemberController {
 		memberService.saveMember(member);
 	}
 	
-	//회원가입 페이지 불러오기
-	@GetMapping(value = "/new")
+	//일반 회원가입 페이지 불러오기
+	@GetMapping(value = "/member/new")
 	public String memberForm(Model model) {
 		MemberFormDto memberFormDto = new MemberFormDto();
-		memberFormDto.setRole(Role.USER);
 		memberFormDto.setAgree("Y");
 		model.addAttribute("memberFormDto", memberFormDto);
 		return "member/memberForm";
 	}
+	
+	//일반 회원가입 페이지 불러오기
+		@GetMapping(value = "/company/new")
+		public String companyForm(Model model) {
+			CompanyFormDto companyFormDto = new CompanyFormDto();
+			companyFormDto.setAgree("Y");
+			model.addAttribute("companyFormDto", companyFormDto);
+			return "member/companyForm";
+		}
 
 	//회원가입
-	@PostMapping(value = "/add")
+	@PostMapping(value = "/memberadd")
 	public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {
 			return "member/memberForm";
 		}
 		try {
-			Member member = Member.createMember(memberFormDto, passwordEncoder);
-			memberService.saveMember(member);
+				Member member = Member.createMember(memberFormDto, passwordEncoder);
+				memberService.saveMember(member);
+		} catch (IllegalStateException e) {
+			model.addAttribute("errorMessage", e.getMessage());
+			return "member/memberForm";
+		}
+		return "redirect:/";
+	}
+	
+	@PostMapping(value = "/companyadd")
+	public String newCompany(@Valid CompanyFormDto companyFormDto, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "member/memberForm";
+		}
+		try {
+				Member member = Member.createCompany(companyFormDto, passwordEncoder);
+				memberService.saveMember(member);
 		} catch (IllegalStateException e) {
 			model.addAttribute("errorMessage", e.getMessage());
 			return "member/memberForm";

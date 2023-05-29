@@ -24,4 +24,9 @@ public class MainController {
 	public String error() {
 		return "member/error";
 	}
+	
+	@RequestMapping(value = "/members/select")
+	public String signupSelect() {
+		return "member/select";
+	}
 }
