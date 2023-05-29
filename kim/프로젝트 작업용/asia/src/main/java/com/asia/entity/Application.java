@@ -7,10 +7,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -55,13 +58,32 @@ public class Application extends BaseEntity {
 	@Column(name="run")
 	private Integer run;
 	
+	private String sdate;
+	
+	private String edate;
+	
+	private String udate;
+	
+	private String seatDetail;
+	
+	@Column(name="place")
+	private String place;
+	
 	// 프로그램 상세정보
 	@Lob
 	@Column(name="detail", nullable = false)
 	private String detail;
 	
-	@Enumerated(EnumType.STRING)
-	private ProgramCategory programCategory;
+	// 프로그램 카테고리
+	@Column(name="programCategory", nullable = false)
+	private String programCategory;
+	
+//	@Enumerated(EnumType.STRING)
+//	private ProgramCategory programCategory;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="member_num")
+	private Member member;
 	
 	@OneToMany(mappedBy ="application", cascade=CascadeType.ALL)
 	@ToString.Exclude
@@ -73,9 +95,24 @@ public class Application extends BaseEntity {
 		this.price = applicationDto.getPrice();
 		this.rat = applicationDto.getRat();
 		this.run = applicationDto.getRun();
+		this.sdate = applicationDto.getSdate();
+		this.edate = applicationDto.getEdate();
+		this.udate = applicationDto.getUdate();
+		this.seatDetail = applicationDto.getSeatDetail();
 		this.detail = applicationDto.getDetail();
 		this.programCategory = applicationDto.getProgramCategory();
 	}
+	
+//	public static Application saveApplication(ApplicationDto applicationDto) {
+//		Application application = new Application();
+//		application.setName(applicationDto.getName());
+//		application.setSdate(applicationDto.getSdate());
+//		application.setEdate(applicationDto.getEdate());
+//		application.setUdate(applicationDto.getUdate());
+//		application.setSeatDetail(applicationDto.getSeatDetail());
+//		
+//		return application;
+//	}
 
 	
 }

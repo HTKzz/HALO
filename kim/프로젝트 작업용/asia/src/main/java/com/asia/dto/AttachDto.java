@@ -20,7 +20,7 @@ public class AttachDto {
 	private String name;
 	private String oriName;
 	private String url;
-	private String repimgYn;
+	private String thumb;
 
 	private static ModelMapper modelMapper = new ModelMapper(); // 멤버 변수로 ModelMapper 객체 추가
 	
@@ -29,9 +29,10 @@ public class AttachDto {
 	}
 	
 	@QueryProjection
-	public AttachDto(Long num, String name, String oriName){
+	public AttachDto(Long num, String name, String oriName, String url){
 			this.num = num;
 			this.name = name;
 			this.oriName = oriName;
+			this.url = url;
 		}
 }

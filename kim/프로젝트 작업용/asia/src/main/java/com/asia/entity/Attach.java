@@ -38,8 +38,8 @@ public class Attach extends BaseEntity {
 	@Column(name = "url")
 	private String url; // 이미지 조회 경로
 	
-	@Column(name = "repimgYn")
-	private String repimgYn; // 대표 이미지 여부
+	@Column(name = "thumb")
+	private String thumb; // 대표 이미지 여부
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "app_num")

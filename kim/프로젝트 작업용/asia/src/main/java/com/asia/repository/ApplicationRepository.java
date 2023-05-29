@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-import com.asia.dto.ApplicationSearchDto;
 import com.asia.entity.Application;
 
 public interface ApplicationRepository extends JpaRepository<Application, Long>, QuerydslPredicateExecutor<Application>, ApplicationRepositoryCustom {
@@ -22,5 +21,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Long>,
 	void deleteByNum(Long num);
 	Page<Application> findAll(Pageable pageable);
 	Page<Application> findByNameContaining(String searchKeyword, Pageable pageable);
+	List<Application> findByProgramCategory(String programCategory);
+	
 	
 }

@@ -5,9 +5,9 @@
 
 <!--  사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
-<!--   <script th:inline="javascript">
+<script th:inline="javascript">
   
-  $(document).ready(function() {
+ /*  $(document).ready(function() {
 	  $("#searchBtn").on("click", function(e) {
 		  e.preventDefault();
 		  page(0);
@@ -25,9 +25,9 @@
 			  + "&searchBy=" + searchBy
 			  + "&searchQuery=" + searchQuery;
 	  
-  }
+  } */
   
-  </script> -->
+  </script>
 </th:block>
 
 <!-- 사용자 CSS 추가 -->
@@ -37,19 +37,8 @@
       margin-right:10px;
     }
     
-    .page_wrap{
-    	text-align: center;
-    	list-style-type : none;
-    
-    }
-    
-    .table {
-    	text-align: center;
-    }
-    
-    .page_item{
-    	float : left;
-    }
+
+
     
     .searchbar{
     	text-align: center;
@@ -60,7 +49,6 @@
 
 <div layout:fragment="content">
  <div class="layoutmanage">
- <!-- <form th:action="@{/program/applications}" role="form" method="get" th:object="${applications}"> -->
  <form role="form" method="get" th:object="${applications}">
 
     <table class="table">
@@ -81,57 +69,31 @@
 		</td>
 		<td th:text="${application1.programCategory}">
 		</td>
-		
-		<!-- <td th:text="${application1.programCategory == T(com.asia.constant.ProgramCategory).SHOW} ? '공연' :
-		${application1.programCategory == T(com.asia.constant.ProgramCategory).EXHIBITION} ? '전시' : '행사'"></td> -->
 		<td th:text="${application1.createdBy}"></td>
 		<td th:text="${application1.regTime}"></td>
 	  </tr>
 	</tbody>
 </table>
 
-<!--굳이 태그로 감쌀필요가없는 부분을 타임리프 문법을 사용할때 쓰는 문법 th:block-->
-<div class="page_wrap"><!-- 
-	<th:block th:each= "page : ${#numbers.sequence(startPage, endPage)}"> -->
-                                                        <!--검색기능-4-->
-     <nav aria-label="...">
+<div class="page_wrap">
         <ul class="pagination justify-content-center">
         
             <li class="page-item" th:classappend="${startPage == applications.pageable.pageNumber + 1} ? 'disabled'">
                 <a class="page-link" th:href="@{/board/program/applications(page=${applications.pageable.pageNumber - 1})}" tabindex="-1" aria-disabled="true">Previous</a>
             </li>
             
-           <!--  <li>
-            <strong th:if="${page == nowPage}" th:text="${page}" style="color : red" th:each= "page : ${#numbers.sequence(startPage, endPage)}"></strong>
-            <strong th:unless="${page == nowPage}" th:text="${page}" style="color : red" th:each= "page : ${#numbers.sequence(startPage, endPage)}"></strong>
-            </li> -->
+           
             <li class="page-item" th:classappend="${page == applications.pageable.pageNumber + 1} ? 'active'" th:each= "page : ${#numbers.sequence(startPage, endPage)}">
                 <a class="page-link" th:href="@{/board/program/applications(page=${page-1})}"
                 th:text=${page} aria-current="page">1</a>
             </li>
-            
-            <!-- <li class="page-item">
-            <a th:if="${page==0? page==1 : page != nowPage}"
-           th:href="@{/board/program/applications(page = ${page -1}, searchKeyword = ${param.searchKeyword})}" th:each= "page : ${#numbers.sequence(startPage, endPage)}"
-           th:text="${page}">
-        </a></li> -->
             
  
             <li class="page-item" th:classappend="${endPage == applications.pageable.pageNumber + 1} ? 'disabled'">
                 <a class="page-link" th:href="@{/board/program/applications(page=${applications.pageable.pageNumber + 1}, searchKeyword = ${param.searchKeyword})}">Next</a>
             </li>
             
-             
         </ul>
-    </nav>
-        
-        <!-- <a th:if="${page==0? page==1 : page != nowPage}"
-           th:href="@{/board/program/applications(page = ${page -1}, searchKeyword = ${param.searchKeyword})}"
-           th:text="${page}">
-        </a> -->
-
-        <!-- <strong th:if="${page == nowPage}" th:text="${page}" style="color : red"></strong> -->
-    </th:block>
 </div>
     <!-- <th:block th:each= "page : ${#numbers.sequence(startPage, endPage)}">
                                                         검색기능-4
@@ -153,15 +115,14 @@
     
  <div class=searchbar>
     <!--검색기능-5-->
-    <form th:action="@{/board/program/applications}" method="get">
+    <form id="searchForm" th:action="@{/board/program/applications}" method="post">
 
-        <select id="searchType" name="searchType" title="검색 유형 선택">
+        <select name="searchType">
         	<option value="">전체 검색</option>
         	<option value="name">제목</option>
         	<option value="programCategory">카테고리</option>
         	<option value="createdBy">등록자</option>
         </select>
-        
         <input type="text" name="searchKeyword">
         <button type="submit">검색</button>
         
@@ -226,11 +187,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>

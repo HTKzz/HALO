@@ -1,4 +1,4 @@
-@charset "UTF-8";
+/* @charset "UTF-8";
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
@@ -163,3 +163,7 @@ caption {
 .file_list a {
 	display: inherit !important;
 }
+
+label {
+	vertical-align: middle;
+} */

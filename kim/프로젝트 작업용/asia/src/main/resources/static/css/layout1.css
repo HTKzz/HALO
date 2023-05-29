@@ -1,4 +1,42 @@
+* {
+   margin: 0;
+   padding: 0;
+   text-decoration: none;
+}
+
 html {
+   position: relative;
+   min-height: 100%;
+   margin: 0;
+}
+
+.footer {
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   width: 100%;
+   padding: 15px 0;
+   text-align: center;
+}
+
+.header {
+   height: 100px;
+}
+
+.content {
+   margin-top: 10px;
+   margin-bottom: 100px;
+}
+
+.content div {
+   margin: 0 auto;
+   padding: 0 auto;
+}
+
+
+
+/* html {
 	position: relative;
 	min-height: 100%;
 	margin: 0;
@@ -29,8 +67,8 @@ body {
 	margin-left: 200px;
 	margin-right: 200px;
 }
-
-.formlayout {
+ */
+/* .formlayout {
 	width : 500px;
 	margin : 0 auto;
 	margin-top : 40px;
@@ -46,4 +84,4 @@ body {
 	width: 500px;
 	margin: 0 auto;
 	margin-top: 40px;
-}
+} */
