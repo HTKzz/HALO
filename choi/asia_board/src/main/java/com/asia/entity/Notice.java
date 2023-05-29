@@ -20,14 +20,14 @@ import javax.persistence.Table;
 
 import com.asia.constant.Role;
 import com.asia.constant.Stat;
-import com.asia.dto.BoardDto;
+import com.asia.dto.NoticeDto;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="board")
+@Table(name="notice")
 @Getter
 @Setter
 @ToString
@@ -36,10 +36,10 @@ sequenceName = "USER_SEQ2", // 시퀀스 이름
 initialValue = 1, // 시작값
 allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
 )
-public class Board extends BaseEntity {
+public class Notice extends BaseEntity {
 	
 	@Id
-	@Column(name="board_num")
+	@Column(name="notice_num")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN2")
 	private Long num;
 	
@@ -52,17 +52,11 @@ public class Board extends BaseEntity {
 	@Column(columnDefinition = "integer default 0")
 	private Integer cnt;
 	
-    private Long originNo;
-    
-    private Long groupOrd;
- 
-    private Long groupLayer;
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="member_num")
 	private Member member;
 	
-	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "notice", cascade = CascadeType.ALL)
 	@ToString.Exclude
 	private List<Attach> attachList;
 	
@@ -73,28 +67,27 @@ public class Board extends BaseEntity {
 	private Role role;
 	
 	//새 게시글 쓰기
-	public static Board addBoard(BoardDto boardDto) {
+	public static Notice addNotice(NoticeDto noticeDto) {
 		
-		Board board = new Board();
-		board.setName(boardDto.getName());
-		board.setContent(boardDto.getContent());
-		board.setOriginNo(boardDto.getOriginNo());
-		board.setCnt(board.cnt);
-		board.getRole();
-		return board;
+		Notice notice = new Notice();
+		notice.setName(noticeDto.getName());
+		notice.setContent(noticeDto.getContent());
+		notice.setCnt(notice.cnt);
+		notice.getRole();
+		return notice;
 	}
 	
 	//글 수정하기
-	public void updateBoard(BoardDto boardDto) {
+	public void updateNotice(NoticeDto noticeDto) {
 		
-		this.num = boardDto.getNum();
-		this.name = boardDto.getName();
-		this.content = boardDto.getContent();
+		this.num = noticeDto.getNum();
+		this.name = noticeDto.getName();
+		this.content = noticeDto.getContent();
 	}
 	
 	//글 삭제하기
-	public void deleteBoard(BoardDto boardDto) {
+	public void deleteNotice(NoticeDto noticeDto) {
 		
-		this.num = boardDto.getNum();
+		this.num = noticeDto.getNum();
 	}
 }

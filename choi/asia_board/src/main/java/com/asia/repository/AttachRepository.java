@@ -10,11 +10,11 @@ import com.asia.entity.Attach;
 
 public interface AttachRepository extends JpaRepository<Attach, Long> {
 	
-	List<Attach> findByBoardNumOrderByNumAsc(Long num); 
+	List<Attach> findByNoticeNumOrderByNumAsc(Long num); 
 	
 	Attach findByNumAndThumb(Long num, String thumb);
 	Attach findByNum(Long num);
 	
-	@Query("select new com.asia.dto.AttachDto(num, name) from Attach where board_num = :num")
+	@Query("select new com.asia.dto.AttachDto(num, name) from Attach where notice_num = :num")
 	List<AttachDto> getAttachLists(Long num);
 }

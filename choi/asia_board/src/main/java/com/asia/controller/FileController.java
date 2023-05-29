@@ -5,8 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ContentDisposition;
@@ -27,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 public class FileController {
 	
 	private final AttachService attachService;
-	private final Logger LOGGER = LoggerFactory.getLogger(FileController.class);
 	
 	@GetMapping("/download/{num}")
 	public ResponseEntity<Object> download(@PathVariable("num") Long num) throws Exception {
@@ -46,10 +43,6 @@ public class FileController {
 			
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentDisposition(ContentDisposition.builder("attachment").filename(file.getName()).build());  // 다운로드 되거나 로컬에 저장되는 용도로 쓰이는지를 알려주는 헤더
-			
-			LOGGER.info("ResponseEntity resource : {} ", resource);
-			LOGGER.info("ResponseEntity headers : {} ", headers);
-			LOGGER.info("ResponseEntity filePath : {} ", filePath);
 			
 			return new ResponseEntity<Object>(resource, headers, HttpStatus.OK);
 		

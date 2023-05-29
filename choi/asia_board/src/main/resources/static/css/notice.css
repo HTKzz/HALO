@@ -1,0 +1,91 @@
+.noticeList{
+	margin-top: 100px;
+}
+
+.noticeForm{
+	width: 90%;
+	min-width: 820px;
+	margin-left: 10%;
+	margin-top: 50px;
+}
+
+.noticeHead-tr > th{
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	border-bottom: 1px solid #e2e2e2;
+	
+}
+
+.noticeListBody > td{
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border-bottom: 1px solid #e2e2e2;
+}
+
+.noticeListForm {
+	width: 90%;
+}
+
+.noticeList-head {
+	width: 100%;
+}
+
+.noticeHead-tr {
+	width: 100%;
+}
+
+.noticeHead_no{
+	width: 15%;
+}
+
+.noticeHead_title {
+	letter-spacing: 15px;
+	width: 40%;
+}
+
+.noticeListBody-no {
+	width: 15%;
+}
+
+.noticeListBody{
+	
+}
+
+.noticeListBody > .noticeListBody-title{
+	text-align: left;
+	font-weight: 600;
+	border-left: 1px solid #e2e2e2;
+	border-right: 1px solid #e2e2e2;
+}
+
+.noticeListBody > td{
+	font-size: 20px;
+}
+
+.noticeListBody-title {
+	padding-left: 30px;
+	letter-spacing: 6px;
+	width: 40%;
+}
+
+.pagebtn{
+	width: 90%;
+	text-align: center;
+}
+
+.noticeBtn-strong {
+	text-align:center;
+	width: 100%;
+	color: teal;
+	font-size: 2em;
+}
+
+.notice-write{
+	width:90%;
+	height: 50px;
+	text-align:center;
+	font-size: 1.2em;
+	line-height: 50px;
+}
