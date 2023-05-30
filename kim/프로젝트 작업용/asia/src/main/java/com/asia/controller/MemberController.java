@@ -1,6 +1,10 @@
 package com.asia.controller;
 
+import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
+
 import javax.annotation.PostConstruct;
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,10 +14,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.asia.constant.Role;
+import com.asia.dto.CompanyFormDto;
 import com.asia.dto.MemberFormDto;
 import com.asia.entity.Member;
+import com.asia.service.MailService;
 import com.asia.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,8 +30,10 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
+//	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private final MemberService memberService;
+	private final MailService mailService;
 	private final PasswordEncoder passwordEncoder;
 	
 	//임의로 관리자 생성
@@ -48,49 +58,34 @@ public class MemberController {
 		memberService.saveMember(member);
 	}
 	
-//	@PostConstruct
-//	private void createTestUser() {
-//		//관리자
-//		boolean check = memberService.checkIdDuplicate("admin");
-//		if (check)
-//			return;
-//		MemberFormDto memberFormDto = new MemberFormDto();
-//		memberFormDto.setName("테스트용유저");
-//		memberFormDto.setId("cha");
-//		memberFormDto.setPassword("1q2w3e4r");
-//		memberFormDto.setEmail("1234@naver.com");
-//		memberFormDto.setTel("0105255555");
-//		memberFormDto.setBirth("1994-05-23");
-//		memberFormDto.setAddr("월평동");
-//		Member member = Member.createMember(memberFormDto , passwordEncoder);
-//		String password = passwordEncoder.encode(memberFormDto.getPassword());
-//		member.setPassword(password);
-//		member.setRole(Role.USER);
-//		memberService.saveMember(member);
-//	}
-	
-	@GetMapping(value = "/new")
+	//일반 회원가입 페이지 불러오기
+	@GetMapping(value = "/member/new")
 	public String memberForm(Model model) {
-		model.addAttribute("memberFormDto", new MemberFormDto());
+		MemberFormDto memberFormDto = new MemberFormDto();
+		memberFormDto.setAgree("Y");
+		model.addAttribute("memberFormDto", memberFormDto);
 		return "member/memberForm";
 	}
+	
+	//일반 회원가입 페이지 불러오기
+		@GetMapping(value = "/company/new")
+		public String companyForm(Model model) {
+			CompanyFormDto companyFormDto = new CompanyFormDto();
+			companyFormDto.setAgree("Y");
+			model.addAttribute("companyFormDto", companyFormDto);
+			return "member/companyForm";
+		}
 
-//	@PostMapping(value = "/new")
-//	public String memberForm(MemberFormDto memberFormDto) {
-//		Member member = Member.createMember(memberFormDto, passwordEncoder);
-//		memberService.saveMember(member);
-//		return "redirect:/";
-//	}
-
-	@PostMapping(value = "/new")
+	//회원가입
+	@PostMapping(value = "/memberadd")
 	public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {
 			return "member/memberForm";
 		}
 		try {
-			Member member = Member.createMember(memberFormDto, passwordEncoder);
-			memberService.saveMember(member);
+				Member member = Member.createMember(memberFormDto, passwordEncoder);
+				memberService.saveMember(member);
 		} catch (IllegalStateException e) {
 			model.addAttribute("errorMessage", e.getMessage());
 			return "member/memberForm";
@@ -98,15 +93,56 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@PostMapping(value = "/companyadd")
+	public String newCompany(@Valid CompanyFormDto companyFormDto, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "member/memberForm";
+		}
+		try {
+				Member member = Member.createCompany(companyFormDto, passwordEncoder);
+				memberService.saveMember(member);
+		} catch (IllegalStateException e) {
+			model.addAttribute("errorMessage", e.getMessage());
+			return "member/memberForm";
+		}
+		return "redirect:/";
+	}
+	
+	//로그인
 	@GetMapping(value="/login")
 	public String loginMember() {
 		return "/member/memberLoginForm";
 	}
 	
+	//로그인 에러
 	@GetMapping(value="/login/error")
 	public String loginError(Model model) {
 		model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
 		return "/member/memberLoginForm";
 	}
-
+	
+	@GetMapping(value="/idpw")
+	public String findIdPw() {
+		return "/member/findIdPw";
+	}
+	
+	@PostMapping(value="/findid")
+	@ResponseBody
+	public HashMap<String, Object> findId(@RequestParam("name") String name, @RequestParam("email") String email) throws MessagingException {
+		Member member = memberService.findByNameAndEmail(name, email);
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("result", mailService.sendFindIdMail(email, member));
+		return map;
+	}
+	
+	@PostMapping(value="/findpw")
+	@ResponseBody
+	public String findPw(String id, String email) throws MessagingException, InterruptedException, ExecutionException {
+		Member member = memberService.findByIdAndEmail(id, email);
+		String password = mailService.sendFindPwMail(email, member).get();
+		String pw = passwordEncoder.encode(password);
+		member.setPassword(pw);
+		memberService.updateMember(member);
+		return "success";
+	}
 }

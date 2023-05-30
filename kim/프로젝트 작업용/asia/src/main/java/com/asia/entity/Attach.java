@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Attach")
+@Table(name = "attach")
 @Getter
 @Setter
 @SequenceGenerator(name = "ATTACH_SEQ_NUM",
@@ -44,6 +44,14 @@ public class Attach extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "app_num")
 	private Application application;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "voc_num")
+	private Voc voc;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="notice_num")
+	private Notice notice;
 
 	public void updateAttach(String oriName, String name, String url) {
 		this.oriName = oriName;
