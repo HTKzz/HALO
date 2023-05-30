@@ -33,7 +33,7 @@ import lombok.ToString;
 		initialValue = 1, // 시작값
 		allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
 )
-public class Member extends BaseEntity {
+public class Member {
 
 	@Id
 	@Column(name = "member_num")
@@ -100,7 +100,7 @@ public class Member extends BaseEntity {
 //			member.setRole("COMPANY");
 //		}
 		
-		member.setRegTime(member.getRegTime());
+//		member.setRegTime(member.getRegTime());
 		return member;
 	}
 }

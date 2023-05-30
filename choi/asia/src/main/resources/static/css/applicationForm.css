@@ -1,0 +1,204 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'SF_HambakSnow';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.filebox .upload-name {
+	display: inline-block;
+	height: 40px;
+	padding: 0 10px;
+	vertical-align: middle;
+	border: 1px solid #dddddd;
+	width: 100%;
+	color: #999999;
+}
+
+.filebox label {
+	display: inline-block;
+	padding: 10px 20px;
+	color: #fff;
+	vertical-align: middle;
+	background-color: #999999;
+	cursor: pointer;
+	height: 40px;
+	margin-left: 10px;
+}
+
+.filebox input[type="file"] {
+	position: absolute;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+}
+
+.applicationForm-input-group-text {
+	line-height: 30px;
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	/* border-bottom: 1px solid #bbb; */
+}
+
+.applicationForm-input {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	border-bottom: 1px solid #bbb;
+}
+
+.applicationForm-input-detail {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	border-bottom: 1px solid #bbb;
+	border-top: 1px solid #bbb;
+	border-right: 1px solid #bbb;
+	border-left: 1px solid #bbb;
+}
+
+/*--------- default setting ---------*/
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.applicationForm-title-h1 {
+	font-family: 'SF_HambakSnow';
+	font-size: 3rem;
+	line-height: 3.5rem;
+	padding-bottom: 40px;
+	text-align: center;
+}
+
+.applicationForm-txt h4 {
+	font-family: 'SF_HambakSnow';
+	font-size: 1.7rem;
+	line-height: 2rem;
+	text-align: center;
+}
+
+.applicationForm-button {
+	display: inline-block;
+	height: 50px;
+	font-size: 1rem;
+	font-weight: bold;
+	background: none;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	transition: 0.4s;
+	cursor: pointer;
+}
+
+.applicationForm-button:hover {
+	background: #222;
+	color: #fff;
+}
+
+.applicationForm-input option {
+	color: #888;
+}
+
+.applicationForm-board input::placeholder, .applicationForm-board textarea::placeholder
+	{
+	color: #888;
+}
+
+.applicationForm-board li {
+	list-style: none;
+}
+
+/*--------- common class setting ---------*/
+.applicationForm-board {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 100px 0;
+}
+
+.applicationForm-contents {
+	border-radius: 10px;
+	border: 1px solid #999;
+	padding: 50px 5%;
+}
+
+.applicationForm-inner {
+	padding-top: 30px;
+}
+
+.applicationForm-txt {
+	padding-top: 20px;
+}
+
+.applicationForm-board input, .applicationForm-board select {
+	height: 40px;
+	font-size: 1rem;
+	padding-left: 7px;
+}
+
+.applicationForm-board select, .applicationForm-board textarea {
+	border: 1px solid #bbb;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.applicationForm-board textarea {
+	margin-top: 15px;
+	height: 200px;
+	padding: 10px 0 0 10px;
+	resize: none;
+	font-size: 1rem;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+/*--------- 첨부파일 ---------*/
+.custom-file-label {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: black;
+	letter-spacing: 0.1px;
+	word-break: keep-all;
+	padding: 50px 5%;
+	margin: 0 auto;
+}
+
+.custom-file-label:hover {
+	background: #777;
+	color: #fff;
+}
+
+.applicationForm-btn {
+	display: flex;
+	justify-content: center;
+}
+
+.applicationForm-button {
+	width: 48.5%;
+	border: 0;
+	margin-top: 30px;
+	transition: 0.5s;
+}
+
+.applicationForm-button[name=sign] {
+	background: #666;
+	color: white;
+}
+
+.applicationForm-button[name=sign]:hover {
+	background: #111;
+	color: white;
+}
+
+.attachfile {
+	display: flex;
+	margin: 20px 0;
+	padding: 7px;
+}
