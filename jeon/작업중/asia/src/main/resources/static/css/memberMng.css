@@ -1,0 +1,22 @@
+.memberMng{
+	width: 1000px;
+	margin: 0 auto;
+	padding: 0 auto;
+	text-align: center;
+}
+
+.memberMng-table{
+	width: 100%;
+}
+
+.memberMng-select{
+	margin-bottom: 30px;
+}
+
+.memberMng-search{
+	width: 200px;
+}
+
+.memberMng-pagebtn{
+	text-align: center;
+}

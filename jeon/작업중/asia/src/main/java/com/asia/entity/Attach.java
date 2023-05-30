@@ -13,59 +13,50 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
-@Table(name="attach")
+@Table(name = "attach")
 @Getter
 @Setter
-@ToString
-@SequenceGenerator(name = "USER_SEQ_GEN4", // 시퀀스 제너레이터 이름
-sequenceName = "USER_SEQ4", // 시퀀스 이름
-initialValue = 1, // 시작값
-allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
-)
-public class Attach{
-	
+@SequenceGenerator(name = "ATTACH_SEQ_NUM",
+				   sequenceName = "ATTACH_SEQ",
+				   initialValue = 1,
+				   allocationSize = 1)
+public class Attach extends BaseEntity {
+
 	@Id
-	@Column(name="num")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN4")
-	private Long num; //첨부파일번호
+	@Column(name = "num")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ATTACH_SEQ_NUM")
+	private Long num;
+
+	@Column(name = "name")
+	private String name; // 이미지 파일명
 	
-	@Column
-	private String name; //파일이름
+	@Column(name = "oriname")
+	private String oriName; // 원본 이미지 파일명
 	
-	@Column
-	private String oriname; //파일원본이름
+	@Column(name = "url")
+	private String url; // 이미지 조회 경로
 	
-	@Column
-	private String url; //파일url
-	
-	@Column
-	private String thumb; //파일썸네일//여기로 옮겨
-	
+	@Column(name = "thumb")
+	private String thumb; // 대표 이미지 여부
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "app_num")
+	private Application application;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="voc_num") //이름이겹치면안돼
+	@JoinColumn(name = "voc_num")
 	private Voc voc;
 	
-	//원본 이미지 파일명, 업데이트할 이미지 파일명, 이미지 경로를 파라미터로 입력받아 이미지정보를 업데이트하는 메서드
-	public void updateImg(String oriname, String name, String url) {
-		this.oriname = oriname;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="notice_num")
+	private Notice notice;
+
+	public void updateAttach(String oriName, String name, String url) {
+		this.oriName = oriName;
 		this.name = name;
 		this.url = url;
 	}
-	
-
-	
-
-	
-	
 
 }
-	
-	
-	
-	
-	
-	

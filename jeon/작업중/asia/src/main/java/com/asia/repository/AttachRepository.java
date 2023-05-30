@@ -8,12 +8,21 @@ import org.springframework.data.jpa.repository.Query;
 import com.asia.dto.AttachDto;
 import com.asia.entity.Attach;
 
-public interface AttachRepository extends JpaRepository<Attach, Long>{
+public interface AttachRepository extends JpaRepository<Attach, Long> {
 	
-	List<Attach> findByVocNumOrderByNumAsc(Long num);
 	
-	@Query("select new com.asia.dto.AttachDto(num, name) from Attach where voc_num = :num")
+	@Query("select new com.asia.dto.AttachDto(num, name, oriName, url) from Attach where app_num = :num")
 	List<AttachDto> getLists(Long num);
 
+	List<Attach> findByApplicationNumOrderByNumAsc(Long num);
+	
 	Attach findByNum(Long num);
+
+	List<AttachDto> findByApplicationNum(Long num);
+
+	List<Attach> findByVocNumOrderByNumAsc(Long num);
+
+	List<Attach> findByNoticeNumOrderByNumAsc(Long num);
+	
+
 }
