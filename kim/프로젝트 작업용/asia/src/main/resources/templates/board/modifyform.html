@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+	
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+	<div class = "formlayout">
+    <form th:action="@{/board/update/{num}(num=${board.num})}" method="post">
+    	<div class = "bd1">
+        제목 : <input type="text" name="title" id="modifytitle" th:value="${board.title}"><br>
+        </div>
+        <div class = "bd2">
+        작성자 : <input type="text" name="writer" id="modifywriter" th:value="${board.writer}"><br>
+        </div>
+        <div class = "bd3">
+        <textarea name="content" id="modifycontent" th:text="${board.content}"></textarea><br>
+        </div>
+
+        <button type="submit">수정</button>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    </form>
+    </div>
+</div>
+</body>
+</html> 

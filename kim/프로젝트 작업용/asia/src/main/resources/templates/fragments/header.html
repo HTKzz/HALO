@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0">
+  <title>헤더</title>
+
+</head>
+<meta charset="UTF-8">
+<div class="header" th:fragment="header">
+	<ul class="nav nav-tabs">
+		<li class="nav-item" sec:authorize="isAuthenticated()">
+			<a class="nav-link" data-bs-toggle="tab" href="/board/program/apply">상품 신청</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+			<a class="nav-link" data-bs-toggle="tab" href="/admin/item/new">상품 등록(안씀)</a>
+		</li>
+		<li class="nav-item" sec:authorize="isAuthenticated()">
+			<a class="nav-link" data-bs-toggle="tab" href="/board/program/applications">상품 관리</a>
+		</li>
+		<li class="nav-item" sec:authorize="isAuthenticated()">
+			<a class="nav-link" data-bs-toggle="tab" href="/board/program/showlist">프로그램 리스트</a>
+			<ul class="nav nav-tabs">
+				<li class="nav-item" sec:authorize="isAuthenticated()">
+					<a class="nav-link" data-bs-toggle="tab" href="/board/program/showlist">공연</a>
+				</li>
+				<li class="nav-item" sec:authorize="isAuthenticated()">
+					<a class="nav-link" data-bs-toggle="tab" href="/board/program/exhibitionlist">전시</a>
+				</li>
+				<li class="nav-item" sec:authorize="isAuthenticated()">
+					<a class="nav-link" data-bs-toggle="tab" href="/board/program/eventlist">행사</a>
+				</li>
+			</ul>
+		</li>
+		<li class="nav-item" sec:authorize="isAuthenticated()">
+			<a class="nav-link" data-bs-toggle="tab" href="/cart">장바구니(안씀)</a>
+		</li>
+		<li class="nav-item" sec:authorize="isAuthenticated()">
+			<a class="nav-link" data-bs-toggle="tab" href="/orders">구매이력(안씀)</a>
+		</li>
+		<li class="nav-item" sec:authorize="isAuthenticated()">
+			<a class="nav-link" data-bs-toggle="tab" href="/board/boardlist">게시판(글리스트)(안씀)</a>
+		</li>
+		<li class="nav-item" sec:authorize="isAuthenticated()">
+			<a class="nav-link" data-bs-toggle="tab" href="/board/write">글쓰기(안씀)</a>
+		</li>
+		<li class="nav-item" sec:authorize="isAnonymous()">
+			<a class="nav-link" data-bs-toggle="tab" href="/members/login">로그인</a>
+		</li>
+		<li class="nav-item" sec:authorize="isAuthenticated()">
+			<a class="nav-link" data-bs-toggle="tab" href="/members/logout">로그아웃</a>
+		</li>
+	</ul>
+
+	
+</div>
+
+</html>

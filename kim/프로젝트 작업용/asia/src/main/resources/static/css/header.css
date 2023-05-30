@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.header li ul {
+	background: #ffffff;
+	display: none; /* 평상시에는 서브메뉴가 안보이게 하기 */
+	height: auto;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	position: absolute;
+	width: 200px;
+	z-index: 200;
+	justify-content: center;
+}
+
+/* .header li ul:hover {
+	background: #969696
+} */
+
+.header a:hover {
+	background-color: #f1f1f1
+}
+
+.header li:hover ul {
+	display: block; /* 마우스 커서 올리면 서브메뉴 보이게 하기 */
+}
+
