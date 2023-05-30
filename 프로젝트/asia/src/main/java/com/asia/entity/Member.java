@@ -1,6 +1,7 @@
 package com.asia.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,11 +11,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -32,7 +31,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EntityListeners(value = {AuditingEntityListener.class})
+@EntityListeners(value = { AuditingEntityListener.class })
 @SequenceGenerator(name = "MEMBER_SEQ_GEN", // 시퀀스 제너레이터 이름
 		sequenceName = "MEMBER_SEQ", // 시퀀스 이름
 		initialValue = 1, // 시작값
@@ -42,12 +41,12 @@ public class Member {
 
 	@Id
 	@Column(name = "num")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MEMBER_SEQ_GEN")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GEN")
 	private Long num;
 
 	@Column(unique = true, nullable = false)
 	private String id;
-	
+
 	@Column(unique = true)
 	private String cid;
 
@@ -76,10 +75,8 @@ public class Member {
 	private Long age;
 
 	private String agree;
-	
-	@CreatedDate
-	@Column(updatable = false)
-	private LocalDate join;
+
+	private String join;
 
 	// 회원가입
 	public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
@@ -94,11 +91,14 @@ public class Member {
 		member.setAgree(memberFormDto.getAgree());
 		String password = passwordEncoder.encode(memberFormDto.getPassword());
 		member.setPassword(password);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy년 MM월 dd일 HH시 mm분");
+		String join1 = LocalDateTime.now().format(formatter); // LocalDateTime -> String 타입 변환하기
+		member.setJoin(join1);
 		member.setRole(Role.USER);
 		member.setStat(Stat.회원);
 		return member;
 	}
-	
+
 	public static Member createCompany(CompanyFormDto companyFormDto, PasswordEncoder passwordEncoder) {
 		Member member = new Member();
 		member.setId(companyFormDto.getId());
@@ -110,6 +110,9 @@ public class Member {
 		member.setAgree(companyFormDto.getAgree());
 		String password = passwordEncoder.encode(companyFormDto.getPassword());
 		member.setPassword(password);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy년 MM월 dd일 HH시 mm분");
+		String join1 = LocalDateTime.now().format(formatter); // LocalDateTime -> String 타입 변환하기
+		member.setJoin(join1);
 		member.setRole(Role.COMPANY);
 		member.setStat(Stat.회원);
 		return member;

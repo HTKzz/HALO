@@ -250,7 +250,6 @@ public class ApplicationService {
 		
 		for(int i = 0; i < appList.size(); i++) {
 			Application application1 = appList.get(i);
-			System.out.println("이름"+applicationDto);
 			application1.updateApplication(applicationDto);
 			List<AttachDto> AttachList = attachRepository.findByApplicationNum(appList.get(i).getNum());
 
@@ -314,7 +313,10 @@ public class ApplicationService {
 		List<ApplicationDto> list = applicationRepository.getList1(programCategory);
 		List<ApplicationDto> resultList = new ArrayList<ApplicationDto>();
 		int offset = Long.valueOf(pageable.getOffset()).intValue();
-		for (int x = offset; x <= offset + 9; x++) {
+		int offset2 = pageable.getPageSize();
+		System.out.println(offset);
+		System.out.println(offset2);
+		for (int x = offset; x < offset + offset2 ; x++) {
 			if (x < list.size()) {
 				List<Application> application = applicationRepository.findByName(list.get(x).getName());
 				List<AttachDto> attach = attachRepository.getLists(application.get(0).getNum());

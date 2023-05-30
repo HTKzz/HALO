@@ -9,7 +9,6 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	/* outline: silver solid 1px; */
 }
 
 body {
@@ -75,20 +74,17 @@ li {
 	padding-top: 20px;
 }
 
-input, select {
+input{
 	font-family: Pretendard-Regular;
 	height: 40px;
 	font-size: 1rem;
 	padding-left: 7px;
 }
 
-select, textarea {
+textarea {
 	border: 1px solid #bbb;
 	border-radius: 5px;
 	width: 100%;
-}
-
-textarea {
 	height: 200px;
 	padding: 10px 0 0 7px;
 	resize: none;
@@ -96,9 +92,47 @@ textarea {
 	font-family: Pretendard-Regular;
 }
 
-.file{
-	padding-left: 10px;
-	padding-top: 20px; 
+/*--------- Board ---------*/
+.vocReply-name-input {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	border-bottom: 1px solid #bbb;
+}
+
+/*---- 첨부파일 ----*/
+.vocReply-input-group-text {
+	line-height: 30px;
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+}
+
+.attachfile {
+	display: flex;
+	margin: 20px 0;
+	padding: 7px;
+}
+
+.vocReply-filebox .upload-name {
+	display: inline-block;
+	height: 40px;
+	padding: 0 10px;
+	vertical-align: middle;
+	border: 1px solid #dddddd;
+	width: 100%;
+	color: #999999;
+}
+
+.vocReply-filebox label {
+	display: inline-block;
+	padding: 10px 20px;
+	color: #fff;
+	vertical-align: middle;
+	background-color: #999999;
+	cursor: pointer;
+	height: 40px;
+	margin-left: 10px;
 }
 
 .vocReply-filebox input[type="file"] {
@@ -108,42 +142,24 @@ textarea {
 	padding: 0;
 	overflow: hidden;
 	border: 0;
-}
-
-.vocReply-name-input {
-	width: 100%;
-	margin-bottom: 20px;
-	border: 0;
-	border-bottom: 1px solid #bbb;
-}
-
-.btn-upload {
-	display: inline-block;
-	vertical-align: middle;
-	text-align: center;
-	margin: 10px 10px;
-	padding-top: 5px; width : 40px;
-	height: 40px;
-	background: #eee;
-	color: #aaa;
-	font-size: 2rem;
-	border: 0;
-	border-radius: 5px;
-	font-weight: 500;
-	cursor: pointer;
-	/* display: flex; */
-	align-items: center;
-	justify-content: center;
-	transition: 0.2s;
-	text-align: center;
-	width: 40px;
-}
+} 
 
 .custom-file-label {
-	vertical-align: middle;
-	width: 94%;
+	font-family: Pretendard-Regular;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: black;
+	letter-spacing: 0.1px;
+	word-break: keep-all;
+	padding: 50px 5%;
+	margin: 0 auto;
 	border: 0;
 	border-radius: 5px;
+}
+
+.custom-file-label:hover {
+	background: #777;
+	color: #fff;
 }
 
 .btn-submit {

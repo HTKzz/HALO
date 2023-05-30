@@ -29,7 +29,7 @@
                     $(this).val("");
                     return;
                 }
-                $(this).siblings(".custom-file-label").val(fileName); //라벨 태그 안의 내용을 jquery의 .html()을 이용해 파일명 입력
+                $(this).siblings(".upload-name").val(fileName); //라벨 태그 안의 내용을 jquery의 .html()을 이용해 파일명 입력
             });
         }
 
@@ -72,29 +72,31 @@
 							<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}"
 								class="fieldError">Incorrect data</p>
 						</div>
+						<br>
 
-
-						<div class="vocReply-filebox"
-							th:if="${#lists.isEmpty(vocFormDto.attachDtoList)}">
-							<div class="file" th:each="numb: ${#numbers.sequence(1,5)}">
-								<label th:for="picture + ${numb}">
-								<div class="btn-upload">+</div></label>
-								<input class="custom-file-input" th:id="picture + ${numb}" type="file" name="attachFile" />
-								<input class="custom-file-label" value="첨부파일" placeholder="첨부파일" readonly="readonly" />
+						<span class="vocReply-input-group-text">첨부파일</span>
+						<div class="vocReply-filebox" th:if="${#lists.isEmpty(vocFormDto.attachDtoList)}">
+							<div class="attachfile" th:each="numb: ${#numbers.sequence(1,5)}">
+								<input class="upload-name" value="첨부파일" placeholder="첨부파일" readonly="readonly" />
+								<label th:for="file + ${numb}" class="custom-file-label" th:text="파일찾기"></label>
+								<input class="custom-file-input" th:id="file + ${numb}" type="file" name="attachFile" />
+								
 							</div>
 						</div>
 
-						<div class="vocReply-filebox"
-							th:if="${not #lists.isEmpty(vocFormDto.attachDtoList)}">
-							<div class="file"
-								th:each="attachDto, status:${vocFormDto.attachDtoList}">
+						<div class="vocReply-filebox" th:if="${not #lists.isEmpty(vocFormDto.attachDtoList)}">
+							<div class="attachfile" th:each="attachDto, status:${vocFormDto.attachDtoList}">
+								
 								<input type="hidden" name="attachIds" th:value="${attachDto.num}">
-								<label th:for="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '첨부파일' + ${status.index+1}">
-                                    <div class="btn-upload">+</div></label>
-                                    <input type="file" class="custom-file-input" th:id="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '첨부파일' + ${status.index+1}" name="attachFile">
-                                    <input class="custom-file-label" th:value="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '첨부파일' + ${status.index+1}" placeholder="첨부파일" readonly="readonly">
+								<input class="upload-name" th:value="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '첨부파일' + ${status.index+1}" placeholder="첨부파일" readonly="readonly">
+								<label th:for="file + ${status.index+1}" class="custom-file-label" th:text="파일찾기"></label>
+								<input type="file" class="custom-file-input" th:id="file + ${status.index+1}">
+								
 							</div>
 						</div>
+						
+						
+						
 
 
 						<div class="btn">
