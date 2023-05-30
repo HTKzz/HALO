@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.AttachDto;
-import com.asia.dto.BoardSearchDto;
 import com.asia.dto.VocFormDto;
 import com.asia.entity.Attach;
 import com.asia.entity.Voc;
@@ -112,13 +111,6 @@ public class VocService {
 	}
 	
 	
-	//게시판 페이징+조건검색 
-	@Transactional(readOnly = true)
-	public Page<Voc> getBoardPage(BoardSearchDto boardSearchDto, Pageable pageable){
-		return vocRepository.getBoardPage(boardSearchDto, pageable);
-	}// 조회조건과 페이지정보를 파라미터로 받아서 데이터를 조회하는 getBoardPage()메서드 추가
-	
-	
 	public Page<Voc> getVocLists(Pageable pageable){
 		return vocRepository.getVocLists(pageable);
 	}
@@ -143,9 +135,9 @@ public class VocService {
 			voc.setGroupLayer(presentVoc.getGroupLayer()+1);
 		}
 		
-		for(int i = 0; i < voc.getGroupLayer(); i++) {
-			reply += "Re: ";
-		}
+//		for(int i = 0; i < voc.getGroupLayer(); i++) {
+//			reply += "Re: ";
+//		}
 		voc.setName(reply + voc.getName());
 		vocRepository.save(voc);
 		

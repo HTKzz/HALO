@@ -17,10 +17,10 @@ import com.asia.service.MemberService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
 	MemberService memberService;
-	
+
 	protected void configure(HttpSecurity http) throws Exception {
 		http.formLogin()
 				.loginPage("/members/login")
@@ -30,31 +30,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
-				.logoutSuccessUrl("/") 
-		;
-		
+				.logoutSuccessUrl("/");
+
 		http.authorizeRequests()
-			.mvcMatchers("/", "/members/**", "/item/**", "/images/**", "/notice/**", "/voc/**", "/asia/**", "/css/**", "/js/**", "/attach/**").permitAll()
-			.mvcMatchers("/admin/**").hasRole("ADMIN")
-			.anyRequest().authenticated()
-		;
-		
-		http.exceptionHandling()
-			.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
-		;
+				.mvcMatchers("/admin/**").hasRole("ADMIN")
+				.mvcMatchers("/", "/members/**", "/mail/**", "/reservations/**", "/board/**", "/voc/**", "/notices/**").permitAll()
+				.anyRequest().authenticated();
+
+		http.exceptionHandling() // 인증되지 않은 사용자가 리소스에 접근하였을 때 수행되는 핸들러 등록
+//      .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+//      .accessDeniedHandler(new CustomAccessDeniedHandler()); 
+				.accessDeniedPage("/error_user");
 	}
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(memberService)
-		.passwordEncoder(passwordEncoder());
+		auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
 	}
-	
+
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**", "/js/**", "/img/**");
+		web.ignoring().antMatchers("/css/**", "/js/**", "/imgs/**", "/error");
 	}
 }

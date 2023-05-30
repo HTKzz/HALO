@@ -16,20 +16,45 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.asia.entity.Attach;
-import com.asia.repository.AttachRepository;
+import com.asia.service.AttachService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 public class FileController {
+	
+	private final AttachService attachService;
+	
+   	// 프로그램 신청 첨부파일 다운로드
+    @GetMapping("/board/program/download/{num}")
+    public ResponseEntity<Object> programDownload(@PathVariable("num") Long num) throws Exception {
+       
+       Attach file1 = attachService.download(num);
+       String fileName = file1.getName();
+       String path = "C:/asia/attach/" + fileName;
+       
+       try {
+          Path filePath = Paths.get(path);
+          Resource resource = new InputStreamResource(Files.newInputStream(filePath)); // 파일 resource 얻기
+          
+          File file = new File(path);
+          
+          HttpHeaders headers = new HttpHeaders();
+          // 다운로드 되거나 로컬에 저장되는 용도로 쓰이는지를 알려주는 헤더
+          headers.setContentDisposition(ContentDisposition.builder("attachment").filename(file1.getName()).build());
+             
+          return new ResponseEntity<Object>(resource, headers, HttpStatus.OK);
+          
+       } catch(Exception e) {
+          return new ResponseEntity<Object>(null, HttpStatus.CONFLICT);
+       }
+    }
+    
+    @GetMapping("/voc/download/{num}")
+	public ResponseEntity<Object> vocDownload(@PathVariable("num") Long num) throws Exception {
 
-	private final AttachRepository attachRepository;
-
-	@GetMapping("/download/{num}")
-	public ResponseEntity<Object> download(@PathVariable("num") Long num) {
-
-		Attach file1 = attachRepository.findByNum(num);
+		Attach file1 = attachService.download(num);
 		String fileName = file1.getName();
 
 		String path = "C:/asia/attach/" + fileName;
@@ -49,5 +74,29 @@ public class FileController {
 			return new ResponseEntity<Object>(null, HttpStatus.CONFLICT);
 		}
 	}
-
+    
+    @GetMapping("/download/{num}")
+	public ResponseEntity<Object> download(@PathVariable("num") Long num) throws Exception {
+		
+		
+		Attach file1 = attachService.download(num);
+		String fileName = file1.getName();
+		
+		String path = "C:/asia/attach/" + fileName;
+		
+		try {
+			Path filePath = Paths.get(path);
+			Resource resource = new InputStreamResource(Files.newInputStream(filePath)); // 파일 resource 얻기
+			
+			File file = new File(path);
+			
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentDisposition(ContentDisposition.builder("attachment").filename(file.getName()).build());  // 다운로드 되거나 로컬에 저장되는 용도로 쓰이는지를 알려주는 헤더
+			
+			return new ResponseEntity<Object>(resource, headers, HttpStatus.OK);
+		
+		} catch(Exception e) {
+			return new ResponseEntity<Object>(null, HttpStatus.CONFLICT);
+		}
+	}
 }

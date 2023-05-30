@@ -47,10 +47,22 @@
 				</tr>
 			</thead>
 			
-			<tbody th:align="center">
+			<tbody>
 				<tr th:each="voc:${list}">
 					<td class="vocList-num" th:text="${voc.num}"></td>
-					<td class="vocList-name" id="voc-name" ><a th:text="${voc.name}" th:href="@{/voc/detail/{num}(num=${voc.num})}"></a></td>
+					<td class="vocList-name" id="voc-name">
+						<div th:if="${voc.groupLayer > 0}">
+							<th:block th:each="num : ${#numbers.sequence(0, voc.groupLayer)}">
+								<span style="padding-left:20px"></span>
+							</th:block>
+							<span style="font-size:12px;">[답변]&nbsp;</span>
+							<a th:text="${voc.name}" th:href="@{/voc/detail/{num}(num=${voc.num})}"></a>
+						</div>
+						<div th:unless="${voc.groupLayer > 0}">
+							<a th:text="${voc.name}" th:href="@{/voc/detail/{num}(num=${voc.num})}"></a>
+						</div>
+					
+					</td>
 					<td class="vocList-writer" th:text="${voc.createdBy}"></td>
 					<td class="vocList-date" th:text="${#temporals.format(voc.regTime, 'yyyy-MM-dd')}"></td>
 					<td class="vocList-cnt" th:text="${voc.cnt}"></td>

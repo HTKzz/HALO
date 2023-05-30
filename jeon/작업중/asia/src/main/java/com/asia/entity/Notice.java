@@ -1,17 +1,26 @@
 package com.asia.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.asia.dto.NoticeFormDto;
+import com.asia.constant.Role;
+import com.asia.constant.Stat;
+import com.asia.dto.NoticeDto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,63 +31,63 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@SequenceGenerator(name = "USER_SEQ_GEN2", // 시퀀스 제너레이터 이름
-sequenceName = "USER_SEQ2", // 시퀀스 이름
+@SequenceGenerator(name = "NOTICE_SEQ_GEN", // 시퀀스 제너레이터 이름
+sequenceName = "NOTICE_SEQ", // 시퀀스 이름
 initialValue = 1, // 시작값
 allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
 )
 public class Notice extends BaseEntity {
 	
 	@Id
-	@Column(name="ntc_num")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN2")
-	private Long num; //글번호
+	@Column(name="notice_num")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="NOTICE_SEQ_GEN")
+	private Long num;
 	
-	@Column(nullable = false)
-	private String name; //글제목
+	private String name;
 	
-	@Lob
-	@Column
-	private String content; //글내용
+	private String content;
 	
-	public void updateNotice(NoticeFormDto noticeFormDto){
-		//글 수정
-		this.name = noticeFormDto.getName();
-		this.content = noticeFormDto.getContent();
+	private LocalDate d_date;
+	
+	@Column(columnDefinition = "number default 0", nullable = false)
+	private int cnt;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="member_num")
+	private Member member;
+	
+	@OneToMany(mappedBy = "notice", cascade = CascadeType.ALL)
+	@ToString.Exclude
+	private List<Attach> attach;
+	
+	@Enumerated(EnumType.STRING)
+	private Stat stat;
+	
+	@Enumerated(EnumType.STRING)
+	private Role role;
+	
+	//새 게시글 쓰기
+	public static Notice addNotice(NoticeDto noticeDto) {
+		
+		Notice notice = new Notice();
+		notice.setName(noticeDto.getName());
+		notice.setContent(noticeDto.getContent());
+		notice.setCnt(notice.cnt);
+		notice.getRole();
+		return notice;
 	}
 	
-//	@Column(nullable = false)
-//	private LocalDateTime date; //작성일
-//	
-//	@Column(nullable = false)
-//	private String cnt; //조회수
+	//글 수정하기
+	public void updateNotice(NoticeDto noticeDto) {
+		
+		this.num = noticeDto.getNum();
+		this.name = noticeDto.getName();
+		this.content = noticeDto.getContent();
+	}
 	
-	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "mem_id")
-//	private String num;//관리자번호 PK
-	
-	
-	
-	
-	
-	
-	
-//	//회원가입
-//	public static Notice createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
-//		Notice member = new Notice();
-//		member.setId(memberFormDto.getId());
-//		member.setName(memberFormDto.getName());
-//		member.setEmail(memberFormDto.getEmail());
-//		member.setTel(memberFormDto.getTel());
-//		member.setBirth(memberFormDto.getBirth());
-//		member.setAddr(memberFormDto.getAddr());
-//		member.setAge(memberFormDto.getAge());
-//		member.setAgree(memberFormDto.getAgree());
-//		String password = passwordEncoder.encode(memberFormDto.getPassword());
-//		member.setPassword(password);
-//		member.setRole(Role.USER);
-//		member.setStat(Stat.회원);
-//		return member;
-//	}
+	//글 삭제하기
+	public void deleteNotice(NoticeDto noticeDto) {
+		
+		this.num = noticeDto.getNum();
+	}
 }
