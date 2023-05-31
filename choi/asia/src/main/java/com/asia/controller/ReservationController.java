@@ -16,8 +16,10 @@ import com.asia.dto.SeatBDto;
 import com.asia.dto.SeatCDto;
 import com.asia.dto.UpdateDto;
 import com.asia.entity.Application;
+import com.asia.entity.Member;
 import com.asia.entity.Reservation;
 import com.asia.service.ApplicationService;
+import com.asia.service.MemberService;
 import com.asia.service.ReservationService;
 import com.asia.service.SeatService;
 
@@ -32,6 +34,7 @@ public class ReservationController {
 	private final SeatService seatService;
 	private final ApplicationService applicationService;
 	private final ReservationService reservationSerivce;
+	private final MemberService memberService;
 
 	//좌석o 선택페이지 이동
 	@PostMapping(value = "/new")
@@ -135,4 +138,18 @@ public class ReservationController {
 
 		return "redirect:/admin/reservationMng";
 	}
+	
+	//내 예매내역 호출
+    @GetMapping(value="/myReservation")
+    public String myReservation(Model model, Principal principal) {
+    	
+    	String id = principal.getName();
+    	Member member = memberService.findUserMyPage(id);
+    	List<Reservation> reservations = reservationSerivce.getReservationList(member.getNum());
+    	model.addAttribute("reservations", reservations);
+    	
+    	System.out.println(model);
+    	
+    	return "member/myReservation";
+    }
 }

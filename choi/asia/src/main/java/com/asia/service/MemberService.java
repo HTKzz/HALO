@@ -87,7 +87,14 @@ public class MemberService implements UserDetailsService {
 	}
 	
 	//마이페이지 멤버정보 불러오기
-	public Member findUserMyPage(String name) {
-		return memberRepository.findById(name);
-	}
+    public Member findUserMyPage(String name) {
+        return memberRepository.findById(name);
+    }
+    
+    // 마이페이지 비밀번호 수정
+    public void updateMemberPwd(String password, String id) {
+    	memberRepository.updatememberMyPage(password, id);
+    }
+
+	
 }

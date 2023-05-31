@@ -173,6 +173,10 @@ public class VocService {
 		return vocFormDto;
 	}
 
+	public Voc findByNum(Long num) {
+		return vocRepository.findByNum(num);
+	}
+
 
 	
 	

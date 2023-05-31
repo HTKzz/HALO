@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.asia.constant.Role;
 import com.asia.dto.CompanyFormDto;
 import com.asia.dto.MemberFormDto;
 import com.asia.entity.Member;
@@ -54,7 +55,7 @@ public class MemberController {
 		Member member = Member.createMember(memberFormDto , passwordEncoder);
 		String password = passwordEncoder.encode(memberFormDto.getPassword());
 		member.setPassword(password);
-		member.setRole("ADMIN");
+		member.setRole(Role.ADMIN);
 		memberService.saveMember(member);
 	}
 	
@@ -146,15 +147,26 @@ public class MemberController {
 		return "success";
 	}
 	
-	// 마이페이지 호출
-	@GetMapping(value="/myPage")
-	public String myPage(Model model, Principal principal) {
-		String name = principal.getName();
-		System.out.println(name);
-		Member member = memberService.findUserMyPage(name);
-		System.out.println(member);
-		model.addAttribute("member", member);
+    // 마이페이지 호출
+    @GetMapping(value="/myPage")
+    public String myPage(Model model, Principal principal) {
+        String name = principal.getName();
+        System.out.println(name);
+        Member member = memberService.findUserMyPage(name);
+        System.out.println(member);
+        model.addAttribute("member", member);
+        
+        return "member/myPage";
+    }
+    
+    //마이페이지 수정
+    @PostMapping(value="/modMyPage")
+    public String modMyPage(@RequestParam("password")String password, @RequestParam("id")String id, 
+    					Model model, Principal principal) {
+    	
+		String password1 = passwordEncoder.encode(password);
+		memberService.updateMemberPwd(password1, id);
 		
-		return "/member/myPage";
-	}
+    	return "redirect:/members/myPage";
+    }
 }

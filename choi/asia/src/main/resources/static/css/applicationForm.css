@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap')
+	;
+
+@import url('https://webfontworld.github.io/kopus/KoPubWorldBatang.css')
+	;
+
 @font-face {
 	font-family: 'SF_HambakSnow';
 	src:

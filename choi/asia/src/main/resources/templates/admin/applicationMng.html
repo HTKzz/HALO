@@ -71,7 +71,7 @@
                     <td class="vocList-category" th:text="${application1.programCategory}">
                     </td>
                     <td class="vocList-writer" th:text="${application1.createdBy}"></td>
-                    <td class="vocList-date" th:text="${application1.regTime}"></td>
+                    <td class="vocList-date" th:text="${#temporals.format(application1.regTime, 'yy년 MM월 dd일 HH시 mm분')}"></td>
                 </tr>
             </tbody>
         </table>
@@ -81,18 +81,18 @@
             <ul class="pagination justify-content-center">
 
                 <li class="page-item" th:classappend="${startPage == applications.pageable.pageNumber + 1} ? 'disabled'">
-                    <a class="page-link" th:href="@{/board/program/applications(page=${applications.pageable.pageNumber - 1})}" tabindex="-1" aria-disabled="true">Previous</a>
+                    <a class="page-link" th:href="@{/admin/applications(page=${applications.pageable.pageNumber - 1})}" tabindex="-1" aria-disabled="true">Previous</a>
                 </li>
 
 
                 <li class="page-item" th:classappend="${page == applications.pageable.pageNumber + 1} ? 'active'" th:each="page : ${#numbers.sequence(startPage, endPage)}">
-                <a class="page-link" th:href="@{/board/program/applications(page=${page-1})}"
+                <a class="page-link" th:href="@{/admin/applications(page=${page-1})}"
                 th:text=${page} aria-current="page">1</a>
             </li>
             
  
             <li class="page-item" th:classappend="${endPage == applications.pageable.pageNumber + 1} ? 'disabled'">
-                <a class="page-link" th:href="@{/board/program/applications(page=${applications.pageable.pageNumber + 1}, searchKeyword = ${param.searchKeyword})}">Next</a>
+                <a class="page-link" th:href="@{/admin/applications(page=${applications.pageable.pageNumber + 1}, searchKeyword = ${param.searchKeyword})}">Next</a>
             </li>
             
         	</ul>

@@ -16,9 +16,51 @@
 }
 
 .myPageForm-board {
-	width: 1000px;
+	width: 800px;
 	margin: 0 auto;
-	padding: 100px 0;
+	padding: 80px 0;
+}
+
+.myPageForm-header-div{
+	width: 100%;
+	display:flex;
+	margin-bottom: 10px;
+}
+
+.myPageForm-header-inner1{
+	border-radius: 10px;
+	border: 1px solid #999;
+	background-color: #e2e2e2;
+	width:50%;
+}
+
+.myPageForm-header-inner2{
+	border-radius: 10px;
+	border: 1px solid #999;
+	width:50%;
+}
+
+.myPageForm-header-div > a:hover{
+	background-color: #a2a2a2;
+}
+
+
+.myPageForm-header-inner1-h1{
+	font-family: 'SF_HambakSnow';
+	font-size: 3rem;
+	color: black;
+	line-height: 3.5rem;
+	padding: 10px;
+	text-align: center;
+}
+
+.myPageForm-header-inner2-h1{
+	font-family: 'SF_HambakSnow';
+	font-size: 3rem;
+	color: black;
+	line-height: 3.5rem;
+	padding: 10px;
+	text-align: center;
 }
 
 .myPageForm-title-h1 {
@@ -35,27 +77,16 @@
 	padding: 50px 5%;
 }
 
-.myPageForm-txt {
-	padding-top: 20px;
-}
-
-.myPageForm-txt h4 {
-	font-family: 'SF_HambakSnow';
-	font-size: 1.7rem;
-	line-height: 2rem;
-	text-align: center;
-}
-
-.myPageForm-inner {
-	padding-top: 30px;
-}
-
 .myPageForm-input-group-text {
 	line-height: 30px;
 	width: 100%;
-	margin-bottom: 20px;
 	border: 0;
 	/* border-bottom: 1px solid #bbb; */
+}
+
+.myPageForm-h4{
+	font-size: 1.5em;
+	margin-bottom: 10px;
 }
 
 .myPageForm-input {
@@ -63,10 +94,15 @@
 	margin-bottom: 20px;
 	border: 0;
 	border-bottom: 1px solid #bbb;
+	background-color: rgba(239, 239, 239, 0.3);
 }
 
 .myPageForm-board input, .myPageForm-board select {
 	height: 40px;
 	font-size: 1rem;
 	padding-left: 7px;
+}
+
+.myPage-submit{
+	text-align: center;
 }

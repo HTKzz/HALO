@@ -89,7 +89,7 @@ header.sticky .menu-item .sub-menu {
 
 .menu-item .sub-menu .sub-item {
 	position: relative;
-	padding: 15px 30px;
+	/* padding: 15px 30px; */
 	cursor: pointer;
 	text-align: center;
 	box-shadow: inset 0px -30px 5px -30px rgba(255, 255, 255, 0.2);
