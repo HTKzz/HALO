@@ -24,7 +24,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Long>,
 	Page<Application> findByNameContaining(String searchKeyword, Pageable pageable);
 	List<Application> findByProgramCategory(String programCategory);
 	
-	@Query("select distinct new com.asia.dto.ApplicationDto(name, sdate, edate) from Application where program_Category = :programCategory")
+	@Query("select distinct new com.asia.dto.ApplicationDto(name, sdate, edate) from Application where program_Category = :programCategory order by sdate asc")
 	List<ApplicationDto> getList1(String programCategory);
 	
 	List<Application> findByName(String name);

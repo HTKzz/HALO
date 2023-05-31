@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.asia.constant.Stat;
 import com.asia.entity.Member;
 import com.asia.repository.MemberRepository;
 
@@ -42,13 +43,11 @@ public class AdminMemberService {
 		return memberRepository.findByJoinContaining(memberMngSearch, pageable); // 가입일로 찾아오기
 	}
 	
-	public Page<Member> searchMemberByStat(String memberMngSearch, Pageable pageable) {
-		return memberRepository.findByStatContaining(memberMngSearch, pageable); // 상태로 찾아오기
+	public Page<Member> searchMemberByStat(Stat stat, Pageable pageable) {
+		return memberRepository.findByStatContaining(stat, pageable); // 상태로 찾아오기
 	}
 
 	public Page<Member> searchMemberByRole(String memberMngSearch, Pageable pageable) {
-		
-		String memberMngSearch1 = memberMngSearch.toUpperCase();
-		return memberRepository.findByRoleContaining(memberMngSearch1, pageable); // 권한으로 찾아오기
+		return memberRepository.findByRoleContaining(memberMngSearch, pageable); // 권한으로 찾아오기
 	}
 }

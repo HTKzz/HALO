@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +17,8 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.asia.constant.Role;
+import com.asia.constant.Stat;
 import com.asia.dto.CompanyFormDto;
 import com.asia.dto.MemberFormDto;
 
@@ -62,21 +66,15 @@ public class Member {
 	@Column(nullable = false)
 	private String password;
 
-//	@Enumerated(EnumType.STRING)
-//	private Stat stat;
-	private String stat;
+	@Enumerated(EnumType.STRING)
+	private Stat stat;
 
-//	@Enumerated(EnumType.STRING)
-//	private Role role;
-	private String role;
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	private Long age;
 
 	private String agree;
-
-//	@CreatedDate
-//	@Column(updatable = false)
-//	private LocalDate join;
 
 	private String join;
 
@@ -93,13 +91,11 @@ public class Member {
 		member.setAgree(memberFormDto.getAgree());
 		String password = passwordEncoder.encode(memberFormDto.getPassword());
 		member.setPassword(password);
-//		member.setRole(Role.USER);
-		member.setRole("USER");
-//		member.setStat(Stat.회원);
-		member.setStat("회원");
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy년 MM월 dd일 HH시 mm분 ss초");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy년 MM월 dd일 HH시 mm분");
 		String join1 = LocalDateTime.now().format(formatter); // LocalDateTime -> String 타입 변환하기
 		member.setJoin(join1);
+		member.setRole(Role.USER);
+		member.setStat(Stat.회원);
 		return member;
 	}
 
@@ -114,13 +110,11 @@ public class Member {
 		member.setAgree(companyFormDto.getAgree());
 		String password = passwordEncoder.encode(companyFormDto.getPassword());
 		member.setPassword(password);
-//		member.setRole(Role.COMPANY);
-		member.setRole("COMPANY");
-//		member.setStat(Stat.회원);
-		member.setStat("회원");
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy년 MM월 dd일 HH시 mm분 ss초");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy년 MM월 dd일 HH시 mm분");
 		String join1 = LocalDateTime.now().format(formatter); // LocalDateTime -> String 타입 변환하기
 		member.setJoin(join1);
+		member.setRole(Role.COMPANY);
+		member.setStat(Stat.회원);
 		return member;
 	}
 }

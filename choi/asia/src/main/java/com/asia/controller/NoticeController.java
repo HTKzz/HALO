@@ -72,11 +72,6 @@ public class NoticeController {
 			return "board/notice/noticeForm";
 		}
 
-//		if (attachList.get(0).isEmpty() && noticeDto.getNum() == null) {
-//			model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력 값 입니다.");
-//			return "board/notice/noticeForm";
-//		}
-
 		try {
 			String id = principal.getName();
 
@@ -131,12 +126,6 @@ public class NoticeController {
 
 			return "board/notice/noticeForm";
 		}
-
-//		if (attachList.get(0).isEmpty() && noticeDto.getNum() == null) {
-//			model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력 값 입니다.");
-//
-//			return "board/notice/noticeForm";
-//		}
 
 		try {
 			noticeService.updatenotice(noticeDto, attachList);

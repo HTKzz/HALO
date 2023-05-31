@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.asia.constant.Stat;
 import com.asia.dto.ReservationSearchDto;
 import com.asia.entity.Application;
 import com.asia.entity.Member;
@@ -97,7 +98,9 @@ public class AdminController {
 			lists = adminMemberService.searchMemberByJoin(memberMngSearch, pageable);
 
 		}else if(searchOption.equals("stat")) {
-			lists = adminMemberService.searchMemberByStat(memberMngSearch, pageable);
+			Stat stat = Stat.valueOf(memberMngSearch);
+			
+			lists = adminMemberService.searchMemberByStat(stat, pageable);
 				
 		}else if(searchOption.equals("role")) {
 			lists = adminMemberService.searchMemberByRole(memberMngSearch, pageable);
@@ -117,7 +120,6 @@ public class AdminController {
 
 		return "admin/memberMng";
 	}
-	
 
 	// 프로그램 신청 리스트 호출(프로그램 신청 관리페이지 호출)
 	// 오름차순(ASC), 내림차순(DESC)

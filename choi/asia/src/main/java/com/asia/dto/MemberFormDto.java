@@ -49,8 +49,5 @@ public class MemberFormDto {
 	
 	private String agree;
 	
-//	private Role role;
-	
-	private String role;
-	private String stat;
+	private Role role;
 }
