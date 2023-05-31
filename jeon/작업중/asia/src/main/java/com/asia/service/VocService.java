@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.AttachDto;
-import com.asia.dto.BoardSearchDto;
 import com.asia.dto.VocFormDto;
 import com.asia.entity.Attach;
 import com.asia.entity.Voc;
@@ -28,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class VocService {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(VocService.class);
+	//private final Logger LOGGER = LoggerFactory.getLogger(VocService.class);
 	
 	private final VocRepository vocRepository;
 	private final AttachService attachService;
@@ -92,8 +91,17 @@ public class VocService {
 		}
 		
 		Voc voc = vocRepository.findById(num).orElseThrow(EntityNotFoundException::new);
+		
+		long allVocCnt = vocRepository.getList();
+		String prevContent = vocRepository.getPrevContent(num);
+		String nextContent = vocRepository.getNextContent(num);
 		VocFormDto vocFormDto = VocFormDto.of(voc);
+		vocFormDto.setAllVocCnt(allVocCnt);
+		vocFormDto.setPrevContent(prevContent);
+		vocFormDto.setNextContent(nextContent);
 		vocFormDto.setAttachDtoList(attachDtoList);
+		vocFormDto.setMember(null);
+		
 		return vocFormDto;
 	}
 
@@ -110,14 +118,6 @@ public class VocService {
 		
 		return voc.getNum();
 	}
-	
-	
-	//게시판 페이징+조건검색 
-	@Transactional(readOnly = true)
-	public Page<Voc> getBoardPage(BoardSearchDto boardSearchDto, Pageable pageable){
-		return vocRepository.getBoardPage(boardSearchDto, pageable);
-	}// 조회조건과 페이지정보를 파라미터로 받아서 데이터를 조회하는 getBoardPage()메서드 추가
-	
 	
 	public Page<Voc> getVocLists(Pageable pageable){
 		return vocRepository.getVocLists(pageable);
@@ -143,9 +143,9 @@ public class VocService {
 			voc.setGroupLayer(presentVoc.getGroupLayer()+1);
 		}
 		
-		for(int i = 0; i < voc.getGroupLayer(); i++) {
-			reply += "Re: ";
-		}
+//		for(int i = 0; i < voc.getGroupLayer(); i++) {
+//			reply += "Re: ";
+//		}
 		voc.setName(reply + voc.getName());
 		vocRepository.save(voc);
 		
@@ -181,6 +181,17 @@ public class VocService {
 		return vocFormDto;
 	}
 
+	public Voc findByNum(Long num) {
+		return vocRepository.findByNum(num);
+	}
+
+	// 검색+++++++++++++++++++++
+	public Page<Voc> vocListSearchByName(String vocListSearch, Pageable pageable){
+		return vocRepository.findByNameContaining(vocListSearch, pageable);
+	}
+	public Page<Voc> vocListSearchByContent(String vocListSearch, Pageable pageable){
+		return vocRepository.findByContentContaining(vocListSearch, pageable);
+	}
 
 	
 	

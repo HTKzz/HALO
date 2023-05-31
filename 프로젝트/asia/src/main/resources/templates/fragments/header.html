@@ -58,11 +58,19 @@ layout:decorate="~{layouts/layout1}">
 
     <link th:href="@{/css/header.css}" rel="stylesheet">
 	<header>
-		<a href="/" class="logo"><img th:src="@{/imgs/ACC.jpg}" class="logoimage" /></a>
+		<a href="/" class="logo"><img src=/images/ACC.jpg class="logoimage" /></a>
 		<div class="navigation">
 			<ul class="menu">
 				<div class="close-btn"></div>
 				<li class="menu-item" sec:authorize="isAuthenticated()"><a href="/board/program/apply">상품 신청</a></li>
+				<li class="menu-item" sec:authorize="isAnonymous() || isAuthenticated()">
+					<a class="sub-btn" href="#">ACC 소개</a>
+					<ul class="sub-menu">
+						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/useinfo">이용안내</a></li>
+						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="#"></a></li>
+						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="#"></a></li>
+					</ul>
+				</li>
 				<li class="menu-item" sec:authorize="isAnonymous() || isAuthenticated()">
 					<a class="sub-btn" href="#">소식</a>
 					<ul class="sub-menu">

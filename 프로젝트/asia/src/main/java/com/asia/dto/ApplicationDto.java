@@ -52,6 +52,8 @@ public class ApplicationDto {
 	
 	private String url;
 	
+	private String approvalStatus;
+	
 	private List<AttachDto> attachDtoList = new ArrayList<>();   // 프로그램 저장 후 수정할때 첨부파일 정보를 저장하는 리스트
 	
 	private List<Long> attachIds = new ArrayList<>();

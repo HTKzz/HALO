@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
@@ -24,7 +25,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Long>,
 	Page<Application> findByNameContaining(String searchKeyword, Pageable pageable);
 	List<Application> findByProgramCategory(String programCategory);
 	
-	@Query("select distinct new com.asia.dto.ApplicationDto(name, sdate, edate) from Application where program_Category = :programCategory")
+	@Query("select distinct new com.asia.dto.ApplicationDto(name, sdate, edate) from Application where program_Category = :programCategory and APPROVAL_STATUS = '승인' order by sdate asc")
 	List<ApplicationDto> getList1(String programCategory);
 	
 	List<Application> findByName(String name);
@@ -34,4 +35,8 @@ public interface ApplicationRepository extends JpaRepository<Application, Long>,
 	List<ApplicationDto> getList2(String name);
 	
 	Application findByNum(long anum);
+	
+	@Modifying
+	@Query(value = "update APPLICATION a set a.APPROVAL_STATUS = '승인' where a.NUM = :num", nativeQuery = true)
+	void updateApprovalStatus(Long num);
 }

@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.VocFormDto;
 import com.asia.entity.Voc;
-import com.asia.repository.VocRepository;
 import com.asia.service.AttachService;
 import com.asia.service.VocService;
 
@@ -35,10 +34,9 @@ import lombok.ToString;
 @ToString
 public class VocController {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(VocController.class);
+//	private final Logger LOGGER = LoggerFactory.getLogger(VocController.class);
 	private final VocService vocService;
 	private final AttachService attachService;
-	private final VocRepository vocRepository;
 
 	// 새글
 	@GetMapping("/new")
@@ -56,16 +54,13 @@ public class VocController {
 			return "board/voc/vocForm";
 		}
 
-		if (attachFileList.get(0).isEmpty() && vocFormDto.getNum() == null) {
-			model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력값 입니다.");
-			return "board/voc/vocForm";
-		}
 		try {
 			vocService.saveVoc(vocFormDto, attachFileList);
 
 			VocFormDto vocFormDto1 = vocService.getvocCtD(vocFormDto.getContent());
 			vocService.updateCnt(vocFormDto1.getNum());
 			model.addAttribute("voc", vocFormDto1);
+			
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "등록 중 에러발생");
 			return "board/voc/vocForm";
@@ -76,16 +71,15 @@ public class VocController {
 	// 리스트불러오기 페이징넣어서
 	@GetMapping("/list")
 	public String listVoc(
-			@PageableDefault(page = 0, size = 8, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
+			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
 			Model model) {
 
 		Page<Voc> list = vocService.getVocLists(pageable);
 		model.addAttribute("list", list);
-		System.out.println(list);
 
 		int nowPage = list.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 4, 1);
-		int endPage = Math.min(nowPage + 9, list.getTotalPages());
+		int endPage = Math.min(nowPage + 4, list.getTotalPages());
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
@@ -95,9 +89,8 @@ public class VocController {
 
 	// 상세보기
 	@GetMapping("/detail/{num}")
-	public String detailVoc(Model model, @PathVariable("num") Long num) {
-		System.out.println(num);
-		VocFormDto vocFormDto = vocService.getvocDtl(num);
+	public String detailVoc(Model model, @PathVariable("num") Long num, VocFormDto vocFormDto) {
+		vocFormDto = vocService.getvocDtl(num);
 		vocService.updateCnt(num);
 		model.addAttribute("voc", vocFormDto);
 
@@ -107,7 +100,6 @@ public class VocController {
 	// 삭제
 	@GetMapping("/delete/{num}")
 	public String deleteVoc(@PathVariable Long num) throws Exception {
-		System.out.println(num);
 		attachService.deleteAttach(num);
 		vocService.vocDelete(num);
 		return "redirect:/voc/list";
@@ -134,12 +126,7 @@ public class VocController {
 		if (bindingResult.hasErrors()) {
 			return "board/voc/vocForm";
 		}
-		if (attachFileList.get(0).isEmpty() && vocFormDto.getNum() == null) {
-			model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값");
-			return "board/voc/vocForm";
-		}
 		try {
-			System.out.println(vocFormDto);
 			vocService.updateVoc(vocFormDto, attachFileList);
 
 		} catch (Exception e) {
@@ -152,7 +139,7 @@ public class VocController {
 	// 답글
 	@GetMapping("/reply/{num}")
 	public String replyForm(@PathVariable("num") Long num, Model model) {
-		Voc parentVoc = vocRepository.findByNum(num);
+		Voc parentVoc = vocService.findByNum(num);
 
 		model.addAttribute("vocFormDto", new VocFormDto());
 		model.addAttribute("num", num);
@@ -166,10 +153,6 @@ public class VocController {
 			@RequestParam("attachFile") List<MultipartFile> attachFileList, @RequestParam("parentNo") Long parentNo,
 			@RequestParam("originNo") Long num) {
 
-		if (attachFileList.get(0).isEmpty() && vocFormDto.getNum() == null) {
-			model.addAttribute("errorMessage", "첫번쨰 이미지는 필수 입니다.");
-			return "board/voc/vocReply";
-		}
 		try {
 			vocService.saveReplyVoc(vocFormDto, attachFileList, parentNo);
 
@@ -178,7 +161,6 @@ public class VocController {
 			return "board/voc/vocReply";
 		}
 		return "redirect:/voc/list";
-
 	}
 
 }

@@ -53,6 +53,9 @@ public class Voc extends BaseEntity {
 	@Column
 	private Long groupLayer;
 	
+	@Column
+	private Long realNum;
+	
 	@OneToMany(mappedBy = "voc", cascade = CascadeType.ALL)
 	@ToString.Exclude
 	private List<Attach> attach;

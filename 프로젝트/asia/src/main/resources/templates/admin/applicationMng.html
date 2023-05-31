@@ -48,10 +48,12 @@
     <link th:href="@{/css/vocList.css}" rel="stylesheet">
 <div>
 <section class="vocList">
+
 	<div class="vocList-title">
         <h3>상품관리</h3>
     </div>
     <div class="vocList-container">
+    <form class="applicationForm-txt" name="applicationForm" role="form" method="get" th:object="${application1}">
         <table class="vocList-table">
             <thead>
                 <tr class="voc-tr">
@@ -60,9 +62,12 @@
                     <td class="vocList-category">카테고리</td>
                     <td class="vocList-writer">등록자</td>
                     <td class="vocList-date">등록일</td>
+                    <td class="vocList-approvalStatus">승인상태</td>
+                    <td class="vocList-approvalStatusYN">승인여부</td>
                 </tr>
             </thead>
             <tbody th:align="center">
+            
                 <tr th:each="application1, status: ${applications.getContent()}">
                     <td class="vocList-num" th:text="${application1.num}"></td>
                     <td class="vocList-name">
@@ -71,28 +76,46 @@
                     <td class="vocList-category" th:text="${application1.programCategory}">
                     </td>
                     <td class="vocList-writer" th:text="${application1.createdBy}"></td>
-                    <td class="vocList-date" th:text="${application1.regTime}"></td>
+                    <td class="vocList-date" th:text="${#temporals.format(application1.regTime, 'yy년 MM월 dd일 HH시 mm분')}"></td>
+                    <td class="vocList-approvalStatus" th:text="${application1.approvalStatus}"></td>
+                    <td class="vocList-approvalStatus-listbutton" th:if="${application1.approvalStatus} == '미승인'" style="text-align: center">
+                    	<button class="vocList-approvalStatus-button" th:formaction="@{'/admin/approvalstatus/change/' + ${application1.num}}" type="submit">승인하기</button>
+                    </td>
+                    <td class="vocList-approvalStatus-listbutton" th:if="${application1.approvalStatus} == '승인'" style="text-align: center">
+                    	승인완료
+                    </td>
+                    
+                   <!--  <div class="applicationForm-btn" th:if="${#strings.isEmpty(applicationDto.num)}" style="text-align: center">
+                <button class="applicationForm-button" th:formaction="@{/board/program/apply}" type="submit" name="sign">신청</button>
+              </div>
+                    <div class="applicationForm-btn" th:unless="${#strings.isEmpty(applicationDto.num)}" style="text-align: center">
+                <button class="applicationForm-button" th:formaction="@{'/board/program/apply/' + ${applicationDto.num}}" type="submit" name="sign">수정</button>
+              </div> -->
+              <!-- th:formaction="@{/admin/approvalstatus/change/}+${application1.num}"
+              <a th:href="@{/admin/approvalstatus/change/}+${application1.num}">승인하기</a> -->
                 </tr>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
             </tbody>
         </table>
+       </form>
 		<br>
 
         <div class="page_wrap">
             <ul class="pagination justify-content-center">
 
                 <li class="page-item" th:classappend="${startPage == applications.pageable.pageNumber + 1} ? 'disabled'">
-                    <a class="page-link" th:href="@{/board/program/applications(page=${applications.pageable.pageNumber - 1})}" tabindex="-1" aria-disabled="true">Previous</a>
+                    <a class="page-link" th:href="@{/admin/applications(page=${applications.pageable.pageNumber - 1})}" tabindex="-1" aria-disabled="true">Previous</a>
                 </li>
 
 
                 <li class="page-item" th:classappend="${page == applications.pageable.pageNumber + 1} ? 'active'" th:each="page : ${#numbers.sequence(startPage, endPage)}">
-                <a class="page-link" th:href="@{/board/program/applications(page=${page-1})}"
+                <a class="page-link" th:href="@{/admin/applications(page=${page-1})}"
                 th:text=${page} aria-current="page">1</a>
             </li>
             
  
             <li class="page-item" th:classappend="${endPage == applications.pageable.pageNumber + 1} ? 'disabled'">
-                <a class="page-link" th:href="@{/board/program/applications(page=${applications.pageable.pageNumber + 1}, searchKeyword = ${param.searchKeyword})}">Next</a>
+                <a class="page-link" th:href="@{/admin/applications(page=${applications.pageable.pageNumber + 1}, searchKeyword = ${param.searchKeyword})}">Next</a>
             </li>
             
         	</ul>
@@ -183,6 +206,7 @@
 	<button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
 </div> -->
 </div>
+
 </section>
 </div>
 </div>
