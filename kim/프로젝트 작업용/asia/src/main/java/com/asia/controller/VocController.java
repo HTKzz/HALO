@@ -81,7 +81,6 @@ public class VocController {
 
 		Page<Voc> list = vocService.getVocLists(pageable);
 		model.addAttribute("list", list);
-		System.out.println(list);
 
 		int nowPage = list.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 4, 1);
@@ -96,7 +95,7 @@ public class VocController {
 	// 상세보기
 	@GetMapping("/detail/{num}")
 	public String detailVoc(Model model, @PathVariable("num") Long num) {
-		System.out.println(num);
+
 		VocFormDto vocFormDto = vocService.getvocDtl(num);
 		vocService.updateCnt(num);
 		model.addAttribute("voc", vocFormDto);
@@ -107,7 +106,7 @@ public class VocController {
 	// 삭제
 	@GetMapping("/delete/{num}")
 	public String deleteVoc(@PathVariable Long num) throws Exception {
-		System.out.println(num);
+
 		attachService.deleteAttach(num);
 		vocService.vocDelete(num);
 		return "redirect:/voc/list";

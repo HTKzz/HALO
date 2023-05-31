@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+<head>
+<meta charset="UTF-8">
+<title>useinfo(이용안내)</title>
+<link th:href="@{/css/useinfo.css}" rel="stylesheet" >
+</head>
+<body>
+
+<div layout:fragment="content">
+
+
+<div class="useinfo-defaultLayout">
+<h3 class="useinfo-pageTit">개관시간/입장료</h3>
+
+<div class="useinfo-programCon">
+<div class="useinfo-iconList">
+<ul>
+	<li><span class="useinfo-img"><img alt="" th:src="@{/images/useinfo/prohibition1.png}" /></span><span class="useinfo-txt">유아는 보호자와 동반(7세미만)</span></li>
+	<li><span class="useinfo-img"><img alt="" th:src="@{/images/useinfo/prohibition2.png}" /></span><span class="useinfo-txt">애완동물 출입금지</span></li>
+	<li><span class="useinfo-img"><img alt="" th:src="@{/images/useinfo/prohibition3.png}" /></span><span class="useinfo-txt">자전거 이용금지</span></li>
+</ul>
+
+<ul>
+	<li><span class="useinfo-img"><img alt="" th:src="@{/images/useinfo/prohibition4.png}" /></span><span class="useinfo-txt">오토바이 이용금지</span></li>
+	<li><span class="useinfo-img"><img alt="" th:src="@{/images/useinfo/prohibition5.png}" /></span><span class="useinfo-txt">인라인스케이트 이용금지</span></li>
+	<li><span class="useinfo-img"><img alt="" th:src="@{/images/useinfo/prohibition6.png}" /></span><span class="useinfo-txt">스케이트(킥)보드 이용금지</span></li>
+</ul>
+</div>
+
+<h4 class="useinfo-MAT50">개관시간</h4>
+
+<ul class="useinfo-txtList">
+	<li>내부시설 : 10:00 ~ 18:00</li>
+  <li style="background-image:none;">※ 문화정보원, 문화창조원 매주 수요일, 토요일 10:00 ~ 20:00까지 연장 운영</li>
+  <li style="background-image:none;">※ 특별열람실 : 화~토 10:00~17:30(11:30~14:00 휴실) *휴관: 공휴일, 국립아시아문화전당 휴관일</li>
+	<li>외부시설 : 06:00 ~ 22:00</li>
+	<li>휴관일 : 매주 월요일, 1월 1일</li>
+	<li class="point">공연, 전시, 행사, 교육 등 전당일정에 따라 개관시간이 변동될 수 있습니다.</li>
+</ul>
+
+<h4 class="useinfo-MAT50">입장료</h4>
+
+<table class="useinfo-programTable">
+	<caption>입장료
+	<p>문화정보원, 문화창조원, 예술극장, 어린이문화원, 민주평화교류원의 입장료를 나열</p>
+	</caption>
+	<colgroup>
+		<col style="width:15%" />
+		<col style="width:20%" />
+		<col style="width:auto" />
+	</colgroup>
+	<tbody>
+		<tr>
+			<th rowspan="2" scope="row">문화정보원</th>
+			<td>아시아문화박물관</td>
+			<td><span class="buIcon">무료</span></td>
+		</tr>
+		<tr>
+			<td>아카데미</td>
+			<td><span class="buIcon">강좌에 따라 다름</span></td>
+		</tr>
+		<tr>
+			<th rowspan="6" scope="row">문화창조원</th>
+			<td>복합전시 1관</td>
+			<td rowspan="6"><span class="buIcon">전시 특성에 따라 가격 상이(전시별 상세 페이지 확인)</span></td>
+		</tr>
+		<tr>
+			<td>복합전시 2관</td>
+		</tr>
+		<tr>
+			<td>복합전시 3관</td>
+		</tr>
+		<tr>
+			<td>복합전시 4관</td>
+		</tr>
+		<tr>
+			<td>복합전시 5관</td>
+		</tr>
+		<tr>
+			<td>복합전시 6관</td>
+		</tr>
+		<tr>
+			<th rowspan="4" scope="row">예술극장</th>
+			<td>극장 1</td>
+			<td rowspan="4"><span class="buIcon">공연에 따라 다름</span></td>
+		</tr>
+		<tr>
+			<td>극장 2</td>
+		</tr>
+		<tr>
+			<td>극장 3</td>
+		</tr>
+		<tr>
+			<td>아틀리에</td>
+		</tr>
+		<tr>
+			<th rowspan="5" scope="row">어린이문화원</th>
+			<td>어린이체험관</td>
+			<td>
+			<ul>
+				<li>만 4세 - 14세 미만 : 5,000원</li>
+				<li>만 14세 이상 : 3,000원<br />
+				※ 48개월까지 : 무료(증빙 지참)</li>
+			</ul>
+			<!-- <ul>
+                        <li>만 4세 - 14세 미만 : 5,000원</li>
+                        <li>만 14세 이상 : 3,000원</li>
+                        <li>※ 48개월까지 : 무료(증빙 지참)</li>
+                    </ul>--></td>
+		</tr>
+		<tr>
+			<td>어린이극장</td>
+			<td><span class="buIcon">공연에 따라 다름</span></td>
+		</tr>
+		<tr>
+			<td>어린이창작실험실</td>
+			<td><span class="buIcon">콘텐츠에 따라 다름</span></td>
+		</tr>
+		<tr>
+			<td>어린이도서관</td>
+			<td><span class="buIcon">무료</span></td>
+		</tr>
+		<tr>
+			<td>유아놀이터</td>
+			<td><span class="buIcon">무료</span></td>
+		</tr>
+		<tr>
+			<th rowspan="2" scope="row">민주평화교류원</th>
+			<td>5·18민주평화기념관</td>
+			<td><span class="buIcon">2025년 7월까지 옛전남도청 복원사업 진행중입니다. <a class="useinfo-btn_go" href="/ACC_WEB/index.htm" target="_blank" title="">옛전남도청 내부관람 하기 +</a></span></td>
+		</tr>
+		<tr>
+			<td>문화교류협력센터</td>
+			<td><span class="buIcon">2025년 7월까지 옛전남도청 복원사업 진행중입니다. <a class="useinfo-btn_go" href="/ACC_WEB/index.htm" target="_blank" title="">옛전남도청 내부관람 하기 +</a></span></td>
+		</tr>
+	</tbody>
+</table>
+
+<h4 class="useinfo-MAT50">할인안내</h4>
+
+<table class="useinfo-defaultTable useinfo-colStyle useinfo-MAB20">
+	<caption>할인안내
+	<p>문화체육관광부, 문화 복지 할인, 단체, 특별할인에 대한 종류와 할인대상, 할인율 나열</p>
+	</caption>
+	<colgroup>
+		<col style="width:15%" />
+		<col style="width:20%" />
+		<col style="width:auto" />
+		<col style="width:15%" />
+	</colgroup>
+	<thead>
+		<tr>
+			<th scope="col">구분</th>
+			<th scope="col">종류</th>
+			<th scope="col">할인대상</th>
+			<th scope="col">할인율</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="useinfo-BorderNone">
+			<th class="tableTit" rowspan="4" scope="row">문화체육관광부</th>
+			<td>
+			<div class="thArea">종류</div>
+
+			<div class="tdArea">문화가 있는 날</div>
+			</td>
+			<td>
+			<div class="thArea">할인대상</div>
+
+			<div class="tdArea">(매달 마지막 주 수요일)<br />
+			어린이문화원, 문화창조원 유료전시 입장객</div>
+			</td>
+			<td>
+			<div class="thArea">할인율</div>
+
+			<div class="tdArea">50%</div>
+			</td>
+		</tr>
+		<tr class="useinfo-MAT-10">
+			<td>
+			<div class="thArea">종류</div>
+
+			<div class="tdArea">문화패스</div>
+			</td>
+			<td>
+			<div class="thArea">할인대상</div>
+
+			<div class="tdArea">만7세~만24세</div>
+			</td>
+			<td>
+			<div class="thArea">할인율</div>
+
+			<div class="tdArea">50%</div>
+			</td>
+		</tr>
+		<tr class="useinfo-MAT-10">
+			<td>
+			<div class="thArea">종류</div>
+
+			<div class="tdArea">예술인패스</div>
+			</td>
+			<td>
+			<div class="thArea">할인대상</div>
+
+			<div class="tdArea">예술인 본인<br />
+			(예술인패스카드 또는 카드신청내역)</div>
+			</td>
+			<td>
+			<div class="thArea">할인율</div>
+
+			<div class="tdArea">50%</div>
+			</td>
+		</tr>
+		<tr class="useinfo-MAT-10">
+			<td>
+			<div class="thArea">종류</div>
+
+			<div class="tdArea">문화누리카드</div>
+			</td>
+			<td>
+			<div class="thArea">할인대상</div>
+
+			<div class="tdArea">문화누리카드 결제자(매수제한없음)<br />
+			※ 문화누리카드 할인은 현장예매, 콜센터 예매를 통해서만 적용가능합니다.</div>
+			</td>
+			<td>
+			<div class="thArea">할인율</div>
+
+			<div class="tdArea">50%</div>
+			</td>
+		</tr>
+		<tr class="useinfo-BorderNone">
+			<th class="tableTit" rowspan="3" scope="row">문화 복지 할인</th>
+			<td>
+			<div class="thArea">종류</div>
+
+			<div class="tdArea">경로할인</div>
+			</td>
+			<td>
+			<div class="thArea">할인대상</div>
+
+			<div class="tdArea">만 65세 이상 본인</div>
+			</td>
+			<td>
+			<div class="thArea">할인율</div>
+
+			<div class="tdArea">50%</div>
+			</td>
+		</tr>
+		<tr class="useinfo-MAT-10">
+			<td>
+			<div class="thArea">종류</div>
+
+			<div class="tdArea">장애인</div>
+			</td>
+			<td>
+			<div class="thArea">할인대상</div>
+
+			<div class="tdArea">복지카드 소지자(1인 2매까지)</div>
+			</td>
+			<td>
+			<div class="thArea">할인율</div>
+
+			<div class="tdArea">50%</div>
+			</td>
+		</tr>
+		<tr class="useinfo-MAT-10">
+			<td>
+			<div class="thArea">종류</div>
+
+			<div class="tdArea">국가유공자</div>
+			</td>
+			<td>
+			<div class="thArea">할인대상</div>
+
+			<div class="tdArea">유공자증 및 유공자 유족증 소지자(1인 2매까지)</div>
+			</td>
+			<td>
+			<div class="thArea">할인율</div>
+
+			<div class="tdArea">50%</div>
+			</td>
+		</tr>
+		<tr class="useinfo-BorderNone">
+			<th class="tableTit" scope="row">단체</th>
+			<td>
+			<div class="thArea">종류</div>
+
+			<div class="tdArea">단체할인</div>
+			</td>
+			<td>
+			<div class="thArea">할인대상</div>
+
+			<div class="tdArea">10인 이상</div>
+			</td>
+			<td>
+			<div class="thArea">할인율</div>
+
+			<div class="tdArea">20%</div>
+			</td>
+		</tr>
+		<tr class="useinfo-BorderNone">
+			<th class="tableTit" rowspan="2" scope="row">특별할인</th>
+			<td>
+			<div class="thArea">종류</div>
+
+			<div class="tdArea">ACC 릴레이 티켓</div>
+			</td>
+			<td>
+			<div class="thArea">할인대상</div>
+
+			<div class="tdArea">전당 유료티켓 소지자(1인 2매/관람 전일부터 6개월이내)</div>
+			</td>
+			<td>
+			<div class="thArea">할인율</div>
+
+			<div class="tdArea">20%</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<ul class="useinfo-txtList">
+	<li class="point">티켓 권종별 할인과 할인 쿠폰은 중복 적용될 수 없습니다.</li>
+	<li class="point">할인 증빙은 현장 발권 또는 입장 시 제시해주셔야 하며, 미지참 시 할인적용이 불가(차액 지불)합니다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -5,6 +5,12 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: '국립박물관문화재단클래식B';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/국립박물관문화재단클래식B.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .fieldError {
 	color: #bd2130;
@@ -37,12 +43,13 @@ body {
 }
 
 .vocList-title {
+	font-family: '국립박물관문화재단클래식B';
 	margin-bottom: 40px;
 	text-align: center;
 }
 
-.vocList-title h3 {
-	font-size: 28px; color : #333333;
+.vocList-title h1 {
+	font-size: 40px; color : #333333;
 	font-weight: bold;
 	text-align: center;
 	color: #333333;

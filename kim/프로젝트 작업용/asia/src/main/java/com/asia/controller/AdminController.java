@@ -144,6 +144,12 @@ public class AdminController {
         model.addAttribute("nowPage", nowPage);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
+        
+        System.out.println(nowPage);
+        System.out.println(applications.getPageable().getPageNumber());
+        System.out.println(applications.getTotalPages());
+        System.out.println(pageable);
+        System.out.println(applications.getPageable().getPageNumber());
 
         return "admin/applicationMng";
     }

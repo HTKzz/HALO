@@ -190,7 +190,6 @@ public class ApplicationController {
    		
    		Application application = applicationService.getApplication(num);
    		List<Application> list = applicationService.getApplication(application.getName());
-   		System.out.println(list);
    		
    		for(int i = 0; i < list.size(); i++) {
    	   		attachService.deleteAttach(list.get(i).getNum());
@@ -203,7 +202,7 @@ public class ApplicationController {
     // 카테고리별 게시판 호출(공연)
     @GetMapping("/program/showlist")
     public String showListView(Model model, Long num,
-    						   @PageableDefault(page = 0, size = 6, sort = "num", direction = Sort.Direction.DESC)Pageable pageable) {
+    						   @PageableDefault(page = 0, size = 2, sort = "num", direction = Sort.Direction.DESC)Pageable pageable) {
     	
     	
             //큰카테고리에 해당하는 상품 가져오기.
@@ -217,6 +216,7 @@ public class ApplicationController {
             int nowPage = showapplications.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
             int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
             int endPage = Math.min(nowPage + 4, showapplications.getTotalPages());
+            
             model.addAttribute("application4", showapplications);
             
             model.addAttribute("nowPage", nowPage);
@@ -241,15 +241,12 @@ public class ApplicationController {
             int nowPage = showapplications.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
             int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
             int endPage = Math.min(nowPage + 4, showapplications.getTotalPages());
+            
             model.addAttribute("application5", showapplications);
             
             model.addAttribute("nowPage", nowPage);
             model.addAttribute("startPage", startPage);
             model.addAttribute("endPage", endPage);
-
-            System.out.println(showapplications.getContent());
-            System.out.println(nowPage);
-            System.out.println(endPage);
             
             return "board/program/exhibitionList";
     	
@@ -268,15 +265,12 @@ public class ApplicationController {
             int nowPage = showapplications.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
             int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
             int endPage = Math.min(nowPage + 4, showapplications.getTotalPages());
+            
             model.addAttribute("application6", showapplications);
             
             model.addAttribute("nowPage", nowPage);
             model.addAttribute("startPage", startPage);
             model.addAttribute("endPage", endPage);
-            
-            System.out.println(showapplications.getContent());
-            System.out.println(nowPage);
-            System.out.println(endPage);
             
             return "board/program/eventList";
     	

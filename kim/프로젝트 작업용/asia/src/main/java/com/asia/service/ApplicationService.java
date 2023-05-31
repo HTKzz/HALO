@@ -313,8 +313,9 @@ public class ApplicationService {
 	public Page<ApplicationDto> getList1(Pageable pageable, String programCategory) {
 		List<ApplicationDto> list = applicationRepository.getList1(programCategory);
 		List<ApplicationDto> resultList = new ArrayList<ApplicationDto>();
+		int offset2 = pageable.getPageSize();
 		int offset = Long.valueOf(pageable.getOffset()).intValue();
-		for (int x = offset; x <= offset + 9; x++) {
+		for (int x = offset; x < offset + offset2; x++) {
 			if (x < list.size()) {
 				List<Application> application = applicationRepository.findByName(list.get(x).getName());
 				List<AttachDto> attach = attachRepository.getLists(application.get(0).getNum());
