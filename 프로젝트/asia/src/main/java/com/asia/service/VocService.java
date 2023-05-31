@@ -46,6 +46,14 @@ public class VocService {
 		voc.setGroupOrd((long) 0);
 		voc.setGroupLayer((long) 0);
 		
+		Long realNum = vocRepository.getRealNum();
+		
+		if(realNum == null) {
+			voc.setRealNum((long) 1);
+		} else {
+			voc.setRealNum(realNum+1);
+		}
+		
 		vocRepository.save(voc);
 		
 		voc.setOriginNo(voc.getNum());
@@ -91,8 +99,16 @@ public class VocService {
 		}
 		
 		Voc voc = vocRepository.findById(num).orElseThrow(EntityNotFoundException::new);
+		
+		long allVocCnt = vocRepository.getList();
+		String prevContent = vocRepository.getPrevContent(num);
+		String nextContent = vocRepository.getNextContent(num);
 		VocFormDto vocFormDto = VocFormDto.of(voc);
+		vocFormDto.setAllVocCnt(allVocCnt);
+		vocFormDto.setPrevContent(prevContent);
+		vocFormDto.setNextContent(nextContent);
 		vocFormDto.setAttachDtoList(attachDtoList);
+		
 		return vocFormDto;
 	}
 
@@ -127,6 +143,8 @@ public class VocService {
 		voc.setOriginNo(presentVoc.getOriginNo());
 		voc.setGroupOrd(presentVoc.getGroupOrd());
 		voc.setGroupLayer(presentVoc.getGroupLayer());
+		vocRepository.updateRealNum(presentVoc.getRealNum());
+		voc.setRealNum(presentVoc.getRealNum());
 		vocRepository.save(voc);
 		vocRepository.updateGroupOrd(voc.getOriginNo(), presentVoc.getGroupOrd());
 		
@@ -167,9 +185,18 @@ public class VocService {
 			attachDtoList.add(attachDto);
 		}
 		
-		Voc voc = vocRepository.findById(voc1.getNum()).orElseThrow(EntityNotFoundException::new);
-		VocFormDto vocFormDto = VocFormDto.of(voc);
+//		Voc voc = vocRepository.findById(voc1.getNum()).orElseThrow(EntityNotFoundException::new);
+		VocFormDto vocFormDto = VocFormDto.of(voc1);
+		
+		long allVocCnt = vocRepository.getList();
+		String prevContent = vocRepository.getPrevContent(voc1.getNum());
+		String nextContent = vocRepository.getNextContent(voc1.getNum());
+		vocFormDto.setAllVocCnt(allVocCnt);
+		vocFormDto.setPrevContent(prevContent);
+		vocFormDto.setNextContent(nextContent);
+		
 		vocFormDto.setAttachDtoList(attachDtoList);
+		
 		return vocFormDto;
 	}
 

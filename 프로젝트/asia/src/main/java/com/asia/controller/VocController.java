@@ -34,7 +34,7 @@ import lombok.ToString;
 @ToString
 public class VocController {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(VocController.class);
+//	private final Logger LOGGER = LoggerFactory.getLogger(VocController.class);
 	private final VocService vocService;
 	private final AttachService attachService;
 
@@ -54,16 +54,13 @@ public class VocController {
 			return "board/voc/vocForm";
 		}
 
-		if (attachFileList.get(0).isEmpty() && vocFormDto.getNum() == null) {
-			model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력값 입니다.");
-			return "board/voc/vocForm";
-		}
 		try {
 			vocService.saveVoc(vocFormDto, attachFileList);
 
 			VocFormDto vocFormDto1 = vocService.getvocCtD(vocFormDto.getContent());
 			vocService.updateCnt(vocFormDto1.getNum());
 			model.addAttribute("voc", vocFormDto1);
+			
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "등록 중 에러발생");
 			return "board/voc/vocForm";
@@ -74,7 +71,7 @@ public class VocController {
 	// 리스트불러오기 페이징넣어서
 	@GetMapping("/list")
 	public String listVoc(
-			@PageableDefault(page = 0, size = 8, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
+			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
 			Model model) {
 
 		Page<Voc> list = vocService.getVocLists(pageable);
@@ -92,8 +89,8 @@ public class VocController {
 
 	// 상세보기
 	@GetMapping("/detail/{num}")
-	public String detailVoc(Model model, @PathVariable("num") Long num) {
-		VocFormDto vocFormDto = vocService.getvocDtl(num);
+	public String detailVoc(Model model, @PathVariable("num") Long num, VocFormDto vocFormDto) {
+		vocFormDto = vocService.getvocDtl(num);
 		vocService.updateCnt(num);
 		model.addAttribute("voc", vocFormDto);
 
@@ -164,7 +161,6 @@ public class VocController {
 			return "board/voc/vocReply";
 		}
 		return "redirect:/voc/list";
-
 	}
 
 }
