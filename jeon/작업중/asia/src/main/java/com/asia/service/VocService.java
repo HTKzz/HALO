@@ -27,7 +27,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class VocService {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(VocService.class);
+	//private final Logger LOGGER = LoggerFactory.getLogger(VocService.class);
 	
 	private final VocRepository vocRepository;
 	private final AttachService attachService;
@@ -91,8 +91,17 @@ public class VocService {
 		}
 		
 		Voc voc = vocRepository.findById(num).orElseThrow(EntityNotFoundException::new);
+		
+		long allVocCnt = vocRepository.getList();
+		String prevContent = vocRepository.getPrevContent(num);
+		String nextContent = vocRepository.getNextContent(num);
 		VocFormDto vocFormDto = VocFormDto.of(voc);
+		vocFormDto.setAllVocCnt(allVocCnt);
+		vocFormDto.setPrevContent(prevContent);
+		vocFormDto.setNextContent(nextContent);
 		vocFormDto.setAttachDtoList(attachDtoList);
+		vocFormDto.setMember(null);
+		
 		return vocFormDto;
 	}
 
@@ -109,7 +118,6 @@ public class VocService {
 		
 		return voc.getNum();
 	}
-	
 	
 	public Page<Voc> getVocLists(Pageable pageable){
 		return vocRepository.getVocLists(pageable);
@@ -173,6 +181,17 @@ public class VocService {
 		return vocFormDto;
 	}
 
+	public Voc findByNum(Long num) {
+		return vocRepository.findByNum(num);
+	}
+
+	// 검색+++++++++++++++++++++
+	public Page<Voc> vocListSearchByName(String vocListSearch, Pageable pageable){
+		return vocRepository.findByNameContaining(vocListSearch, pageable);
+	}
+	public Page<Voc> vocListSearchByContent(String vocListSearch, Pageable pageable){
+		return vocRepository.findByContentContaining(vocListSearch, pageable);
+	}
 
 	
 	

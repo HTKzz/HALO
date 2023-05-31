@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -35,16 +34,15 @@ public class VocFormDto {
 	private String createdBy;
 
 	private LocalDateTime regTime;
-
+	
 	private Long originNo;
 
 	private Long groupOrd;
 
 	private Long groupLayer;
 	
-	
 	/* 이전글다음글 */
-	private Long allNoticeCnt;
+	private Long allVocCnt;
 
 	private String prevContent;
 
@@ -52,10 +50,11 @@ public class VocFormDto {
 
 	private Member member;
 	
+	
 
 	private List<AttachDto> attachDtoList = new ArrayList<AttachDto>(); // 글 등록 후 수정할 때 상품 이미지 정보를 저장하는 리스트
 
-	private List<Long> attachIds = new ArrayList<Long>();
+	private List<Long> attachIds = new ArrayList<Long>(); 
 
 	private static ModelMapper modelMapper = new ModelMapper();
 	// modelMappper 이용해서 엔티티 객체와 dto객체 간의 데이터를 복사해 복사한 객체를 반환해주는 메서드
@@ -69,5 +68,7 @@ public class VocFormDto {
 		return modelMapper.map(voc, VocFormDto.class);
 		// entity -> dto
 	} // static에 저장하는 메서드로 객체생성 없이 클래스, 메서드 호출해 사용
+
+
 
 }
