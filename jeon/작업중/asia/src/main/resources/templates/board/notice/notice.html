@@ -23,6 +23,7 @@
                             <tr class="voc-tr">
                                 <th class="vocList-num">글번호</th>
                                 <th class="vocList-name">제목</th>
+                                <th class="vocList-name">등록일</th>
                                 <th class="vocList-cnt">조회수</th>
                             </tr>
                         </thead>
@@ -31,6 +32,7 @@
 
                                 <td class="vocList-num" th:text="${notice.num}">글번호</td>
                                 <td class="vocList-name"><a th:text="${notice.name}" th:href="@{/notices/detail/{num}(num=${notice.num})}">제목</a></td>
+                                <td class="vocList-date" th:text="${#temporals.format(notice.regTime, 'yyyy-MM-dd')}"></td>
                                 <td class="vocList-cnt" th:text="${notice.cnt}">조회</td>
 
                             </tr>
@@ -38,8 +40,8 @@
                     </table>
 					<br>
                     <div>
-                        <div class="voc-write">
-                            <a sec:authorize="hasAnyAuthority('ROLE_ADMIN')" href="/notices/write">글쓰기</a>
+                        <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')" class="voc-write">
+                            <a href="/notices/write">글쓰기</a>
                         </div>
                     </div>
                     <div class="page_wrap">
