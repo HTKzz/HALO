@@ -16,7 +16,7 @@
 }
 
 .myPageForm-board {
-	width: 800px;
+	width: 1000px;
 	margin: 0 auto;
 	padding: 80px 0;
 }
@@ -74,7 +74,7 @@
 .myPageForm-contents {
 	border-radius: 10px;
 	border: 1px solid #999;
-	padding: 50px 5%;
+	padding: 50px 100px 50px 100px;
 }
 
 .myPageForm-input-group-text {
@@ -104,5 +104,14 @@
 }
 
 .myPage-submit{
-	text-align: center;
+	margin-left:18px;
+	background-color: #A4A4A4;
+	border: none;
+	color: white;
+	border-radius: 5px;
+	width: 100%;
+	height: 35px;
+	font-size: 14pt;
+	margin-top: 10px;
+	cursor:pointer;
 }

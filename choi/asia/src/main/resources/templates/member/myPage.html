@@ -82,9 +82,7 @@ layout:decorate="~{layouts/layout1}">
 							class="myPageForm-input" readonly  />
 				</div>
 				
-				<div class="myPage-submit">
-					<input  type="submit" value="수정 완료">
-				</div>
+				<button class="myPage-submit">수정 완료</button>
 				<input type="hidden" th:name="${_csrf.parameterName}"
 						th:value="${_csrf.token}">
 			
