@@ -32,8 +32,7 @@
 <div layout:fragment="content">
 	<link th:href="@{/css/vocList.css}" rel="stylesheet">
 	<div>
-		<form th:action="@{'/admin/items/' + ${reservations.number}}"
-			role="form" method="get" th:object="${reservations}">
+		<form role="form" method="get" th:object="${reservations}">
 			<section class="vocList">
 				<div class="vocList-title">
 					<h3>예매관리</h3>
@@ -46,6 +45,7 @@
 								<td class="vocList-name">상품명</td>
 								<td class="vocList-rdate">예매일</td>
 								<td class="vocList-udate">공연일</td>
+								<td class="vocList-memberNum">예매자</td>
 								<td class="vocList-stat">상태</td>
 							</tr>
 						</thead>
@@ -55,10 +55,11 @@
 								<td class="vocList-name" th:text="${reservation.application.name}"></td>
 								<td class="vocList-rdate" th:text="${reservation.rdate}"></td>
 								<td class="vocList-udate" th:text="${reservation.application.udate}"></td>
+								<td class="vocList-memberNum" th:text="${reservation.member.id}"></td>
 								<td class="vocList-stat" th:text="${reservation.stat}"></td>
-								<td><button type="submit"
-										th:formaction="@{/reservations/delete/{id}(id=${reservation.num})}"
-										sec:authorize="hasAnyAuthority('ROLE_ADMIN')">삭제하기</button></td>
+								<td sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+									<button type="submit" th:formaction="@{/reservations/delete/{num}(num=${reservation.num})}">삭제하기</button>
+								</td>
 							</tr>
 						</tbody>
 					</table>

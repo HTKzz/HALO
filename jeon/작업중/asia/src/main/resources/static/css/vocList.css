@@ -5,6 +5,13 @@
     font-style: normal;
 }
 
+*{
+	margin: 0 auto;
+    padding: 0 auto;
+    list-style: none;
+    text-decoration: none;
+}
+
 body {
 	font-family: Pretendard-Regular;
 	font-size: 1rem;

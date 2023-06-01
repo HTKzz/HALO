@@ -5,9 +5,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -44,6 +47,10 @@ public class Voc extends BaseEntity {
 	@Column(columnDefinition = "number default 0", nullable = false)
 	private int cnt;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="member_num")
+	private Member member; //회원번호
+	
 	@Column
 	private Long originNo;
 	
@@ -53,10 +60,14 @@ public class Voc extends BaseEntity {
 	@Column
 	private Long groupLayer;
 	
+	@Column
+	private Long realNum;
+	
 	@OneToMany(mappedBy = "voc", cascade = CascadeType.ALL)
 	@ToString.Exclude
 	private List<Attach> attach;
 	
+	//글수정
 	public void updateVoc(VocFormDto vocFormDto) {
 		this.name = vocFormDto.getName();
 		this.content = vocFormDto.getContent();
