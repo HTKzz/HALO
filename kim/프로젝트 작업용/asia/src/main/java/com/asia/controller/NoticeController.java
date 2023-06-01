@@ -37,7 +37,8 @@ public class NoticeController {
 
 	// 공지 게시판 리스트 불러오기
 	@GetMapping(value = "/lists")
-	public String noticelist(Model model, @PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable) {
+	public String noticelist(Model model,
+			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable) {
 
 		Page<Notice> lists = noticeService.noticeList(pageable);
 		
@@ -46,7 +47,6 @@ public class NoticeController {
 		int nowPage = lists.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 9, lists.getTotalPages());
-		
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
@@ -72,11 +72,6 @@ public class NoticeController {
 			return "board/notice/noticeForm";
 		}
 
-		if (attachList.get(0).isEmpty() && noticeDto.getNum() == null) {
-			model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력 값 입니다.");
-			return "board/notice/noticeForm";
-		}
-
 		try {
 			String id = principal.getName();
 
@@ -95,6 +90,8 @@ public class NoticeController {
 	public String noticeDetail(@PathVariable("num") Long num, Model model, NoticeDto noticeDto) {
 		
 		noticeDto = noticeService.getnoticeDetail(num);
+		
+		
 		noticeService.updateCnt(num);
 		model.addAttribute("noticeDto", noticeDto);
 		
@@ -126,12 +123,6 @@ public class NoticeController {
 			@RequestParam("attachFile") List<MultipartFile> attachList) {
 
 		if (bindingResult.hasErrors()) {
-
-			return "board/notice/noticeForm";
-		}
-
-		if (attachList.get(0).isEmpty() && noticeDto.getNum() == null) {
-			model.addAttribute("errorMessage", "제목 또는 내용을 입력하세요");
 
 			return "board/notice/noticeForm";
 		}

@@ -28,7 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.asia.dto.ApplicationDto;
 import com.asia.dto.CountDto;
 import com.asia.entity.Application;
-import com.asia.repository.ApplicationRepository;
 import com.asia.service.ApplicationService;
 import com.asia.service.AttachService;
 import com.asia.service.SeatService;
@@ -71,7 +70,7 @@ public class ApplicationController {
 			String name = principal.getName();
 			applicationService.saveApplication(applicationDto, attachFileList, name);   // 상품 저장 로직을 호출. 상품정보와 상품이미지정보를 넘긴다.
 		} catch (Exception e) {
-			model.addAttribute("errorMessage", "프로그램 등록 중 에러가 발생하였습니다.");
+			model.addAttribute("errorMessage", e.getMessage());
 			return "board/program/applicationForm";
 		}
 		
@@ -196,14 +195,13 @@ public class ApplicationController {
 			applicationService.deleteApplication(list.get(i).getNum());
    		}
 		
-   		return "redirect:/board/program/applications";
+   		return "redirect:/admin/applications";
 	}
     
     // 카테고리별 게시판 호출(공연)
     @GetMapping("/program/showlist")
     public String showListView(Model model, Long num,
-    						   @PageableDefault(page = 0, size = 2, sort = "num", direction = Sort.Direction.DESC)Pageable pageable) {
-    	
+    						   @PageableDefault(page = 0, size = 6)Pageable pageable) {
     	
             //큰카테고리에 해당하는 상품 가져오기.
     		String programCategory = "공연";
@@ -212,6 +210,7 @@ public class ApplicationController {
 //            ApplicationDto applicationDto = applicationService.getApplicationDtl(List(num));
 //            ApplicationDto applicationDto = applicationService.getShowList(num);
             Page<ApplicationDto> showapplications = applicationService.getList1(pageable, programCategory);
+            System.out.println(showapplications);
             
             int nowPage = showapplications.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
             int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
@@ -230,7 +229,7 @@ public class ApplicationController {
  // 카테고리별 게시판 호출(전시)
     @GetMapping("/program/exhibitionlist")
     public String exhibitionListView(Model model, Long num, String programCategory,
-    								 @PageableDefault(page = 0, size = 6, sort = "num", direction = Sort.Direction.DESC)Pageable pageable) {
+    								 @PageableDefault(page = 0, size = 6)Pageable pageable) {
     	
     	
             //큰카테고리에 해당하는 상품 가져오기.
@@ -241,7 +240,6 @@ public class ApplicationController {
             int nowPage = showapplications.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
             int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
             int endPage = Math.min(nowPage + 4, showapplications.getTotalPages());
-            
             model.addAttribute("application5", showapplications);
             
             model.addAttribute("nowPage", nowPage);
@@ -255,7 +253,7 @@ public class ApplicationController {
     // 카테고리별 게시판 호출(행사)
     @GetMapping("/program/eventlist")
     public String eventListView(Model model, Long num, String programCategory,
-    							@PageableDefault(page = 0, size = 6, sort = "num", direction = Sort.Direction.DESC)Pageable pageable) {
+    							@PageableDefault(page = 0, size = 6)Pageable pageable) {
     	
             //큰카테고리에 해당하는 상품 가져오기.
     		programCategory = "행사";
@@ -265,7 +263,6 @@ public class ApplicationController {
             int nowPage = showapplications.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
             int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
             int endPage = Math.min(nowPage + 4, showapplications.getTotalPages());
-            
             model.addAttribute("application6", showapplications);
             
             model.addAttribute("nowPage", nowPage);

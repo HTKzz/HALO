@@ -45,6 +45,8 @@ public class ApplicationService {
 	public Long saveApplication(ApplicationDto applicationDto, List<MultipartFile> attachFileList, String name)
 			throws Exception {
 
+		validateDuplicateApplication(applicationDto);
+
 		Member member = memberRepository.findById(name);
 
 		String seat = applicationDto.getSeatDetail();
@@ -68,6 +70,7 @@ public class ApplicationService {
 
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
+				application.setApprovalStatus("미승인");
 				applicationRepository.save(application);
 
 				for (int j = 1; j < 49; j++) {
@@ -86,7 +89,7 @@ public class ApplicationService {
 						attach.setThumb("Y");
 					else
 						attach.setThumb("N");
-					
+
 					attachService.saveAttach(attach, attachFileList.get(j));
 				}
 			}
@@ -99,6 +102,7 @@ public class ApplicationService {
 
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
+				application.setApprovalStatus("미승인");
 				applicationRepository.save(application);
 
 				for (int j = 1; j < 41; j++) {
@@ -108,7 +112,7 @@ public class ApplicationService {
 
 					seatService.saveSeatB(seatB);
 				}
-				
+
 				for (int j = 0; j < attachFileList.size(); j++) {
 					Attach attach = new Attach();
 					attach.setApplication(application);
@@ -117,7 +121,7 @@ public class ApplicationService {
 						attach.setThumb("Y");
 					else
 						attach.setThumb("N");
-					
+
 					attachService.saveAttach(attach, attachFileList.get(j));
 				}
 			}
@@ -130,6 +134,7 @@ public class ApplicationService {
 
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
+				application.setApprovalStatus("미승인");
 				applicationRepository.save(application);
 
 				for (int j = 1; j < 33; j++) {
@@ -139,7 +144,7 @@ public class ApplicationService {
 
 					seatService.saveSeatC(seatC);
 				}
-				
+
 				for (int j = 0; j < attachFileList.size(); j++) {
 					Attach attach = new Attach();
 					attach.setApplication(application);
@@ -148,13 +153,13 @@ public class ApplicationService {
 						attach.setThumb("Y");
 					else
 						attach.setThumb("N");
-					
+
 					attachService.saveAttach(attach, attachFileList.get(j));
 				}
 			}
 
 			if (seat.equals("")) {
-				
+
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(firstDate);
 				cal.add(Calendar.DATE, i);
@@ -162,6 +167,7 @@ public class ApplicationService {
 
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
+				application.setApprovalStatus("미승인");
 				applicationRepository.save(application);
 
 				for (int j = 0; j < attachFileList.size(); j++) {
@@ -172,14 +178,14 @@ public class ApplicationService {
 						attach.setThumb("Y");
 					else
 						attach.setThumb("N");
-					
+
 					attachService.saveAttach(attach, attachFileList.get(j));
 				}
 			}
 		}
-		
+
 		return null;
-		
+
 	}
 
 //		// 상품 등록
@@ -223,10 +229,10 @@ public class ApplicationService {
 		applicationDto.setAttachDtoList(attachDtoList);
 		return applicationDto;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public ApplicationDto getApplicationDtl(Long num) {
-		List<Attach> attachList = attachRepository.findByApplicationNumOrderByNumAsc(num);   // 해당 프로그램 이미지 조회
+		List<Attach> attachList = attachRepository.findByApplicationNumOrderByNumAsc(num); // 해당 프로그램 이미지 조회
 		List<AttachDto> attachDtoList = new ArrayList<>();
 		for (Attach attach : attachList) {
 			AttachDto attachDto = AttachDto.of(attach);
@@ -234,8 +240,7 @@ public class ApplicationService {
 		}
 
 		// 프로그램 아이디를 통해서 프로그램 엔티티를 조회한다. 존해하지 않을때에는 예외를 발생시킴.
-		Application application = applicationRepository.findById(num)
-				.orElseThrow(EntityNotFoundException::new);
+		Application application = applicationRepository.findById(num).orElseThrow(EntityNotFoundException::new);
 		ApplicationDto applicationDto = ApplicationDto.of(application);
 		applicationDto.setAttachDtoList(attachDtoList);
 		return applicationDto;
@@ -245,12 +250,11 @@ public class ApplicationService {
 		// 프로그램 수정
 		Application application = applicationRepository.findById(applicationDto.getNum())
 				.orElseThrow(EntityNotFoundException::new);
-		
+
 		List<Application> appList = applicationRepository.findByName(application.getName());
-		
-		for(int i = 0; i < appList.size(); i++) {
+
+		for (int i = 0; i < appList.size(); i++) {
 			Application application1 = appList.get(i);
-			System.out.println("이름"+applicationDto);
 			application1.updateApplication(applicationDto);
 			List<AttachDto> AttachList = attachRepository.findByApplicationNum(appList.get(i).getNum());
 
@@ -313,8 +317,10 @@ public class ApplicationService {
 	public Page<ApplicationDto> getList1(Pageable pageable, String programCategory) {
 		List<ApplicationDto> list = applicationRepository.getList1(programCategory);
 		List<ApplicationDto> resultList = new ArrayList<ApplicationDto>();
-		int offset2 = pageable.getPageSize();
 		int offset = Long.valueOf(pageable.getOffset()).intValue();
+		int offset2 = pageable.getPageSize();
+		System.out.println(offset);
+		System.out.println(offset2);
 		for (int x = offset; x < offset + offset2; x++) {
 			if (x < list.size()) {
 				List<Application> application = applicationRepository.findByName(list.get(x).getName());
@@ -332,13 +338,13 @@ public class ApplicationService {
 
 		return application;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<ApplicationDto> getApplicationSelect(String name) {
 		List<ApplicationDto> list = applicationRepository.getList2(name);
 		return list;
 	}
-	
+
 	public Application getApplicationDtl1(long anum) {
 		Application application = applicationRepository.findByNum(anum);
 		return application;
@@ -347,6 +353,26 @@ public class ApplicationService {
 	public Application getApplication(Long num) {
 		Application application = applicationRepository.findByNum(num);
 		return application;
+	}
+
+	private void validateDuplicateApplication(ApplicationDto applicationDto) {
+		List<Application> findApplication = applicationRepository.findByName(applicationDto.getName());
+		if (findApplication.size() != 0) {
+			throw new IllegalStateException("이미 등록된 제목입니다."); // 이미 만들어진 이름의 경우 예외를 발생시킨다.
+		}
+	}
+
+	// 승인상태 수정
+	public void updateApprovalStatus(Application application) throws Exception {
+
+		List<Application> appList = applicationRepository.findByName(application.getName());
+
+		for (int i = 0; i < appList.size(); i++) {
+			Application application1 = appList.get(i);
+			applicationRepository.updateApprovalStatus(application1.getNum());
+
+		}
+
 	}
 
 }

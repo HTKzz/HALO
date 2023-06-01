@@ -66,6 +66,9 @@ public class Application extends BaseEntity {
 	@Column(name="place")
 	private String place;
 	
+	// 승인 상태
+	private String approvalStatus;
+	
 	// 프로그램 상세정보
 	@Lob
 	@Column(name="detail", nullable = false)
@@ -97,6 +100,10 @@ public class Application extends BaseEntity {
 	@OneToMany(mappedBy ="application", cascade=CascadeType.ALL)
 	@ToString.Exclude
 	private List<SeatC> seatC;
+	
+	@OneToMany(mappedBy ="application", cascade=CascadeType.ALL)
+	@ToString.Exclude
+	private List<Reservation> reservation;
 	
 	// 프로그램 정보를 업데이트 해준다
 	public void updateApplication(ApplicationDto applicationDto) {

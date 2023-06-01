@@ -38,6 +38,8 @@ public class ReservationController {
 	public String selectSeat(Model model, @RequestParam("test") int anum, @RequestParam("seatDetail") String seat) {
 
 		model.addAttribute("updateDto", new UpdateDto());
+		System.out.println(anum);
+		System.out.println(seat);
 
 		Application application = applicationService.getApplicationDtl1(anum);
 		model.addAttribute("name", application.getName());

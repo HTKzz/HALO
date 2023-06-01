@@ -78,7 +78,7 @@
                         <div class="inputseat" id="inputseat" style="display: block;">
                             <span class="applicationForm-input-group-text">좌석</span>
                             <select class="applicationForm-input" id="select-seat" name="select" th:field="*{seatDetail}">
-                                <option th:value="null">좌석정보를 입력해주세요.</option>
+                                <option th:value="null">좌석정보를 선택해주세요.</option>
                                 <option th:value="A">A</option>
                                 <option th:value="B">B</option>
                                 <option th:value="C">C</option>
@@ -93,7 +93,14 @@
                         <input type="number" th:field="*{price}" name="price" class="applicationForm-input" placeholder="프로그램 가격을 입력하세요." /><br />
 
                         <span class="applicationForm-input-group-text">관람등급</span>
-                        <input type="text" th:field="*{rat}" name="rat" class="applicationForm-input" placeholder="프로그램의 관람등급을 입력하세요." /><br /><br />
+                        <select class="applicationForm-input" name="select" th:field="*{rat}">
+                            <option th:value="null">관람등급을 선택해주세요.</option>
+                            <option th:value="전체관람가">전체관람가</option>
+                            <option th:value="7세이상관람가">7세이상관람가</option>
+                            <option th:value="12세이상관람가">12세이상관람가</option>
+                            <option th:value="15세이상관람가">15세이상관람가</option>
+                            <option th:value="청소년관람불가">청소년관람불가</option>
+                        </select><br /><br />
 
                         <span class="applicationForm-input-group-text">프로그램 기간</span>
                         <input type="date" aria-required="true" th:field="*{sdate}" name="sdate" class="applicationForm-input" placeholder="프로그램 시작일을 입력하세요.(yyyy-mm-dd)" />
@@ -109,7 +116,7 @@
                         <span class="applicationForm-input-group-text">첨부파일</span>
                         <div class="filebox" th:if="${#lists.isEmpty(applicationDto.attachDtoList)}">
                 <div class="attachfile" th:each="numb: ${#numbers.sequence(1,5)}">
-                  <input class="upload-name" value="첨부파일" placeholder="첨부파일" />
+                  <input class="upload-name" value="첨부파일" placeholder="첨부파일" readonly/>
                   <label th:for="file + ${numb}" class="custom-file-label" th:text="파일찾기"></label>
                   <input type="file" class="custom-file-input" name="attachFile" th:id="file + ${numb}" />
                 </div>
@@ -118,7 +125,7 @@
               <div class="filebox" th:if="${not #lists.isEmpty(applicationDto.attachDtoList)}">
                 <div class="attachfile" th:each="attachDto, status: ${applicationDto.attachDtoList}">
                   <input type="hidden" name="attachIds" th:value="${attachDto.num}" />
-                  <input class="upload-name" th:value="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '프로그램이미지' + ${status.index+1}" placeholder="첨부파일" />
+                  <input class="upload-name" th:value="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '프로그램이미지' + ${status.index+1}" placeholder="첨부파일" readonly/>
                   <label th:for="file + ${status.index+1}" class="custom-file-label" th:text="파일찾기"></label>
                   <input type="file" class="custom-file-input" name="attachFile" th:id="file + ${status.index+1}" />
                 </div>
