@@ -150,6 +150,14 @@ public class ReservationController {
     	
     	System.out.println(model);
     	
-    	return "member/myReservation";
+    	return "reservation/myReservation";
+    }
+    
+    //예매내역 취소
+    @PostMapping(value="/cancleMyReservation")
+    public String cancleMyReservation() {
+    	
+    	// mem_num 이랑 reservation_num 을 들고가서 쿼리 업데이트를 통해 상태를 '취소' 로 바꿔준다
+    	return "redirect:/reservation/myReservation";
     }
 }
