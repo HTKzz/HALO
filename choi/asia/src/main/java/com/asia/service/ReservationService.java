@@ -63,4 +63,9 @@ public class ReservationService {
 		List<Reservation> reservations = reservationRepository.findAllByMemberNum(num);
 		return reservations;
 	}
+	
+	public void cancleReservation(Long num) {
+		String cancle = "취소";
+		reservationRepository.cancleReservation(num, cancle);
+	}
 }

@@ -95,7 +95,7 @@ input:focus, input:not(:placeholder-shown) {
 	cursor:pointer;
 }
 
-button:hover {
+.loginbtn:hover {
 	color: #fff;
 	background-color: #848484;
 }

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -41,16 +42,14 @@ public class VocFormDto {
 
 	private Long groupLayer;
 	
+	private Long realNum;
+		
 	/* 이전글다음글 */
 	private Long allVocCnt;
 
 	private String prevContent;
 
 	private String nextContent;
-
-	private Member member;
-	
-	
 
 	private List<AttachDto> attachDtoList = new ArrayList<AttachDto>(); // 글 등록 후 수정할 때 상품 이미지 정보를 저장하는 리스트
 

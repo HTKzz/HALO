@@ -31,7 +31,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EntityListeners(value = { AuditingEntityListener.class })
 @SequenceGenerator(name = "MEMBER_SEQ_GEN", // 시퀀스 제너레이터 이름
 		sequenceName = "MEMBER_SEQ", // 시퀀스 이름
 		initialValue = 1, // 시작값

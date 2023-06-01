@@ -84,8 +84,8 @@
 				<a th:href="@{/voc/update/{num}(num=${voc.num})}" class="voc-update" id="btn">수정</a>
 			</span>
 		
-			<span class="l-button">
-				<a sec:authorize="hasAnyAuthority('ROLE_ADMIN')" th:href="@{/voc/delete/{num}(num=${voc.num})}" class="voc-delete" id="succSubmit">삭제</a>
+			<span class="l-button" th:if="${username} == ${writername} or ${username} == 'admin'">
+				<a th:href="@{/voc/delete/{num}(num=${voc.num})}" class="voc-delete" id="succSubmit">삭제</a>
 				
 			</span>
 			</div>

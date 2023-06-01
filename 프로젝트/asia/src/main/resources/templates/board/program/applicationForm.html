@@ -27,6 +27,7 @@
                     document.getElementById('inputseat').style.display = 'block';
                 } else {
                     document.getElementById('inputseat').style.display = 'none';
+                    $("#select-seat").find("option:eq(0)").prop("selected", true);
                 }
             });
 
@@ -44,7 +45,6 @@
                     return;
                 }
 
-                /* $(this).siblings(".upload-name").html(fileName); <!-- 라벨 태그 안의 내용을 jquery의 .html()을 이용하여 파일명을 입력해준다. --> */
                 $(this).siblings(".upload-name").val(fileName); <!--라벨 태그 안의 내용을 jquery의.html() 을 이용하여 파일명을 입력해준다.-->
             });
         }
@@ -93,7 +93,15 @@
                         <input type="number" th:field="*{price}" name="price" class="applicationForm-input" placeholder="프로그램 가격을 입력하세요." /><br />
 
                         <span class="applicationForm-input-group-text">관람등급</span>
-                        <input type="text" th:field="*{rat}" name="rat" class="applicationForm-input" placeholder="프로그램의 관람등급을 입력하세요." /><br /><br />
+                        <select class="applicationForm-input" name="select" th:field="*{rat}">
+                            <option th:value="null">관람등급을 선택해주세요.</option>
+                            <option th:value="전체관람가">전체관람가</option>
+                            <option th:value="7세이상관람가">7세이상관람가</option>
+                            <option th:value="12세이상관람가">12세이상관람가</option>
+                            <option th:value="15세이상관람가">15세이상관람가</option>
+                            <option th:value="청소년관람불가">청소년관람불가</option>
+                        </select><br /><br />
+
 
                         <span class="applicationForm-input-group-text">프로그램 기간</span>
                         <input type="date" aria-required="true" th:field="*{sdate}" name="sdate" class="applicationForm-input" placeholder="프로그램 시작일을 입력하세요.(yyyy-mm-dd)" />

@@ -319,8 +319,7 @@ public class ApplicationService {
 		List<ApplicationDto> resultList = new ArrayList<ApplicationDto>();
 		int offset = Long.valueOf(pageable.getOffset()).intValue();
 		int offset2 = pageable.getPageSize();
-		System.out.println(offset);
-		System.out.println(offset2);
+		
 		for (int x = offset; x < offset + offset2; x++) {
 			if (x < list.size()) {
 				List<Application> application = applicationRepository.findByName(list.get(x).getName());

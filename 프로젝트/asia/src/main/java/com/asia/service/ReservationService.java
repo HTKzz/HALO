@@ -1,6 +1,7 @@
 package com.asia.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -56,5 +57,15 @@ public class ReservationService {
 	public Reservation getDtl(Long num) {
 		Reservation reservation = reservationRepository.findByNum(num);
 		return reservation;
+	}
+	
+	public List<Reservation> getReservationList(Long num) {
+		List<Reservation> reservations = reservationRepository.findAllByMemberNum(num);
+		return reservations;
+	}
+	
+	public void cancleReservation(Long num) {
+		String cancle = "취소";
+		reservationRepository.cancleReservation(num, cancle);
 	}
 }
