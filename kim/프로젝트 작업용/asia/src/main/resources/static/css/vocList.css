@@ -1,0 +1,132 @@
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+*{
+	margin: 0 auto;
+    padding: 0 auto;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+	font-family: Pretendard-Regular;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: black;
+	letter-spacing: 0.1px;
+	word-break: keep-all;
+	padding: 50px 5%;
+	margin: 0 auto;
+}
+
+.vocList-container {
+	text-align: center;
+	position: relative;
+}
+
+.vocList-title {
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+.vocList-title h1 {
+	font-size: 35px;
+	color : #333333;
+	font-weight: bold;
+	text-align: center;
+}
+
+.vocList-table {
+	font-size: 15px;
+	width: 100%;
+	border-top : 2px solid #333;
+	border-bottom: 1px solid #ccc;
+}
+
+.vocList-table a {
+	color: #333;
+	display: inline-block;
+	line-height: 1.4;
+	word-break: break-all;
+	vertical-align: middle;
+}
+
+.vocList-table a:hover {
+	text-decoration: underline;
+}
+
+.vocList-table .vocList-num .vocList-cnt {
+	width: 100px;
+	text-align: center;
+}
+
+.vocList-table .vocList-date {
+	width: 200px;
+}
+
+.vocList-table th, .vocList-table td {
+	padding: 14px 0;
+}
+
+.vocList-table tbody td {
+	/* padding-left: 28px;
+	padding-right: 14px; */
+	padding : 14px;
+	border-top: 1px solid #e7e7e7;
+	text-align: center;
+}
+
+#voc-name {
+	text-align: left;
+	padding-left: 25px;
+}
+
+
+.page-item:hover a {
+	color: #fdfdfd;
+	background-color: #1d1f20;
+	border: solid 1px #1d1f20;
+}
+
+.page-item.active a {
+	color: #fdfdfd;
+	background-color: #1d1f20;
+	border: solid 1px #1d1f20;
+}
+
+.vocList-btn a:hover {
+	color: #fdfdfd;
+}
+
+.vocList-btn:hover {
+	color: #fdfdfd;
+	background-color: #1d1f20;
+	border: solid 1px #1d1f20;
+}
+
+.vocList-btn {
+	color: #7d7d7d;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 14px;
+	padding: 7px 31px;
+	position: absolute;
+	right: 10px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+	background: none;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	transition: 0.4s;
+	cursor: pointer;
+}
+
+.fieldError {
+	color: #bd2130;
+}
