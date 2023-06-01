@@ -27,7 +27,11 @@
                     var b = document.querySelectorAll('.selectedSeat');
                     var List = [];
                     for (let i = 0; i < b.length; i++) {
-                        List.push(b[i].innerText);
+                    	if(i == 0) {
+                    		List.push(b[i].innerText);
+                    	} else {
+                            List.push(' '+b[i].innerText);
+                    	}
                     }
                     $('input[id=seat]').attr('value', List);
 
@@ -41,7 +45,11 @@
                     var b = document.querySelectorAll('.selectedSeat');
                     var List = [];
                     for (let i = 0; i < b.length; i++) {
-                        List.push(b[i].innerText);
+                    	if(i == 0) {
+                    		List.push(b[i].innerText);
+                    	} else {
+                            List.push(' '+b[i].innerText);
+                    	}
                     }
                     $('input[id=seat]').attr('value', List);
                 }

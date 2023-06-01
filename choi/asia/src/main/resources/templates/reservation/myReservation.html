@@ -34,16 +34,16 @@ layout:decorate="~{layouts/layout1}">
 			</a>
 		</div>
 		<section class="myReservationForm-contents">
-			<form action="/members/cancleMyReservation" role="form" method="post" class="myReservation">
-			
-				<div class="myReservationForm-titleDiv">
+			<form role="form" method="post" class="myReservation">
+				
+				<span class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
 					<span class="myReservationForm-h4-bigger" th:text="${reservations[0].member.name}"></span>
-					<span class="myReservationForm-h4">님 예매 내역</span>
-				</div>
+					님 
+				</span>
+				<span class="myReservationForm-h4">예매 내역</span>
 				<table class="myReservationForm-table">
                 	<thead>
                         <tr class="myReservationForm-tr">
-                        	
                             <th class="myReservationForm-name reservation-th">상품명</th>
                             <th class="myReservationForm-rdate reservation-th">예매일</th>
                             <th class="myReservationForm-udate reservation-th">관람일</th>
@@ -52,16 +52,77 @@ layout:decorate="~{layouts/layout1}">
                             <th class="myReservationForm-stat reservation-th">상태</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="myReservationForm-tr" th:each="reservation:${reservations}">
-                            
+                    
+                    <tbody th:if="${reservations != 'nothing'}">
+                        <tr class="myReservationForm-tr" th:if="${reservation.stat != '취소'}" th:each="reservation:${reservations}">
                             <td class="myReservationForm-name reservation-td"th:text="${reservation.application.name}">상품명</td>
                             <td class="myReservationForm-rdate reservation-td" th:text="${reservation.rdate}">예매일</td>
                             <td class="myReservationForm-udate reservation-td" th:text="${reservation.application.udate}">관람일</td>
-                            <td class="myReservationForm-num reservation-td" th:text="${reservation.application.place}">장소</td>
-                            <td class="myReservationForm-num reservation-td" th:text="${reservation.seat}">좌석</td>
+                            <td class="myReservationForm-place reservation-td" th:text="${reservation.application.place}">장소</td>
+                            <td class="myReservationForm-seat reservation-td" th:text="${reservation.seat}">좌석</td>
                             <td class="myReservationForm-stat reservation-td" th:text="${reservation.stat}">상태</td>
-                            <td class="myReservationForm-stat reservation-td"><button>취소</button>
+                            <td class="myReservationForm-stat reservation-td" th:if="${reservation.stat != '취소'}">
+                            <button th:formaction="@{/reservations/cancleMyReservation/{num}(num=${reservation.num})}" class="myReservationForm-cancle">취소</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <span class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
+					<span class="myReservationForm-h4-bigger" th:text="${reservations[0].member.name}"></span>
+					님 
+				</span>
+				<span class="myReservationForm-h4">취소 내역</span>
+				<table class="myReservationForm-table">
+                	<thead>
+                        <tr class="myReservationForm-tr">
+                            <th class="myReservationForm-name reservation-th">상품명</th>
+                            <th class="myReservationForm-rdate reservation-th">예매일</th>
+                            <th class="myReservationForm-udate reservation-th">관람일</th>
+                            <th class="myReservationForm-place reservation-th">장소</th>
+                            <th class="myReservationForm-seat reservation-th">좌석</th>
+                            <th class="myReservationForm-stat reservation-th">상태</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody th:if="${reservations != 'nothing'}">
+                        <tr class="myReservationForm-tr" th:if="${reservation.stat == '취소'}" th:each="reservation:${reservations}">
+                            <td class="myReservationForm-name reservation-td"th:text="${reservation.application.name}">상품명</td>
+                            <td class="myReservationForm-rdate reservation-td" th:text="${reservation.rdate}">예매일</td>
+                            <td class="myReservationForm-udate reservation-td" th:text="${reservation.application.udate}">관람일</td>
+                            <td class="myReservationForm-place reservation-td" th:text="${reservation.application.place}">장소</td>
+                            <td class="myReservationForm-seat reservation-td" th:text="${reservation.seat}">좌석</td>
+                            <td class="myReservationForm-stat reservation-td" th:text="${reservation.stat}">상태</td>
+                            <td class="myReservationForm-stat reservation-td"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <span class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
+					<span class="myReservationForm-h4-bigger" th:text="${reservations[0].member.name}"></span>
+					님 
+				</span>
+				<span class="myReservationForm-h4">환불 내역</span>
+				<table class="myReservationForm-table">
+                	<thead>
+                        <tr class="myReservationForm-tr">
+                            <th class="myReservationForm-name reservation-th">상품명</th>
+                            <th class="myReservationForm-rdate reservation-th">예매일</th>
+                            <th class="myReservationForm-udate reservation-th">관람일</th>
+                            <th class="myReservationForm-place reservation-th">장소</th>
+                            <th class="myReservationForm-seat reservation-th">좌석</th>
+                            <th class="myReservationForm-stat reservation-th">상태</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody th:if="${reservations != 'nothing'}">
+                        <tr class="myReservationForm-tr" th:if="${reservation.stat == '취소'}" th:each="reservation:${reservations}">
+                            <!-- <td class="myReservationForm-name reservation-td"th:text="${reservation.application.name}">상품명</td>
+                            <td class="myReservationForm-rdate reservation-td" th:text="${reservation.rdate}">예매일</td>
+                            <td class="myReservationForm-udate reservation-td" th:text="${reservation.application.udate}">관람일</td>
+                            <td class="myReservationForm-place reservation-td" th:text="${reservation.application.place}">장소</td>
+                            <td class="myReservationForm-seat reservation-td" th:text="${reservation.seat}">좌석</td>
+                            <td class="myReservationForm-stat reservation-td" th:text="${reservation.stat}">상태</td>
+                            <td class="myReservationForm-cancle reservation-td" style="width:70px;">환불</td> -->
                         </tr>
                     </tbody>
                 </table>

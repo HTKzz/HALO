@@ -33,7 +33,7 @@ public class ReservationController {
 
 	private final SeatService seatService;
 	private final ApplicationService applicationService;
-	private final ReservationService reservationSerivce;
+	private final ReservationService reservationService;
 	private final MemberService memberService;
 
 	//좌석o 선택페이지 이동
@@ -85,7 +85,7 @@ public class ReservationController {
 
 		seatService.updateSeat(updateDto, anum, seat1);
 
-		reservationSerivce.saveReservation(application, name, seat, cnt, price);
+		reservationService.saveReservation(application, name, seat, cnt, price);
 
 		return "redirect:/";
 	}
@@ -111,7 +111,7 @@ public class ReservationController {
 
 		String seat = null;
 
-		reservationSerivce.saveReservation(application, name, seat, cnt, price);
+		reservationService.saveReservation(application, name, seat, cnt, price);
 
 		return "redirect:/";
 	}
@@ -120,7 +120,7 @@ public class ReservationController {
 	@GetMapping(value = "/delete/{num}")
 	public String reservationDelete(@PathVariable Long num) {
 
-		Reservation reservation = reservationSerivce.getDtl(num);
+		Reservation reservation = reservationService.getDtl(num);
 
 		String seatDetail = reservation.getApplication().getSeatDetail();
 
@@ -134,7 +134,7 @@ public class ReservationController {
 			seatService.cancelUpdateSeat(seatDetail, anum, array);
 		}
 		
-		reservationSerivce.deleteReservation(num);
+		reservationService.deleteReservation(num);
 
 		return "redirect:/admin/reservationMng";
 	}
@@ -145,19 +145,38 @@ public class ReservationController {
     	
     	String id = principal.getName();
     	Member member = memberService.findUserMyPage(id);
-    	List<Reservation> reservations = reservationSerivce.getReservationList(member.getNum());
-    	model.addAttribute("reservations", reservations);
+    	List<Reservation> reservations = reservationService.getReservationList(member.getNum());
     	
-    	System.out.println(model);
+    	if(reservations.isEmpty()) {
+    		model.addAttribute("reservations", "nothing");
+    	
+    	}else {
+    		model.addAttribute("reservations", reservations);
+    	}
     	
     	return "reservation/myReservation";
     }
     
     //예매내역 취소
-    @PostMapping(value="/cancleMyReservation")
-    public String cancleMyReservation() {
+    @PostMapping(value="/cancleMyReservation/{num}")
+    public String cancleMyReservation(@PathVariable Long num) {
     	
-    	// mem_num 이랑 reservation_num 을 들고가서 쿼리 업데이트를 통해 상태를 '취소' 로 바꿔준다
-    	return "redirect:/reservation/myReservation";
+    	Reservation reservation = reservationService.getDtl(num);
+
+		String seatDetail = reservation.getApplication().getSeatDetail();
+
+		Long deleteSeat = reservation.getApplication().getNum();
+		int anum = Long.valueOf(deleteSeat).intValue();
+
+		if (seatDetail != null) {
+			String selectSeat = reservation.getSeat();
+			String[] array = selectSeat.split(", ");
+
+			seatService.cancelUpdateSeat(seatDetail, anum, array);
+		}
+    	
+		reservationService.cancleReservation(num);
+		
+    	return "redirect:/reservations/myReservation";
     }
 }
