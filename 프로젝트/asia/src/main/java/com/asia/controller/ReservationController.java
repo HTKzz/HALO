@@ -16,8 +16,10 @@ import com.asia.dto.SeatBDto;
 import com.asia.dto.SeatCDto;
 import com.asia.dto.UpdateDto;
 import com.asia.entity.Application;
+import com.asia.entity.Member;
 import com.asia.entity.Reservation;
 import com.asia.service.ApplicationService;
+import com.asia.service.MemberService;
 import com.asia.service.ReservationService;
 import com.asia.service.SeatService;
 
@@ -31,7 +33,8 @@ public class ReservationController {
 
 	private final SeatService seatService;
 	private final ApplicationService applicationService;
-	private final ReservationService reservationSerivce;
+	private final ReservationService reservationService;
+	private final MemberService memberService;
 
 	//좌석o 선택페이지 이동
 	@PostMapping(value = "/new")
@@ -82,7 +85,7 @@ public class ReservationController {
 
 		seatService.updateSeat(updateDto, anum, seat1);
 
-		reservationSerivce.saveReservation(application, name, seat, cnt, price);
+		reservationService.saveReservation(application, name, seat, cnt, price);
 
 		return "redirect:/";
 	}
@@ -108,7 +111,7 @@ public class ReservationController {
 
 		String seat = null;
 
-		reservationSerivce.saveReservation(application, name, seat, cnt, price);
+		reservationService.saveReservation(application, name, seat, cnt, price);
 
 		return "redirect:/";
 	}
@@ -117,7 +120,7 @@ public class ReservationController {
 	@GetMapping(value = "/delete/{num}")
 	public String reservationDelete(@PathVariable Long num) {
 
-		Reservation reservation = reservationSerivce.getDtl(num);
+		Reservation reservation = reservationService.getDtl(num);
 
 		String seatDetail = reservation.getApplication().getSeatDetail();
 
@@ -131,8 +134,49 @@ public class ReservationController {
 			seatService.cancelUpdateSeat(seatDetail, anum, array);
 		}
 		
-		reservationSerivce.deleteReservation(num);
+		reservationService.deleteReservation(num);
 
 		return "redirect:/admin/reservationMng";
 	}
+	
+	//내 예매내역 호출
+    @GetMapping(value="/myReservation")
+    public String myReservation(Model model, Principal principal) {
+    	
+    	String id = principal.getName();
+    	Member member = memberService.findUserMyPage(id);
+    	List<Reservation> reservations = reservationService.getReservationList(member.getNum());
+    	
+    	if(reservations.isEmpty()) {
+    		model.addAttribute("reservations", "nothing");
+    	
+    	}else {
+    		model.addAttribute("reservations", reservations);
+    	}
+    	
+    	return "reservation/myReservation";
+    }
+    
+    //예매내역 취소
+    @PostMapping(value="/cancleMyReservation/{num}")
+    public String cancleMyReservation(@PathVariable Long num) {
+    	
+    	Reservation reservation = reservationService.getDtl(num);
+
+		String seatDetail = reservation.getApplication().getSeatDetail();
+
+		Long deleteSeat = reservation.getApplication().getNum();
+		int anum = Long.valueOf(deleteSeat).intValue();
+
+		if (seatDetail != null) {
+			String selectSeat = reservation.getSeat();
+			String[] array = selectSeat.split(", ");
+
+			seatService.cancelUpdateSeat(seatDetail, anum, array);
+		}
+    	
+		reservationService.cancleReservation(num);
+		
+    	return "redirect:/reservations/myReservation";
+    }
 }

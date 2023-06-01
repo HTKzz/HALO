@@ -45,10 +45,16 @@ public interface VocRepository extends JpaRepository<Voc, Long>, QuerydslPredica
 	@Query(value = "select name from Voc where Voc_num = :num +1", nativeQuery = true)
 	String getNextContent(Long num);
 	
-	@Query(value = "select voc_num, name from (SELECT * FROM voc ORDER BY voc_num DESC) WHERE ROWNUM= 1", nativeQuery = true)
+	@Query(value = "select voc_num from (SELECT * FROM voc ORDER BY voc_num DESC) WHERE ROWNUM= 1", nativeQuery = true)
 	Long getRealNum();
 	
 	@Modifying
 	@Query("update Voc set real_num = real_num + 1 where realNum >= :realNum")
 	void updateRealNum(Long realNum);
+	
+	// 검색 제목
+	Page<Voc> findByNameContaining(String vocListSearch, Pageable pageable);
+
+	// 검색 작성자
+	Page<Voc> findByMemberIdContaining(String vocListSearch, Pageable pageable);
 }

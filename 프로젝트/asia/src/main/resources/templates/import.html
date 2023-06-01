@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<title>Insert title here</title>
+</head>
+<script>
+$( document ).ready( function() {
+	var IMP = window.IMP; 
+    IMP.init('imp32626541');
+
+    
+});
+
+function requestPay() {
+    IMP.request_pay({
+    	pg: "kcp.store-24677c12-63",
+        pay_method: "card",
+        merchant_uid: "OR1",
+        name: "노르웨이 회전 의자",
+        amount: 64900
+    }, function (rsp) { // callback
+    	if ( rsp.success ) {
+   	      // 결제 성공 시 로직
+   	      alert('결제가 완료되었습니다.');
+   	      // DB에 결과 저장 로직 구현
+   	    } else {
+   	      // 결제 실패 시 로직
+   	      var msg = '결제에 실패하였습니다.';
+   	      msg += '에러내용 : ' + rsp.error_msg;
+   	      alert(msg);
+   	    }
+    });
+}
+</script>
+<body>
+
+<div class="second" align="center">
+                    <img class="card-img-top" width="20" height="300" src="/files/kakao.jpg" alt="..." />
+                    <p style="font-weight: bold">카카오페이 현재 사용가능</p>
+                    <label class="box-radio-input"><input type="radio" name="cp_item" value="5000"><span>5,000원</span></label>
+                    <label class="box-radio-input"><input type="radio" name="cp_item" value="10000"><span>10,000원</span></label>
+                    <label class="box-radio-input"><input type="radio" name="cp_item" value="15000"><span>15,000원</span></label><br/>
+                    <label class="box-radio-input"><input type="radio" name="cp_item" value="20000"><span>20,000원</span></label>
+                    <label class="box-radio-input"><input type="radio" name="cp_item" value="25000"><span>25,000원</span></label>
+                    <label class="box-radio-input"><input type="radio" name="cp_item" value="30000"><span>30,000원</span></label><br/>
+                    <label class="box-radio-input"><input type="radio" name="cp_item" value="35000"><span>35,000원</span></label>
+                    <label class="box-radio-input"><input type="radio" name="cp_item" value="40000"><span>40,000원</span></label>
+                    <label class="box-radio-input"><input type="radio" name="cp_item" value="50000"><span>50,000원</span></label>
+                    <p  style="color: #ac2925; margin-top: 30px">카카오페이의 최소 충전금액은 5,000원이며 <br/>최대 충전금액은 50,000원 입니다.</p>
+                    <button type="button" class="btn btn-outline-dark" id="charge_kakao">충 전 하 기</button>
+                </div>
+
+
+<button onclick="requestPay()">결제하기</button> <!-- 결제하기 버튼 생성 -->
+</body>
+</html>
