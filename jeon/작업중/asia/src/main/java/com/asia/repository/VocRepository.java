@@ -25,7 +25,7 @@ public interface VocRepository extends JpaRepository<Voc, Long>, QuerydslPredica
 	// 삭제
 	void deleteByNum(Long num);
 
-	// 답글 (parentVoc originNo)
+	// 답글에
 	Voc findByNum(Long num);
 
 	// 답글
@@ -33,7 +33,6 @@ public interface VocRepository extends JpaRepository<Voc, Long>, QuerydslPredica
 	@Query("update Voc set group_Ord = group_Ord + 1 where origin_No = :originNo and group_Ord > :groupOrd")
 	void updateGroupOrd(Long originNo, Long groupOrd);
 
-	// 글 작성 후 바로 상세보기 가능하게
 	Voc findByContent(String content);
 
 	// 상세보기 이전글 다음글
@@ -46,10 +45,18 @@ public interface VocRepository extends JpaRepository<Voc, Long>, QuerydslPredica
 	@Query(value = "select name from Voc where Voc_num = :num +1", nativeQuery = true)
 	String getNextContent(Long num);
 	
+	@Query(value = "select voc_num, name from (SELECT * FROM voc ORDER BY voc_num DESC) WHERE ROWNUM= 1", nativeQuery = true)
+	Long getRealNum();
 	
+	@Modifying
+	@Query("update Voc set real_num = real_num + 1 where realNum >= :realNum")
+	void updateRealNum(Long realNum);
 	
-	// 검색 글제목으로+++++++++++++++++++++
+	// 검색 제목
 	Page<Voc> findByNameContaining(String vocListSearch, Pageable pageable);
-	Page<Voc> findByContentContaining(String vocListSearch, Pageable pageable);
-
+	
+	// 검색 작성자
+	Page<Voc> findByMemberIdContaining(String vocListSearch, Pageable pageable);
+	
+	
 }

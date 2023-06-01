@@ -109,7 +109,7 @@
                         <span class="applicationForm-input-group-text">첨부파일</span>
                         <div class="filebox" th:if="${#lists.isEmpty(applicationDto.attachDtoList)}">
                 <div class="attachfile" th:each="numb: ${#numbers.sequence(1,5)}">
-                  <input class="upload-name" value="첨부파일" placeholder="첨부파일" />
+                  <input class="upload-name" value="첨부파일" placeholder="첨부파일" readonly/>
                   <label th:for="file + ${numb}" class="custom-file-label" th:text="파일찾기"></label>
                   <input type="file" class="custom-file-input" name="attachFile" th:id="file + ${numb}" />
                 </div>
@@ -118,7 +118,7 @@
               <div class="filebox" th:if="${not #lists.isEmpty(applicationDto.attachDtoList)}">
                 <div class="attachfile" th:each="attachDto, status: ${applicationDto.attachDtoList}">
                   <input type="hidden" name="attachIds" th:value="${attachDto.num}" />
-                  <input class="upload-name" th:value="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '프로그램이미지' + ${status.index+1}" placeholder="첨부파일" />
+                  <input class="upload-name" th:value="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '프로그램이미지' + ${status.index+1}" placeholder="첨부파일" readonly/>
                   <label th:for="file + ${status.index+1}" class="custom-file-label" th:text="파일찾기"></label>
                   <input type="file" class="custom-file-input" name="attachFile" th:id="file + ${status.index+1}" />
                 </div>

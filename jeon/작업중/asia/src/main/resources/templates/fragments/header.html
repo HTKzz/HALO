@@ -64,6 +64,14 @@ layout:decorate="~{layouts/layout1}">
 				<div class="close-btn"></div>
 				<li class="menu-item" sec:authorize="isAuthenticated()"><a href="/board/program/apply">상품 신청</a></li>
 				<li class="menu-item" sec:authorize="isAnonymous() || isAuthenticated()">
+					<a class="sub-btn" href="#">ACC 소개</a>
+					<ul class="sub-menu">
+						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/useinfo">이용안내</a></li>
+						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="#"></a></li>
+						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="#"></a></li>
+					</ul>
+				</li>
+				<li class="menu-item" sec:authorize="isAnonymous() || isAuthenticated()">
 					<a class="sub-btn" href="#">소식</a>
 					<ul class="sub-menu">
 						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/notices/lists">공지사항</a></li>

@@ -16,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.asia.dto.AttachDto;
 import com.asia.dto.VocFormDto;
 import com.asia.entity.Attach;
+import com.asia.entity.Member;
 import com.asia.entity.Voc;
 import com.asia.repository.AttachRepository;
+import com.asia.repository.MemberRepository;
 import com.asia.repository.VocRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -32,6 +34,7 @@ public class VocService {
 	private final VocRepository vocRepository;
 	private final AttachService attachService;
 	private final AttachRepository attachRepository;
+	private final MemberRepository memberRepository;
 
 	// 조회수
 	@Transactional
@@ -40,12 +43,23 @@ public class VocService {
 	}
 
 	// 새글등록
-	public Long saveVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList) throws Exception {
+	public Long saveVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, String name) throws Exception {
 
+		Member member = memberRepository.findById(name);
+		
 		Voc voc = vocFormDto.createVoc();
 		voc.setGroupOrd((long) 0);
 		voc.setGroupLayer((long) 0);
 		
+		Long realNum = vocRepository.getRealNum();
+		
+		if(realNum == null) {
+			voc.setRealNum((long) 1);
+		} else {
+			voc.setRealNum(realNum+1);
+		}
+		
+		voc.setMember(member);
 		vocRepository.save(voc);
 		
 		voc.setOriginNo(voc.getNum());
@@ -65,11 +79,6 @@ public class VocService {
 		return voc.getNum();
 	}
 
-	// 리스트 조회
-	public List<Voc> vocList() {
-		return vocRepository.findAll();
-	}
-
 	// 게시글 불러오기
 	public Voc vocDetail(Long num) { /// Voc entity 가져와야
 		return vocRepository.findById(num).get();
@@ -80,7 +89,7 @@ public class VocService {
 		vocRepository.deleteByNum(num);
 	}
 
-	// 수정-등록된 상품 불러오는 메서드
+	// 수정 -등록된 상품 불러오는 메서드
 	@Transactional(readOnly = true) // 읽어오는 트랜잭션을 읽기전용으로 설정, 이럴 경우 JPA가 변경감지(더티체킹)를 수행하지 않아서 성능향상
 	public VocFormDto getvocDtl(Long num) {
 		List<Attach> attachList = attachRepository.findByVocNumOrderByNumAsc(num); //해당 이미지 조회
@@ -100,7 +109,6 @@ public class VocService {
 		vocFormDto.setPrevContent(prevContent);
 		vocFormDto.setNextContent(nextContent);
 		vocFormDto.setAttachDtoList(attachDtoList);
-		vocFormDto.setMember(null);
 		
 		return vocFormDto;
 	}
@@ -119,13 +127,16 @@ public class VocService {
 		return voc.getNum();
 	}
 	
+	// voc리스트 조회
 	public Page<Voc> getVocLists(Pageable pageable){
 		return vocRepository.getVocLists(pageable);
 	}
 
 	//답글등록
-	public Long saveReplyVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, Long parentNo)throws Exception{
+	public Long saveReplyVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, Long parentNo, String name) throws Exception{
 
+		Member member = memberRepository.findById(name);//회원정보가져오기
+		
 		Voc presentVoc = vocRepository.findByNum(parentNo);//답글다는글
 		
 		Voc voc = vocFormDto.createVoc();
@@ -135,6 +146,9 @@ public class VocService {
 		voc.setOriginNo(presentVoc.getOriginNo());
 		voc.setGroupOrd(presentVoc.getGroupOrd());
 		voc.setGroupLayer(presentVoc.getGroupLayer());
+		vocRepository.updateRealNum(presentVoc.getRealNum());
+		voc.setRealNum(presentVoc.getRealNum());
+		voc.setMember(member);
 		vocRepository.save(voc);
 		vocRepository.updateGroupOrd(voc.getOriginNo(), presentVoc.getGroupOrd());
 		
@@ -165,7 +179,8 @@ public class VocService {
 		
 	}
 
-	public VocFormDto getvocCtD(String content) { //글 등록 후 바로 상세보기로
+	//글 등록 후 바로 상세보기로
+	public VocFormDto getvocCtD(String content) { 
 		Voc voc1 = vocRepository.findByContent(content);
 		 
 		List<Attach> attachList = attachRepository.findByVocNumOrderByNumAsc(voc1.getNum()); //해당 이미지 조회
@@ -175,41 +190,39 @@ public class VocService {
 			attachDtoList.add(attachDto);
 		}
 		
-		Voc voc = vocRepository.findById(voc1.getNum()).orElseThrow(EntityNotFoundException::new);
-		VocFormDto vocFormDto = VocFormDto.of(voc);
+//		Voc voc = vocRepository.findById(voc1.getNum()).orElseThrow(EntityNotFoundException::new);
+		VocFormDto vocFormDto = VocFormDto.of(voc1);
+		
+		long allVocCnt = vocRepository.getList();
+		String prevContent = vocRepository.getPrevContent(voc1.getNum());
+		String nextContent = vocRepository.getNextContent(voc1.getNum());
+		vocFormDto.setAllVocCnt(allVocCnt);
+		vocFormDto.setPrevContent(prevContent);
+		vocFormDto.setNextContent(nextContent);
+		
 		vocFormDto.setAttachDtoList(attachDtoList);
+		
 		return vocFormDto;
 	}
 
 	public Voc findByNum(Long num) {
 		return vocRepository.findByNum(num);
 	}
-
+	
 	// 검색+++++++++++++++++++++
-	public Page<Voc> vocListSearchByName(String vocListSearch, Pageable pageable){
-		return vocRepository.findByNameContaining(vocListSearch, pageable);
-	}
-	public Page<Voc> vocListSearchByContent(String vocListSearch, Pageable pageable){
-		return vocRepository.findByContentContaining(vocListSearch, pageable);
-	}
+		public Page<Voc> vocListSearchByName(String vocListSearch, Pageable pageable){
+			return vocRepository.findByNameContaining(vocListSearch, pageable);
+		}
+		
+		public Page<Voc> vocListSearchBywriter(String vocListSearch, Pageable pageable){
+			return vocRepository.findByMemberIdContaining(vocListSearch, pageable);
+		}
+
 
 	
 	
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/* */
-
 	
 	
 	
