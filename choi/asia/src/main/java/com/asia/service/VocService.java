@@ -16,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.asia.dto.AttachDto;
 import com.asia.dto.VocFormDto;
 import com.asia.entity.Attach;
+import com.asia.entity.Member;
 import com.asia.entity.Voc;
 import com.asia.repository.AttachRepository;
+import com.asia.repository.MemberRepository;
 import com.asia.repository.VocRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -32,6 +34,7 @@ public class VocService {
 	private final VocRepository vocRepository;
 	private final AttachService attachService;
 	private final AttachRepository attachRepository;
+	private final MemberRepository memberRepository;
 
 	// 조회수
 	@Transactional
@@ -40,12 +43,23 @@ public class VocService {
 	}
 
 	// 새글등록
-	public Long saveVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList) throws Exception {
-
+	public Long saveVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, String name) throws Exception {
+		
+		Member member = memberRepository.findById(name);
+		
 		Voc voc = vocFormDto.createVoc();
 		voc.setGroupOrd((long) 0);
 		voc.setGroupLayer((long) 0);
 		
+		Long realNum = vocRepository.getRealNum();
+		
+		if(realNum == null) {
+			voc.setRealNum((long) 1);
+		} else {
+			voc.setRealNum(realNum+1);
+		}
+		
+		voc.setMember(member);
 		vocRepository.save(voc);
 		
 		voc.setOriginNo(voc.getNum());
@@ -91,8 +105,16 @@ public class VocService {
 		}
 		
 		Voc voc = vocRepository.findById(num).orElseThrow(EntityNotFoundException::new);
+		
+		long allVocCnt = vocRepository.getList();
+		String prevContent = vocRepository.getPrevContent(num);
+		String nextContent = vocRepository.getNextContent(num);
 		VocFormDto vocFormDto = VocFormDto.of(voc);
+		vocFormDto.setAllVocCnt(allVocCnt);
+		vocFormDto.setPrevContent(prevContent);
+		vocFormDto.setNextContent(nextContent);
 		vocFormDto.setAttachDtoList(attachDtoList);
+		
 		return vocFormDto;
 	}
 
@@ -116,8 +138,10 @@ public class VocService {
 	}
 
 	//답글등록
-	public Long saveReplyVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, Long parentNo)throws Exception{
-
+	public Long saveReplyVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, Long parentNo, String name)throws Exception{
+		
+		Member member = memberRepository.findById(name);
+		
 		Voc presentVoc = vocRepository.findByNum(parentNo);//답글다는글
 		
 		Voc voc = vocFormDto.createVoc();
@@ -127,6 +151,9 @@ public class VocService {
 		voc.setOriginNo(presentVoc.getOriginNo());
 		voc.setGroupOrd(presentVoc.getGroupOrd());
 		voc.setGroupLayer(presentVoc.getGroupLayer());
+		vocRepository.updateRealNum(presentVoc.getRealNum());
+		voc.setRealNum(presentVoc.getRealNum());
+		voc.setMember(member);
 		vocRepository.save(voc);
 		vocRepository.updateGroupOrd(voc.getOriginNo(), presentVoc.getGroupOrd());
 		
@@ -157,8 +184,10 @@ public class VocService {
 		
 	}
 
-	public VocFormDto getvocCtD(String content) { //글 등록 후 바로 상세보기로
-		Voc voc1 = vocRepository.findByContent(content);
+	public VocFormDto getVoc() { //글 등록 후 바로 상세보기로
+		Long vocNum = vocRepository.getRealNum();
+		
+		Voc voc1 = vocRepository.findByNum(vocNum);
 		 
 		List<Attach> attachList = attachRepository.findByVocNumOrderByNumAsc(voc1.getNum()); //해당 이미지 조회
 		List<AttachDto> attachDtoList = new ArrayList<AttachDto>();
@@ -167,9 +196,18 @@ public class VocService {
 			attachDtoList.add(attachDto);
 		}
 		
-		Voc voc = vocRepository.findById(voc1.getNum()).orElseThrow(EntityNotFoundException::new);
-		VocFormDto vocFormDto = VocFormDto.of(voc);
+//		Voc voc = vocRepository.findById(voc1.getNum()).orElseThrow(EntityNotFoundException::new);
+		VocFormDto vocFormDto = VocFormDto.of(voc1);
+		
+		long allVocCnt = vocRepository.getList();
+		String prevContent = vocRepository.getPrevContent(voc1.getNum());
+		String nextContent = vocRepository.getNextContent(voc1.getNum());
+		vocFormDto.setAllVocCnt(allVocCnt);
+		vocFormDto.setPrevContent(prevContent);
+		vocFormDto.setNextContent(nextContent);
+		
 		vocFormDto.setAttachDtoList(attachDtoList);
+		
 		return vocFormDto;
 	}
 
@@ -177,30 +215,13 @@ public class VocService {
 		return vocRepository.findByNum(num);
 	}
 
+	// 검색 vocService
+	public Page<Voc> vocListSearchByName(String vocListSearch, Pageable pageable){
+		return vocRepository.findByNameContaining(vocListSearch, pageable);
+	}
 
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/* */
-
-	
-	
-	
-	
-	
-	
-	
+	public Page<Voc> vocListSearchBywriter(String vocListSearch, Pageable pageable){
+		return vocRepository.findByMemberIdContaining(vocListSearch, pageable);
+	}
 	
 }

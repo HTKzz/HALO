@@ -147,7 +147,7 @@ public class MemberController {
 		return "success";
 	}
 	
-    // 마이페이지 호출
+	// 마이페이지 호출
     @GetMapping(value="/myPage")
     public String myPage(Model model, Principal principal) {
         String name = principal.getName();

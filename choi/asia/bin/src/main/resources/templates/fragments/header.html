@@ -1,142 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security" 
-layout:decorate="~{layouts/layout1}">
-
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
-</head>
-
-<th:block layout:fragment="script">
-<script th:inline="javascript">
-    //jquery for toggle dropdown menus
-    $(document).ready(function(){
-      //toggle sub-menus
-      $(".sub-btn").click(function(){
-        $(this).next(".sub-menu").slideToggle();
-      });
-
-      //toggle more-menus
-      $(".more-btn").click(function(){
-        $(this).next(".more-menu").slideToggle();
-      });
-    });
-
-    //javascript for the responsive navigation menu
-    var menu = document.querySelector(".menu");
-    var menuBtn = document.querySelector(".menu-btn");
-    var closeBtn = document.querySelector(".close-btn");
-
-    menuBtn.addEventListener("click", () => {
-      menu.classList.add("active");
-    });
-
-    closeBtn.addEventListener("click", () => {
-      menu.classList.remove("active");
-    });
-
-    //javascript for the navigation bar effects on scroll
-    window.addEventListener("scroll", function(){
-      var header = document.querySelector("header");
-      header.classList.toggle("sticky", window.scrollY > 0);
-    });
-    </script>
-</th:block>
-
-<th:block layout:fragment="css">	
-	<style>
-
-
-</style>
-</th:block>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<meta charset="UTF-8">
 <div class="header" th:fragment="header">
-
-    <link th:href="@{/css/header.css}" rel="stylesheet">
-	<header>
-		<a href="/" class="logo"><img src=/images/ACC.jpg class="logoimage" /></a>
-		<div class="navigation">
-			<ul class="menu">
-				<div class="close-btn"></div>
-				<li class="menu-item" sec:authorize="isAuthenticated()"><a href="/board/program/apply">상품 신청</a></li>
-				<li class="menu-item" sec:authorize="isAnonymous() || isAuthenticated()">
-					<a class="sub-btn" href="#">소식</a>
-					<ul class="sub-menu">
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/notices/lists">공지사항</a></li>
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/voc/list">VOC</a></li>
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="#"></a></li>
-					</ul>
-				</li>
-
-				<li class="menu-item" sec:authorize="isAnonymous() || isAuthenticated()">
-					<a href="#">프로그램</a>
-					<ul class="sub-menu">
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/board/program/showlist">공연</a></li>
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/board/program/exhibitionlist">전시</a></li>
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/board/program/eventlist">행사</a></li>
-					</ul>
-				</li>
-
-				<li class="menu-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-					<a href="#">관리자</a>
-					<ul class="sub-menu">
-						<li class="sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/reservationMng">예매관리</a></li>
-						<li class="sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/applications">상품관리</a></li>
-						<li class="sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/memberMngList">회원관리</a></li>
-					</ul>
-				</li>
-
-				
-
-			</ul>
-		</div>
-
-		<nav>
-			<ul>
-				<li class="menu-item">
-					<button data-animation-scroll="true" data-target="#about">
-						<a href="https://blog.naver.com/asiaculturecenter" target="_blank">
-						<img class="headerlogo" src="https://www.acc.go.kr/include/main/images/common/icon_sns01.png" alt="네이버블로그"></a>
-					</button>
-				</li>
-				<li class="menu-item">
-					<button data-animation-scroll="true" data-target="#features">
-						<a href="https://www.facebook.com/asiaculturecenter/" target="_blank">
-						<img class="headerlogo" src="https://www.acc.go.kr/include/main/images/common/icon_sns02.png" alt="페이스북"></a>
-					</button>
-				</li>
-				<li class="menu-item">
-					<button data-animation-scroll="true" data-target="#portfolio">
-						<a href="https://www.instagram.com/asiaculturecenter/" target="_blank">
-						<img class="headerlogo" src="https://www.acc.go.kr/include/main/images/common/icon_sns03.png" alt="인스타그램"></a>
-					</button>
-				</li>
-				<li class="menu-item">
-					<button data-animation-scroll="true" data-target="#contact">
-						<a href="https://twitter.com/WeloveACC" target="_blank">
-						<img class="headerlogo" src="https://www.acc.go.kr/include/main/images/common/icon_sns04.png" alt="트위터"></a>
-					</button>
-				</li>
-				<li class="menu-item">
-					<button data-animation-scroll="true" data-target="#contact">
-						<a href="https://www.youtube.com/channel/UCdSyGG-j_ORzUBS_VuUU4zQ" target="_blank">
-						<img class="headerlogo" src="https://www.acc.go.kr/include/main/images/common/icon_sns05.png" alt="유튜브"></a>
-					</button>
-				</li>
-				<li class="menu-item" sec:authorize="isAnonymous()"><a href="/members/login">로그인</a></li>
-				<li class="menu-item" sec:authorize="isAnonymous()"><a href="/members/select">회원가입</a></li>
-				<li class="menu-item" sec:authorize="isAuthenticated()"><a href="/members/myPage">마이페이지</a></li>
-				<li class="menu-item" sec:authorize="isAuthenticated()"><a href="/members/logout">로그아웃</a></li>
-			</ul>
-
-		</nav>
-
-
-		<div class="menu-btn"></div>
-	</header>
+	<ul class="">
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a
+			class="nav-link" href="/admin/item/new">상품 등록</a></li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a
+			class="nav-link" href="/admin/items">상품 관리</a></li>
+		<li class="nav-item" sec:authorize="isAuthenticated()"><a
+			class="nav-link" href="/cart">장바구니</a></li>
+		<li class="nav-item" sec:authorize="isAuthenticated()"><a
+			class="nav-link" href="/orders">구매이력</a></li>
+		<li class="nav-item" sec:authorize="isAnonymous()"><a
+			class="nav-link" href="/members/login">로그인</a></li>
+		<li class="nav-item" sec:authorize="isAuthenticated()"><a
+			class="nav-link" href="/members/logout">로그아웃</a></li>
+	</ul>
 </div>
 </html>

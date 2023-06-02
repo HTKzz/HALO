@@ -5,7 +5,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Title</title>
+<title>국립아시아문화전당</title>
 
 <!-- CSS only -->
 <link th:href="@{/css/layout1.css}" rel="stylesheet">
@@ -19,7 +19,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 </head>
 <body>
 <div th:replace="fragments/header::header"></div>
-<div layout:fragment="content" class="content"> </div>
+<div layout:fragment="content" class="content" style="min-width: 1000px"> </div>
 <div th:replace="fragments/footer::footer"></div>
 </body>
 </html>

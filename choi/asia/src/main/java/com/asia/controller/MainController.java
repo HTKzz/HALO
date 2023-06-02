@@ -18,6 +18,18 @@ public class MainController {
 
 		return "main";
 	}
+	
+	@GetMapping(value = "/pay")
+	public String pay() {
+
+		return "import";
+	}
+	
+	@GetMapping(value = "/useinfo")
+	public String useinfo() {
+
+		return "menu/useinfo";
+	}
 
 	// 권한이 없는 사람이 접근했을경우
 	@RequestMapping(value = "/error_user")

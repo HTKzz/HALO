@@ -26,7 +26,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 	Page<Member> findByJoinContaining(String memberMngSearch, Pageable pageable);
 	Page<Member> findByStatContaining(Stat stat, Pageable pageable);
 	Page<Member> findByRoleContaining(String memberMngSearch, Pageable pageable);
-
+	Page<Member> findByIdContaining(String memberMngSearch, Pageable pageable);
+	
 	@Modifying
 	@Query(value="update member set password = :password where id = :id", nativeQuery=true)
 	void updatememberMyPage(String password, String id);

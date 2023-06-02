@@ -1,0 +1,262 @@
+@charset "utf-8";
+
+/* table Style */
+.useinfo-defaultTable, .useinfo-programTable {
+	table-layout:fixed;
+	width:100%;
+	margin-bottom:50px;
+	border-top:1px solid #969696;
+}
+
+.useinfo-programTable {
+	width:100%;
+}
+
+.useinfo-defaultTable th, .useinfo-defaultTable td, .useinfo-programTable th, .useinfo-programTable td {
+	padding:10px 20px;
+	border-bottom:1px solid #d5d5d5;
+	box-sizing:border-box;
+	vertical-align:middle;
+	color:#363636;
+	font-size:16px;
+	letter-spacing:-0.05em;
+	font-weight:300;
+}
+
+.useinfo-programTable th, .useinfo-programTable td {
+	border:1px solid #d5d5d5;
+}
+
+.useinfo-defaultTable th, .useinfo-programTable th {
+	background:#f7f7f7;
+}
+
+.useinfo-defaultTable thead th, .useinfo-programTable thead th {
+	height:50px;
+}
+
+.useinfo-programTable thead th {
+	border-top:1px solid #969696;
+}
+
+.useinfo-defaultTable td .thArea, .useinfo-programTable td span.point {
+	display:none;
+}
+
+.useinfo-programTable td span.point {
+	color:#a76c6c;
+}
+
+.useinfo-programTable td p {
+	margin:4px 0;
+}
+
+.useinfo-defaultTable td a {
+	color:#0000fe;
+}
+
+.useinfo-defaultTable td .tdArea dl dd, .useinfo-defaultTable td .tdArea ul li,
+.useinfo-programTable td ul li, .useinfo-programTable td span.buIcon {
+	padding-left:10px;
+	background: url(../images/useinfo/bu_dd.gif) left 10px no-repeat;
+}
+
+/* programLayout */
+.useinfo-programCon {
+	color:#363636;
+}
+
+.useinfo-programCon h4 {
+	margin-bottom:30px;
+	font-size:24px;
+}
+
+.useinfo-programCon h5 {
+	margin:0 0 16px 10px;
+	padding-left:20px;
+	color:#363636;
+	font-size:20px;
+}
+
+.useinfo-programCon p.useinfo-txt {
+	margin-bottom:30px;
+	font-size:17px;
+	font-weight:300;
+}
+
+.useinfo-programCon .useinfo-iconList {
+	margin:20px 0;
+	background:#faf9fe;
+	overflow:hidden;
+}
+
+.useinfo-programCon .useinfo-iconList ul {
+	overflow:hidden;
+	float:left;
+	display:table;
+	table-layout:fixed;
+	width:50%;
+	padding:0;
+	border-right:1px solid #dcdcdc;
+	border-spacing:0;
+	box-sizing:border-box;
+}
+
+.useinfo-programCon .useinfo-iconList ul:first-child {
+	margin-right:-1px;
+}
+
+.useinfo-programCon .useinfo-iconList ul li {
+	display:table-cell;
+	padding:7% 2%;
+	background:#faf9fe;
+	border:1px solid #dcdcdc;
+	border-right:none;
+	vertical-align:middle;
+}
+
+.useinfo-programCon .useinfo-iconList ul li span {
+	display:block;
+	text-align:center;
+}
+
+.useinfo-programCon .useinfo-iconList ul li span.useinfo-img {
+	width:50%;
+	height:93px;
+	margin:0 auto;
+	box-sizing:border-box;
+	text-align:center;
+}
+
+.useinfo-programCon .useinfo-iconList ul li span.useinfo-txt {
+	width:auto;
+	padding:0 10%;
+	color:#323232;
+	font-size:17px;
+	word-break:keep-all;
+	letter-spacing:-.05em;
+}
+
+@media all and (max-width:960px) {
+
+    /* programLayout */
+    .useinfo-programCon h4 { margin-bottom:17px; font-size:17px; }
+    .useinfo-programCon h5 { padding-left:12px; font-size:16px; background-position:left 10px; background-size:5px; }
+    .useinfo-programCon p.useinfo-txt { margin-bottom:15px; font-size:14px; }
+    .useinfo-programCon ul.useinfo-txtList { margin:0 0 16px 20px; }
+    .useinfo-programCon ul.useinfo-txtList li { padding-bottom:4px; background-position:left 9px; font-size:14px; }
+    .useinfo-programCon ul.useinfo-txtList li.point { padding-left:14px; background-position:left 6px; background-size:auto 10px; }
+
+    .useinfo-programCon .useinfo-iconList ul { float:none; width:100%; }
+    .useinfo-programCon .useinfo-iconList ul li { padding:4%; }
+    .useinfo-programCon .useinfo-iconList ul li span.useinfo-img { vertical-align:middle; }
+    .useinfo-programCon .useinfo-iconList ul li span.useinfo-txt { font-size:14px; }
+    
+    /* table Style */
+    .useinfo-colStyle { border-top:none; }
+    
+    .useinfo-defaultTable th, .useinfo-defaultTable td { padding:13px; font-size:13px; }
+    
+    .useinfo-programTable th, .useinfo-programTable td { padding:13px; font-size:14px; }
+    
+    .useinfo-colStyle { display:block; margin-bottom:25px; }
+    .useinfo-colStyle colgroup { display:none; }
+    .useinfo-colStyle tr { display:block; margin-bottom:10px; border-top:1px solid #969696; }
+    .useinfo-colStyle th, .useinfo-colStyle td { padding:0; }
+    .useinfo-colStyle thead { display:none; }
+    .useinfo-colStyle td { display:table; table-layout:fixed; width:100%; }
+    .useinfo-colStyle td.tableTit { display:block; padding:10px; border-bottom:1px solid #000; text-align:left; font-size:20px; font-weight:bold; }
+    .useinfo-colStyle td .thArea, .useinfo-colStyle td .tdArea { display:table-cell; padding:11px 16px; }
+    .useinfo-colStyle td .thArea { width:30%; background:#f7f7f7; text-align:center; }
+    .useinfo-colStyle td .tdArea { width:auto; }
+
+    .useinfo-programTable td span.date, .useinfo-programTable td span.point { display:block; }
+
+}
+
+h3.useinfo-pageTit {
+	margin-bottom:54px;
+	text-align:center;
+	line-height:1;
+	color:#000;
+	font-size:34px;
+}
+
+.useinfo-defaultLayout ul {
+	list-style: none;
+}
+	
+.useinfo-pageTit, h4 {
+	font-size:1em;
+}
+
+.useinfo-img {
+	border:0 none;
+}
+	
+.useinfo-img {
+	max-width: 100%;
+	vertical-align: middle;
+	border: 0 none;
+	margin: 0;
+	padding: 0;
+}
+
+.useinfo-defaultLayout a {color:#000; text-decoration: none;}
+.useinfo-defaultLayout a:link, .useinfo-defaultLayout a:visited {text-decoration:none;}
+.useinfo-defaultLayout a:hover, .useinfo-defaultLayout a:focus, .useinfo-defaultLayout a:active {text-decoration:none;}
+.useinfo-defaultLayout a:hover {
+	background-color: #848484;
+	color: #fff;
+}
+
+.useinfo-defaultLayout table {margin:0; border-collapse:collapse; border-spacing:0; font-size:15px; font-size:0.9725rem; }
+.useinfo-defaultLayout table caption { overflow:hidden; left:0; right:0; width:1px; height:1px; margin-left:-9999px; text-indent:-9999px; }
+
+.useinfo-BorderNone {
+	border:none !important;
+}
+
+/* Global SPACE */
+.useinfo-MAB20 {
+	margin-bottom:20px !important;
+}
+
+.useinfo-MAT50 {
+	margin-top:50px !important;
+}
+
+.useinfo-MAT-10 {
+	margin-top:-10px !important;
+}
+
+.useinfo-programCon ul.useinfo-txtList>li {
+    padding: 0 0 8px 10px;
+    font-size: 17px;
+}
+
+
+.useinfo-programCon ul.useinfo-txtList { margin:0 0 30px 30px; }
+.useinfo-programCon ul.useinfo-txtList > li { padding:0 0 8px 10px; background: url(../images/useinfo/bu_dd.gif) left 12px no-repeat; font-size:17px; }
+.useinfo-programCon ul.useinfo-txtList > li span { display:block; }
+.useinfo-programCon ul.useinfo-txtList > li span.tit { float:left; min-width:5em; margin-right:0.5em; color:#944e2e; }
+.useinfo-programCon ul.useinfo-txtList > li span.useinfo-txt { margin-left:5.5em; }
+.useinfo-programCon ul.useinfo-txtList > li.point { margin-left:10px; padding-left:20px; background: url(../images/useinfo/bu_point.gif) left 7px no-repeat; color:#177353; }
+.useinfo-programCon ul.useinfo-txtList > li ul { clear:both; padding-top:10px; }
+
+.useinfo-defaultLayout {
+    max-width: 1040px;
+    margin: 60px auto 50px;
+    padding: 0 10px;
+}
+
+.useinfo-btn_go {
+    border: 1px solid #ccc;
+    padding: 2px 8px;
+    border-radius: 30px;
+    display: inline-block;
+}
+
+.useinfo-defaultLayout th {
+	text-align: inherit;
+}

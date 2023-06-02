@@ -43,12 +43,9 @@
 }
 
 .myReservationForm-contents{
-	margin-top: 30px;
-}
-
-.myReservation{
 	width:1200px;
 	margin-left:-100px;
+	margin-top: 30px;
 }
 
 .myReservationForm-h4-bigger{
@@ -146,7 +143,7 @@
 	border: solid 1px #1d1f20;
 }
 
-.myReservationForm-cancle {
+.myReservationForm-btn {
 	background-color: #A4A4A4;
 	border: none;
 	color: white;
@@ -155,4 +152,8 @@
 	height: 35px;
 	font-size: 12pt;
 	cursor:pointer;
+}
+
+.myReservationForm-btn:hover {
+	background-color: #747474;
 }

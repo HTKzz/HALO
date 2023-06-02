@@ -60,12 +60,22 @@ public class ReservationService {
 	}
 	
 	public List<Reservation> getReservationList(Long num) {
-		List<Reservation> reservations = reservationRepository.findAllByMemberNum(num);
+		List<Reservation> reservations = reservationRepository.findAllByMemberNumOrderByNumDesc(num);
 		return reservations;
 	}
 	
 	public void cancleReservation(Long num) {
 		String cancle = "취소";
-		reservationRepository.cancleReservation(num, cancle);
+		reservationRepository.updateReservationStat(num, cancle);
+	}
+	
+	public void refundReservation(Long num) {
+		String refund = "환불대기";
+		reservationRepository.updateReservationStat(num, refund);
+	}
+	
+	public void refundComplete(Long num) {
+		String complete = "환불완료";
+		reservationRepository.updateReservationStat(num, complete);
 	}
 }

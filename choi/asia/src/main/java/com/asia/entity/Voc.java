@@ -1,13 +1,17 @@
-package com.asia.entity;
+ package com.asia.entity;
 
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -37,7 +41,8 @@ public class Voc extends BaseEntity {
 
 	@Column(nullable = false)
 	private String name; // 글제목
-
+	
+	@Lob
 	@Column
 	private String content; // 글내용
 
@@ -53,9 +58,16 @@ public class Voc extends BaseEntity {
 	@Column
 	private Long groupLayer;
 	
+	@Column
+	private Long realNum;
+	
 	@OneToMany(mappedBy = "voc", cascade = CascadeType.ALL)
 	@ToString.Exclude
 	private List<Attach> attach;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "member_num")
+	private Member member;
 	
 	public void updateVoc(VocFormDto vocFormDto) {
 		this.name = vocFormDto.getName();
