@@ -8,16 +8,13 @@
 
 </head>
 <div layout:fragment="content">
+	<link th:href="@{/css/vocList.css}" rel="stylesheet">
 	<div>
-
 		<div class="vocList-title">
 			<h3>회원관리</h3>
 		</div>
 		<div class="vocList-container">
-			<link th:href="@{/css/vocList.css}" rel="stylesheet">
-			
-			<form class="memberMngForm" role="form" method="post"
-				action="/admin/searchMember">
+			<form class="memberMngForm" role="form" method="post" action="/admin/searchMember">
 				<select th:name="searchOption" class="memberMng-select">
 					<option th:value="name">이름
 					<option th:value="tel">전화번호
@@ -31,7 +28,6 @@
 				<input type="hidden" th:name="${_csrf.parameterName}"
 					th:value="${_csrf.token}">
 			</form>
-			
 			<section class="vocList">
 				<table class="vocList-table">
 					<thead>

@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 
 import org.modelmapper.ModelMapper;
 
-import com.asia.entity.Member;
 import com.asia.entity.Voc;
 
 import lombok.Getter;
@@ -43,7 +42,7 @@ public class VocFormDto {
 	private Long groupLayer;
 	
 	private Long realNum;
-		
+	
 	/* 이전글다음글 */
 	private Long allVocCnt;
 

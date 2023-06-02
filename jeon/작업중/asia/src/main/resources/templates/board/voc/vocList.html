@@ -32,8 +32,26 @@
 	<div>
 		<section class="vocList">
 			<div class="vocList-title">
-				<h1>VOC 고객의 소리</h1>
+				<h3>VOC 고객의 소리</h3>
 			</div>
+			
+			<!-- 검색 -->
+			
+				<form action="/voc/searchVoc" role="form" method="post">
+				<div class="vocSearch">
+					<select th:name="searchOpt">
+						<option th:value="name">제목</option>
+						<option th:value="writer">작성자</option>
+					</select> 
+					<input type="text" th:name="vocListSearch">
+					<button type="submit">검색</button>
+				</div>
+				
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+					
+				</form>
+			
+			
 
 			<div class="vocList-container">
 				<table class="vocList-table">
@@ -75,22 +93,11 @@
 				</table>
 				<br>
 
-				<div class="voc-write">
+				<div class="voc-write" sec:authorize="isAuthenticated()">
 					<a th:href="@{/voc/new}" class="vocList-btn">글쓰기</a>
 				</div>
 
-				<!-- 검색 -->
-				<form action="/voc/searchVoc" role="form" method="post">
-					<div class="vocSearch">
-						<select th:name="searchOpt">
-							<option th:value="name">제목</option>
-							<option th:value="writer">작성자</option>
-						</select> <input type="text" th:name="vocListSearch">
-						<button type="submit">검색</button>
-					</div>
-					<input type="hidden" th:name="${_csrf.parameterName}"
-						th:value="${_csrf.token}">
-				</form>
+				
 				
 
 				<div class="page_wrap">
@@ -128,10 +135,3 @@
 	</section>
 </div>
 </html>
-
-
-
-
-
-
-

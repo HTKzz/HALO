@@ -1,12 +1,21 @@
 @charset "UTF-8";
 
 @font-face {
-	font-family: 'SF_HambakSnow';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+	font-family: Pretendard-Regular;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: black;
+	letter-spacing: 0.1px;
+	word-break: keep-all;
+	padding: 50px 5%;
+	margin: 0 auto;
 }
 
 .filebox .upload-name {
@@ -17,6 +26,13 @@
 	border: 1px solid #dddddd;
 	width: 100%;
 	color: #999999;
+}
+
+
+.noticeForm-title h4 {
+	font-size: 1.3rem;
+	line-height: 2rem;
+	text-align: center;
 }
 
 .filebox label {
@@ -48,10 +64,17 @@
 }
 
 .noticeForm-input {
+	font-family: Pretendard-Regular;
 	width: 100%;
 	margin-bottom: 20px;
 	border: 0;
 	border-bottom: 1px solid #bbb;
+}
+
+
+
+textarea {
+	font-family: Pretendard-Regular;
 }
 
 .noticeForm-input-detail {
@@ -72,7 +95,7 @@
 }
 
 .noticeForm-title-h1 {
-	font-family: 'SF_HambakSnow';
+	font-family: Pretendard-Regular;
 	font-size: 3rem;
 	line-height: 3.5rem;
 	padding-bottom: 40px;
@@ -80,7 +103,7 @@
 }
 
 .noticeForm-txt h4 {
-	font-family: 'SF_HambakSnow';
+	font-family: Pretendard-Regular;
 	font-size: 1.7rem;
 	line-height: 2rem;
 	text-align: center;
@@ -126,6 +149,7 @@
 
 .noticeForm-inner {
 	padding-top: 30px;
+	font-family: Pretendard-Regular;
 }
 
 .noticeForm-txt {
@@ -150,7 +174,7 @@
 	padding: 10px 0 0 10px;
 	resize: none;
 	font-size: 1rem;
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: Pretendard-Regular;
 }
 
 /*--------- 첨부파일 ---------*/
@@ -163,6 +187,7 @@
 	word-break: keep-all;
 	padding: 50px 5%;
 	margin: 0 auto;
+	border-radius: 5px;
 }
 
 .custom-file-label:hover {

@@ -19,6 +19,12 @@ public class MainController {
 		return "main";
 	}
 	
+	@GetMapping(value = "/pay")
+	public String pay() {
+
+		return "import";
+	}
+	
 	@GetMapping(value = "/useinfo")
 	public String useinfo() {
 

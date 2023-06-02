@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class VocService {
 
-	//private final Logger LOGGER = LoggerFactory.getLogger(VocService.class);
+	private final Logger LOGGER = LoggerFactory.getLogger(VocService.class);
 	
 	private final VocRepository vocRepository;
 	private final AttachService attachService;
@@ -44,7 +44,7 @@ public class VocService {
 
 	// 새글등록
 	public Long saveVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, String name) throws Exception {
-
+		
 		Member member = memberRepository.findById(name);
 		
 		Voc voc = vocFormDto.createVoc();
@@ -79,6 +79,11 @@ public class VocService {
 		return voc.getNum();
 	}
 
+	// 리스트 조회
+	public List<Voc> vocList() {
+		return vocRepository.findAll();
+	}
+
 	// 게시글 불러오기
 	public Voc vocDetail(Long num) { /// Voc entity 가져와야
 		return vocRepository.findById(num).get();
@@ -102,8 +107,8 @@ public class VocService {
 		Voc voc = vocRepository.findById(num).orElseThrow(EntityNotFoundException::new);
 		
 		long allVocCnt = vocRepository.getList();
-		String prevContent = vocRepository.getPrevContent(num);
-		String nextContent = vocRepository.getNextContent(num);
+		String prevContent = vocRepository.getPrevContent(voc.getRealNum());
+		String nextContent = vocRepository.getNextContent(voc.getRealNum());
 		VocFormDto vocFormDto = VocFormDto.of(voc);
 		vocFormDto.setAllVocCnt(allVocCnt);
 		vocFormDto.setPrevContent(prevContent);
@@ -127,15 +132,15 @@ public class VocService {
 		return voc.getNum();
 	}
 	
-	// voc리스트 조회
+	
 	public Page<Voc> getVocLists(Pageable pageable){
 		return vocRepository.getVocLists(pageable);
 	}
 
 	//답글등록
-	public Long saveReplyVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, Long parentNo, String name) throws Exception{
-
-		Member member = memberRepository.findById(name);//회원정보가져오기
+	public Long saveReplyVoc(VocFormDto vocFormDto, List<MultipartFile> attachFileList, Long parentNo, String name)throws Exception{
+		
+		Member member = memberRepository.findById(name);
 		
 		Voc presentVoc = vocRepository.findByNum(parentNo);//답글다는글
 		
@@ -179,9 +184,10 @@ public class VocService {
 		
 	}
 
-	//글 등록 후 바로 상세보기로
-	public VocFormDto getvocCtD(String content) { 
-		Voc voc1 = vocRepository.findByContent(content);
+	public VocFormDto getVoc() { //글 등록 후 바로 상세보기로
+		Long vocNum = vocRepository.getRealNum();
+		
+		Voc voc1 = vocRepository.findByNum(vocNum);
 		 
 		List<Attach> attachList = attachRepository.findByVocNumOrderByNumAsc(voc1.getNum()); //해당 이미지 조회
 		List<AttachDto> attachDtoList = new ArrayList<AttachDto>();
@@ -208,27 +214,14 @@ public class VocService {
 	public Voc findByNum(Long num) {
 		return vocRepository.findByNum(num);
 	}
-	
-	// 검색+++++++++++++++++++++
-		public Page<Voc> vocListSearchByName(String vocListSearch, Pageable pageable){
-			return vocRepository.findByNameContaining(vocListSearch, pageable);
-		}
-		
-		public Page<Voc> vocListSearchBywriter(String vocListSearch, Pageable pageable){
-			return vocRepository.findByMemberIdContaining(vocListSearch, pageable);
-		}
 
+	// 검색 vocService
+	public Page<Voc> vocListSearchByName(String vocListSearch, Pageable pageable){
+		return vocRepository.findByNameContaining(vocListSearch, pageable);
+	}
 
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
+	public Page<Voc> vocListSearchBywriter(String vocListSearch, Pageable pageable){
+		return vocRepository.findByMemberIdContaining(vocListSearch, pageable);
+	}
 	
 }

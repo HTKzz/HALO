@@ -50,4 +50,8 @@ public class AdminMemberService {
 	public Page<Member> searchMemberByRole(String memberMngSearch, Pageable pageable) {
 		return memberRepository.findByRoleContaining(memberMngSearch, pageable); // 권한으로 찾아오기
 	}
+
+	public Page<Member> searchMemberById(String memberMngSearch, Pageable pageable) {
+		return memberRepository.findByIdContaining(memberMngSearch, pageable);
+	}
 }

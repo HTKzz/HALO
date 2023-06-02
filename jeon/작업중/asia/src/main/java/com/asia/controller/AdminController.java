@@ -80,8 +80,6 @@ public class AdminController {
 			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
 			String memberMngSearch, Model model) {
 
-//			System.out.println(searchOption);
-
 		Page<Member> lists = null;
 		if (searchOption.equals("name")) {
 			lists = adminMemberService.searchMemberByName(memberMngSearch, pageable);
@@ -100,7 +98,6 @@ public class AdminController {
 
 		} else if (searchOption.equals("stat")) {
 			Stat stat = Stat.valueOf(memberMngSearch);
-
 			lists = adminMemberService.searchMemberByStat(stat, pageable);
 
 		} else if (searchOption.equals("role")) {

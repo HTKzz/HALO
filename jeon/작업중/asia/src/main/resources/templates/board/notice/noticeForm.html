@@ -41,24 +41,25 @@
 <div layout:fragment="content">
 	<link th:href="@{/css/noticeForm.css}" rel="stylesheet">
 	<article class="noticeForm-board">
-		<h1 class="noticeForm-title-h1">글쓰기 페이지</h1>
+		<h1 class="noticeForm-title-h1">공지사항</h1>
+		
 		<section class="noticeForm-contents">
-			<form class="noticeForm" role="form" method="post"
-				th:object="${noticeDto}" enctype="multipart/form-data">
-
-				<h4 class="noticeForm-header" style="text-align:center;">공지사항</h4>
+			<form class="noticeForm" role="form" method="post" th:object="${noticeDto}" enctype="multipart/form-data">
+				<div class="noticeForm-title">
+				<h4 class="noticeForm-header">글 작성하기</h4>
+				</div>
 
 				<input type="hidden" th:field="*{num}">
 
 				<div class="noticeForm-inner">
 					
-					<span class="noticeForm-input-group-text">제목</span>
+					<!-- <span class="noticeForm-input-group-text">제목</span> -->
 					<input class="noticeForm-input" type="text" th:field="*{name}"
 						placeholder="제목을 작성 해주세요">
 					<br />
 					
-					<span class="noticeForm-input-group-text">내용</span>
-					<textarea class="noticeForm-input" th:field="*{content}" placeholder="내용을 작성 해주세요"></textarea>
+					<!-- <span class="noticeForm-input-group-text">내용</span> -->
+					<textarea class="noticeForm-input-text" th:field="*{content}" placeholder="내용을 작성 해주세요"></textarea>
 					
 					<span class="noticeForm-input-group-text">첨부파일</span>
 					<div class="filebox" th:if="${#lists.isEmpty(noticeDto.attachDtoList)}">
@@ -73,7 +74,7 @@
 						<div class="attachfile" th:each="attachDto, status: ${noticeDto.attachDtoList}">
 							<input type="hidden" name="attachIds" th:value="${attachDto.num}" />
 							<input class="upload-name" placeholder="첨부파일" readonly
-									th:value="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '프로그램이미지' + ${status.index+1}"/>
+									th:value="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '첨부파일' + ${status.index+1}"/>
 							<input type="hidden" name="attachNums" th:value="${attachDto.num}"> 
 							<label th:for="file + ${status.index+1}" class="custom-file-label" th:text="파일찾기"></label>
 							<input type="file" class="custom-file-input" name="attachFile" th:id="file + ${status.index+1}"/>

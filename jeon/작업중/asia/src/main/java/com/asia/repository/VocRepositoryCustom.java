@@ -2,7 +2,6 @@ package com.asia.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Query;
 
 import com.asia.entity.Voc;
 
@@ -12,7 +11,6 @@ public interface VocRepositoryCustom {
 	Page<Voc> getVocLists(Pageable pageable);
 
 
-	
 	
 	
 	

@@ -87,6 +87,7 @@ public class Notice extends BaseEntity {
 	
 	//글 삭제하기
 	public void deleteNotice(NoticeDto noticeDto) {
+		
 		this.num = noticeDto.getNum();
 	}
 }

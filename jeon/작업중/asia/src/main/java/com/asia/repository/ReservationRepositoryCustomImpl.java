@@ -31,7 +31,9 @@ public class ReservationRepositoryCustomImpl implements ReservationRepositoryCus
 				.where(regDtsAfter(reservationSearchDto.getSearchDateType()),
 						searchReservationStatusEq(reservationSearchDto.getStat()),
 						searchByLike(reservationSearchDto.getSearchBy(), reservationSearchDto.getSearchQuery()))
-				.orderBy(QReservation.reservation.num.desc()).offset(pageable.getOffset()).limit(pageable.getPageSize())
+				.orderBy(QReservation.reservation.num.desc())
+				.offset(pageable.getOffset())
+				.limit(pageable.getPageSize())
 				.fetchResults();
 
 		List<Reservation> content = results.getResults();
