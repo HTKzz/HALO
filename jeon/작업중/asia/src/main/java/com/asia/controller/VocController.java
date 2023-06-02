@@ -25,10 +25,12 @@ import com.asia.service.AttachService;
 import com.asia.service.VocService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/voc")
+@ToString
 public class VocController {
 
 //	private final Logger LOGGER = LoggerFactory.getLogger(VocController.class);
@@ -55,10 +57,9 @@ public class VocController {
 			String name = principal.getName();
 			vocService.saveVoc(vocFormDto, attachFileList, name);
 
-			VocFormDto vocFormDto1 = vocService.getvocCtD(vocFormDto.getContent());
+			VocFormDto vocFormDto1 = vocService.getVoc();
 			vocService.updateCnt(vocFormDto1.getNum());
 			model.addAttribute("voc", vocFormDto1);
-			System.out.println(vocFormDto1);
 			
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "등록 중 에러발생");
@@ -74,7 +75,6 @@ public class VocController {
 			Model model) {
 
 		Page<Voc> list = vocService.getVocLists(pageable);
-		
 		model.addAttribute("list", list);
 
 		int nowPage = list.getPageable().getPageNumber() + 1;
@@ -89,10 +89,17 @@ public class VocController {
 
 	// 상세보기
 	@GetMapping("/detail/{num}")
-	public String detailVoc(Model model, @PathVariable("num") Long num, VocFormDto vocFormDto) {
-		vocFormDto = vocService.getvocDtl(num);
+	public String detailVoc(Model model, @PathVariable("num") Long num, Principal principal) {
+		VocFormDto vocFormDto = vocService.getvocDtl(num);
 		vocService.updateCnt(num);
 		model.addAttribute("voc", vocFormDto);
+
+		// 수정 삭제 권한별 비활성화
+		String name = principal.getName();
+		Voc voc = vocService.findByNum(num);
+		model.addAttribute("username", name);
+		model.addAttribute("writername", voc.getMember().getId());
+		
 
 		return "board/voc/vocDetail";
 	}
@@ -100,9 +107,6 @@ public class VocController {
 	// 삭제
 	@GetMapping("/delete/{num}")
 	public String deleteVoc(@PathVariable Long num) throws Exception {
-		
-		
-		
 		attachService.deleteAttach(num);
 		vocService.vocDelete(num);
 		return "redirect:/voc/list";
@@ -151,7 +155,6 @@ public class VocController {
 		return "board/voc/vocReply";
 	}
 
-	// 답글 저장
 	@PostMapping("/reply/new")
 	public String newReplyVoc(@Valid VocFormDto vocFormDto, BindingResult bindingResult, Model model,
 			@RequestParam("attachFile") List<MultipartFile> attachFileList, @RequestParam("parentNo") Long parentNo,
@@ -159,6 +162,7 @@ public class VocController {
 
 		try {
 			String name = principal.getName();
+			
 			vocService.saveReplyVoc(vocFormDto, attachFileList, parentNo, name);
 
 		} catch (Exception e) {
@@ -168,35 +172,32 @@ public class VocController {
 		return "redirect:/voc/list";
 	}
 	
-	// 검색
-		@PostMapping("/searchVoc")
-		public String searchVoc(@RequestParam("searchOpt") String searchOpt,
-				@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable, Model model, String vocListSearch) {
-			
-			System.out.println(vocListSearch);
-			
-			Page<Voc> lists = null;
-			if(searchOpt.equals("name")) {
-				lists = vocService.vocListSearchByName(vocListSearch, pageable);
-			}else if (searchOpt.equals("writer")) {
-				lists = vocService.vocListSearchBywriter(vocListSearch, pageable);
-			}else {
-				return "board/voc/vocList";
-			}
-			
-			model.addAttribute("list", lists);
-			
-			int nowPage = lists.getPageable().getPageNumber() + 1;
-			int startPage = Math.max(nowPage - 4, 1);
-			int endPage = Math.min(nowPage + 4, lists.getTotalPages());
-			model.addAttribute("nowPage", nowPage);
-			model.addAttribute("startPage", startPage);
-			model.addAttribute("endPage", endPage);
-
+	// 검색 vocController
+	@PostMapping("/searchVoc")
+	public String searchVoc(@RequestParam("searchOpt") String searchOpt,
+			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable, Model model, String vocListSearch) {
+		
+		System.out.println(vocListSearch);
+		
+		Page<Voc> lists = null;
+		if(searchOpt.equals("name")) {
+			lists = vocService.vocListSearchByName(vocListSearch, pageable);
+		}else if (searchOpt.equals("writer")) {
+			lists = vocService.vocListSearchBywriter(vocListSearch, pageable);
+		}else {
 			return "board/voc/vocList";
 		}
+		
+		model.addAttribute("list", lists);
+		
+		int nowPage = lists.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 4, lists.getTotalPages());
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 
-	
-	
-	
+		return "board/voc/vocList";
+	}
+
 }

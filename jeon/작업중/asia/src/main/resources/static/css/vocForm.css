@@ -5,8 +5,6 @@
     font-style: normal;
 }
 
-
-
 * {
 	margin: 0;
 	padding: 0;
@@ -24,7 +22,7 @@ body {
 	margin: 0 auto;
 }
 
-h4 {
+.vocForm-title h4 {
 	font-size: 1.3rem;
 	line-height: 2rem;
 	text-align: center;

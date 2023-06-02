@@ -39,13 +39,13 @@ public interface VocRepository extends JpaRepository<Voc, Long>, QuerydslPredica
 	@Query(value = "select count(*) from Voc", nativeQuery = true)
 	long getList();
 
-	@Query(value = "select name from Voc where Voc_num = :num -1", nativeQuery = true)
+	@Query(value = "select name from Voc where real_Num = :num -1", nativeQuery = true)
 	String getPrevContent(Long num);
 
-	@Query(value = "select name from Voc where Voc_num = :num +1", nativeQuery = true)
+	@Query(value = "select name from Voc where real_Num = :num +1", nativeQuery = true)
 	String getNextContent(Long num);
 	
-	@Query(value = "select voc_num, name from (SELECT * FROM voc ORDER BY voc_num DESC) WHERE ROWNUM= 1", nativeQuery = true)
+	@Query(value = "select voc_num from (SELECT * FROM voc ORDER BY voc_num DESC) WHERE ROWNUM= 1", nativeQuery = true)
 	Long getRealNum();
 	
 	@Modifying
@@ -54,9 +54,7 @@ public interface VocRepository extends JpaRepository<Voc, Long>, QuerydslPredica
 	
 	// 검색 제목
 	Page<Voc> findByNameContaining(String vocListSearch, Pageable pageable);
-	
+
 	// 검색 작성자
 	Page<Voc> findByMemberIdContaining(String vocListSearch, Pageable pageable);
-	
-	
 }

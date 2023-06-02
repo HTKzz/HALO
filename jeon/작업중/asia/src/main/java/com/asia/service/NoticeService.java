@@ -164,5 +164,9 @@ public class NoticeService {
 		noticeRepository.deleteByNum(num);
 		
 	}
+	// 상세보기 수정삭제 버튼
+	public Notice findByNum(Long num) {
+		return noticeRepository.findByNum(num);
+	}
 	
 }
