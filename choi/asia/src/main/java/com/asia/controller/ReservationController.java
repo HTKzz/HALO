@@ -158,8 +158,8 @@ public class ReservationController {
     }
     
     //예매내역 취소
-    @PostMapping(value="/cancleMyReservation/{num}")
-    public String cancleMyReservation(@PathVariable Long num) {
+    @PostMapping(value="/cancelMyReservation/{num}")
+    public String cancelMyReservation(@PathVariable Long num) {
     	
     	Reservation reservation = reservationService.getDtl(num);
 
@@ -179,4 +179,28 @@ public class ReservationController {
 		
     	return "redirect:/reservations/myReservation";
     }
+    
+    @PostMapping(value="/refundMyReservation/{num}")
+    public String refundMyReservation(@PathVariable Long num) {
+    	
+    	Reservation reservation = reservationService.getDtl(num);
+
+		String seatDetail = reservation.getApplication().getSeatDetail();
+
+		Long deleteSeat = reservation.getApplication().getNum();
+		int anum = Long.valueOf(deleteSeat).intValue();
+
+		if (seatDetail != null) {
+			String selectSeat = reservation.getSeat();
+			String[] array = selectSeat.split(", ");
+
+			seatService.cancelUpdateSeat(seatDetail, anum, array);
+		}
+		
+		reservationService.refundReservation(num);
+		
+    	return "redirect:/reservations/myReservation";
+    }
+    
+   
 }

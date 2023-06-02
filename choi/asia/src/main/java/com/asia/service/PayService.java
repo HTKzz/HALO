@@ -24,6 +24,8 @@ public class PayService {
 		
 		Reservation reservation = reservationRepository.findByNum(num);
 		
+		reservation.setStat("결제완료");
+		
 		Pay pay = Pay.createPay();
 		pay.setReservation(reservation);
 		payRepository.save(pay);

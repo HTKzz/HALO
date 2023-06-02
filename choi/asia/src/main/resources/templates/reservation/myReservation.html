@@ -7,10 +7,53 @@ layout:decorate="~{layouts/layout1}">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
 	<script th:src="@{/js/myPage.js}" type="text/javascript"></script>
 </head>
+
+<th:block layout:fragment="script">
+	<script th:inline="javascript">
+		$(document).ready(function() {
+			
+			$("#refund").on("click", function(){
+				if(confirm('환불 신청을 하시겠습니까?')){
+					
+				} else {
+					return false;
+				}
+			});
+			
+			var IMP = window.IMP; 
+		    IMP.init('imp32626541');
+		});
+		
+		function requestPay(num, name, price) {
+		    IMP.request_pay({
+		    	pg: "kcp.store-24677c12-63",
+		        pay_method: "card",
+		        merchant_uid: num,
+		        name: name,
+		        amount: price
+		    }, function (rsp) { // callback
+		    	if ( rsp.success ) {
+		   	      // 결제 성공 시 로직
+		   	      alert('결제가 완료되었습니다.');
+		   	      // DB에 결과 저장 로직 구현
+		   	      
+				  document.getElementById('frm').submit();
+		   	      
+		   	    } else {
+		   	      // 결제 실패 시 로직
+		   	      var msg = '결제에 실패하였습니다.';
+		   	      msg += '에러내용 : ' + rsp.error_msg;
+		   	      alert(msg);
+		   	    }
+		    });
+		}
+		
+		
+	</script>
+</th:block>
 
 <th:block layout:fragment="css">	
 	<style>
@@ -34,12 +77,11 @@ layout:decorate="~{layouts/layout1}">
 			</a>
 		</div>
 		<section class="myReservationForm-contents">
-			<form role="form" method="post" class="myReservation">
-				
-				<div class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
+				<span class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
 					<span class="myReservationForm-h4-bigger" th:text="${reservations[0].member.name}"></span>
-					<span class="myReservationForm-h4">님 예매 내역</span>
-				</div>
+					<span class="myReservationForm-h4">님 </span>
+				</span>
+				<span class="myReservationForm-h4">예매 내역</span>
 				<table class="myReservationForm-table">
                 	<thead>
                         <tr class="myReservationForm-tr">
@@ -53,7 +95,7 @@ layout:decorate="~{layouts/layout1}">
                     </thead>
                     
                     <tbody th:if="${reservations != 'nothing'}">
-                        <tr class="myReservationForm-tr" th:if="${reservation.stat != '취소'}" th:each="reservation:${reservations}">
+                        <tr class="myReservationForm-tr" th:if="${reservation.stat != '취소'} and ${reservation.stat != '환불완료'}" th:each="reservation:${reservations}">
                             <td class="myReservationForm-name reservation-td"th:text="${reservation.application.name}">상품명</td>
                             <td class="myReservationForm-rdate reservation-td" th:text="${reservation.rdate}">예매일</td>
                             <td class="myReservationForm-udate reservation-td" th:text="${reservation.application.udate}">관람일</td>
@@ -61,15 +103,32 @@ layout:decorate="~{layouts/layout1}">
                             <td class="myReservationForm-seat reservation-td" th:text="${reservation.seat}">좌석</td>
                             <td class="myReservationForm-stat reservation-td" th:text="${reservation.stat}">상태</td>
                             <td class="myReservationForm-stat reservation-td" th:if="${reservation.stat != '취소'}">
-                            <button th:formaction="@{/reservations/cancleMyReservation/{num}(num=${reservation.num})}" class="myReservationForm-cancle">취소</button></td>
+                            	<form method="post" th:action="@{/pays/new/{num}(num=${reservation.num})}" id="frm" onsubmit="return false">
+									<button th:if="${reservation.stat != '취소'} and ${reservation.stat != '결제완료'} and ${reservation.stat == '결제대기'}" th:onclick="requestPay([[${reservation.num}]], [[${reservation.application.name}]], [[${reservation.price}]])" 
+											class="myReservationForm-btn" style="width:50px;">결제</button>
+									<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+								</form>
+								<form method="post" onsubmit=true>
+                            		<button th:if="${reservation.stat == '결제완료'} and ${reservation.stat != '취소'} and ${reservation.stat != '환불대기'}" th:formaction="@{/reservations/refundMyReservation/{num}(num=${reservation.num})}" 
+                            				class="myReservationForm-btn" id="refund" onclick="refund()">환불신청</button>
+                            		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                            	</form>
+                            </td>
+                            <td class="myReservationForm-stat reservation-td" th:if="${reservation.stat != '취소'} and ${reservation.stat == '결제대기'}">
+                            	<form method="post" onsubmit=true>
+                            		<button th:formaction="@{/reservations/cancelMyReservation/{num}(num=${reservation.num})}" class="myReservationForm-btn">취소</button>
+                            		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                            	</form>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
                 
-                <div class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
+                <span class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
 					<span class="myReservationForm-h4-bigger" th:text="${reservations[0].member.name}"></span>
-					<span class="myReservationForm-h4">님 취소 내역</span>
-				</div>
+					<span class="myReservationForm-h4">님 </span>
+				</span>
+				<span class="myReservationForm-h4">취소 내역</span>
 				<table class="myReservationForm-table">
                 	<thead>
                         <tr class="myReservationForm-tr">
@@ -95,10 +154,11 @@ layout:decorate="~{layouts/layout1}">
                     </tbody>
                 </table>
                 
-                <div class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
+                <span class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
 					<span class="myReservationForm-h4-bigger" th:text="${reservations[0].member.name}"></span>
-					<span class="myReservationForm-h4">님 환불 내역</span>
-				</div>
+					<span class="myReservationForm-h4">님 </span>
+				</span>
+				<span class="myReservationForm-h4">환불 내역</span>
 				<table class="myReservationForm-table">
                 	<thead>
                         <tr class="myReservationForm-tr">
@@ -112,24 +172,21 @@ layout:decorate="~{layouts/layout1}">
                     </thead>
                     
                     <tbody th:if="${reservations != 'nothing'}">
-                        <tr class="myReservationForm-tr" th:if="${reservation.stat == '취소'}" th:each="reservation:${reservations}">
-                            <!-- <td class="myReservationForm-name reservation-td"th:text="${reservation.application.name}">상품명</td>
+                        <tr class="myReservationForm-tr" th:if="${reservation.stat == '환불완료'}" th:each="reservation:${reservations}">
+                            <td class="myReservationForm-name reservation-td"th:text="${reservation.application.name}">상품명</td>
                             <td class="myReservationForm-rdate reservation-td" th:text="${reservation.rdate}">예매일</td>
                             <td class="myReservationForm-udate reservation-td" th:text="${reservation.application.udate}">관람일</td>
                             <td class="myReservationForm-place reservation-td" th:text="${reservation.application.place}">장소</td>
                             <td class="myReservationForm-seat reservation-td" th:text="${reservation.seat}">좌석</td>
                             <td class="myReservationForm-stat reservation-td" th:text="${reservation.stat}">상태</td>
-                            <td class="myReservationForm-cancle reservation-td" style="width:70px;">환불</td> -->
                         </tr>
                     </tbody>
                 </table>
-				<input type="hidden" th:name="${_csrf.parameterName}"
-						th:value="${_csrf.token}">
-			
-			</form>
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 		</section>
 	</article>
-	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </div>
 </body>
 </html>

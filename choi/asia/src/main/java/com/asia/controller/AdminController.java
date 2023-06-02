@@ -20,6 +20,7 @@ import com.asia.entity.Reservation;
 import com.asia.service.AdminMemberService;
 import com.asia.service.ApplicationService;
 import com.asia.service.ReservationService;
+import com.asia.service.SeatService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,6 +33,7 @@ public class AdminController {
 	private final ReservationService reservationService;
 	private final AdminMemberService adminMemberService;
 	private final ApplicationService applicationService;
+	private final SeatService seatService;
 
 	// 예매 관리 페이지
 	@GetMapping(value = "/reservationMng")
@@ -160,6 +162,35 @@ public class AdminController {
 		}
 
 		return "redirect:/admin/applications";
+	}
+
+	@PostMapping(value = "/refundComplete/{num}")
+	public String refundComplete(@PathVariable Long num) {
+
+		reservationService.refundComplete(num);
+
+		return "redirect:/admin/reservationMng";
+	}
+
+	@GetMapping(value = "/adminCancelReservation/{num}")
+	public String adminCancelReservation(@PathVariable("num") Long num) {
+
+		Reservation reservation = reservationService.getDtl(num);
+
+		String seatDetail = reservation.getApplication().getSeatDetail();
+
+		Long deleteSeat = reservation.getApplication().getNum();
+		int anum = Long.valueOf(deleteSeat).intValue();
+
+		if (seatDetail != null) {
+			String selectSeat = reservation.getSeat();
+			String[] array = selectSeat.split(", ");
+
+			seatService.cancelUpdateSeat(seatDetail, anum, array);
+		}
+		reservationService.cancleReservation(num);
+
+		return "redirect:/admin/reservationMng";
 	}
 
 }
