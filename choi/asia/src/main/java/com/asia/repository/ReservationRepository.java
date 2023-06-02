@@ -11,7 +11,7 @@ import com.asia.entity.Reservation;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long>, QuerydslPredicateExecutor<Reservation>, ReservationRepositoryCustom {
 	
-	Reservation findByNum(Long num);
+	Reservation findByNum(Long num); 
 	
 	List<Reservation> findAllByMemberNum(Long num);
 
@@ -19,3 +19,4 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>,
 	@Query(value="update Reservation r set r.stat = :cancle where r.reservation_num = :num", nativeQuery=true)
 	void cancleReservation(Long num, String cancle);
 }
+

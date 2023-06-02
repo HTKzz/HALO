@@ -95,6 +95,4 @@ public class MemberService implements UserDetailsService {
     public void updateMemberPwd(String password, String id) {
     	memberRepository.updatememberMyPage(password, id);
     }
-
-	
 }

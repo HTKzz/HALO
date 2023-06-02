@@ -1,6 +1,5 @@
 package com.asia.dto;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +51,8 @@ public class ApplicationDto {
 	private String place;
 	
 	private String url;
+	
+	private String approvalStatus;
 	
 	private List<AttachDto> attachDtoList = new ArrayList<>();   // 프로그램 저장 후 수정할때 첨부파일 정보를 저장하는 리스트
 	

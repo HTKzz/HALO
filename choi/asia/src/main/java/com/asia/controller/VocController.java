@@ -1,11 +1,10 @@
 package com.asia.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -34,7 +33,7 @@ import lombok.ToString;
 @ToString
 public class VocController {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(VocController.class);
+//	private final Logger LOGGER = LoggerFactory.getLogger(VocController.class);
 	private final VocService vocService;
 	private final AttachService attachService;
 
@@ -49,21 +48,19 @@ public class VocController {
 	// 새글 등록
 	@PostMapping("/new")
 	public String newVoc(@Valid VocFormDto vocFormDto, BindingResult bindingResult, Model model,
-			@RequestParam("attachFile") List<MultipartFile> attachFileList) {
+			@RequestParam("attachFile") List<MultipartFile> attachFileList, Principal principal) {
 		if (bindingResult.hasErrors()) {
 			return "board/voc/vocForm";
 		}
 
-		if (attachFileList.get(0).isEmpty() && vocFormDto.getNum() == null) {
-			model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력값 입니다.");
-			return "board/voc/vocForm";
-		}
 		try {
-			vocService.saveVoc(vocFormDto, attachFileList);
+			String name = principal.getName();
+			vocService.saveVoc(vocFormDto, attachFileList, name);
 
-			VocFormDto vocFormDto1 = vocService.getvocCtD(vocFormDto.getContent());
+			VocFormDto vocFormDto1 = vocService.getVoc();
 			vocService.updateCnt(vocFormDto1.getNum());
 			model.addAttribute("voc", vocFormDto1);
+			
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "등록 중 에러발생");
 			return "board/voc/vocForm";
@@ -74,7 +71,7 @@ public class VocController {
 	// 리스트불러오기 페이징넣어서
 	@GetMapping("/list")
 	public String listVoc(
-			@PageableDefault(page = 0, size = 8, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
+			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
 			Model model) {
 
 		Page<Voc> list = vocService.getVocLists(pageable);
@@ -92,10 +89,16 @@ public class VocController {
 
 	// 상세보기
 	@GetMapping("/detail/{num}")
-	public String detailVoc(Model model, @PathVariable("num") Long num) {
+	public String detailVoc(Model model, @PathVariable("num") Long num, Principal principal) {
 		VocFormDto vocFormDto = vocService.getvocDtl(num);
 		vocService.updateCnt(num);
 		model.addAttribute("voc", vocFormDto);
+
+		String name = principal.getName();
+		Voc voc = vocService.findByNum(num);
+		model.addAttribute("username", name);
+		model.addAttribute("writername", voc.getMember().getId());
+		
 
 		return "board/voc/vocDetail";
 	}
@@ -154,17 +157,46 @@ public class VocController {
 	@PostMapping("/reply/new")
 	public String newReplyVoc(@Valid VocFormDto vocFormDto, BindingResult bindingResult, Model model,
 			@RequestParam("attachFile") List<MultipartFile> attachFileList, @RequestParam("parentNo") Long parentNo,
-			@RequestParam("originNo") Long num) {
+			@RequestParam("originNo") Long num, Principal principal) {
 
 		try {
-			vocService.saveReplyVoc(vocFormDto, attachFileList, parentNo);
+			String name = principal.getName();
+			
+			vocService.saveReplyVoc(vocFormDto, attachFileList, parentNo, name);
 
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "상품 등록 중 에러 발생");
 			return "board/voc/vocReply";
 		}
 		return "redirect:/voc/list";
+	}
+	
+	// 검색 vocController
+	@PostMapping("/searchVoc")
+	public String searchVoc(@RequestParam("searchOpt") String searchOpt,
+			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable, Model model, String vocListSearch) {
+		
+		System.out.println(vocListSearch);
+		
+		Page<Voc> lists = null;
+		if(searchOpt.equals("name")) {
+			lists = vocService.vocListSearchByName(vocListSearch, pageable);
+		}else if (searchOpt.equals("writer")) {
+			lists = vocService.vocListSearchBywriter(vocListSearch, pageable);
+		}else {
+			return "board/voc/vocList";
+		}
+		
+		model.addAttribute("list", lists);
+		
+		int nowPage = lists.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 4, 1);
+		int endPage = Math.min(nowPage + 4, lists.getTotalPages());
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 
+		return "board/voc/vocList";
 	}
 
 }

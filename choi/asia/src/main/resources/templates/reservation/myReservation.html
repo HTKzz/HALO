@@ -36,11 +36,10 @@ layout:decorate="~{layouts/layout1}">
 		<section class="myReservationForm-contents">
 			<form role="form" method="post" class="myReservation">
 				
-				<span class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
+				<div class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
 					<span class="myReservationForm-h4-bigger" th:text="${reservations[0].member.name}"></span>
-					님 
-				</span>
-				<span class="myReservationForm-h4">예매 내역</span>
+					<span class="myReservationForm-h4">님 예매 내역</span>
+				</div>
 				<table class="myReservationForm-table">
                 	<thead>
                         <tr class="myReservationForm-tr">
@@ -67,11 +66,10 @@ layout:decorate="~{layouts/layout1}">
                     </tbody>
                 </table>
                 
-                <span class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
+                <div class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
 					<span class="myReservationForm-h4-bigger" th:text="${reservations[0].member.name}"></span>
-					님 
-				</span>
-				<span class="myReservationForm-h4">취소 내역</span>
+					<span class="myReservationForm-h4">님 취소 내역</span>
+				</div>
 				<table class="myReservationForm-table">
                 	<thead>
                         <tr class="myReservationForm-tr">
@@ -97,11 +95,10 @@ layout:decorate="~{layouts/layout1}">
                     </tbody>
                 </table>
                 
-                <span class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
+                <div class="myReservationForm-titleDiv" th:if="${reservations != 'nothing'}">
 					<span class="myReservationForm-h4-bigger" th:text="${reservations[0].member.name}"></span>
-					님 
-				</span>
-				<span class="myReservationForm-h4">환불 내역</span>
+					<span class="myReservationForm-h4">님 환불 내역</span>
+				</div>
 				<table class="myReservationForm-table">
                 	<thead>
                         <tr class="myReservationForm-tr">

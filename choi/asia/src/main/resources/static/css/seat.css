@@ -1,6 +1,22 @@
+@font-face {
+	font-family: 'SF_HambakSnow';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.applicationForm-title-h1 {
+	font-family: 'SF_HambakSnow';
+	font-size: 3rem;
+	line-height: 3.5rem;
+	padding-bottom: 40px;
+	text-align: center;
+}
+
 body {
 	font-family: 'Lato', sans-serif;
-	color: #fff;
 	box-sizing: border-box;
 }
 
@@ -8,28 +24,90 @@ input {
 	width: 200px;
 }
 
-#container {
-	background-color: #242333;
+#seatContainer {
+	/* background-color: #242333; */
+	border: 1px solid gray;
+	border-radius: 5px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 800px;
+	height: 650px;
 	text-align: center;
 	line-height: 35px;
+}
+
+.seatContainer {
+	width: 800px;
+	float: left;
+}
+
+.loginbtn {
+	background-color: #A4A4A4;
+	border: none;
+	color: white;
+	border-radius: 5px;
+	width: 40%;
+	height: 45px;
+	font-size: 14pt;
+	margin: 10px;
+	cursor:pointer;
+}
+
+
+.loginbtn:hover {
+	color: #fff;
+	background-color: #848484;
+}
+
+.seatInfo {
+	/* border: 1px solid gray;
+	border-radius: 5px; */
+	margin: 60px 60px 60px 0px;
+	float: right;
+}
+
+.seatInfo h2 {
+}
+
+.seatDetail {
+	margin: 0 auto;
 }
 
 .movieContainer {
 	margin: 20px 0px;
 }
 
+.form-group {
+	display: flex;
+	margin: 20px;
+	align-items: center;
+}
+
+.form-group input {
+	border: 1px solid gray;
+	border-radius: 5px;
+	font-size: 18px;
+	height: 30px;
+	text-align: center;
+}
+
+.form-group label {
+	font-size: 15px;
+	/* font-weight: bold; */
+	padding-right: 5px;
+	width: 90px;
+	text-align: center;
+}
+
 .showcase {
-	background-color: #777;
+	width: 70%;
 	background: rgba(0, 0, 0, 0.1);
 	border-radius: 5px;
 	display: flex;
 	justify-content: center;
-	margin: 16px 0;
+	margin: 0 auto;
+	margin-top:20px;
 	padding: 5px 10px;
 }
 
@@ -49,11 +127,12 @@ input {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-left: 10px;
+	margin-left: 30px;
 }
 
 .small {
-	color: #777;
+	font-weight: bold;
+	color: black;
 	margin-left: 2px;
 }
 
@@ -73,11 +152,15 @@ input {
 }
 
 .screen {
+	border: 1px solid gray;
+	background-color: gray;
+	border-radius: 10px;
 	background: #fff;
-	height: 70px;
-	width: 100%;
-	margin: 15px 0;
-	transform: rotateX(-45deg);
+	height: 50px;
+	line-height: 45px;
+	width: 90%;
+	margin: 40px 40px;
+	/* transform: rotateX(-45deg); */
 	box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
 }
 
@@ -96,6 +179,7 @@ input {
 }
 
 .seat.occupied {
+	border: 2px solid #444451;
 	background: #fff;
 }
 
@@ -172,7 +256,7 @@ input {
 
 .row {
 	display: inline-flex;
-	border: 5px solid black;
+	border: 5px solid white;
 	color: white;
 	vertical-align: top;
 }

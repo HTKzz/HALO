@@ -70,7 +70,7 @@ public class ApplicationController {
 			String name = principal.getName();
 			applicationService.saveApplication(applicationDto, attachFileList, name);   // 상품 저장 로직을 호출. 상품정보와 상품이미지정보를 넘긴다.
 		} catch (Exception e) {
-			model.addAttribute("errorMessage", "프로그램 등록 중 에러가 발생하였습니다.");
+			model.addAttribute("errorMessage", e.getMessage());
 			return "board/program/applicationForm";
 		}
 		
@@ -195,7 +195,7 @@ public class ApplicationController {
 			applicationService.deleteApplication(list.get(i).getNum());
    		}
 		
-   		return "redirect:/board/program/applications";
+   		return "redirect:/admin/applications";
 	}
     
     // 카테고리별 게시판 호출(공연)
@@ -229,7 +229,7 @@ public class ApplicationController {
  // 카테고리별 게시판 호출(전시)
     @GetMapping("/program/exhibitionlist")
     public String exhibitionListView(Model model, Long num, String programCategory,
-    								 @PageableDefault(page = 0, size = 6, sort = "num", direction = Sort.Direction.DESC)Pageable pageable) {
+    								 @PageableDefault(page = 0, size = 6)Pageable pageable) {
     	
     	
             //큰카테고리에 해당하는 상품 가져오기.
@@ -253,7 +253,7 @@ public class ApplicationController {
     // 카테고리별 게시판 호출(행사)
     @GetMapping("/program/eventlist")
     public String eventListView(Model model, Long num, String programCategory,
-    							@PageableDefault(page = 0, size = 6, sort = "num", direction = Sort.Direction.DESC)Pageable pageable) {
+    							@PageableDefault(page = 0, size = 6)Pageable pageable) {
     	
             //큰카테고리에 해당하는 상품 가져오기.
     		programCategory = "행사";
