@@ -101,7 +101,7 @@ public class Application extends BaseEntity {
 	@ToString.Exclude
 	private List<SeatC> seatC;
 	
-	@OneToMany(mappedBy ="application", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy ="application", cascade=CascadeType.REMOVE)
 	@ToString.Exclude
 	private List<Reservation> reservation;
 	

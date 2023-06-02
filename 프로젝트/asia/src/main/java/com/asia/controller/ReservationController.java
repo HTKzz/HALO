@@ -36,7 +36,7 @@ public class ReservationController {
 	private final ReservationService reservationService;
 	private final MemberService memberService;
 
-	//좌석o 선택페이지 이동
+	// 좌석o 선택페이지 이동
 	@PostMapping(value = "/new")
 	public String selectSeat(Model model, @RequestParam("test") int anum, @RequestParam("seatDetail") String seat) {
 
@@ -73,7 +73,7 @@ public class ReservationController {
 		return null;
 	}
 
-	//좌석o 예매하기
+	// 좌석o 예매하기
 	@PostMapping(value = "/add")
 	public String addreservation(Model model, @RequestParam("anum") int anum, @RequestParam("seat1") String seat1,
 			@RequestParam("seat") String seat, @RequestParam("cnt") int cnt, @RequestParam("price") int price,
@@ -90,7 +90,7 @@ public class ReservationController {
 		return "redirect:/";
 	}
 
-	//좌석x 예매페이지 이동
+	// 좌석x 예매페이지 이동
 	@PostMapping(value = "/new1")
 	public String reservation1(Model model, @RequestParam("test") long anum) {
 		Application application = applicationService.getApplicationDtl1(anum);
@@ -100,7 +100,7 @@ public class ReservationController {
 		return "reservation/reservationForm";
 	}
 
-	//좌석x 예매
+	// 좌석x 예매
 	@PostMapping(value = "/add1")
 	public String addreservation1(Model model, @RequestParam("anum") int anum, @RequestParam("cnt") int cnt,
 			@RequestParam("price") int price, Principal principal) throws Exception {
@@ -115,8 +115,8 @@ public class ReservationController {
 
 		return "redirect:/";
 	}
-	
-	//예매 삭제
+
+	// 예매 삭제
 	@GetMapping(value = "/delete/{num}")
 	public String reservationDelete(@PathVariable Long num) {
 
@@ -129,39 +129,39 @@ public class ReservationController {
 
 		if (seatDetail != null) {
 			String selectSeat = reservation.getSeat();
-			String[] array = selectSeat.split(",");
+			String[] array = selectSeat.split(", ");
 
 			seatService.cancelUpdateSeat(seatDetail, anum, array);
 		}
-		
+
 		reservationService.deleteReservation(num);
 
 		return "redirect:/admin/reservationMng";
 	}
-	
-	//내 예매내역 호출
-    @GetMapping(value="/myReservation")
-    public String myReservation(Model model, Principal principal) {
-    	
-    	String id = principal.getName();
-    	Member member = memberService.findUserMyPage(id);
-    	List<Reservation> reservations = reservationService.getReservationList(member.getNum());
-    	
-    	if(reservations.isEmpty()) {
-    		model.addAttribute("reservations", "nothing");
-    	
-    	}else {
-    		model.addAttribute("reservations", reservations);
-    	}
-    	
-    	return "reservation/myReservation";
-    }
-    
-    //예매내역 취소
-    @PostMapping(value="/cancleMyReservation/{num}")
-    public String cancleMyReservation(@PathVariable Long num) {
-    	
-    	Reservation reservation = reservationService.getDtl(num);
+
+	// 내 예매내역 호출
+	@GetMapping(value = "/myReservation")
+	public String myReservation(Model model, Principal principal) {
+
+		String id = principal.getName();
+		Member member = memberService.findUserMyPage(id);
+		List<Reservation> reservations = reservationService.getReservationList(member.getNum());
+
+		if (reservations.isEmpty()) {
+			model.addAttribute("reservations", "nothing");
+
+		} else {
+			model.addAttribute("reservations", reservations);
+		}
+
+		return "reservation/myReservation";
+	}
+
+	// 예매내역 취소
+	@PostMapping(value = "/cancelMyReservation/{num}")
+	public String cancelMyReservation(@PathVariable Long num) {
+
+		Reservation reservation = reservationService.getDtl(num);
 
 		String seatDetail = reservation.getApplication().getSeatDetail();
 
@@ -174,9 +174,32 @@ public class ReservationController {
 
 			seatService.cancelUpdateSeat(seatDetail, anum, array);
 		}
-    	
+
 		reservationService.cancleReservation(num);
-		
-    	return "redirect:/reservations/myReservation";
-    }
+
+		return "redirect:/reservations/myReservation";
+	}
+
+	// 환불 추가
+	@PostMapping(value = "/refundMyReservation/{num}")
+	public String refundMyReservation(@PathVariable Long num) {
+
+		Reservation reservation = reservationService.getDtl(num);
+
+		String seatDetail = reservation.getApplication().getSeatDetail();
+
+		Long deleteSeat = reservation.getApplication().getNum();
+		int anum = Long.valueOf(deleteSeat).intValue();
+
+		if (seatDetail != null) {
+			String selectSeat = reservation.getSeat();
+			String[] array = selectSeat.split(", ");
+
+			seatService.cancelUpdateSeat(seatDetail, anum, array);
+		}
+
+		reservationService.refundReservation(num);
+
+		return "redirect:/reservations/myReservation";
+	}
 }

@@ -87,13 +87,17 @@ public class NoticeController {
 
 	// 글 상세보기
 	@GetMapping(value = "/detail/{num}")
-	public String noticeDetail(@PathVariable("num") Long num, Model model, NoticeDto noticeDto) {
+	public String noticeDetail(@PathVariable("num") Long num, Model model, NoticeDto noticeDto, Principal principal) {
 		
 		noticeDto = noticeService.getnoticeDetail(num);
 		
-		
 		noticeService.updateCnt(num);
 		model.addAttribute("noticeDto", noticeDto);
+		
+		String name = principal.getName();
+		Notice notice = noticeService.findByNum(num);
+		model.addAttribute("username", name);
+		model.addAttribute("writername", notice.getMember().getId());
 		
 		return "board/notice/noticeDetailForm";
 	}
