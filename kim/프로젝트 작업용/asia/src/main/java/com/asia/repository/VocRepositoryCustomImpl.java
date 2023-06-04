@@ -7,10 +7,13 @@ import javax.persistence.EntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.thymeleaf.util.StringUtils;
 
+import com.asia.dto.VocSearchDto;
 import com.asia.entity.QVoc;
 import com.asia.entity.Voc;
 import com.querydsl.core.QueryResults;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 //사용자 정의 인터페이스 구현
@@ -24,9 +27,10 @@ public class VocRepositoryCustomImpl implements VocRepositoryCustom{
 
 	
 	@Override
-	public Page<Voc> getVocLists(Pageable pageable){
+	public Page<Voc> getVocLists(VocSearchDto vocSearchDto, Pageable pageable){
 		QueryResults<Voc> results = queryFactory // queryFactory 이용해서 쿼리 생성
 				.selectFrom(QVoc.voc) //글 데이터 조회하기 위해 QVoc의 voc 지정
+				.where(searchByLike(vocSearchDto.getSearchBy(), vocSearchDto.getSearchQuery()))
 				.orderBy(QVoc.voc.originNo.desc(), QVoc.voc.groupOrd.asc()) //우리는 num
 				.offset(pageable.getOffset()) // 데이터를 가져 올 시작 인덱스를 지정
 				.limit(pageable.getPageSize()) // 한번에 가져 올 최대 개수 지정
@@ -39,6 +43,14 @@ public class VocRepositoryCustomImpl implements VocRepositoryCustom{
 	
 	}
 
-	
+	private BooleanExpression searchByLike(String searchBy, String searchQuery) {
+
+		if (StringUtils.equals("name", searchBy)) {
+			return QVoc.voc.name.like("%" + searchQuery + "%");
+		} else if (StringUtils.equals("writer", searchBy)) {
+			return QVoc.voc.member.id.like("%" + searchQuery + "%");
+		}
+		return null;
+	}
 	
 }

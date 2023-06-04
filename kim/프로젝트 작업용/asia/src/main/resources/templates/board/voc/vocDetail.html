@@ -33,21 +33,22 @@
 </th:block>
 
 <div layout:fragment="content">
-<link th:href="@{/css/vocDetail.css}" rel="stylesheet">
+
 	<form method="get" action="/voc/detail" role="form">
 		<input type="hidden" id="num" th:value="${voc.num}">
 		
+		
 		<div class="detail-header">
-			<h1>VOC 고객의 소리</h1>
+           <p><a href="/">Home</a> > <strong>VOC 고객의 소리</strong></p>
 		</div>
 		
 		<div class="title-wrapper">
-			<div class="group-detail title">
-				<h1 class="detail-title" th:text="${voc.name}"></h1>
+			<div class="detail-title">
+				<h1 th:text="${voc.name}"></h1>
 			</div>
 		</div>
 		<div class="view-wrapper">
-			<div >
+			<div>
 				<span class="view-date"  th:text="${#temporals.format(voc.regTime, 'yyyy-MM-dd')}"></span>
 				<span class="view-views" th:text="${voc.cnt}"></span>
 				<span class="view-text">view</span>
@@ -80,7 +81,7 @@
 				<a th:href="@{/voc/reply/{num}(num=${voc.num})}">답글</a>
 			</span>
 		
-			<span class="l-button">
+			<span class="l-button" th:if="${username} == ${writername}">
 				<a th:href="@{/voc/update/{num}(num=${voc.num})}" class="voc-update" id="btn">수정</a>
 			</span>
 		
@@ -93,21 +94,21 @@
 		
 		<a th:href="@{/voc/list/}" class="back-to-list">목록</a>
 		
-		<!--  -->
+		
 		<div class="detailPrev">
 			<ul class="detailPrev_inner">
 				<li>
-					<a th:href="@{/voc/detail/{num}(num=${voc.num-1})}">
-						<span class="detailPrev-inner-span" th:if="${voc.num-1 != 0}">
-							<span class="detailPrev inner_text" th:if="${voc.allVocCnt >= voc.num}">이전글</span>
+					<a th:href="@{/voc/detail/{num}(num=${voc.realNum-1})}">
+						<span class="detailPrev-inner-span" th:if="${voc.realNum-1 != 0}">
+							<span class="detailPrev inner_text" th:if="${voc.allVocCnt >= voc.realNum}">이전글</span>
 							<span class="detailPrev inner_text" th:text="${voc.prevContent}"></span>
 						</span>
 					</a>
 				</li>
 				
 				<li>
-					<a th:href="@{/voc/detail/{num}(num=${voc.num+1})}">
-						<span class="detailNext inner_text" th:if="${voc.allVocCnt > voc.num}">다음글</span>
+					<a th:href="@{/voc/detail/{num}(num=${voc.realNum+1})}">
+						<span class="detailNext inner_text" th:if="${voc.allVocCnt > voc.realNum}">다음글</span>
 						<span class="detailNext inner_text" th:text="${voc.nextContent}"></span>
 					</a>
 				</li>

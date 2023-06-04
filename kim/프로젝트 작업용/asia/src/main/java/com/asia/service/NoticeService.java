@@ -165,4 +165,8 @@ public class NoticeService {
 		
 	}
 	
+	public Notice findByNum(Long num) {
+		return noticeRepository.findByNum(num);
+	}
+	
 }

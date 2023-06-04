@@ -24,17 +24,16 @@
 
 
 /************Global**************/
-
+.card {
+	margin-top: 15px;
+}
 .card a {
 	color: #808080;
 	text-decoration: none;
 }
 
-/* .card a:hover, .card a:focus {
-	color: #e51837;
-} */
-
 .card-body p {
+	font-size: 0.97em;
 	margin: 0 0 3em;
 }
 
@@ -59,10 +58,14 @@
 	margin-bottom: 0.2em;
 }
 
-.card-body h2 {
-	font-size: 2em;
+.card-body h4 {
+	font-size: 1em;
 	line-height: 1.1;
-	margin-bottom: 0.2em;
+	margin-bottom: 0.5em;
+	color: #333;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .card-body h3 {
@@ -77,10 +80,6 @@
 	color: #000;
 }
 
-/* .card-body h1 a:hover, .card-body h2 a:hover, .card-body h3 a:hover {
-	color: #e51837;
-} */
-
 ::-webkit-input-placeholder {
 	color: #808080;
 }
@@ -94,38 +93,13 @@
 }
 .content-title {
 	font-family: 'SF_HambakSnow';
-	font-size: 3rem;
+	font-size: 3.6rem;
 	line-height: 3.5rem;
 	padding-bottom: 5px;
 	text-align: center;
+	margin-bottom: 22px;
 }
 /************End Global**************/
-
-/* CSS Animations */
-/* @-webkit-keyframes fadeout {
-  0%   { background: #fff; }
-  10%   { background: #eee; }
-  100% { background: #fff; }
-}
-
-@-moz-keyframes fadeout {
-  0%   { background: #fff; }
-  10%   { background: #eee; }
-  100% { background: #fff; }
-}
-
-@-o-keyframes fadeout {
-  0%   { background: #fff; }
-  10%   { background: #eee; }
-  100% { background: #fff; }
-}
-
-@keyframes fadeout {
-  0%   { background: #fff; }
-  10%   { background: #eee; }
-  100% { background: #fff; }
-} */
-
 
 .card-img-list li {
   border-bottom: 1px solid #ccc;
@@ -144,6 +118,7 @@
   vertical-align: middle;
   width: 40%;
   padding-right: 1em;
+  margin-bottom: 20px;
 }
 
 .card-head img {
@@ -293,7 +268,11 @@
 }
 
 .card-img-fig:hover:after {
-  -webkit-transform: rotateY(0);
-  transform: rotateY(0);
-  opacity: 0.9;
+	-webkit-transform: rotateY(0);
+	transform: rotateY(0);
+	opacity: 0.9;
+}
+
+.card-img-list {
+	border-top: 2px solid #333;
 }
