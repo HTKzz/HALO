@@ -16,20 +16,19 @@ import lombok.RequiredArgsConstructor;
 public class PayService {
 
 //	private final Logger LOGGER = LoggerFactory.getLogger(PayService.class);
-	
+
 	private final PayRepository payRepository;
 	private final ReservationRepository reservationRepository;
-	
+
 	public void savePay(Long num) {
-		
+
 		Reservation reservation = reservationRepository.findByNum(num);
-		
+
 		reservation.setStat("결제완료");
-		
+
 		Pay pay = Pay.createPay();
 		pay.setReservation(reservation);
 		payRepository.save(pay);
-		
 	}
-	
+
 }

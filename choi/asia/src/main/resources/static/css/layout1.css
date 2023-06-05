@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	text-decoration: none;
+	box-sizing: border-box;
 }
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus,
@@ -30,6 +31,7 @@ html {
 }
 
 .content {
+	min-width: 1000px;
 	margin-top: 10px;
 	margin-bottom: 100px;
 }

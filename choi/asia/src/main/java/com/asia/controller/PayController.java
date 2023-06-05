@@ -22,6 +22,6 @@ public class PayController {
 		
 		payService.savePay(num);
 		
-		return "redirect:/reservations/myReservation";
+		return "redirect:/admin/reservationMng";
 	}
 }

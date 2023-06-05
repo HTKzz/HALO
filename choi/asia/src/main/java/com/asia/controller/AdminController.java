@@ -124,9 +124,31 @@ public class AdminController {
 	// 프로그램 신청 리스트 호출(프로그램 신청 관리페이지 호출)
 	// 오름차순(ASC), 내림차순(DESC)
 	@GetMapping(value = "/applications")
-	public String applicationManage(Model model,
+	public String applicationManageList(Model model,
 			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
 			String searchKeyword) {
+
+		// 검색기능
+		Page<Application> applications = applicationService.applicationList(pageable);
+
+		model.addAttribute("applications", applications);
+
+		int nowPage = applications.getPageable().getPageNumber() + 1; // pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
+		int startPage = Math.max(nowPage - 4, 1); // 매개변수로 들어온 두 값을 비교해서 큰값을 반환
+		int endPage = Math.min(nowPage + 4, applications.getTotalPages());
+
+		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+
+		return "admin/applicationMng";
+	}
+
+	// 검색을 이용한 프로그램 신청 리스트 출력(프로그램 관리)
+	@PostMapping(value = "/applicationsMngSearch")
+	public String applicationManage(Model model,
+			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
+			@RequestParam("searchKeyword") String searchKeyword) {
 
 		// 검색기능
 		Page<Application> applications = null;
@@ -172,7 +194,7 @@ public class AdminController {
 		return "redirect:/admin/reservationMng";
 	}
 
-	@GetMapping(value = "/adminCancelReservation/{num}")
+	@PostMapping(value = "/adminCancelReservation/{num}")
 	public String adminCancelReservation(@PathVariable("num") Long num) {
 
 		Reservation reservation = reservationService.getDtl(num);
@@ -192,5 +214,4 @@ public class AdminController {
 
 		return "redirect:/admin/reservationMng";
 	}
-
 }

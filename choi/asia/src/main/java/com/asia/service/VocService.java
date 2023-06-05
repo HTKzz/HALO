@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.AttachDto;
 import com.asia.dto.VocFormDto;
+import com.asia.dto.VocSearchDto;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Voc;
@@ -133,8 +134,8 @@ public class VocService {
 	}
 	
 	
-	public Page<Voc> getVocLists(Pageable pageable){
-		return vocRepository.getVocLists(pageable);
+	public Page<Voc> getVocLists(VocSearchDto vocSearchDto, Pageable pageable){
+		return vocRepository.getVocLists(vocSearchDto, pageable);
 	}
 
 	//답글등록
