@@ -16,4 +16,6 @@ public interface ApplicationRepositoryCustom {
 	
 	Page<MainApplicationDto> findDistinctByProgramCategory(Pageable pageable, String programCategory);
 	
+	Page<Application> getApplicationList(ApplicationSearchDto applicationSearchDto, Pageable pageable);
+	
 }

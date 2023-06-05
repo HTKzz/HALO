@@ -202,4 +202,22 @@ public class ReservationController {
 
 		return "redirect:/reservations/myReservation";
 	}
+	
+	// 티켓인쇄 페이지 이동 (나중에 고칠것)
+//	@PostMapping(value = "/printTicket")
+//	public String printTicket(Model model, @RequestParam("test") int anum, @RequestParam("seatDetail") String seat) {
+//
+//		model.addAttribute("updateDto", new UpdateDto());
+//
+//		Application application = applicationService.getApplicationDtl1(anum);
+//		model.addAttribute("name", application.getName());
+//		model.addAttribute("udate", application.getUdate());
+//		model.addAttribute("price", application.getPrice());
+//
+//		model.addAttribute("anum", anum);
+//		model.addAttribute("seat", seat);
+//
+//		return null;
+//	}
+
 }

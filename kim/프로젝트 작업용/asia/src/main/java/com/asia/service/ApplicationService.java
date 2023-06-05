@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.ApplicationDto;
+import com.asia.dto.ApplicationSearchDto;
 import com.asia.dto.AttachDto;
 import com.asia.dto.MainApplicationDto;
 import com.asia.entity.Application;
@@ -287,16 +288,16 @@ public class ApplicationService {
 //		return applicationRepository.getApplicationPage(applicationSearchDto, pageable);
 //	}
 
-	// 프로그램 신청글 리스트 페이징처리
-	// findAll : Application 이라는 클래스가 담긴 List를 반환하는것을 확인할수있다
-	public Page<Application> applicationList(Pageable pageable) {
-		return applicationRepository.findAll(pageable);
-	}
-
-	// 검색기능
-	public Page<Application> applicationSearchList(String searchKeyword, Pageable pageable) {
-		return applicationRepository.findByNameContaining(searchKeyword, pageable);
-	}
+//	// 프로그램 신청글 리스트 페이징처리
+//	// findAll : Application 이라는 클래스가 담긴 List를 반환하는것을 확인할수있다
+//	public Page<Application> applicationList(Pageable pageable) {
+//		return applicationRepository.findAll(pageable);
+//	}
+//
+//	// 검색기능
+//	public Page<Application> applicationSearchList(String searchKeyword, Pageable pageable) {
+//		return applicationRepository.findByNameContaining(searchKeyword, pageable);
+//	}
 
 	public Page<Application> applicationCategorySearchList(String searchKeyword, Pageable pageable) {
 		return applicationRepository.findByNameContaining(searchKeyword, pageable);
@@ -372,6 +373,11 @@ public class ApplicationService {
 
 		}
 
+	}
+
+	// 상품관리 리스트 불러오는 과전(검색포함)
+	public Page<Application> getApplicationList(ApplicationSearchDto applicationSearchDto, Pageable pageable) {
+		return applicationRepository.getApplicationList(applicationSearchDto, pageable);
 	}
 
 }
