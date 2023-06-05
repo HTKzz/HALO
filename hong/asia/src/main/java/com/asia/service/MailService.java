@@ -67,19 +67,6 @@ public class MailService {
 		return authKey;
 	}
 
-	// 일반회원 아이디 찾기 이메일
-	@Async
-	public String sendFindIdMail(String email, Member member) throws MessagingException {
-		MimeMessage mailMessage = mailSender.createMimeMessage();
-		String mailContent = "아이디 : " + member.getId();
-		mailMessage.setSubject("국제아시아문화전당 메일", "utf-8");
-		mailMessage.setText(mailContent, "utf-8", "html");
-		mailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-		mailSender.send(mailMessage); // <--회원가입시 email란에 입력한 이메일주소로 인증메일이 보내진다.
-
-		return member.getId();
-	}
-
 	// 일반 회원비밀번호 찾기
 	@Async // Async는 return 값이 void가 됨. CompletableFuture객체를 이용하면 return값을 보낼수있음
 	public CompletableFuture<String> sendFindPwMail(String email, Member member) throws MessagingException {
@@ -103,6 +90,19 @@ public class MailService {
 			check = false;
 		}
 		return check;
+	}
+
+	// 일반회원 아이디 찾기 이메일
+	@Async
+	public String sendFindIdMail(String email, Member member) throws MessagingException {
+		MimeMessage mailMessage = mailSender.createMimeMessage();
+		String mailContent = "아이디 : " + member.getId();
+		mailMessage.setSubject("국제아시아문화전당 메일", "utf-8");
+		mailMessage.setText(mailContent, "utf-8", "html");
+		mailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+		mailSender.send(mailMessage); // <--회원가입시 email란에 입력한 이메일주소로 인증메일이 보내진다.
+
+		return member.getId();
 	}
 //	//기업 회원 비밀번호 찾기 
 //	@Async 

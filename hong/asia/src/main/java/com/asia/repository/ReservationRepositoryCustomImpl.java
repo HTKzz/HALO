@@ -1,6 +1,5 @@
 package com.asia.repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -28,10 +27,10 @@ public class ReservationRepositoryCustomImpl implements ReservationRepositoryCus
 	public Page<Reservation> getAdminItemPage(ReservationSearchDto reservationSearchDto, Pageable pageable) {
 
 		QueryResults<Reservation> results = queryFactory.selectFrom(QReservation.reservation)
-				.where(regDtsAfter(reservationSearchDto.getSearchDateType()),
-						searchReservationStatusEq(reservationSearchDto.getStat()),
-						searchByLike(reservationSearchDto.getSearchBy(), reservationSearchDto.getSearchQuery()))
-				.orderBy(QReservation.reservation.num.desc()).offset(pageable.getOffset()).limit(pageable.getPageSize())
+				.where(searchByLike(reservationSearchDto.getSearchBy(), reservationSearchDto.getSearchQuery()))
+				.orderBy(QReservation.reservation.num.desc())
+				.offset(pageable.getOffset())
+				.limit(pageable.getPageSize())
 				.fetchResults();
 
 		List<Reservation> content = results.getResults();
@@ -42,32 +41,14 @@ public class ReservationRepositoryCustomImpl implements ReservationRepositoryCus
 	
 	private BooleanExpression searchByLike(String searchBy, String searchQuery) {
 
-		if (StringUtils.equals("stat", searchBy)) {
+		if (StringUtils.equals("name", searchBy)) {
+			return QReservation.reservation.application.name.like("%" + searchQuery + "%");
+		} else if (StringUtils.equals("buyer", searchBy)) {
+			return QReservation.reservation.member.id.like("%" + searchQuery + "%");
+		} else if (StringUtils.equals("stat", searchBy)) {
 			return QReservation.reservation.stat.like("%" + searchQuery + "%");
-		} else if (StringUtils.equals("createdBy", searchBy)) {
-			return QReservation.reservation.createdBy.like("%" + searchQuery + "%");
-		}
+		} 
 		return null;
-	}
-	
-	private BooleanExpression regDtsAfter(String searchDateType) {
-		LocalDateTime dateTime = LocalDateTime.now();
-		if (StringUtils.equals("all", searchDateType) || searchDateType == null) {
-			return null;
-		} else if (StringUtils.equals("1d", searchDateType)) {
-			dateTime = dateTime.minusDays(1);
-		} else if (StringUtils.equals("1w", searchDateType)) {
-			dateTime = dateTime.minusWeeks(1);
-		} else if (StringUtils.equals("1m", searchDateType)) {
-			dateTime = dateTime.minusMonths(1);
-		} else if (StringUtils.equals("6m", searchDateType)) {
-			dateTime = dateTime.minusMonths(6);
-		}
-		return QReservation.reservation.regTime.after(dateTime);
-	}
-	
-	private BooleanExpression searchReservationStatusEq(String reservationStat) {
-		return reservationStat == null ? null : QReservation.reservation.stat.eq(reservationStat);
 	}
 	
 }

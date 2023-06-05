@@ -8,10 +8,10 @@
 }
 
 .login {
-	padding-top:30px;
-	padding-bottom:20px;
-	max-width: 300px;
-	border-radius: 6px;
+	padding-top: 70px;
+	padding-bottom: 90px;
+	max-width: 500px;
+	border-radius: 20px;
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -21,6 +21,7 @@
 }
 
 .loginheader {
+	font-size: 60px;
 	font-family: 'SF_HambakSnow';
 	text-align:center;
 }
@@ -28,7 +29,7 @@
 .input-box {
 	position: relative;
 	margin: 10px 0;
-	margin-left: 25px;
+	margin-left: 80px;
 }
 
 .input-box>input {
@@ -37,7 +38,7 @@
 	border-bottom: solid 1px #ccc;
 	padding: 20px 0px 5px 0px;
 	font-size: 14pt;
-	width: 90%;
+	width: 80%;
 }
 
 input::placeholder {
@@ -73,29 +74,34 @@ input:focus, input:not(:placeholder-shown) {
 	border: none;
 	color: white;
 	border-radius: 5px;
-	width: 90%;
-	height: 35px;
+	width: 320px;
+	height: 50px;
 	font-size: 14pt;
-	margin-top: 40px;
-	margin-left: 15px;
+	margin-top: 50px;
+	margin-left: 80px;
 	cursor:pointer;
 }
 
 
 .loginbtn {
-	margin-left:18px;
 	background-color: #A4A4A4;
 	border: none;
 	color: white;
 	border-radius: 5px;
-	width: 40%;
-	height: 35px;
+	width: 140px;
+	height: 45px;
 	font-size: 14pt;
-	margin-top: 30px;
+	margin-top: 60px;
+	margin-left: 35px;
 	cursor:pointer;
 }
 
-button:hover {
+.btn-btn-primary:hover {
+	color: #fff;
+	background-color: #848484;
+}
+
+.loginbtn:hover {
 	color: #fff;
 	background-color: #848484;
 }
