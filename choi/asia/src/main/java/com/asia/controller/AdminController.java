@@ -1,6 +1,9 @@
 package com.asia.controller;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.asia.constant.Stat;
+import com.asia.dto.MemberFormDto;
 import com.asia.dto.ReservationSearchDto;
 import com.asia.entity.Application;
 import com.asia.entity.Member;
@@ -57,69 +60,62 @@ public class AdminController {
 	}
 
 	// 전체회원 리스트 출력
-	@GetMapping(value = "/memberMngList")
-	public String memberMngList(Model model,
-			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
-			String memberMngSearch) {
+	@GetMapping(value = {"/memberMngList", "/memberMngList/{page}"})
+	public String memberMngList(@PathVariable("page") Optional<Integer> page, Model model, MemberFormDto memberFormDto) {
 
-		Page<Member> lists = adminMemberService.memberList(pageable);
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 5);
+		Page<Member> memberMngList = adminMemberService.memberList(memberFormDto, pageable);
 
-		model.addAttribute("memberMngList", lists);
-
-		int nowPage = lists.getPageable().getPageNumber() + 1;
-		int startPage = Math.max(nowPage - 4, 1);
-		int endPage = Math.min(nowPage + 9, lists.getTotalPages());
-		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-
+		model.addAttribute("maxPage", 2);
+		model.addAttribute("memberMngList", memberMngList);
+		
 		return "admin/memberMng";
 	}
 
-	// 회원관리 -> 검색
-	@PostMapping(value = "/searchMember")
-	public String searchMember(@RequestParam("searchOption") String searchOption,
-			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
-			String memberMngSearch, Model model) {
-
-		Page<Member> lists = null;
-		if (searchOption.equals("name")) {
-			lists = adminMemberService.searchMemberByName(memberMngSearch, pageable);
-
-		} else if (searchOption.equals("tel")) {
-			lists = adminMemberService.searchMemberByTel(memberMngSearch, pageable);
-
-		} else if (searchOption.equals("email")) {
-			lists = adminMemberService.searchMemberByEmail(memberMngSearch, pageable);
-
-		} else if (searchOption.equals("birth")) {
-			lists = adminMemberService.searchMemberByBirth(memberMngSearch, pageable);
-
-		} else if (searchOption.equals("join")) {
-			lists = adminMemberService.searchMemberByJoin(memberMngSearch, pageable);
-
-		} else if (searchOption.equals("stat")) {
-			Stat stat = Stat.valueOf(memberMngSearch);
-			lists = adminMemberService.searchMemberByStat(stat, pageable);
-
-		} else if (searchOption.equals("role")) {
-			lists = adminMemberService.searchMemberByRole(memberMngSearch, pageable);
-
-		} else {
-			return "admin/memberMng";
-		}
-
-		model.addAttribute("memberMngList", lists);
-
-		int nowPage = lists.getPageable().getPageNumber() + 1;
-		int startPage = Math.max(nowPage - 4, 1);
-		int endPage = Math.min(nowPage + 9, lists.getTotalPages());
-		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-
-		return "admin/memberMng";
-	}
+//	// 회원관리 -> 검색
+//	@PostMapping(value = "/searchMember")
+//	public String searchMember(@RequestParam("searchOption") String searchOption,
+//			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
+//			String memberMngSearch, Model model) {
+//
+//		Page<Member> lists = null;
+//		if (searchOption.equals("name")) {
+//			lists = adminMemberService.searchMemberByName(memberMngSearch, pageable);
+//
+//		} else if (searchOption.equals("tel")) {
+//			lists = adminMemberService.searchMemberByTel(memberMngSearch, pageable);
+//
+//		} else if (searchOption.equals("email")) {
+//			lists = adminMemberService.searchMemberByEmail(memberMngSearch, pageable);
+//
+//		} else if (searchOption.equals("birth")) {
+//			lists = adminMemberService.searchMemberByBirth(memberMngSearch, pageable);
+//
+//		} else if (searchOption.equals("join")) {
+//			lists = adminMemberService.searchMemberByJoin(memberMngSearch, pageable);
+//
+//		} else if (searchOption.equals("stat")) {
+//			Stat stat = Stat.valueOf(memberMngSearch);
+//			lists = adminMemberService.searchMemberByStat(stat, pageable);
+//
+//		} else if (searchOption.equals("role")) {
+//			lists = adminMemberService.searchMemberByRole(memberMngSearch, pageable);
+//
+//		} else {
+//			return "admin/memberMng";
+//		}
+//
+//		model.addAttribute("memberMngList", lists);
+//
+//		int nowPage = lists.getPageable().getPageNumber() + 1;
+//		int startPage = Math.max(nowPage - 4, 1);
+//		int endPage = Math.min(nowPage + 9, lists.getTotalPages());
+//		model.addAttribute("nowPage", nowPage);
+//		model.addAttribute("startPage", startPage);
+//		model.addAttribute("endPage", endPage);
+//
+//		return "admin/memberMng";
+//	}
 
 	// 프로그램 신청 리스트 호출(프로그램 신청 관리페이지 호출)
 	// 오름차순(ASC), 내림차순(DESC)
@@ -193,7 +189,8 @@ public class AdminController {
 
 		return "redirect:/admin/reservationMng";
 	}
-
+	
+	// 예매 취소
 	@PostMapping(value = "/adminCancelReservation/{num}")
 	public String adminCancelReservation(@PathVariable("num") Long num) {
 

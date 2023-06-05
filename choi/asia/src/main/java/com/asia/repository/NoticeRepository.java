@@ -3,10 +3,12 @@ package com.asia.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
+import com.asia.entity.Member;
 import com.asia.entity.Notice;
 
-public interface NoticeRepository extends JpaRepository<Notice, Long> {
+public interface NoticeRepository extends JpaRepository<Notice, Long>, QuerydslPredicateExecutor<Member>, NoticeRepositoryCustom {
 	
 	Notice findByNum(Long num);
 	Notice findByName(String name);

@@ -76,7 +76,7 @@ public class VocController {
 
 		Page<Voc> list = vocService.getVocLists(vocSearchDto, pageable);
 		model.addAttribute("list", list);
-
+		System.out.println(list.getPageable());
 		int nowPage = list.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 4, 1);
 		int endPage = Math.min(nowPage + 4, list.getTotalPages());

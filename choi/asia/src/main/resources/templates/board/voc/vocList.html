@@ -42,15 +42,17 @@
 			method="get">
 			<div class="vocSearch vocList-searchOptions"
 				th:object=${vocSearchDto}>
-				<span class="vocList-searchOption-list"> <select
-					class="memberMng-select" th:field="*{searchBy}">
+				<span class="vocList-searchOption-list"> 
+				<select class="memberMng-select" th:field="*{searchBy}">
 						<option th:value="name">제목</option>
 						<option th:value="writer">작성자</option>
 				</select>
-				</span> <span class="vocList-searchOption-list"> <input
-					class="memberMng-select-search" type="text"
-					th:field="*{searchQuery}">
-				</span> <span class="vocList-searchOption-list">
+				</span> 
+				<span class="vocList-searchOption-list"> 
+					<input class="memberMng-select-search" type="text"
+							th:field="*{searchQuery}">
+				</span> 
+				<span class="vocList-searchOption-list">
 					<button class="memberMng-search-btn" type="submit" id="searchBtn">검색</button>
 				</span>
 			</div>

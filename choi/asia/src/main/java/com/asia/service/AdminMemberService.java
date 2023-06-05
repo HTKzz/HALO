@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.asia.constant.Stat;
+import com.asia.dto.MemberFormDto;
 import com.asia.entity.Member;
 import com.asia.repository.MemberRepository;
 
@@ -17,9 +18,9 @@ public class AdminMemberService {
 	private final MemberRepository memberRepository;
 
 	// 회원관리 페이지 리스트 불러오기
-	public Page<Member> memberList(Pageable pageable) {
+	public Page<Member> memberList(MemberFormDto memberFormDto, Pageable pageable) {
 
-		return memberRepository.findAll(pageable); // 모든 리스트
+		return memberRepository.getMemberMngLists(memberFormDto, pageable); // 모든 리스트
 	}
 
 	// 회원관리 페이지 검색

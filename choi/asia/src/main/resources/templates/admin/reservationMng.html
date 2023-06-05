@@ -22,6 +22,13 @@
 					return false;
 				}
 			});
+			$("#reservation-cancelMsg").on("click", function() {
+				if (confirm('취소 상태로 변경 하시겠습니까?')) {
+
+				} else {
+					return false;
+				}
+			});
 
 			/* $("#searchBtn").on("click", function(e) {
 			    e.preventDefault();
@@ -93,7 +100,8 @@
 						</td>
 						<td style="width:60px;" class="myReservationForm-stat reservation-td">
                            	<form th:if="${reservation.stat != '취소'} and ${reservation.stat == '결제대기'}" method="post" onsubmit=true>
-                           		<button th:formaction="@{/admin/adminCancelReservation/{num}(num=${reservation.num})}" class="myReservationForm-btn">취소</button>
+                           		<button th:formaction="@{/admin/adminCancelReservation/{num}(num=${reservation.num})}" id="reservation-cancelMsg"
+                           				class="myReservationForm-btn">취소</button>
                            		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                            	</form>
                         </td>

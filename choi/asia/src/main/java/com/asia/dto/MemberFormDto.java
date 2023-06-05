@@ -50,4 +50,7 @@ public class MemberFormDto {
 	private String agree;
 	
 	private Role role;
+	
+	private String searchOption;
+	private String memberMngSearch = "";
 }
