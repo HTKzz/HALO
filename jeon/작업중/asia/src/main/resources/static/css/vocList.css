@@ -5,7 +5,7 @@
     font-style: normal;
 }
 
-*{
+* {
 	margin: 0 auto;
     padding: 0 auto;
     list-style: none;
@@ -23,35 +23,27 @@ body {
 	margin: 0 auto;
 }
 
-.vocList-title {
-	margin-left: 25px;
-	margin-bottom: 40px;
-	text-align: center;
-	float:left;
-}
-
-.vocList-title h3 {
-	font-size: 50px;
-	color : #333333;
-	/* font-weight: bold; */
-	text-align: center;
-}
-
-.vocSearch {
-	position:relative;
-	top: 30px;
-	float: right;
-	margin-bottom: 0px;
-}
-
 .vocList-container {
 	text-align: center;
 	position: relative;
+	padding: 100px 0;
 }
 
+.vocList-title {
+	text-align: center;
+	position: relative;
+	bottom: 5px;
+	float: left;
+	margin-left: 20px;
+	margin-bottom: 25px;
+}
 
-
-
+.vocList-title h3 {
+	font-size: 60px;
+	color : #333333;
+	font-weight: bold;
+	text-align: center;
+}
 
 .vocList-table {
 	font-size: 15px;
@@ -86,8 +78,6 @@ body {
 }
 
 .vocList-table tbody td {
-	/* padding-left: 28px;
-	padding-right: 14px; */
 	padding : 14px;
 	border-top: 1px solid #e7e7e7;
 	text-align: center;
@@ -142,4 +132,70 @@ body {
 
 .fieldError {
 	color: #bd2130;
+}
+
+
+/* 검색바 css */
+
+.vocList-container select {
+	border: 1px solid #bbb;
+	border-radius: 5px;
+	width: 85px;
+	height: 35px;
+	text-align: center;
+}
+
+.memberMng-select-search {
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	width: 180px;
+	height: 33px;
+	text-align: center;
+}
+
+.memberMng-search-btn {
+	border: 1px solid #aaa;
+	border-radius: 5px;
+	background: #fff;
+    color: #7d7d7d;
+    width: 70px;
+    height: 35px;
+    transition: 0.5s;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    top: 2px;
+}
+
+.vocList-searchOptions {
+	margin-bottom: 10px;
+	margin-left: 3px;
+	margin-right: 20px;
+}
+
+.memberMngForm {
+	float: right;
+}
+
+.memberMng-search-btn:hover {
+	color: #fdfdfd;
+	background-color: #1d1f20;
+	border: solid 1px #1d1f20;
+}
+
+.vocList-approvalStatus-button {
+	background-color: #A4A4A4;
+	color: #fff;
+    border: none;    
+    border-radius: 5px;
+    width: 70px;
+    height: 30px;
+    cursor: pointer;
+    transition: 0.5s;
+    font-weight: bold;
+}
+
+.vocList-approvalStatus-button:hover {
+	background: #777;
+	color: #fff;
 }

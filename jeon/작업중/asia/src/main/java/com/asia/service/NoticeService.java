@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.AttachDto;
 import com.asia.dto.NoticeDto;
+import com.asia.dto.NoticeSearchDto;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Notice;
@@ -96,10 +97,11 @@ public class NoticeService {
 		return notice.getNum();
 	}
 	
-	// 게시판 리스트 싹 다 불러오기 (페이징)
-	public Page<Notice> noticeList(Pageable pageable){
+	// 게시판 리스트 싹 다 불러오기 (페이징, 검색)
+	public Page<Notice> noticeList(NoticeSearchDto noticeSearchDto, Pageable pageable){
 		
-		return noticeRepository.findAll(pageable);
+		
+		return noticeRepository.getNoticeLists(noticeSearchDto, pageable);
 	}
 	
 	// 조회수
@@ -164,7 +166,7 @@ public class NoticeService {
 		noticeRepository.deleteByNum(num);
 		
 	}
-	// 상세보기 수정삭제 버튼
+	
 	public Notice findByNum(Long num) {
 		return noticeRepository.findByNum(num);
 	}

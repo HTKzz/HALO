@@ -3,10 +3,11 @@ package com.asia.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import com.asia.entity.Notice;
 
-public interface NoticeRepository extends JpaRepository<Notice, Long> {
+public interface NoticeRepository extends JpaRepository<Notice, Long>, NoticeRepositoryCustom, QuerydslPredicateExecutor<Notice> {
 	
 	Notice findByNum(Long num);
 	Notice findByName(String name);
@@ -28,4 +29,6 @@ public interface NoticeRepository extends JpaRepository<Notice, Long> {
 	
 	@Query(value="select name from Notice where Notice_num = :num +1", nativeQuery=true)
 	String getNextContent(Long num);
+	
+	
 }

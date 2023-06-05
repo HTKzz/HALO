@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.AttachDto;
 import com.asia.dto.VocFormDto;
+import com.asia.dto.VocSearchDto;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Voc;
@@ -94,7 +95,7 @@ public class VocService {
 		vocRepository.deleteByNum(num);
 	}
 
-	// 수정 -등록된 상품 불러오는 메서드
+	// 수정-등록된 상품 불러오는 메서드
 	@Transactional(readOnly = true) // 읽어오는 트랜잭션을 읽기전용으로 설정, 이럴 경우 JPA가 변경감지(더티체킹)를 수행하지 않아서 성능향상
 	public VocFormDto getvocDtl(Long num) {
 		List<Attach> attachList = attachRepository.findByVocNumOrderByNumAsc(num); //해당 이미지 조회
@@ -107,8 +108,8 @@ public class VocService {
 		Voc voc = vocRepository.findById(num).orElseThrow(EntityNotFoundException::new);
 		
 		long allVocCnt = vocRepository.getList();
-		String prevContent = vocRepository.getPrevContent(voc.getRealNum());
-		String nextContent = vocRepository.getNextContent(voc.getRealNum());
+		String prevContent = vocRepository.getPrevContent(num);
+		String nextContent = vocRepository.getNextContent(num);
 		VocFormDto vocFormDto = VocFormDto.of(voc);
 		vocFormDto.setAllVocCnt(allVocCnt);
 		vocFormDto.setPrevContent(prevContent);
@@ -132,9 +133,9 @@ public class VocService {
 		return voc.getNum();
 	}
 	
-	
-	public Page<Voc> getVocLists(Pageable pageable){
-		return vocRepository.getVocLists(pageable);
+	//페이지, 검색
+	public Page<Voc> getVocLists(VocSearchDto vocSearchDto, Pageable pageable){
+		return vocRepository.getVocLists(vocSearchDto, pageable);
 	}
 
 	//답글등록
