@@ -111,12 +111,13 @@
 				</tbody>
 			</table>
 			<br>
-			<div class="page_wrap">
+			<div class="page_wrap"
+				th:with="start=${(reservations.number/maxPage)*maxPage + 1}, end=(${(reservations.totalPages == 0) ? 1 : (start + (maxPage - 1) < reservations.totalPages ? start + (maxPage - 1) : reservations.totalPages)})">
 
 				<ul class="pagination justify-content-center">
 
 					<li class="page-item"
-						th:classappend="${startPage == reservations.pageable.pageNumber + 1} ? 'disabled'">
+						th:classappend="${reservations.first} ? 'disabled'">
 						<a class="page-link"
 						th:href="'javascript:page(' + ${reservations.pageable.pageNumber - 1} + ')'"
 						tabindex="-1" aria-disabled="true">Previous</a>
@@ -124,13 +125,13 @@
 
 					<li class="page-item"
 						th:classappend="${page == reservations.pageable.pageNumber + 1} ? 'active'"
-						th:each="page : ${#numbers.sequence(startPage, endPage)}"><a
+						th:each="page : ${#numbers.sequence(start, end)}"><a
 						class="page-link"
 						th:href="'javascript:page(' + ${page - 1} + ')'"
 						th:text=${page} aria-current="page">1</a></li>
 
 					<li class="page-item"
-						th:classappend="${endPage == reservations.pageable.pageNumber + 1} ? 'disabled'">
+						th:classappend="${reservations.last} ? 'disabled'">
 						<a class="page-link"
 						th:href="'javascript:page(' + ${reservations.pageable.pageNumber + 1} + ')'">Next</a>
 					</li>

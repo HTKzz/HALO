@@ -72,17 +72,12 @@ public class VocController {
 	// 리스트불러오기 페이징넣어서
 	@GetMapping(value = {"/list", "/list/{page}"})
 	public String listVoc(@PathVariable("page") Optional<Integer> page, Model model, VocSearchDto vocSearchDto) {
-		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 1);
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
 
 		Page<Voc> list = vocService.getVocLists(vocSearchDto, pageable);
+		
+		model.addAttribute("maxPage", 10);
 		model.addAttribute("list", list);
-
-		int nowPage = list.getPageable().getPageNumber() + 1;
-		int startPage = Math.max(nowPage - 9, 1);
-		int endPage = Math.min(nowPage + 9, list.getTotalPages());
-		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
 
 		return "board/voc/vocList";
 	}

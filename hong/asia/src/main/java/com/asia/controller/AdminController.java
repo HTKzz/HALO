@@ -41,17 +41,11 @@ public class AdminController {
 	// 예매 관리 페이지
 	@GetMapping(value = {"/reservationMng", "/reservationMng/{page}"})
 	public String reservationManage(@PathVariable("page") Optional<Integer> page, Model model, ReservationSearchDto reservationSearchDto) {
-		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 4);
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
 
 		Page<Reservation> reservations = reservationService.getAdminReservationPage(reservationSearchDto, pageable);
-
-		int nowPage = reservations.getPageable().getPageNumber() + 1;
-		int startPage = Math.max(nowPage - 4, 1);
-		int endPage = Math.min(nowPage + 9, reservations.getTotalPages());
-		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-
+		
+		model.addAttribute("maxPage", 10);
 		model.addAttribute("reservations", reservations);
 
 		return "admin/reservationMng";
