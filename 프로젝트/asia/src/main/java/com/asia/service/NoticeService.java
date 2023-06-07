@@ -11,12 +11,11 @@ import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.AttachDto;
 import com.asia.dto.NoticeDto;
-import com.asia.dto.NoticeSearchDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Notice;
@@ -40,10 +39,8 @@ public class NoticeService {
 	public Long writenotice(@Valid NoticeDto noticeDto, List<MultipartFile> attachList, String id) throws Exception {
 
 		Notice notice = noticeDto.createNotice();
-		System.out.println(notice);
 
 		Member member = memberRepository.findById(id);
-		System.out.println(member);
 
 		notice.setMember(member);
 		notice.setCnt(0);
@@ -69,39 +66,10 @@ public class NoticeService {
 		return notice.getNum();
 	}
 
-	// 게시판 답글
-	public Long replynotice(@Valid NoticeDto noticeDto, List<MultipartFile> attachList, String id, Model model)
-			throws Exception {
-
-		Notice notice = new Notice();
-		notice.setName(noticeDto.getName());
-		notice.setContent(noticeDto.getContent());
-		notice.setCnt(0);
-
-		Member member = memberRepository.findById(id);
-
-		notice.setMember(member);
-
-		noticeRepository.save(notice);
-
-		for (int i = 0; i < attachList.size(); i++) {
-			Attach attach = new Attach();
-			attach.setNotice(notice);
-
-			if (i == 0)
-				attach.setThumb("Y");
-			else
-				attach.setThumb("N");
-			attachService.saveAttach(attach, attachList.get(i));
-		}
-
-		return notice.getNum();
-	}
-
 	// 게시판 리스트 싹 다 불러오기 (페이징, 검색)
-	public Page<Notice> noticeList(NoticeSearchDto noticeSearchDto, Pageable pageable) {
+	public Page<Notice> noticeList(SearchDto searchDto, Pageable pageable) {
 
-		return noticeRepository.getNoticeLists(noticeSearchDto, pageable);
+		return noticeRepository.getNoticeLists(searchDto, pageable);
 	}
 
 	// 조회수
@@ -144,8 +112,6 @@ public class NoticeService {
 
 		Notice notice = noticeRepository.findById(noticeDto.getNum()).orElseThrow(EntityNotFoundException::new);
 
-		System.out.println(notice);
-
 		notice.updateNotice(noticeDto);
 		notice.setRegTime(noticeDto.getRegTime());
 		List<Long> attachNums = noticeDto.getAttachNums();
@@ -165,7 +131,7 @@ public class NoticeService {
 
 	}
 
-	public Notice findByNum(Long num) {
+	public Notice getNotice(Long num) {
 		return noticeRepository.findByNum(num);
 	}
 

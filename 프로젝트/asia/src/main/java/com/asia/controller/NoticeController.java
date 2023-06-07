@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.NoticeDto;
-import com.asia.dto.NoticeSearchDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.Notice;
 import com.asia.service.AttachService;
 import com.asia.service.NoticeService;
@@ -38,16 +38,21 @@ public class NoticeController {
 
 	// 공지 게시판 리스트 불러오기 (페이지, 검색)
 	@GetMapping(value = { "/lists", "/lists/{page}" })
-	public String noticelist(Model model, @PathVariable("page") Optional<Integer> page,
-			NoticeSearchDto noticeSearchDto) {
+	public String noticelist(Model model, @PathVariable("page") Optional<Integer> page, SearchDto searchDto) {
 
 		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
 
-		Page<Notice> lists = noticeService.noticeList(noticeSearchDto, pageable);
+		Page<Notice> lists = noticeService.noticeList(searchDto, pageable);
 
 		model.addAttribute("maxPage", 10);
 		model.addAttribute("noticeList", lists);
-
+		
+		if (!searchDto.getSearchQuery().matches("[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝|(|)|.|-]*")) {
+			searchDto.setSearchQuery("");
+		}
+		
+		model.addAttribute("SearchDto", searchDto);
+		
 		return "board/notice/notice";
 	}
 
@@ -92,7 +97,7 @@ public class NoticeController {
 		model.addAttribute("noticeDto", noticeDto);
 
 		String name = principal.getName();
-		Notice notice = noticeService.findByNum(num);
+		Notice notice = noticeService.getNotice(num);
 		model.addAttribute("username", name);
 		model.addAttribute("writername", notice.getMember().getId());
 

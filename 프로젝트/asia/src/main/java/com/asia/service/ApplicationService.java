@@ -17,9 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.ApplicationDto;
-import com.asia.dto.ApplicationSearchDto;
 import com.asia.dto.AttachDto;
-import com.asia.dto.MainApplicationDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.Application;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
@@ -245,26 +244,6 @@ public class ApplicationService {
 		return application.getNum();
 	}
 
-	@Transactional(readOnly = true)
-	public ApplicationDto getShowList(Long num) {
-		List<Attach> attachList = attachRepository.findByApplicationNumOrderByNumAsc(num); // 해당 프로그램 이미지 조회
-		List<AttachDto> attachDtoList = new ArrayList<>();
-		for (Attach attach : attachList) {
-			AttachDto attachDto = AttachDto.of(attach);
-			attachDtoList.add(attachDto);
-		}
-
-		// 프로그램 아이디를 통해서 프로그램 엔티티를 조회한다. 존해하지 않을때에는 예외를 발생시킴.
-		Application application = applicationRepository.findById(num).orElseThrow(EntityNotFoundException::new);
-		ApplicationDto applicationDto = ApplicationDto.of(application);
-		applicationDto.setAttachDtoList(attachDtoList);
-		return applicationDto;
-	}
-
-	public void deleteApplication(Long num) {
-		applicationRepository.deleteByNum(num);
-	}
-
 	public Page<ApplicationDto> getList1(Pageable pageable, String programCategory) {
 		List<ApplicationDto> list = applicationRepository.getList1(programCategory);
 		List<ApplicationDto> resultList = new ArrayList<ApplicationDto>();
@@ -295,36 +274,22 @@ public class ApplicationService {
 		return list;
 	}
 
-	public Application getApplicationDtl1(long anum) {
+	public Application getApplicationDtl(long anum) {
 		Application application = applicationRepository.findByNum(anum);
 		return application;
 	}
 
-	public Application getApplication(Long num) {
-		Application application = applicationRepository.findByNum(num);
-		return application;
-	}
-
-	private void validateDuplicateApplication(ApplicationDto applicationDto) {
-		List<Application> findApplication = applicationRepository.findByName(applicationDto.getName());
-		if (findApplication.size() != 0) {
-			throw new IllegalStateException("이미 등록된 제목입니다."); // 이미 만들어진 이름의 경우 예외를 발생시킨다.
-		}
-	}
-
 	// 승인상태 수정
 	public void updateApprovalStatus(Application application) throws Exception {
-
 		List<Application> appList = applicationRepository.findByName(application.getName());
 
 		for (int i = 0; i < appList.size(); i++) {
 			Application application1 = appList.get(i);
 			applicationRepository.updateApprovalStatus(application1.getNum());
-
 		}
-
 	}
 	
+	// 메인페이지 슬라이드 사진 불러오기
 	@Transactional(readOnly = true)
 	public List<ApplicationDto> getSlideList() {
 		List<ApplicationDto> list = applicationRepository.getSlideList();
@@ -342,8 +307,20 @@ public class ApplicationService {
 		return list;
 	}
 	
-	public Page<Application> getApplicationList(ApplicationSearchDto applicationSearchDto, Pageable pageable) {
-		return applicationRepository.getApplicationList(applicationSearchDto, pageable);
+	public Page<Application> getApplicationList(SearchDto searchDto, Pageable pageable) {
+		return applicationRepository.getApplicationList(searchDto, pageable);
+	}
+	
+	public void deleteApplication(Long num) {
+		applicationRepository.deleteByNum(num);
+	}
+	
+	private void validateDuplicateApplication(ApplicationDto applicationDto) {
+		List<Application> findApplication = applicationRepository.findByName(applicationDto.getName());
+		
+		if (findApplication.size() != 0) {
+			throw new IllegalStateException("이미 등록된 제목입니다."); // 이미 만들어진 이름의 경우 예외를 발생시킨다.
+		}
 	}
 
 }

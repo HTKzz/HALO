@@ -9,7 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.thymeleaf.util.StringUtils;
 
-import com.asia.dto.ApplicationSearchDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.Application;
 import com.asia.entity.QApplication;
 import com.querydsl.core.QueryResults;
@@ -29,9 +29,9 @@ public class ApplicationRepositoryCustomImpl implements ApplicationRepositoryCus
 
 	// 상품관리 페이징 + 검색기능
 	@Override
-	public Page<Application> getApplicationList(ApplicationSearchDto applicationSearchDto, Pageable pageable) {
+	public Page<Application> getApplicationList(SearchDto searchDto, Pageable pageable) {
 		QueryResults<Application> results = queryFactory.selectFrom(QApplication.application)
-				.where(searchByLike(applicationSearchDto.getSearchBy(), applicationSearchDto.getSearchQuery()))
+				.where(searchByLike(searchDto.getSearchBy(), searchDto.getSearchQuery()))
 				.orderBy(QApplication.application.num.desc()).offset(pageable.getOffset()).limit(pageable.getPageSize())
 				.fetchResults();
 

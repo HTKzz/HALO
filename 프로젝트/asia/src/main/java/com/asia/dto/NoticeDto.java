@@ -45,6 +45,8 @@ public class NoticeDto{
 	
 	private LocalDateTime regTime;
 	
+	private String not;
+	
 	private List<AttachDto> attachDtoList = new ArrayList<>();
 	
 	private List<Long> attachNums = new ArrayList<>();

@@ -15,16 +15,17 @@ import com.asia.entity.Application;
 public interface ApplicationRepository extends JpaRepository<Application, Long>, QuerydslPredicateExecutor<Application>, ApplicationRepositoryCustom {
 	
 	void deleteByNum(Long num);
+	
 	Page<Application> findAll(Pageable pageable);
 	
 	@Query("select distinct new com.asia.dto.ApplicationDto(name, sdate, edate) from Application where program_Category = :programCategory and APPROVAL_STATUS = '승인' order by sdate asc")
 	List<ApplicationDto> getList1(String programCategory);
 	
-	List<Application> findByName(String name);
-	
 	@Query("select distinct new com.asia.dto.ApplicationDto(num, name, sdate, edate, udate) from Application "
 			+ "where name = :name")
 	List<ApplicationDto> getList2(String name);
+	
+	List<Application> findByName(String name);
 	
 	Application findByNum(long anum);
 	

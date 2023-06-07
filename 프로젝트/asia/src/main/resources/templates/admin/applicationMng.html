@@ -19,7 +19,7 @@
 
 		function page(page) {
 			var searchBy = $("#searchBy").val();
-			var searchQuery = $("#searchQuery").val();
+			var searchQuery = encodeURI($("#searchQuery").val());
 			location.href = "/admin/applications/" + page + "?searchBy="
 					+ searchBy + "&searchQuery=" + searchQuery;
 		}
@@ -36,7 +36,7 @@
 			<form class="memberMngForm"
 				th:action="@{'/admin/applications/' + ${applications.pageable.pageNumber}}"
 				method="get">
-				<div class="vocList-searchOptions" th:object=${applicationSearchDto}>
+				<div class="vocList-searchOptions" th:object=${searchDto}>
 					<span class="vocList-searchOption-list"> <select
 						class="memberMng-select" th:field="*{searchBy}">
 							<option th:value="name">제목</option>

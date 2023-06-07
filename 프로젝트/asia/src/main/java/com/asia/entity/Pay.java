@@ -53,10 +53,13 @@ public class Pay extends BaseEntity {
 	
 	public static Pay createPay() {
 		Pay pay = new Pay();
+		
 		pay.setWay("Card");
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy년 MM월 dd일 HH시 mm분");
 		String join1 = LocalDateTime.now().format(formatter); // LocalDateTime -> String 타입 변환하기
 		pay.setUdate(join1);
+		
 		return pay;
 	}
 }

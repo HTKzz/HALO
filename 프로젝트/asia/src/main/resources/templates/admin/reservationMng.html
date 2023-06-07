@@ -39,7 +39,7 @@
 		
 		function page(page) {
 		    var searchBy = $("#searchBy").val();
-		    var searchQuery = $("#searchQuery").val(); 
+			var searchQuery = encodeURI($("#searchQuery").val()); 
 		    location.href = "/admin/reservationMng/" + page + "?searchBy=" + searchBy
 					+ "&searchQuery=" + searchQuery;
 		}
@@ -53,7 +53,7 @@
 			<h3>예매관리</h3>
 		</div>
 		<form class="memberMngForm" th:action="@{'/admin/reservationMng/' + ${reservations.pageable.pageNumber}}" method="get">
-			<div class="vocList-searchOptions" th:object=${reservationSearchDto}>
+			<div class="vocList-searchOptions" th:object=${searchDto}>
 				<span class="vocList-searchOption-list">
 					<select class="memberMng-select" th:field="*{searchBy}">
 						<option th:value="name">상품명</option>
@@ -141,8 +141,5 @@
 			</div>
 		</section>
 	</div>
-
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </div>
 </html>

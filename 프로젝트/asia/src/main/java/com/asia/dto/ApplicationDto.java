@@ -36,14 +36,19 @@ public class ApplicationDto {
 	@NotNull(message = "관람시간은 필수 입력 값입니다.")
 	private Integer run;
 	
+	@NotNull(message = "관람시간은 필수 입력 값입니다.")
 	private String sdate;
-
+	
+	@NotNull(message = "관람시간은 필수 입력 값입니다.")
 	private String edate;
-
+	
+	@NotNull(message = "관람시간은 필수 입력 값입니다.")
 	private String udate;
 	
+	@NotNull(message = "관람시간은 필수 입력 값입니다.")
 	private String seatDetail;
 	
+	@NotNull(message = "관람시간은 필수 입력 값입니다.")
 	private String detail;
 	
 	private String programCategory;

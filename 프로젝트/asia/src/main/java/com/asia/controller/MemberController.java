@@ -175,9 +175,8 @@ public class MemberController {
 	@GetMapping(value = "/myPage")
 	public String myPage(Model model, Principal principal) {
 		String name = principal.getName();
-		System.out.println(name);
 		Member member = memberService.findUserMyPage(name);
-		System.out.println(member);
+		
 		model.addAttribute("member", member);
 
 		return "member/myPage";
@@ -185,12 +184,10 @@ public class MemberController {
 
 	// 마이페이지 수정
 	@PostMapping(value = "/modMyPage")
-	public String modMyPage(@RequestParam("password") String password, @RequestParam("id") String id, Model model,
-			Principal principal) {
-
+	public String modMyPage(@RequestParam("password") String password, @RequestParam("id") String id, Model model, Principal principal) {
 		String password1 = passwordEncoder.encode(password);
 		memberService.updateMemberPwd(password1, id);
-
+		
 		return "redirect:/members/myPage";
 	}
 }

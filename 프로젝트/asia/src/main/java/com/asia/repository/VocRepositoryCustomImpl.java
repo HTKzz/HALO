@@ -9,7 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.thymeleaf.util.StringUtils;
 
-import com.asia.dto.VocSearchDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.QVoc;
 import com.asia.entity.Voc;
 import com.querydsl.core.QueryResults;
@@ -27,10 +27,10 @@ public class VocRepositoryCustomImpl implements VocRepositoryCustom{
 
 	
 	@Override
-	public Page<Voc> getVocLists(VocSearchDto vocSearchDto, Pageable pageable){
+	public Page<Voc> getVocLists(SearchDto searchDto, Pageable pageable){
 		QueryResults<Voc> results = queryFactory // queryFactory 이용해서 쿼리 생성
 				.selectFrom(QVoc.voc) //글 데이터 조회하기 위해 QVoc의 voc 지정
-				.where(searchByLike(vocSearchDto.getSearchBy(), vocSearchDto.getSearchQuery()))
+				.where(searchByLike(searchDto.getSearchBy(), searchDto.getSearchQuery()))
 				.orderBy(QVoc.voc.originNo.desc(), QVoc.voc.groupOrd.asc()) //우리는 num
 				.offset(pageable.getOffset()) // 데이터를 가져 올 시작 인덱스를 지정
 				.limit(pageable.getPageSize()) // 한번에 가져 올 최대 개수 지정

@@ -4,10 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.asia.dto.SearchDto;
-import com.asia.entity.Application;
+import com.asia.entity.Member;
 
-public interface ApplicationRepositoryCustom {
+public interface MemberRepositoryCustom {
 	
-	Page<Application> getApplicationList(SearchDto searchDto, Pageable pageable);
+	Page<Member> getMemberMngLists(SearchDto searchDto, Pageable pageable);
 	
 }

@@ -18,7 +18,7 @@
 
 		function page(page) {
 			var searchBy = $("#searchBy").val();
-			var searchQuery = $("#searchQuery").val();
+			var searchQuery = encodeURI($("#searchQuery").val());
 			location.href = "/notices/lists/" + page + "?searchBy=" + searchBy
 					+ "&searchQuery=" + searchQuery;
 		}
@@ -38,7 +38,7 @@
 		<form class="memberMngForm" method="get"
 			th:action="@{'/notices/lists/' + ${noticeList.pageable.pageNumber}}">
 
-			<div class="noticeSearch noticeList-searchOptions" th:object=${noticeSearchDto}>
+			<div class="noticeSearch noticeList-searchOptions" th:object=${searchDto}>
 				<span class="noticeList-searchOption-list">
 					<select class="memberMng-select" th:field="*{searchBy}">
 						<option th:value="name">제목</option>

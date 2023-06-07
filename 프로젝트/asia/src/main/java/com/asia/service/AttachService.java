@@ -25,7 +25,6 @@ public class AttachService {
 	private String attachLocation;
 
 	private final AttachRepository attachRepository;
-
 	private final FileService fileService;
 
 	public void saveAttach(Attach attach, MultipartFile attachFile) throws Exception {
@@ -77,6 +76,11 @@ public class AttachService {
 		Attach file1 = attachRepository.findByNum(num);
 
 		return file1;
+	}
+
+	public List<AttachDto> getImageList(long anum) {
+		List<AttachDto> attachLists = attachRepository.getLists(anum);
+		return attachLists;
 	}
 
 }

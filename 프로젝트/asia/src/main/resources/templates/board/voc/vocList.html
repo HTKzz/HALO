@@ -18,7 +18,7 @@
 
 		function page(page) {
 			var searchBy = $("#searchBy").val();
-			var searchQuery = $("#searchQuery").val();
+			var searchQuery = encodeURI($("#searchQuery").val());
 			location.href = "/voc/list/" + page + "?searchBy=" + searchBy
 					+ "&searchQuery=" + searchQuery;
 		}
@@ -38,7 +38,7 @@
 
 		<!-- 검색 -->
 		<form class="memberMngForm" th:action="@{'/voc/list/' + ${list.pageable.pageNumber}}" method="get">
-			<div class="vocSearch vocList-searchOptions" th:object=${vocSearchDto}>
+			<div class="vocSearch vocList-searchOptions" th:object=${searchDto}>
 				<span class="vocList-searchOption-list">
 					<select class="memberMng-select" th:field="*{searchBy}">
 						<option th:value="name">제목</option>
