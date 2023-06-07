@@ -40,3 +40,11 @@ html {
 	margin: 0 auto;
 	padding: 0 auto;
 }
+
+@media print {
+	
+	.header, .footer {
+		display:none
+	}
+	
+}
