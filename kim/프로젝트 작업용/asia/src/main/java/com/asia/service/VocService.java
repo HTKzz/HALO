@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.AttachDto;
 import com.asia.dto.VocFormDto;
+import com.asia.dto.VocSearchDto;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Voc;
@@ -121,20 +122,20 @@ public class VocService {
 	public Long updateVoc(VocFormDto vocFormDto,List<MultipartFile> attachFileList) throws Exception {
 		// 글 수정
 		Voc voc = vocRepository.findById(vocFormDto.getNum()).orElseThrow(EntityNotFoundException::new);
-		voc.updateVoc(vocFormDto); // 수정화면으로 전달 받은 noticeFormDto를 통해 Notice엔티티 업데이트
+		voc.updateVoc(vocFormDto);   // 수정화면으로 전달 받은 noticeFormDto를 통해 Notice엔티티 업데이트
 
 		//이미지 수정
-		List<Long> attachIds = vocFormDto.getAttachIds(); //이미지 아이디 리스트 반환
+		List<Long> attachIds = vocFormDto.getAttachIds();   //이미지 아이디 리스트 반환
 		for(int i = 0; i <attachFileList.size();i++) {
-			attachService.updateAttach(attachIds.get(i), attachFileList.get(i));//이미지아이디를 업데이트하기 위해서 이미지 아이디, 이미지 파일정보 전달
+			attachService.updateAttach(attachIds.get(i), attachFileList.get(i));   //이미지아이디를 업데이트하기 위해서 이미지 아이디, 이미지 파일정보 전달
 		}
 		
 		return voc.getNum();
 	}
 	
 	
-	public Page<Voc> getVocLists(Pageable pageable){
-		return vocRepository.getVocLists(pageable);
+	public Page<Voc> getVocLists(VocSearchDto vocSearchDto, Pageable pageable){
+		return vocRepository.getVocLists(vocSearchDto, pageable);
 	}
 
 	//답글등록
@@ -142,7 +143,7 @@ public class VocService {
 		
 		Member member = memberRepository.findById(name);
 		
-		Voc presentVoc = vocRepository.findByNum(parentNo);//답글다는글
+		Voc presentVoc = vocRepository.findByNum(parentNo);   //답글다는글
 		
 		Voc voc = vocFormDto.createVoc();
 		String reply = "";

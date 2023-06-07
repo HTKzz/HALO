@@ -2,13 +2,13 @@ package com.asia.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.VocFormDto;
+import com.asia.dto.VocSearchDto;
 import com.asia.entity.Voc;
 import com.asia.service.AttachService;
 import com.asia.service.VocService;
@@ -69,12 +70,11 @@ public class VocController {
 	}
 
 	// 리스트불러오기 페이징넣어서
-	@GetMapping("/list")
-	public String listVoc(
-			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
-			Model model) {
+	@GetMapping(value ={"/list", "/list/{page}"})
+	public String listVoc(@PathVariable("page") Optional<Integer> page, Model model, VocSearchDto vocSearchDto) {
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 4);
 
-		Page<Voc> list = vocService.getVocLists(pageable);
+		Page<Voc> list = vocService.getVocLists(vocSearchDto, pageable);
 		model.addAttribute("list", list);
 
 		int nowPage = list.getPageable().getPageNumber() + 1;
@@ -170,33 +170,4 @@ public class VocController {
 		}
 		return "redirect:/voc/list";
 	}
-	
-	// 검색 vocController
-	@PostMapping("/searchVoc")
-	public String searchVoc(@RequestParam("searchOpt") String searchOpt,
-			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable, Model model, String vocListSearch) {
-		
-		System.out.println(vocListSearch);
-		
-		Page<Voc> lists = null;
-		if(searchOpt.equals("name")) {
-			lists = vocService.vocListSearchByName(vocListSearch, pageable);
-		}else if (searchOpt.equals("writer")) {
-			lists = vocService.vocListSearchBywriter(vocListSearch, pageable);
-		}else {
-			return "board/voc/vocList";
-		}
-		
-		model.addAttribute("list", lists);
-		
-		int nowPage = lists.getPageable().getPageNumber() + 1;
-		int startPage = Math.max(nowPage - 4, 1);
-		int endPage = Math.min(nowPage + 4, lists.getTotalPages());
-		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-
-		return "board/voc/vocList";
-	}
-
 }

@@ -12,15 +12,13 @@
     <main class="container">
         <section class="new_arrivals">
             <h2 class="content-title"><span>ACC's Show</span></h2>
-            <p class="content-desc">공연</p>
-
   
                 <div id="pattern" class="pattern">
                 	<ul class="card-img-list">
 						<th:block th:each="showlist, status: ${application4.getContent()}">
 							<li>
 								<div class="card">
-									<a class="card-inner" th:href="'/board/program/application/' +${showlist.name}">
+									<a class="card-inner" th:href="'/board/program/application/' + ${showlist.name}">
 										<div class="card-head">
 											<figure class="card-img-fig">
 												<img th:src="${showlist.url}" class="card-img" th:alt="${showlist.name}">
