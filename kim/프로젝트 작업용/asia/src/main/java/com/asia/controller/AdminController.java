@@ -124,79 +124,19 @@ public class AdminController {
 
 		return "admin/memberMng";
 	}
-
-//	// 프로그램 신청 리스트 호출(프로그램 신청 관리페이지 호출)
-//	// 오름차순(ASC), 내림차순(DESC)
-//	@GetMapping(value = "/applications")
-//	public String applicationManageList(Model model,
-//			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
-//			String searchKeyword) {
-//
-//		// 검색기능
-//		Page<Application> applications = applicationService.applicationList(pageable);
-//
-//		model.addAttribute("applications", applications);
-//
-//		int nowPage = applications.getPageable().getPageNumber() + 1; // pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
-//		int startPage = Math.max(nowPage - 4, 1); // 매개변수로 들어온 두 값을 비교해서 큰값을 반환
-//		int endPage = Math.min(nowPage + 4, applications.getTotalPages());
-//
-//		model.addAttribute("nowPage", nowPage);
-//		model.addAttribute("startPage", startPage);
-//		model.addAttribute("endPage", endPage);
-//
-//		return "admin/applicationMng";
-//	}
-//
-//	// 검색을 이용한 프로그램 신청 리스트 출력(프로그램 관리)
-//	@PostMapping(value = "/applicationsMngSearch")
-//	public String applicationManage(Model model,
-//			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
-//			@RequestParam("searchKeyword") String searchKeyword) {
-//
-//		// 검색기능
-//		Page<Application> applications = null;
-//		// searchKeyword = 검색하는 단어
-//		if (searchKeyword == null) {
-//			applications = applicationService.applicationList(pageable); // 기존의 리스트보여줌
-//		} else {
-//			applications = applicationService.applicationSearchList(searchKeyword, pageable); // 검색리스트반환
-//		}
-//
-//		int nowPage = applications.getPageable().getPageNumber() + 1; // pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
-//		int startPage = Math.max(nowPage - 4, 1); // 매개변수로 들어온 두 값을 비교해서 큰값을 반환
-//		int endPage = Math.min(nowPage + 4, applications.getTotalPages());
-//
-//		model.addAttribute("applications", applications);
-//		model.addAttribute("nowPage", nowPage);
-//		model.addAttribute("startPage", startPage);
-//		model.addAttribute("endPage", endPage);
-//
-//		return "admin/applicationMng";
-//	}
 	
 	// 상품관리 페이지 호출, 검색
 	@GetMapping(value = {"/applications", "/applications/{page}"})
 	public String applicationManageList(@PathVariable("page") Optional<Integer> page, Model model, ApplicationSearchDto applicationSearchDto) {
 		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 5);
 
-		// 검색기능
 		Page<Application> applications = applicationService.getApplicationList(applicationSearchDto, pageable);
 
 		model.addAttribute("maxPage", 5);
 		model.addAttribute("applications", applications);
 
-//		int nowPage = applications.getPageable().getPageNumber() + 1; // pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
-//		int startPage = Math.max(nowPage - 3, 1); // 매개변수로 들어온 두 값을 비교해서 큰값을 반환
-//		int endPage = Math.min(nowPage + 3, applications.getTotalPages());
-//
-//		model.addAttribute("nowPage", nowPage);
-//		model.addAttribute("startPage", startPage);
-//		model.addAttribute("endPage", endPage);
-
 		return "admin/applicationMng";
 	}
-	
 
 	// 상품관리 승인상태 수정
 	@GetMapping(value = "/approvalstatus/change/{num}")
@@ -241,4 +181,5 @@ public class AdminController {
 
 		return "redirect:/admin/reservationMng";
 	}
+	
 }

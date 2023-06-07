@@ -3,6 +3,8 @@ package com.asia.controller;
 import java.security.Principal;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.asia.dto.ApplicationDto;
 import com.asia.dto.SeatADto;
 import com.asia.dto.SeatBDto;
 import com.asia.dto.SeatCDto;
@@ -204,20 +207,13 @@ public class ReservationController {
 	}
 	
 	// 티켓인쇄 페이지 이동 (나중에 고칠것)
-//	@PostMapping(value = "/printTicket")
-//	public String printTicket(Model model, @RequestParam("test") int anum, @RequestParam("seatDetail") String seat) {
-//
-//		model.addAttribute("updateDto", new UpdateDto());
-//
-//		Application application = applicationService.getApplicationDtl1(anum);
-//		model.addAttribute("name", application.getName());
-//		model.addAttribute("udate", application.getUdate());
-//		model.addAttribute("price", application.getPrice());
-//
-//		model.addAttribute("anum", anum);
-//		model.addAttribute("seat", seat);
-//
-//		return null;
-//	}
+	@GetMapping(value = "/viewPrintTicket/{num}")
+	public String printTicket(@PathVariable("num") Long num, Model model) {
 
+		Reservation reservation = reservationService.getDtl(num);
+		model.addAttribute("printTicketInfo", reservation);
+
+		return "reservation/printTicket";
+	}
+	
 }
