@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.asia.entity.Notice;
 
-public interface NoticeRepository extends JpaRepository<Notice, Long> {
+public interface NoticeRepository extends JpaRepository<Notice, Long>, NoticeRepositoryCustom {
 	
 	Notice findByNum(Long num);
 	Notice findByName(String name);

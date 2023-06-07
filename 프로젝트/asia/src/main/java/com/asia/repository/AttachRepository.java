@@ -24,5 +24,4 @@ public interface AttachRepository extends JpaRepository<Attach, Long> {
 
 	List<Attach> findByNoticeNumOrderByNumAsc(Long num);
 	
-
 }

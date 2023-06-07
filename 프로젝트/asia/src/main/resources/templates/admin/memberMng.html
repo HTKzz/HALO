@@ -20,6 +20,7 @@
 				<span class="vocList-searchOption-list">
 					<select th:name="searchOption" class="memberMng-select">
 						<option th:value="name">이름
+						<option th:value="id">아이디
 						<option th:value="tel">전화번호
 						<option th:value="email">이메일
 						<option th:value="birth">생년월일
@@ -44,6 +45,7 @@
 				<thead>
 					<tr class="voc-tr">
 						<th class="vocList-name">이름</th>
+						<th class="vocList-name">아이디</th>
 						<th class="vocList-tel">전화번호</th>
 						<th class="vocList-email">이메일</th>
 						<th class="vocList-birth">생년월일</th>
@@ -56,6 +58,7 @@
 				<tbody th:align="center">
 					<tr th:each="mng:${memberMngList}">
 						<td class="vocList-name" th:text="${mng.name}">이름</td>
+						<td class="vocList-name" th:text="${mng.id}">아이디</td>
 						<td class="vocList-tel" th:text="${mng.tel}">전화번호</td>
 						<td class="vocList-email" th:text="${mng.email}">이메일</td>
 						<td class="vocList-birth" th:text="${mng.birth}">생년월일</td>
@@ -67,13 +70,11 @@
 			</table><br>
 
 			<div class="page_wrap">
-
 				<ul class="pagination justify-content-center">
 
 					<li class="page-item" th:classappend="${startPage == memberMngList.pageable.pageNumber + 1} ? 'disabled'">
 						<a class="page-link" th:href="@{/admin/memberMngList(page=${memberMngList.pageable.pageNumber - 1})}" tabindex="-1" aria-disabled="true">Previous</a>
 					</li>
-
 
 					<li class="page-item" th:classappend="${page == memberMngList.pageable.pageNumber + 1} ? 'active'" th:each="page : ${#numbers.sequence(startPage, endPage)}">
 						<a class="page-link" th:href="@{/admin/memberMngList(page=${page-1})}" th:text=${page} aria-current="page">1</a>
@@ -89,6 +90,5 @@
 		</section>
 	</div>
 </div>
-
 
 </html>

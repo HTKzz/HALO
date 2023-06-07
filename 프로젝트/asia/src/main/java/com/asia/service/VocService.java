@@ -215,14 +215,4 @@ public class VocService {
 	public Voc findByNum(Long num) {
 		return vocRepository.findByNum(num);
 	}
-
-	// 검색 vocService
-	public Page<Voc> vocListSearchByName(String vocListSearch, Pageable pageable){
-		return vocRepository.findByNameContaining(vocListSearch, pageable);
-	}
-
-	public Page<Voc> vocListSearchBywriter(String vocListSearch, Pageable pageable){
-		return vocRepository.findByMemberIdContaining(vocListSearch, pageable);
-	}
-	
 }

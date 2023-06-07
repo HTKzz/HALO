@@ -83,7 +83,7 @@ public class ApplicationController {
 	public String applicationModify(@PathVariable("num") Long num, Model model) {
 		
 		try {
-			ApplicationDto applicationDto = applicationService.getApplicationDtl(num);   // 조회한 프로그램 정보를 model에 담아서 뷰로 전달
+			ApplicationDto applicationDto = applicationService.getApplicationDtlModify(num);   // 조회한 프로그램 정보를 model에 담아서 뷰로 전달
 			model.addAttribute("applicationDto", applicationDto);
 		} catch(EntityNotFoundException e) {
 			model.addAttribute("errorMessage", "존재하지 않는 프로그램입니다.");
@@ -205,10 +205,7 @@ public class ApplicationController {
     	
             //큰카테고리에 해당하는 상품 가져오기.
     		String programCategory = "공연";
-//            List<Application> ShowList = applicationService.findByProgramCategory(programCategory);
-//            List<Application> applicationDto = applicationService.findByProgramCategory(programCategory);
-//            ApplicationDto applicationDto = applicationService.getApplicationDtl(List(num));
-//            ApplicationDto applicationDto = applicationService.getShowList(num);
+    		
             Page<ApplicationDto> showapplications = applicationService.getList1(pageable, programCategory);
             System.out.println(showapplications);
             

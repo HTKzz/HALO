@@ -10,10 +10,6 @@ import com.asia.entity.Application;
 
 public interface ApplicationRepositoryCustom {
 	
-//	Page<Application> getApplicationPage(ApplicationSearchDto applicationSearchDto, Pageable pageable);
-	
-//	Page<ApplicationDto> getMainApplicationPage(ApplicationSearchDto applicationSearchDto, Pageable pageable);
-	
-	Page<MainApplicationDto> findDistinctByProgramCategory(Pageable pageable, String programCategory);
+	Page<Application> getApplicationList(ApplicationSearchDto applicationSearchDto, Pageable pageable);
 	
 }
