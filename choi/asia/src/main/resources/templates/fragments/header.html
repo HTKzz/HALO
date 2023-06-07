@@ -65,7 +65,7 @@ layout:decorate="~{layouts/layout1}">
 				<li class="menu-item" sec:authorize="isAuthenticated()"><a href="/board/program/apply">상품 신청</a></li>
 				<li class="menu-item" sec:authorize="isAnonymous() || isAuthenticated()">
 					<a class="sub-btn" href="#">ACC 소개</a>
-					<ul class="sub-menu">
+					<ul class="sub-menu" id="sub-menu-acc">
 						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/useinfo">이용안내</a></li>
 						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="#"></a></li>
 						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="#"></a></li>
@@ -73,7 +73,7 @@ layout:decorate="~{layouts/layout1}">
 				</li>
 				<li class="menu-item" sec:authorize="isAnonymous() || isAuthenticated()">
 					<a class="sub-btn" href="#">소식</a>
-					<ul class="sub-menu">
+					<ul class="sub-menu" id="sub-menu-sosik">
 						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/notices/lists">공지사항</a></li>
 						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/voc/list">VOC</a></li>
 						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="#"></a></li>
@@ -82,7 +82,7 @@ layout:decorate="~{layouts/layout1}">
 
 				<li class="menu-item" sec:authorize="isAnonymous() || isAuthenticated()">
 					<a href="#">프로그램</a>
-					<ul class="sub-menu">
+					<ul class="sub-menu" id="sub-menu-program">
 						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/board/program/showlist">공연</a></li>
 						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/board/program/exhibitionlist">전시</a></li>
 						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/board/program/eventlist">행사</a></li>
@@ -91,7 +91,7 @@ layout:decorate="~{layouts/layout1}">
 
 				<li class="menu-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 					<a href="#">관리자</a>
-					<ul class="sub-menu">
+					<ul class="sub-menu" id="sub-menu-admin">
 						<li class="sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/reservationMng">예매관리</a></li>
 						<li class="sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/applications">상품관리</a></li>
 						<li class="sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/memberMngList">회원관리</a></li>

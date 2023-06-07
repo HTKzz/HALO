@@ -3,89 +3,108 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout1}">
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<th:block layout:fragment="script">
+	<script th:inline="javascript">
+		$(document).ready(function() {
+			$("#memberMng-search-btn").on("click", function(e) {
+				e.preventDefault();
+				page(0);
+			});
+		});
+
+		function page(page) {
+			var searchOption = $("#searchOption").val();
+			var memberMngSearch = $("#memberMngSearch").val();
+			location.href = "/admin/memberMngList/" + page + "?searchOption=" + searchOption
+					+ "&memberMngSearch=" + memberMngSearch;
+		}
+	</script>
+</th:block>
 
 <head>
-
+<link th:href="@{/css/vocList.css}" rel="stylesheet">
 </head>
+
 <div layout:fragment="content">
-	<link th:href="@{/css/vocList.css}" rel="stylesheet">
-	<div>
+
+	<div class="vocList-container">
 		<div class="vocList-title">
 			<h3>회원관리</h3>
 		</div>
-		<div class="vocList-container">
-			<form class="memberMngForm" role="form" method="post" action="/admin/searchMember">
-				<select th:name="searchOption" class="memberMng-select">
-					<option th:value="name">이름
-					<option th:value="tel">전화번호
-					<option th:value="email">이메일
-					<option th:value="birth">생년월일
-					<option th:value="join">가입일
-					<option th:value="stat">상태
-					<option th:value="role">권한
-				</select> <input name="memberMngSearch" type="text">
-				<button type="submit">검색</button>
-				<input type="hidden" th:name="${_csrf.parameterName}"
-					th:value="${_csrf.token}">
-			</form>
-			<section class="vocList">
-				<table class="vocList-table">
-					<thead>
-						<tr class="voc-tr">
-							<th class="vocList-name">이름</th>
-							<th class="vocList-tel">전화번호</th>
-							<th class="vocList-email">이메일</th>
-							<th class="vocList-birth">생년월일</th>
-							<th class="vocList-join">가입일시</th>
-							<th class="vocList-stat">상태</th>
-							<th class="vocList-role">권한</th>
-						</tr>
-					</thead>
+		<form class="memberMngForm" role="form" method="get" th:action="@{'/admin/memberMngList/' + ${memberMngList.pageable.pageNumber}}" 
+			  th:object="${memberFormDto}">
+			<div class="vocList-searchOptions">
+				<span class="vocList-searchOption-list">
+					<select th:field="*{searchOption}" id="searchOption" class="memberMng-select">
+						<option th:value="name">이름</option>
+						<option th:value="tel">전화번호</option>
+						<option th:value="email">이메일</option>
+						<option th:value="birth">생년월일</option>
+						<option th:value="join">가입일</option>
+						<option th:value="stat">상태</option>
+						<option th:value="role">권한</option>
+					</select>
+				</span>
+				<span class="vocList-searchOption-list">
+					<input class="memberMng-select-search" id="memberMngSearch" name="memberMngSearch" 
+							th:field="*{memberMngSearch}" type="text">
+				</span>
+				<span class="vocList-searchOption-list">
+					<button class="memberMng-search-btn" id="memberMng-search-btn" type="submit">검색</button>
+				</span>
+			</div>
 
-					<tbody th:align="center">
-						<tr th:each="mng:${memberMngList}">
-							<td class="vocList-name" th:text="${mng.name}">이름</td>
-							<td class="vocList-tel" th:text="${mng.tel}">전화번호</td>
-							<td class="vocList-email" th:text="${mng.email}">이메일</td>
-							<td class="vocList-birth" th:text="${mng.birth}">생년월일</td>
-							<td class="vocList-join" th:text="${mng.join}">가입일</td>
-							<td class="vocList-stat" th:text="${mng.stat}">상태</td>
-							<td class="vocList-role" th:text="${mng.role}">권한</td>
-						</tr>
-					</tbody>
-				</table>
-				<br>
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+		</form>
+		
+		<section class="vocList">
+			<table class="vocList-table">
+				<thead>
+					<tr class="voc-tr">
+						<th class="vocList-name">이름</th>
+						<th class="vocList-tel">전화번호</th>
+						<th class="vocList-email">이메일</th>
+						<th class="vocList-birth">생년월일</th>
+						<th class="vocList-join">가입일시</th>
+						<th class="vocList-stat">상태</th>
+						<th class="vocList-role">권한</th>
+					</tr>
+				</thead>
 
-				<div class="page_wrap">
-
-					<ul class="pagination justify-content-center">
-
-						<li class="page-item"
-							th:classappend="${startPage == memberMngList.pageable.pageNumber + 1} ? 'disabled'">
-							<a class="page-link"
-							th:href="@{/admin/memberMngList(page=${memberMngList.pageable.pageNumber - 1})}"
+				<tbody th:align="center">
+					<tr th:each="mng:${memberMngList}">
+						<td class="vocList-name" th:text="${mng.name}">이름</td>
+						<td class="vocList-tel" th:text="${mng.tel}">전화번호</td>
+						<td class="vocList-email" th:text="${mng.email}">이메일</td>
+						<td class="vocList-birth" th:text="${mng.birth}">생년월일</td>
+						<td class="vocList-join" th:text="${mng.join}">가입일</td>
+						<td class="vocList-stat" th:text="${mng.stat}">상태</td>
+						<td class="vocList-role" th:text="${mng.role}">권한</td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<div class="page_wrap" th:with="start=${(memberMngList.number/maxPage)*maxPage + 1}, end=(${(memberMngList.totalPages == 0) ? 1 : (start + (maxPage - 1) < memberMngList.totalPages ? start + (maxPage - 1) : memberMngList.totalPages)})">
+				<ul class="pagination justify-content-center">
+					<li class="page-item" th:classappend="${memberMngList.first} ? 'disabled'">
+						<a class="page-link" th:href="'javascript:page(' + ${memberMngList.pageable.pageNumber - 1} + ')'" 
 							tabindex="-1" aria-disabled="true">Previous</a>
-						</li>
+					</li>
+					
+					<li class="page-item" th:classappend="${page == memberMngList.pageable.pageNumber + 1} ? 'active'" th:each="page : ${#numbers.sequence(start, end)}">
+						<a class="page-link" th:href="'javascript:page(' + ${page - 1} + ')'" th:text=${page} aria-current="page">1</a>
+					</li>
 
-
-						<li class="page-item"
-							th:classappend="${page == memberMngList.pageable.pageNumber + 1} ? 'active'"
-							th:each="page : ${#numbers.sequence(startPage, endPage)}"><a
-							class="page-link"
-							th:href="@{/admin/memberMngList(page=${page-1})}" th:text=${page}
-							aria-current="page">1</a></li>
-
-
-						<li class="page-item"
-							th:classappend="${endPage == memberMngList.pageable.pageNumber + 1} ? 'disabled'">
-							<a class="page-link"
-							th:href="@{/admin/memberMngList(page=${memberMngList.pageable.pageNumber + 1})}">Next</a>
-						</li>
-
-					</ul>
-
-				</div>
-			</section>
-		</div>
+					<li class="page-item" th:classappend="${memberMngList.last} ? 'disabled'">
+						<a class="page-link" th:href="'javascript:page(' + ${memberMngList.pageable.pageNumber + 1} + ')'">Next</a>
+					</li>
+				</ul>
+			</div>
+		</section>
 	</div>
+</div>
+
+
 </html>

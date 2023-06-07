@@ -59,16 +59,18 @@ public class ReservationService {
 		return reservation;
 	}
 	
-	public List<Reservation> getReservationList(Long num) {
-		List<Reservation> reservations = reservationRepository.findAllByMemberNumOrderByNumDesc(num);
-		return reservations;
-	}
-	
 	public void cancleReservation(Long num) {
 		String cancle = "취소";
 		reservationRepository.updateReservationStat(num, cancle);
 	}
 	
+	//변수 이름 수정
+	public List<Reservation> getReservationList(Long num) {
+		List<Reservation> reservations = reservationRepository.findAllByMemberNumOrderByNumDesc(num);
+		return reservations;
+	}
+
+	////환불 추가
 	public void refundReservation(Long num) {
 		String refund = "환불대기";
 		reservationRepository.updateReservationStat(num, refund);
