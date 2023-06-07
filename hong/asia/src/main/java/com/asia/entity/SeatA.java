@@ -22,8 +22,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@SequenceGenerator(name = "USER_SEQ_GEN3", // 시퀀스 제너레이터 이름
-		sequenceName = "USER_SEQ3", // 시퀀스 이름
+@SequenceGenerator(name = "SEATA_SEQ_GEN", // 시퀀스 제너레이터 이름
+		sequenceName = "SEATA_SEQ", // 시퀀스 이름
 		initialValue = 1, // 시작값
 		allocationSize = 1 // 메모리를 통해 할당할 범위 사이즈
 )
@@ -31,7 +31,7 @@ public class SeatA {
 
 	@Id
 	@Column(name = "seatA_num")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN3")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEATA_SEQ_GEN")
 	private Long num;
 
 	private String stat;

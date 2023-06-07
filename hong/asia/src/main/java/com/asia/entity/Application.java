@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -26,20 +27,33 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@SequenceGenerator(
-        name="USER_SEQ_GEN1", //시퀀스 제너레이터 이름
-        sequenceName="USER_SEQ1", //시퀀스 이름
-        initialValue=1, //시작값
-        allocationSize=1 //메모리를 통해 할당할 범위 사이즈
-        )
-public class Application {
+@SequenceGenerator(name = "APPLICATION_SEQ_NUM",
+				   sequenceName = "APPLICATION_SEQ",
+				   initialValue = 1,
+				   allocationSize = 1)
+public class Application extends BaseEntity {
 	
+	// 프로그램 아이디
 	@Id
-	@Column(name="application_num")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN1")
+	@Column(name="num")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="APPLICATION_SEQ_NUM")
 	private Long num;
 	
+	// 프로그램명
+	@Column(name="name", nullable = false)
 	private String name;
+
+	// 가격
+	@Column(name="price", nullable = false)
+	private Integer price;
+	
+	// 관람등급
+	@Column(name="rat", nullable = false)
+	private String rat;
+	
+	// 관람시간
+	@Column(name="run")
+	private Integer run;
 	
 	private String sdate;
 	
@@ -49,7 +63,23 @@ public class Application {
 	
 	private String seatDetail;
 	
-	private int price;
+	@Column(name="place")
+	private String place;
+	
+	// 승인 상태
+	private String approvalStatus;
+	
+	// 프로그램 상세정보
+	@Lob
+	@Column(name="detail", nullable = false)
+	private String detail;
+	
+	// 프로그램 카테고리
+	@Column(name="programCategory", nullable = false)
+	private String programCategory;
+	
+//	@Enumerated(EnumType.STRING)
+//	private ProgramCategory programCategory;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="member_num")
@@ -57,16 +87,48 @@ public class Application {
 	
 	@OneToMany(mappedBy ="application", cascade=CascadeType.ALL)
 	@ToString.Exclude
-	private List<Attach> attachs;
+	private List<Attach> attach;
 	
-	public static Application saveApplication(ApplicationDto applicationDto) {
-		Application application = new Application();
-		application.setName(applicationDto.getName());
-		application.setSdate(applicationDto.getSdate());
-		application.setEdate(applicationDto.getEdate());
-		application.setUdate(applicationDto.getUdate());
-		application.setSeatDetail(applicationDto.getSeatDetail());
-		
-		return application;
+	@OneToMany(mappedBy ="application", cascade=CascadeType.ALL)
+	@ToString.Exclude
+	private List<SeatA> seatA;
+	
+	@OneToMany(mappedBy ="application", cascade=CascadeType.ALL)
+	@ToString.Exclude
+	private List<SeatB> seatB;
+	
+	@OneToMany(mappedBy ="application", cascade=CascadeType.ALL)
+	@ToString.Exclude
+	private List<SeatC> seatC;
+	
+	@OneToMany(mappedBy ="application", cascade=CascadeType.REMOVE)
+	@ToString.Exclude
+	private List<Reservation> reservation;
+	
+	// 프로그램 정보를 업데이트 해준다
+	public void updateApplication(ApplicationDto applicationDto) {
+		this.name = applicationDto.getName();
+		this.price = applicationDto.getPrice();
+		this.place = applicationDto.getPlace();
+		this.rat = applicationDto.getRat();
+		this.run = applicationDto.getRun();
+		this.sdate = applicationDto.getSdate();
+		this.edate = applicationDto.getEdate();
+		this.seatDetail = applicationDto.getSeatDetail();
+		this.detail = applicationDto.getDetail();
+		this.programCategory = applicationDto.getProgramCategory();
 	}
+	
+//	public static Application saveApplication(ApplicationDto applicationDto) {
+//		Application application = new Application();
+//		application.setName(applicationDto.getName());
+//		application.setSdate(applicationDto.getSdate());
+//		application.setEdate(applicationDto.getEdate());
+//		application.setUdate(applicationDto.getUdate());
+//		application.setSeatDetail(applicationDto.getSeatDetail());
+//		
+//		return application;
+//	}
+
+	
 }

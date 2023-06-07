@@ -33,8 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/");
 
 		http.authorizeRequests()
-				.mvcMatchers("/voc/**").hasRole("ADMIN")
-				.mvcMatchers("/", "/members/**", "/mail/**").permitAll()
+				.mvcMatchers("/admin/**").hasRole("ADMIN")
+				.mvcMatchers("/", "/members/**", "/mail/**", "/reservations/**", "/board/**", "/voc/**", "/notices/**", "/asia/**", "/pay/**", "/useinfo/**", "/main/**").permitAll()
 				.anyRequest().authenticated();
 
 		http.exceptionHandling() // 인증되지 않은 사용자가 리소스에 접근하였을 때 수행되는 핸들러 등록
@@ -53,6 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**", "/js/**", "/img/**");
+		web.ignoring().antMatchers("/css/**", "/js/**", "/images/**", "/error");
 	}
 }
