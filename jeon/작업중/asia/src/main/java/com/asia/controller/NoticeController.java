@@ -123,6 +123,8 @@ public class NoticeController {
 	@PostMapping(value = "/modNotice/{num}")
 	public String modnotice(@PathVariable("num") Long num, NoticeDto noticeDto, Model model, BindingResult bindingResult,
 			@RequestParam("attachFile") List<MultipartFile> attachList) {
+		
+		System.out.println(noticeDto);
 
 		if (bindingResult.hasErrors()) {
 

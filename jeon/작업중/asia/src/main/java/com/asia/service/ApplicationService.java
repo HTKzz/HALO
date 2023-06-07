@@ -345,7 +345,13 @@ public class ApplicationService {
 	}
 
 	public Application getApplicationDtl1(long anum) {
+		
+		List<Attach> attachList = attachRepository.findByApplicationNumOrderByNumAsc(anum);
+		
 		Application application = applicationRepository.findByNum(anum);
+		application.setAttach(attachList);
+		
+		
 		return application;
 	}
 

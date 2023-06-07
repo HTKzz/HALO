@@ -6,7 +6,7 @@
 }
 
 .reserve-title-h1 {
-	font-family: 'SF_HambakSnow';
+	font-family: Pretendard-Regular;
 	font-size: 3rem;
 	line-height: 3.5rem;
 	padding-bottom: 40px;
@@ -14,30 +14,64 @@
 }
 
 body {
-	font-family: 'Lato', sans-serif;
+	font-family: Pretendard-Regular;
 	box-sizing: border-box;
+	
 }
 
 input {
-	width: 200px;
+	font-family: Pretendard-Regular;
+	width: 180px;
 }
 
 #reserveContainer {
 	/* background-color: #242333; */
+	width:900px;
 	border: 1px solid gray;
 	border-radius: 5px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 650px;
+	height: 600px;
 	text-align: center;
 	line-height: 35px;
+}
+
+textarea {
+	background: white;
+	color: black;
+	border: 0;
+	margin: 20px 0 5px 0;
+	text-align: center;
+	width: 100%;
+	resize: none;
+	font-size: 28px;
+	font-weight:bold;
+	font-family: 'Pretendard-Regular';
+	word-break: keep-all;
 }
 
 .reserveContainer {
 	width: 800px;
 	float: left;
+}
+
+.reserveImg {
+	float: left;
+	margin-right: 50px;
+	
+}
+
+.reserveImg img{
+	width: 300px;
+	height: 340px;
+	
+}
+
+.reserveInfo {
+	float: right;
+	
 }
 
 .reserveBtn {
@@ -68,23 +102,61 @@ input {
 	display: flex;
 	margin: 20px;
 	align-items: center;
+	
 }
 
 .form-group input {
-	border: 1px solid gray;
+	border: 0px solid gray;
 	border-radius: 5px;
-	font-size: 18px;
+	font-size: 20px;
 	height: 30px;
 	text-align: center;
 }
 
 .form-group label {
-	font-size: 15px;
+	font-size: 18px;
 	/* font-weight: bold; */
 	padding-right: 5px;
 	width: 90px;
 	text-align: center;
 }
+
+.form-group-cnt {
+	display: flex;
+	margin: 20px 20px 40px 20px;
+	align-items: center;
+	position: relative;
+}
+
+.form-group-cnt input {
+	border: 1px solid gray;
+	border-radius: 5px;
+	font-size: 20px;
+	height: 30px;
+	text-align: center;
+	position: relative;
+}
+
+.form-group-cnt label {
+	font-size: 18px;
+	font-weight: bold;
+	padding-right: 5px;
+	width: 90px;
+	text-align: center;
+}
+
+.cnt-info {
+	font-size: 16px;
+	position: absolute;
+	font-weight: 500;
+	top: 30px;
+	left: 108px;
+	color: hotpink;
+	
+	
+}
+
+
 
 .showcase {
 	width: 70%;

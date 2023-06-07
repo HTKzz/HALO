@@ -99,8 +99,6 @@ public class NoticeService {
 	
 	// 게시판 리스트 싹 다 불러오기 (페이징, 검색)
 	public Page<Notice> noticeList(NoticeSearchDto noticeSearchDto, Pageable pageable){
-		
-		
 		return noticeRepository.getNoticeLists(noticeSearchDto, pageable);
 	}
 	

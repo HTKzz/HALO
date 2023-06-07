@@ -2,11 +2,7 @@ package com.asia.controller;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,16 +10,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.asia.dto.ReservationSearchDto;
+import com.asia.dto.AttachDto;
 import com.asia.dto.SeatADto;
 import com.asia.dto.SeatBDto;
 import com.asia.dto.SeatCDto;
 import com.asia.dto.UpdateDto;
 import com.asia.entity.Application;
+import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Reservation;
 import com.asia.service.ApplicationService;
+import com.asia.service.AttachService;
 import com.asia.service.MemberService;
 import com.asia.service.ReservationService;
 import com.asia.service.SeatService;
@@ -40,6 +39,7 @@ public class ReservationController {
 	private final ApplicationService applicationService;
 	private final ReservationService reservationService;
 	private final MemberService memberService;
+	private final AttachService attachService;
 
 	// 좌석o 선택페이지 이동
 	@PostMapping(value = "/new")
@@ -98,10 +98,14 @@ public class ReservationController {
 	// 좌석x 예매페이지 이동
 	@PostMapping(value = "/new1")
 	public String reservation1(Model model, @RequestParam("test") long anum) {
+		
+		
 		Application application = applicationService.getApplicationDtl1(anum);
+		List<AttachDto> images = attachService.getImageList(anum);
 		model.addAttribute("application", application);
 		model.addAttribute("anum", anum);
-
+		model.addAttribute("url", images.get(0).getUrl()); // images에서 0번째 인덱스의 url가져와
+		
 		return "reservation/reservationForm";
 	}
 
@@ -110,6 +114,8 @@ public class ReservationController {
 	public String addreservation1(Model model, @RequestParam("anum") int anum, @RequestParam("cnt") int cnt,
 			@RequestParam("price") int price, Principal principal) throws Exception {
 
+		
+		
 		Application application = applicationService.getApplicationDtl1(anum);
 
 		String name = principal.getName();

@@ -7,9 +7,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.ReservationSearchDto;
 import com.asia.entity.Application;
+import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Reservation;
 import com.asia.repository.MemberRepository;
@@ -26,6 +28,8 @@ public class ReservationService {
 	private final ReservationRepository reservationRepository;
 	
 	public Long saveReservation(Application application, String name, String seat, int cnt, int price) throws Exception {
+		
+		
 		
 		Member member = memberRepository.findById(name);
 		

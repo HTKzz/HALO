@@ -10,5 +10,4 @@ import lombok.ToString;
 public class NoticeSearchDto {
 	private String searchBy;
 	private String searchQuery = "";
-	private int pageSize;
 }

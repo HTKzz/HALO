@@ -1,5 +1,8 @@
 package com.asia.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,4 +25,6 @@ public class ReservationFormDto {
 	private int price;
 	
 	private String stat;
+	
+	
 }

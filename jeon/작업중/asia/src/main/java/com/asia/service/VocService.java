@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -30,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class VocService {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(VocService.class);
+	//private final Logger LOGGER = LoggerFactory.getLogger(VocService.class);
 	
 	private final VocRepository vocRepository;
 	private final AttachService attachService;
@@ -80,15 +78,6 @@ public class VocService {
 		return voc.getNum();
 	}
 
-	// 리스트 조회
-	public List<Voc> vocList() {
-		return vocRepository.findAll();
-	}
-
-	// 게시글 불러오기
-	public Voc vocDetail(Long num) { /// Voc entity 가져와야
-		return vocRepository.findById(num).get();
-	}
 
 	// 삭제
 	public void vocDelete(Long num) {

@@ -90,9 +90,11 @@ public class VocController {
 	// 상세보기
 	@GetMapping("/detail/{num}")
 	public String detailVoc(Model model, @PathVariable("num") Long num, Principal principal) {
+		
 		VocFormDto vocFormDto = vocService.getvocDtl(num);
 		vocService.updateCnt(num);
 		model.addAttribute("voc", vocFormDto);
+		
 
 		String name = principal.getName();
 		Voc voc = vocService.findByNum(num);

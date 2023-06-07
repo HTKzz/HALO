@@ -81,4 +81,13 @@ public class AttachService {
 		return file1;
 	}
 
+	public List<AttachDto> getImageList(long anum) {
+		List<AttachDto> attachLists = attachRepository.getLists(anum);
+		
+		return attachLists;
+	}
+	
+	
+	
+
 }

@@ -6,13 +6,6 @@
 }
 
 
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
 body {
 	font-family: Pretendard-Regular;
 	font-size: 1rem;
@@ -29,7 +22,6 @@ h4 {
 	line-height: 2rem;
 	text-align: center;
 }
-
 
 button {
 	display: inline-block;
@@ -172,6 +164,10 @@ textarea {
 .custom-file-label:hover {
 	background: #777;
 	color: #fff;
+}
+
+.voc-btn {
+	text-align: center;
 }
 
 .btn-submit {
