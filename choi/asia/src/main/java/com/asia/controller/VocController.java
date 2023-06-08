@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.asia.dto.SearchDto;
 import com.asia.dto.VocFormDto;
-import com.asia.dto.VocSearchDto;
 import com.asia.entity.Voc;
 import com.asia.service.AttachService;
 import com.asia.service.VocService;
@@ -70,19 +70,20 @@ public class VocController {
 	}
 
 	// 리스트불러오기 페이징넣어서
-	@GetMapping(value ={"/list", "/list/{page}"})
-	public String listVoc(@PathVariable("page") Optional<Integer> page, Model model, VocSearchDto vocSearchDto) {
-		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 4);
+	@GetMapping(value = {"/list", "/list/{page}"})
+	public String listVoc(@PathVariable("page") Optional<Integer> page, Model model, SearchDto searchDto) {
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
 
-		Page<Voc> list = vocService.getVocLists(vocSearchDto, pageable);
+		Page<Voc> list = vocService.getVocLists(searchDto, pageable);
+		
+		model.addAttribute("maxPage", 10);
 		model.addAttribute("list", list);
-		System.out.println(list.getPageable());
-		int nowPage = list.getPageable().getPageNumber() + 1;
-		int startPage = Math.max(nowPage - 4, 1);
-		int endPage = Math.min(nowPage + 4, list.getTotalPages());
-		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
+		
+		if (!searchDto.getSearchQuery().matches("[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝|(|)|.|-]*")) {
+			searchDto.setSearchQuery("");
+		}
+		
+		model.addAttribute("SearchDto", searchDto);
 
 		return "board/voc/vocList";
 	}
@@ -98,7 +99,6 @@ public class VocController {
 		Voc voc = vocService.findByNum(num);
 		model.addAttribute("username", name);
 		model.addAttribute("writername", voc.getMember().getId());
-		
 
 		return "board/voc/vocDetail";
 	}
@@ -108,6 +108,7 @@ public class VocController {
 	public String deleteVoc(@PathVariable Long num) throws Exception {
 		attachService.deleteAttach(num);
 		vocService.vocDelete(num);
+		
 		return "redirect:/voc/list";
 	}
 
@@ -127,8 +128,7 @@ public class VocController {
 
 	// 수정시 작동
 	@PostMapping(value = "/update/{num}")
-	public String vocUpdate(@Valid VocFormDto vocFormDto, BindingResult bindingResult,
-			@RequestParam("attachFile") List<MultipartFile> attachFileList, Model model) {
+	public String vocUpdate(@Valid VocFormDto vocFormDto, BindingResult bindingResult, @RequestParam("attachFile") List<MultipartFile> attachFileList, Model model) {
 		if (bindingResult.hasErrors()) {
 			return "board/voc/vocForm";
 		}

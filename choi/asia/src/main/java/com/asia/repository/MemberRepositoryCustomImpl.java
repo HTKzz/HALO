@@ -11,7 +11,7 @@ import org.thymeleaf.util.StringUtils;
 
 import com.asia.constant.Role;
 import com.asia.constant.Stat;
-import com.asia.dto.MemberFormDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.Member;
 import com.asia.entity.QMember;
 import com.querydsl.core.QueryResults;
@@ -27,10 +27,10 @@ public class MemberRepositoryCustomImpl implements MemberRepositoryCustom{
 	}
 	
 	@Override
-	public Page<Member> getMemberMngLists(MemberFormDto memberFormDto, Pageable pageable){
+	public Page<Member> getMemberMngLists(SearchDto searchDto, Pageable pageable){
 		QueryResults<Member> results = queryFactory
 				.selectFrom(QMember.member)
-				.where(searchOptionLike(memberFormDto.getSearchOption(), memberFormDto.getMemberMngSearch()))
+				.where(searchOptionLike(searchDto.getSearchBy(), searchDto.getSearchQuery()))
 				.orderBy(QMember.member.join.desc())
 				.offset(pageable.getOffset())
 				.limit(pageable.getPageSize())
@@ -42,28 +42,30 @@ public class MemberRepositoryCustomImpl implements MemberRepositoryCustom{
 		return new PageImpl<>(contents, pageable, total);
 	}
 	
-	private BooleanExpression searchOptionLike(String searchOption, String memberMngSearch) {
+	private BooleanExpression searchOptionLike(String searchBy, String searchQuery) {
 
-		if (StringUtils.equals("name", searchOption)) {
-			return QMember.member.name.like("%" + memberMngSearch + "%");
-		} else if (StringUtils.equals("tel", searchOption)) {
-			return QMember.member.tel.like("%" + memberMngSearch + "%");
-		}else if (StringUtils.equals("email", searchOption)) {
-			return QMember.member.email.like("%" + memberMngSearch + "%");
-		}else if (StringUtils.equals("birth", searchOption)) {
-			return QMember.member.birth.like("%" + memberMngSearch + "%");
-		}else if (StringUtils.equals("join", searchOption)) {
-			return QMember.member.join.like("%" + memberMngSearch + "%");
-		}else if (StringUtils.equals("stat", searchOption) && Stat.회원.toString().contains(memberMngSearch)) {
-			return QMember.member.stat.eq(Stat.회원);
-		}else if (StringUtils.equals("stat", searchOption) && Stat.블랙.toString().contains(memberMngSearch)) {
-			return QMember.member.stat.eq(Stat.블랙);
-		}else if (StringUtils.equals("role", searchOption) && Role.ADMIN.toString().contains(memberMngSearch.toUpperCase())) {
-			return QMember.member.role.eq(Role.ADMIN);
-		}else if (StringUtils.equals("role", searchOption) && Role.USER.toString().contains(memberMngSearch.toUpperCase())) {
-			return QMember.member.role.eq(Role.USER);
-		}else if (StringUtils.equals("role", searchOption) && Role.COMPANY.toString().contains(memberMngSearch.toUpperCase())) {
-			return QMember.member.role.eq(Role.COMPANY);
+		if (StringUtils.equals("name", searchBy)) {
+			return QMember.member.name.like("%" + searchQuery + "%");
+		} else if (StringUtils.equals("tel", searchBy)) {
+			return QMember.member.tel.like("%" + searchQuery + "%");
+		} else if (StringUtils.equals("email", searchBy)) {
+			return QMember.member.email.like("%" + searchQuery + "%");
+		} else if (StringUtils.equals("birth", searchBy)) {
+			return QMember.member.birth.like("%" + searchQuery + "%");
+		} else if (StringUtils.equals("join", searchBy)) {
+			return QMember.member.join.like("%" + searchQuery + "%");
+		} else if (StringUtils.equals("stat", searchBy) && Stat.회원.toString().contains(searchQuery)) {
+			return searchQuery == "" ? null : QMember.member.stat.eq(Stat.회원);
+		} else if (StringUtils.equals("stat", searchBy) && Stat.블랙.toString().contains(searchQuery)) {
+			return searchQuery == "" ? null : QMember.member.stat.eq(Stat.블랙);
+		} else if (StringUtils.equals("role", searchBy) && Role.ADMIN.toString().contains(searchQuery.toUpperCase())) {
+			return searchQuery == "" ? null : QMember.member.role.eq(Role.ADMIN);
+		} else if (StringUtils.equals("role", searchBy) && Role.USER.toString().contains(searchQuery.toUpperCase())) {
+			return searchQuery == "" ? null : QMember.member.role.eq(Role.USER);
+		} else if (StringUtils.equals("role", searchBy) && Role.COMPANY.toString().contains(searchQuery.toUpperCase())) {
+			return searchQuery == "" ? null : QMember.member.role.eq(Role.COMPANY);
+		} else if ((StringUtils.equals("role", searchBy) || StringUtils.equals("stat", searchBy)) && searchQuery != "") {
+			return QMember.member.join.like(""); // 의미 없음
 		}
 		return null;
 	}

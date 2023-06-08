@@ -15,7 +15,16 @@
 <!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
 	<script th:inline="javascript">
-		
+		$(document).ready(function() {
+			document.getElementById('btn').onclick = function() {
+				var date = $("#test option:selected").val();
+    	 	   
+      			if (date == "") {
+       		 	    alert("날짜를 선택해주세요.");
+        	    	return false;
+      			}
+			}
+ 	   });
 	</script>
 </th:block>
 
@@ -73,23 +82,21 @@
 										</span>
 									</li>
 									<li><em>안내</em><span>※ 온라인 예매가 매진되더라도, 상영 당일 현장분
-											티켓이 남을시 현장에서 등록하여 관람하실 수 있습니다.<br> ※ 본 프로그램은 공연을 영상화하여
-											상영하는 작품입니다. 예매시 참고해주시기 바랍니다.<br> ※ 본 프로그램은 무료공연이므로 ACC
-											주차할인이 적용되지 않습니다.
+											티켓이 남을시 현장에서 등록하여 관람하실 수 있습니다.<br><br>
 									</span></li>
 								</ul>
 							</div>
 							<div class="programDetail-selectBtn">
 								<div class="programDetail-input-seatdetail">
 									<input type="hidden" th:field="*{application2.seatDetail}">
-									<select class="programDetail-input-seatDetail-select" th:name="test">
+									<select class="programDetail-input-seatDetail-select" th:name="test" id="test">
 										<option value="">-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;- &nbsp;&nbsp;&nbsp;회차를 선택해 주세요.&nbsp;&nbsp;&nbsp; -&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-</option>
 										<option th:each="val : ${select}" th:value="${val.value}" th:text="${val.key}"></option>
 									</select>
 								</div>
 								
 								<div class="programDetail-rsv">
-									<button type="submit" class="programDetail-rsv-btn">
+									<button type="submit" class="programDetail-rsv-btn" id="btn">
 										예매하기
 									</button>
 								</div>
