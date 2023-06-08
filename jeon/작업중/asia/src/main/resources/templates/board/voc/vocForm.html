@@ -21,7 +21,6 @@
 				var fileExt = fileName.substring(fileName.lastIndexOf(".")+1); //확장자추출
 				fileExt = fileExt.toLowerCase(); //확장자 소문자로 통일해서 비교하려고
 				
-				
 				$(this).siblings(".upload-name").val(fileName); //라벨 태그 안의 내용을 jquery의 .html()을 이용해 파일명 입력
 			});
 		}
@@ -38,10 +37,11 @@
 	
 	<article class="vocForm-board">
 	
-		<h1 class="vocForm-title-h1">VOC 고객의 소리</h1>
+		<h1 class="vocForm-title-h1">고객의 소리</h1>
 		
 		<div>
 			<section class="vocForm">
+			
 				<div class="vocForm-title">
 					<h4>글 작성하기</h4>
 				</div>
@@ -52,7 +52,7 @@
 						<div>
 							<div class="vocForm-name">
 								<input type="text" th:field="*{name}" class="vocForm-name-input"
-									placeholder="제목을 입력해 주세요">
+									placeholder="제목을 입력해주세요">
 							</div>
 							<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
 								class="fieldError">Incorrect data</p>
@@ -61,7 +61,7 @@
 
 						<div class="vocform-content">
 							<textarea th:field="*{content}" class="vocform-content-text"
-								aria-label="With textarea" placeholder="내용을 입력해 주세요"></textarea>
+								aria-label="With textarea" placeholder="내용을 입력해주세요"></textarea>
 							<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}"
 								class="fieldError">Incorrect data</p>
 						</div>
@@ -90,15 +90,14 @@
 						</div>
 
 
-						<div class="voc-btn">
-							<div th:if="${#strings.isEmpty(vocFormDto.num)}"
-								>
+						<div class="form-btn">
+							<div th:if="${#strings.isEmpty(vocFormDto.num)}">
 								<button th:formaction="@{/voc/new}" type="submit"
 									class="btn-submit">등록</button>
 							</div>
 
 							<div th:unless="${#strings.isEmpty(vocFormDto.num)}"
-								>
+								style="text-align: center">
 								<button th:formaction="@{'/voc/update/' + ${vocFormDto.num} }"
 									type="submit" class="btn-submit">수정</button>
 							</div>

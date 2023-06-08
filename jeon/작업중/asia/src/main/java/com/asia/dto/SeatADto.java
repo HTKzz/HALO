@@ -1,6 +1,5 @@
 package com.asia.dto;
 
-import com.asia.entity.Application;
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.Getter;
@@ -32,6 +31,4 @@ public class SeatADto {
 		this.stat = stat;
 		this.seat = seat;
 	}
-	
-	
 }

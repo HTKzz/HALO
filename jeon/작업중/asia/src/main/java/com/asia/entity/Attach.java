@@ -53,7 +53,6 @@ public class Attach extends BaseEntity {
 	@JoinColumn(name="notice_num")
 	private Notice notice;
 
-
 	public void updateAttach(String oriName, String name, String url) {
 		this.oriName = oriName;
 		this.name = name;

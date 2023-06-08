@@ -31,7 +31,7 @@ layout:decorate="~{layouts/layout1}">
 		    IMP.request_pay({
 		    	pg: "kcp.store-24677c12-63",
 		        pay_method: "card",
-		        merchant_uid: "53465713258773245153",
+		        merchant_uid: "985532111111",
 		        name: name,
 		        amount: price
 		    }, function (rsp) { // callback
@@ -111,14 +111,19 @@ layout:decorate="~{layouts/layout1}">
 								<form method="post" onsubmit=true>
                             		<button th:if="${reservation.stat == '결제완료'} and ${reservation.stat != '취소'} and ${reservation.stat != '환불대기'}" th:formaction="@{/reservations/refundMyReservation/{num}(num=${reservation.num})}" 
                             				class="myReservationForm-btn" id="refund" onclick="refund()">환불신청</button>
+                            		<!-- <button th:if="${reservation.stat == '결제완료'} and ${reservation.stat != '취소'} and ${reservation.stat != '환불대기'}" th:href="@{/images/ticket/ticket-headImg.jpg})}" class="myReservationForm-btn">티켓인쇄</button> -->
+                            		
                             		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                             	</form>
                             </td>
-                            <td class="myReservationForm-stat reservation-td" th:if="${reservation.stat != '취소'} and ${reservation.stat == '결제대기'}">
-                            	<form method="post" onsubmit=true>
+                            <td class="myReservationForm-stat reservation-td">
+                            	<form method="post" onsubmit=true th:if="${reservation.stat != '취소'} and ${reservation.stat == '결제대기'}">
                             		<button th:formaction="@{/reservations/cancelMyReservation/{num}(num=${reservation.num})}" class="myReservationForm-btn">취소</button>
                             		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                             	</form>
+                            	<a th:if="${reservation.stat == '결제완료'}" class="myReservationForm-printbtn" th:href="@{/reservations/viewPrintTicket/{num}(num=${reservation.num})}" >
+                            		<button type="button" class="myReservationForm-btn">티켓인쇄</button>
+                            	</a>
                             </td>
                         </tr>
                     </tbody>

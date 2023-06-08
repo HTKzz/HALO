@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.AttachDto;
 import com.asia.dto.SeatADto;
@@ -18,7 +17,6 @@ import com.asia.dto.SeatBDto;
 import com.asia.dto.SeatCDto;
 import com.asia.dto.UpdateDto;
 import com.asia.entity.Application;
-import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Reservation;
 import com.asia.service.ApplicationService;
@@ -47,7 +45,7 @@ public class ReservationController {
 
 		model.addAttribute("updateDto", new UpdateDto());
 
-		Application application = applicationService.getApplicationDtl1(anum);
+		Application application = applicationService.getApplicationDtl(anum);
 		model.addAttribute("name", application.getName());
 		model.addAttribute("udate", application.getUdate());
 		model.addAttribute("price", application.getPrice());
@@ -80,32 +78,31 @@ public class ReservationController {
 
 	// 좌석o 예매하기
 	@PostMapping(value = "/add")
-	public String addreservation(Model model, @RequestParam("anum") int anum, @RequestParam("seat1") String seat1,
+	public String addreservation(Model model, @RequestParam("anum") int anum, @RequestParam("seat1") String seatDetail,
 			@RequestParam("seat") String seat, @RequestParam("cnt") int cnt, @RequestParam("price") int price,
 			Principal principal, UpdateDto updateDto) throws Exception {
 
-		Application application = applicationService.getApplicationDtl1(anum);
+		Application application = applicationService.getApplicationDtl(anum);
 
 		String name = principal.getName();
 
-		seatService.updateSeat(updateDto, anum, seat1);
+		seatService.updateSeat(updateDto, anum, seatDetail);
 
 		reservationService.saveReservation(application, name, seat, cnt, price);
 
-		return "redirect:/";
+		return "redirect:/reservations/myReservation";
 	}
 
 	// 좌석x 예매페이지 이동
 	@PostMapping(value = "/new1")
 	public String reservation1(Model model, @RequestParam("test") long anum) {
-		
-		
-		Application application = applicationService.getApplicationDtl1(anum);
+
+		Application application = applicationService.getApplicationDtl(anum);
 		List<AttachDto> images = attachService.getImageList(anum);
 		model.addAttribute("application", application);
 		model.addAttribute("anum", anum);
-		model.addAttribute("url", images.get(0).getUrl()); // images에서 0번째 인덱스의 url가져와
-		
+		model.addAttribute("url", images.get(0).getUrl());
+
 		return "reservation/reservationForm";
 	}
 
@@ -114,9 +111,7 @@ public class ReservationController {
 	public String addreservation1(Model model, @RequestParam("anum") int anum, @RequestParam("cnt") int cnt,
 			@RequestParam("price") int price, Principal principal) throws Exception {
 
-		
-		
-		Application application = applicationService.getApplicationDtl1(anum);
+		Application application = applicationService.getApplicationDtl(anum);
 
 		String name = principal.getName();
 
@@ -124,30 +119,7 @@ public class ReservationController {
 
 		reservationService.saveReservation(application, name, seat, cnt, price);
 
-		return "redirect:/";
-	}
-
-	// 예매 삭제
-	@GetMapping(value = "/delete/{num}")
-	public String reservationDelete(@PathVariable Long num) {
-
-		Reservation reservation = reservationService.getDtl(num);
-
-		String seatDetail = reservation.getApplication().getSeatDetail();
-
-		Long deleteSeat = reservation.getApplication().getNum();
-		int anum = Long.valueOf(deleteSeat).intValue();
-
-		if (seatDetail != null) {
-			String selectSeat = reservation.getSeat();
-			String[] array = selectSeat.split(", ");
-
-			seatService.cancelUpdateSeat(seatDetail, anum, array);
-		}
-
-		reservationService.deleteReservation(num);
-
-		return "redirect:/admin/reservationMng";
+		return "redirect:/reservations/myReservation";
 	}
 
 	// 내 예매내역 호출
@@ -213,6 +185,14 @@ public class ReservationController {
 
 		return "redirect:/reservations/myReservation";
 	}
-	
-	
+
+	// 티켓인쇄 페이지 이동
+	@GetMapping(value = "/viewPrintTicket/{num}")
+	public String printTicket(@PathVariable("num") Long num, Model model) {
+
+		Reservation reservation = reservationService.getDtl(num);
+		model.addAttribute("printTicketInfo", reservation);
+
+		return "reservation/printTicket";
+	}
 }

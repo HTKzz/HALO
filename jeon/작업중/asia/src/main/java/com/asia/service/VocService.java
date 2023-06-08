@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,8 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.AttachDto;
+import com.asia.dto.SearchDto;
 import com.asia.dto.VocFormDto;
-import com.asia.dto.VocSearchDto;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Voc;
@@ -28,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class VocService {
 
-	//private final Logger LOGGER = LoggerFactory.getLogger(VocService.class);
+	private final Logger LOGGER = LoggerFactory.getLogger(VocService.class);
 	
 	private final VocRepository vocRepository;
 	private final AttachService attachService;
@@ -78,7 +80,6 @@ public class VocService {
 		return voc.getNum();
 	}
 
-
 	// 삭제
 	public void vocDelete(Long num) {
 		vocRepository.deleteByNum(num);
@@ -122,9 +123,9 @@ public class VocService {
 		return voc.getNum();
 	}
 	
-	//페이지, 검색
-	public Page<Voc> getVocLists(VocSearchDto vocSearchDto, Pageable pageable){
-		return vocRepository.getVocLists(vocSearchDto, pageable);
+	
+	public Page<Voc> getVocLists(SearchDto searchDto, Pageable pageable){
+		return vocRepository.getVocLists(searchDto, pageable);
 	}
 
 	//답글등록
@@ -155,6 +156,7 @@ public class VocService {
 //		for(int i = 0; i < voc.getGroupLayer(); i++) {
 //			reply += "Re: ";
 //		}
+		
 		voc.setName(reply + voc.getName());
 		vocRepository.save(voc);
 		
@@ -186,7 +188,6 @@ public class VocService {
 			attachDtoList.add(attachDto);
 		}
 		
-//		Voc voc = vocRepository.findById(voc1.getNum()).orElseThrow(EntityNotFoundException::new);
 		VocFormDto vocFormDto = VocFormDto.of(voc1);
 		
 		long allVocCnt = vocRepository.getList();
@@ -204,14 +205,4 @@ public class VocService {
 	public Voc findByNum(Long num) {
 		return vocRepository.findByNum(num);
 	}
-
-	// 검색 vocService
-	public Page<Voc> vocListSearchByName(String vocListSearch, Pageable pageable){
-		return vocRepository.findByNameContaining(vocListSearch, pageable);
-	}
-
-	public Page<Voc> vocListSearchBywriter(String vocListSearch, Pageable pageable){
-		return vocRepository.findByMemberIdContaining(vocListSearch, pageable);
-	}
-	
 }

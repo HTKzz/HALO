@@ -7,11 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.asia.dto.ReservationSearchDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.Application;
-import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Reservation;
 import com.asia.repository.MemberRepository;
@@ -28,8 +26,6 @@ public class ReservationService {
 	private final ReservationRepository reservationRepository;
 	
 	public Long saveReservation(Application application, String name, String seat, int cnt, int price) throws Exception {
-		
-		
 		
 		Member member = memberRepository.findById(name);
 		
@@ -49,10 +45,9 @@ public class ReservationService {
 	}
 	
 	@Transactional(readOnly=true)
-	public Page<Reservation> getAdminReservationPage(ReservationSearchDto reservationSearchDto, Pageable pageable) {
-		return reservationRepository.getAdminItemPage(reservationSearchDto, pageable);
+	public Page<Reservation> getAdminReservationPage(SearchDto searchDto, Pageable pageable) {
+		return reservationRepository.getAdminReservationPage(searchDto, pageable);
 	}
-	
 	
 	public void deleteReservation(Long num) {
 		reservationRepository.deleteById(num);
@@ -74,7 +69,7 @@ public class ReservationService {
 		return reservations;
 	}
 
-	////환불 추가
+	//환불 추가
 	public void refundReservation(Long num) {
 		String refund = "환불대기";
 		reservationRepository.updateReservationStat(num, refund);

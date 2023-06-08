@@ -65,7 +65,7 @@ input:focus, input:not(:placeholder-shown) {
 }
 
 #find-id-btn {
-	background-color: #A4A4A4;
+    background: #666;
 	border: none;
 	color: white;
 	border-radius: 5px;
@@ -78,7 +78,7 @@ input:focus, input:not(:placeholder-shown) {
 }
 
 #find-pw-btn {
-	background-color: #A4A4A4;
+    background: #666;
 	border: none;
 	color: white;
 	border-radius: 5px;
@@ -115,11 +115,11 @@ input:focus, input:not(:placeholder-shown) {
 }
 
 #find-id-btn:hover {
+	background: #222;
 	color: #fff;
-	background-color: #848484;
 }
 
 #find-pw-btn:hover {
+	background: #222;
 	color: #fff;
-	background-color: #848484;
 }

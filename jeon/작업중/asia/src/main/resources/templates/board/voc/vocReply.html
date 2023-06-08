@@ -44,6 +44,10 @@
 
 <body>
     <div layout:fragment="content">
+    	<article class="vocReply-board">
+	
+		<h1 class="vocReply-title-h1">고객의 소리</h1>
+    
         <div>
             <section class="vocReply">
                 <div class="vocReply-title">
@@ -57,7 +61,6 @@
 
                         <div>
                             <div class="vocReply-name">
-                                <!-- <label th:for="name">제목</label> -->
                                 <input type="text" name="name" class="vocReply-name-input" placeholder="제목을 입력해주세요">
                             </div>
                             <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
@@ -66,7 +69,6 @@
 
 
 						<div class="vocReply-content">
-							<!-- <label th:for="content">내용</label> -->
 							<textarea th:field="*{content}" class="vocReply-content-text"
 								aria-label="With textarea" placeholder="내용을 입력해주세요"></textarea>
 
@@ -100,15 +102,13 @@
 						
 
 
-						<div class="btn">
-							<div th:if="${#strings.isEmpty(vocFormDto.num)}"
-								style="text-align: center">
+						<div class="form-btn">
+							<div th:if="${#strings.isEmpty(vocFormDto.num)}">
 								<button th:formaction="@{/voc/reply/new}" type="submit"
 									class="btn-submit">등록</button>
 							</div>
 
-							<div th:unless="${#strings.isEmpty(vocFormDto.num)}"
-								style="text-align: center">
+							<div th:unless="${#strings.isEmpty(vocFormDto.num)}">
 								<button th:formaction="@{'/voc/update/' + ${vocFormDto.num} }"
 									type="submit" class="btn-submit">수정</button>
 							</div>
@@ -124,6 +124,7 @@
 
 			</section>
 		</div>
+		</article>
 	</div>
 </body>
 </html>

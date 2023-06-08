@@ -40,3 +40,19 @@ html {
 	margin: 0 auto;
 	padding: 0 auto;
 }
+
+
+@media print {
+	
+	.header, .footer {
+		display:none
+	}
+	
+}
+
+.fieldError {
+   color: #bd2130;
+   font-size: 0.9em;
+   margin-left: 10px;
+   margin-top: -10px;
+}

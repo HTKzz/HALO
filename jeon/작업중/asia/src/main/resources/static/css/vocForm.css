@@ -4,66 +4,52 @@
     font-weight: 400;
     font-style: normal;
 }
-
-
-body {
-	font-family: Pretendard-Regular;
-	font-size: 1rem;
-	line-height: 1.5rem;
-	color: black;
-	letter-spacing: 0.1px;
-	word-break: keep-all;
-	padding: 50px 5%;
-	margin: 0 auto;
+/* 추가 */
+@font-face {
+	font-family: 'SF_HambakSnow';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
-h4 {
+
+.vocForm-board {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 100px 0;
+	font-family: Pretendard-Regular;
+	font-size: 1rem;
+	letter-spacing: 0.1px;
+	word-break: keep-all;
+}
+
+.vocForm-title h4 {
 	font-size: 1.3rem;
 	line-height: 2rem;
 	text-align: center;
 }
 
-button {
-	display: inline-block;
-	height: 50px;
-	font-size: 1rem;
-	font-weight: bold;
-	background: none;
-	border-radius: 5px;
-	border: 1px solid #aaa;
-	transition: 0.4s;
-	cursor: pointer;
-}
-
-button:hover {
-	background: #222;
-	color: #fff;
-}
-
-input::placeholder, textarea::placeholder {
+/* input::placeholder, textarea::placeholder {
 	color: #888;
-}
+} */
 
-li {
+/* 삭제 */
+/* li {
 	list-style: none;
-}
+} */
 
-.fieldError {
-	color: #bd2130;
-}
-
+/* 수정 */
 .vocForm-title-h1 {
-	font-family: Pretendard-Regular;
+	font-family: 'SF_HambakSnow';
 	font-size: 3rem;
 	line-height: 3.5rem;
 	padding-bottom: 40px;
 	text-align: center;
 }
-
+/* 수정 */
 .vocForm {
-	margin-left: 220px;
-	margin-right: 220px;
-	margin-bottom: 220px;
 	border-radius: 10px;
 	border: 1px solid #999;
 	padding: 50px 5%;
@@ -77,14 +63,16 @@ li {
 	padding-top: 20px;
 }
 
-input {
+/* 수정 */
+.vocForm-board input {
 	font-family: Pretendard-Regular;
 	height: 40px;
 	font-size: 1rem;
 	padding-left: 7px;
+	border-radius: 5px;
 }
-
-textarea {
+/* 수정 */
+.vocForm-board textarea {
 	border: 1px solid #bbb;
 	border-radius: 5px;
 	width: 100%;
@@ -93,10 +81,10 @@ textarea {
 	resize: none;
 	font-size: 1rem;
 	font-family: 'Pretendard-Regular';
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
-
-/*--------- Board ---------*/
 .vocForm-name-input {
 	width: 100%;
 	margin-bottom: 20px;
@@ -151,7 +139,6 @@ textarea {
 .custom-file-label {
 	font-family: Pretendard-Regular;
 	font-size: 1rem;
-	line-height: 1.5rem;
 	color: black;
 	letter-spacing: 0.1px;
 	word-break: keep-all;
@@ -166,18 +153,25 @@ textarea {
 	color: #fff;
 }
 
-.voc-btn {
+/* 추가 */
+.form-btn {
 	text-align: center;
 }
 
+/* 수정 */
 .btn-submit {
 	width : 150px;
-	border: 0;
+	height: 50px;
 	margin-top: 20px;
-	transition: 0.5s;
 	background: #666;
 	color: white;
-	width: 150px;
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	transition: 0.4s;
+	cursor: pointer;
+	text-align: center;
 }
 
 .btn-submit:hover {

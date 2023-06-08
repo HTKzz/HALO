@@ -96,7 +96,7 @@ public class MemberController {
 		return "member/companyForm";
 	}
 
-	// 회원가입
+	// 일반 회원가입
 	@PostMapping(value = "/memberadd")
 	public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
 
@@ -112,7 +112,8 @@ public class MemberController {
 		}
 		return "redirect:/";
 	}
-
+	
+	// 기업 회원가입
 	@PostMapping(value = "/companyadd")
 	public String newCompany(@Valid CompanyFormDto companyFormDto, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -140,12 +141,14 @@ public class MemberController {
 		model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
 		return "/member/memberLoginForm";
 	}
-
+	
+	// 아이디 비번 찾기페이지 호출
 	@GetMapping(value = "/idpw")
 	public String findIdPw() {
 		return "/member/findIdPw";
 	}
 
+	// 아이디 찾기
 	@PostMapping(value = "/findid")
 	@ResponseBody
 	public HashMap<String, Object> findId(@RequestParam("name") String name, @RequestParam("email") String email)
@@ -155,7 +158,8 @@ public class MemberController {
 		map.put("result", mailService.sendFindIdMail(email, member));
 		return map;
 	}
-
+	
+	// 비밀번호 찾기
 	@PostMapping(value = "/findpw")
 	@ResponseBody
 	public String findPw(String id, String email) throws MessagingException, InterruptedException, ExecutionException {
@@ -171,9 +175,8 @@ public class MemberController {
 	@GetMapping(value = "/myPage")
 	public String myPage(Model model, Principal principal) {
 		String name = principal.getName();
-		System.out.println(name);
 		Member member = memberService.findUserMyPage(name);
-		System.out.println(member);
+		
 		model.addAttribute("member", member);
 
 		return "member/myPage";
@@ -181,12 +184,10 @@ public class MemberController {
 
 	// 마이페이지 수정
 	@PostMapping(value = "/modMyPage")
-	public String modMyPage(@RequestParam("password") String password, @RequestParam("id") String id, Model model,
-			Principal principal) {
-
+	public String modMyPage(@RequestParam("password") String password, @RequestParam("id") String id, Model model, Principal principal) {
 		String password1 = passwordEncoder.encode(password);
 		memberService.updateMemberPwd(password1, id);
-
+		
 		return "redirect:/members/myPage";
 	}
 }
