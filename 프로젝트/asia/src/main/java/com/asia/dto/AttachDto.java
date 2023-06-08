@@ -38,4 +38,11 @@ public class AttachDto {
 			this.url = url;
 		}
 	
+	@QueryProjection
+	public AttachDto(Long num, String name, String url){
+			this.num = num;
+			this.name = name;
+			this.url = url;
+		}
+	
 }

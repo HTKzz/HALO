@@ -67,7 +67,7 @@ public class NoticeController {
 
 	// 새 글쓰기
 	@PostMapping(value = "/submitNotice")
-	public String addnoticeList(@Valid NoticeDto noticeDto, Notice notice, BindingResult bindingResult, Model model,
+	public String addnoticeList(@Valid NoticeDto noticeDto, BindingResult bindingResult, Model model,
 			Principal principal, @RequestParam("attachFile") List<MultipartFile> attachList) {
 
 		if (bindingResult.hasErrors()) {
@@ -77,7 +77,7 @@ public class NoticeController {
 		try {
 			String id = principal.getName();
 
-			noticeService.writenotice(noticeDto, attachList, id);
+			noticeService.writeNotice(noticeDto, attachList, id);
 
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "등록 중 에러가 발생하였습니다.");
@@ -89,17 +89,16 @@ public class NoticeController {
 
 	// 글 상세보기
 	@GetMapping(value = "/detail/{num}")
-	public String noticeDetail(@PathVariable("num") Long num, Model model, NoticeDto noticeDto, Principal principal) {
+	public String noticeDetail(@PathVariable("num") Long num, Model model, Principal principal) {
 
-		noticeDto = noticeService.getnoticeDetail(num);
+		NoticeDto noticeDto = noticeService.getNoticeDetail(num);
 
 		noticeService.updateCnt(num);
 		model.addAttribute("noticeDto", noticeDto);
 
 		String name = principal.getName();
-		Notice notice = noticeService.getNotice(num);
+		
 		model.addAttribute("username", name);
-		model.addAttribute("writername", notice.getMember().getId());
 
 		return "board/notice/noticeDetailForm";
 	}
@@ -110,7 +109,7 @@ public class NoticeController {
 
 		try {
 
-			NoticeDto noticeDto = noticeService.getnoticeDetail(num);
+			NoticeDto noticeDto = noticeService.getNoticeDetail(num);
 			model.addAttribute("noticeDto", noticeDto);
 
 		} catch (EntityNotFoundException e) {
@@ -134,7 +133,7 @@ public class NoticeController {
 		}
 
 		try {
-			noticeService.updatenotice(noticeDto, attachList);
+			noticeService.updateNotice(noticeDto, attachList);
 
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "잘못된 정보 입니다.");
@@ -149,8 +148,8 @@ public class NoticeController {
 	@GetMapping(value = "/deleteNotice/{num}")
 	public String deletenotice(@PathVariable("num") Long num) throws Exception {
 
-		attachService.deleteAttach(num);
-		noticeService.deletenotice(num);
+		attachService.noticeDeleteAttach(num);
+		noticeService.deleteNotice(num);
 
 		return "redirect:/notices/lists";
 	}

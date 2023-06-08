@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.modelmapper.ModelMapper;
@@ -24,31 +25,30 @@ public class ApplicationDto {
 	
 	private Long num;
 	
-	@NotBlank(message = "프로그램명은 필수 입력 값입니다.")
+	@NotBlank(message = "※ 프로그램명은 필수 입력 값입니다.")
 	private String name;
 
-	@NotNull(message = "프로그램가격은 필수 입력 값입니다.")
+	@NotNull(message = "※ 프로그램 가격은 필수 입력 값입니다.")
 	private Integer price;
 	
-	@NotBlank(message = "관랍등급은 필수 입력 값입니다.")
+	@NotBlank(message = "※ 관람등급은 필수 입력 값입니다.")
 	private String rat;
 	
-	@NotNull(message = "관람시간은 필수 입력 값입니다.")
+	@NotNull(message = "※ 관람시간은 필수 입력 값입니다.")
 	private Integer run;
-	
-	@NotNull(message = "관람시간은 필수 입력 값입니다.")
+
+	@NotBlank(message = "※ 프로그램 기간은 필수 입력 값입니다.")
 	private String sdate;
 	
-	@NotNull(message = "관람시간은 필수 입력 값입니다.")
+	@NotBlank(message = "※ 프로그램 기간은 필수 입력 값입니다.")
 	private String edate;
 	
-	@NotNull(message = "관람시간은 필수 입력 값입니다.")
 	private String udate;
 	
-	@NotNull(message = "관람시간은 필수 입력 값입니다.")
+//	@NotBlank(message = "※ 좌석은 필수 선택 값입니다.")
 	private String seatDetail;
 	
-	@NotNull(message = "관람시간은 필수 입력 값입니다.")
+	@NotBlank(message = "※ 상세정보는 필수 입력 값입니다.")
 	private String detail;
 	
 	private String programCategory;

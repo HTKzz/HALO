@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+.footer-acc h1 {
+	height: 55px;
+	width: 870px;
+	display: block;
+	padding-top: 30px;
+}
+
+.footer-acc h4 {
+	height: 40px;
+	width: 870px;
+	display: block;
+	padding-top: 30px;
+}
+
+.footer-view {
+	position: absolute;
+	bottom: -600px; /*및으로 내려가게  */
+	/* left: 0;
+	right: 0; */
+	background: #111;
+	height: auto;
+	width: 100%;
+	padding-top: 30px;
+	color: #fff;
+	display: flex;
+}
+
+
+.footer-content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+}
+
+.footer-content h3 {
+	font-size: 20px;
+	font-weight: 500;
+	text-transform: capitalize;
+	line-height: 3rem;
+}
+
+.footer-content p {
+	max-width: 700px;
+	margin: 3px auto;
+	line-height: 28px;
+	font-size: 14px;
+	color: #cacdd2;
+}
+
+.socials {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 1rem 0 3rem 0;
+}
+
+.socials li {
+	margin: 0 10px;
+}
+
+.socials a {
+	text-decoration: none;
+	color: #fff;
+	border: 1.1px solid white;
+	padding: 5px;
+	border-radius: 50%;
+}
+
+.socials a i {
+	font-size: 1.1rem;
+	width: 20px;
+	transition: color .4s ease;
+}
+
+.socials a:hover i {
+	color: aqua;
+}
+
+.footer-menu {
+	float: right;
+}
+
+.footer-menu ul {
+	display: flex;
+}
+
+.footer-menu ul li {
+	padding-right: 10px;
+	display: block;
+}
+
+.footer-menu ul li a {
+	color: #cfd2d6;
+	text-decoration: none;
+}
+
+.footer-menu ul li a:hover {
+	color: #27bcda;
+}
+
+@media ( max-width :500px) {
+	.footer-menu ul {
+		display: flex;
+		margin-top: 10px;
+		margin-bottom: 20px;
+	}
+}
