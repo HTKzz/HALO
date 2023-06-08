@@ -70,7 +70,7 @@ input:focus, input:not(:placeholder-shown) {
 }
 
 .btn-btn-primary {
-	background-color: #A4A4A4;
+    background: #666;
 	border: none;
 	color: white;
 	border-radius: 5px;
@@ -84,7 +84,7 @@ input:focus, input:not(:placeholder-shown) {
 
 
 .loginbtn {
-	background-color: #A4A4A4;
+    background: #666;
 	border: none;
 	color: white;
 	border-radius: 5px;
@@ -97,11 +97,11 @@ input:focus, input:not(:placeholder-shown) {
 }
 
 .btn-btn-primary:hover {
+	background: #222;
 	color: #fff;
-	background-color: #848484;
 }
 
 .loginbtn:hover {
+	background: #222;
 	color: #fff;
-	background-color: #848484;
 }

@@ -5,13 +5,6 @@
     font-style: normal;
 }
 
-* {
-	margin: 0 auto;
-    padding: 0 auto;
-    list-style: none;
-    text-decoration: none;
-}
-
 body {
 	font-family: Pretendard-Regular;
 	font-size: 1rem;
@@ -19,8 +12,6 @@ body {
 	color: black;
 	letter-spacing: 0.1px;
 	word-break: keep-all;
-	padding: 50px 5%;
-	margin: 0 auto;
 }
 
 .vocList-container {
@@ -135,9 +126,10 @@ body {
 }
 
 
-/* 검색바 css */
+/* 寃��깋諛� css */
 
 .vocList-container select {
+	font-family: Pretendard-Regular;
 	border: 1px solid #bbb;
 	border-radius: 5px;
 	width: 85px;
@@ -146,14 +138,16 @@ body {
 }
 
 .memberMng-select-search {
+	font-family: Pretendard-Regular;
 	border: 1px solid #aaa;
 	border-radius: 5px;
 	width: 180px;
-	height: 33px;
+	height: 35px;
 	text-align: center;
 }
 
 .memberMng-search-btn {
+	font-family: Pretendard-Regular;
 	border: 1px solid #aaa;
 	border-radius: 5px;
 	background: #fff;
@@ -163,8 +157,6 @@ body {
     transition: 0.5s;
     font-weight: bold;
     cursor: pointer;
-    position: relative;
-    top: 2px;
 }
 
 .vocList-searchOptions {

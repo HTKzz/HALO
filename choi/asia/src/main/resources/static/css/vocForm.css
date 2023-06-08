@@ -5,14 +5,6 @@
     font-style: normal;
 }
 
-
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
 body {
 	font-family: Pretendard-Regular;
 	font-size: 1rem;
@@ -20,7 +12,6 @@ body {
 	color: black;
 	letter-spacing: 0.1px;
 	word-break: keep-all;
-	padding: 50px 5%;
 	margin: 0 auto;
 }
 
@@ -112,7 +103,7 @@ textarea {
 	border-bottom: 1px solid #bbb;
 }
 
-/*---- 첨부파일 ----*/
+/*---- 泥⑤��뙆�씪 ----*/
 .vocForm-input-group-text {
 	line-height: 30px;
 	width: 100%;

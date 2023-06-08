@@ -67,7 +67,20 @@ public class MailService {
 		return authKey;
 	}
 
-	// 일반 회원비밀번호 찾기
+	// 회원 아이디 찾기
+	@Async
+	public String sendFindIdMail(String email, Member member) throws MessagingException {
+		MimeMessage mailMessage = mailSender.createMimeMessage();
+		String mailContent = "아이디 : " + member.getId();
+		mailMessage.setSubject("국제아시아문화전당 메일", "utf-8");
+		mailMessage.setText(mailContent, "utf-8", "html");
+		mailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+		mailSender.send(mailMessage); // <--회원가입시 email란에 입력한 이메일주소로 인증메일이 보내진다.
+
+		return member.getId();
+	}
+
+	// 회원 비밀번호 찾기
 	@Async // Async는 return 값이 void가 됨. CompletableFuture객체를 이용하면 return값을 보낼수있음
 	public CompletableFuture<String> sendFindPwMail(String email, Member member) throws MessagingException {
 		String authKey = createKey();
@@ -91,42 +104,4 @@ public class MailService {
 		}
 		return check;
 	}
-
-	// 일반회원 아이디 찾기 이메일
-	@Async
-	public String sendFindIdMail(String email, Member member) throws MessagingException {
-		MimeMessage mailMessage = mailSender.createMimeMessage();
-		String mailContent = "아이디 : " + member.getId();
-		mailMessage.setSubject("국제아시아문화전당 메일", "utf-8");
-		mailMessage.setText(mailContent, "utf-8", "html");
-		mailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-		mailSender.send(mailMessage); // <--회원가입시 email란에 입력한 이메일주소로 인증메일이 보내진다.
-
-		return member.getId();
-	}
-//	//기업 회원 비밀번호 찾기 
-//	@Async 
-//	public CompletableFuture<String> sendFindPwMail(String email, Company company) throws MessagingException{
-//	   String authKey = createKey();
-//	    MimeMessage mailMessage = mailSender.createMimeMessage();
-//	    String mailContent = company.getCom() +" 님의 임시 비밀번호 : "+ authKey ;    
-//	        mailMessage.setSubject("여수세계섬박람회 메일", "utf-8"); 
-//	        mailMessage.setText(mailContent, "utf-8", "html");  
-//	        mailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-//	        mailSender.send(mailMessage); // <--회원가입시 email란에 입력한 이메일주소로 인증메일이 보내진다.
-//	        
-//	      return CompletableFuture.completedFuture(authKey);
-//	    }
-
-//	@Async //Async는 return 값이 void가 됨.
-//	public void eventSendhMail(String email, String name) throws MessagingException{
-//	    MimeMessage mailMessage = mailSender.createMimeMessage();
-//	    String mailContent = name +"님은 이벤트에 당첨 되셨습니다 축하드립니다!!";    
-//	        mailMessage.setSubject("여수세계섬박람회 이벤트 당첨 메일", "utf-8"); 
-//	        mailMessage.setText(mailContent, "utf-8", "html");  
-//	        mailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-//	        mailSender.send(mailMessage); // <--회원가입시 email란에 입력한 이메일주소로 인증메일이 보내진다.
-//
-//	    }
-
 }

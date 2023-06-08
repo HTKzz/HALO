@@ -18,7 +18,7 @@
 
 		function page(page) {
 			var searchBy = $("#searchBy").val();
-			var searchQuery = $("#searchQuery").val();
+			var searchQuery = encodeURI($("#searchQuery").val());
 			location.href = "/voc/list/" + page + "?searchBy=" + searchBy
 					+ "&searchQuery=" + searchQuery;
 		}
@@ -37,22 +37,17 @@
 		</div>
 
 		<!-- 검색 -->
-		<form class="memberMngForm"
-			th:action="@{'/voc/list/' + ${list.pageable.pageNumber}}"
-			method="get">
-			<div class="vocSearch vocList-searchOptions"
-				th:object=${vocSearchDto}>
-				<span class="vocList-searchOption-list"> 
-				<select class="memberMng-select" th:field="*{searchBy}">
+		<form class="memberMngForm" th:action="@{'/voc/list/' + ${list.pageable.pageNumber}}" method="get">
+			<div class="vocSearch vocList-searchOptions" th:object=${searchDto}>
+				<span class="vocList-searchOption-list">
+					<select class="memberMng-select" th:field="*{searchBy}">
 						<option th:value="name">제목</option>
 						<option th:value="writer">작성자</option>
-				</select>
-				</span> 
-				<span class="vocList-searchOption-list"> 
-					<input class="memberMng-select-search" type="text"
-							th:field="*{searchQuery}">
-				</span> 
-				<span class="vocList-searchOption-list">
+					</select>
+				</span> <span class="vocList-searchOption-list"> <input
+					class="memberMng-select-search" type="text"
+					th:field="*{searchQuery}">
+				</span> <span class="vocList-searchOption-list">
 					<button class="memberMng-search-btn" type="submit" id="searchBtn">검색</button>
 				</span>
 			</div>
@@ -104,21 +99,22 @@
 				<a th:href="@{/voc/new}" class="vocList-btn">글쓰기</a>
 			</div>
 
-			<div class="page_wrap">
+			<div class="page_wrap"
+				th:with="start=${(list.number/maxPage)*maxPage + 1}, end=(${(list.totalPages == 0) ? 1 : (start + (maxPage - 1) < list.totalPages ? start + (maxPage - 1) : list.totalPages)})">
 				<ul class="pagination justify-content-center">
 					<li class="page-item"
-						th:classappend="${startPage == list.pageable.pageNumber + 1} ? 'disabled'">
+						th:classappend="${list.first} ? 'disabled'">
 						<a class="page-link"
 						th:href="'javascript:page(' + ${list.pageable.pageNumber - 1} + ')'"
 						tabindex="-1" aria-disabled="true">Previous</a>
 					</li>
 					<li class="page-item"
 						th:classappend="${page == list.pageable.pageNumber + 1} ? 'active'"
-						th:each="page : ${#numbers.sequence(startPage, endPage)}"><a
+						th:each="page : ${#numbers.sequence(start, end)}"><a
 						class="page-link" th:href="'javascript:page(' + ${page - 1} + ')'"
 						th:text=${page} aria-current="page">1</a></li>
 					<li class="page-item"
-						th:classappend="${endPage == list.pageable.pageNumber + 1} ? 'disabled'">
+						th:classappend="${list.last} ? 'disabled'">
 						<a class="page-link"
 						th:href="'javascript:page(' + ${list.pageable.pageNumber + 1} + ')'">Next</a>
 					</li>

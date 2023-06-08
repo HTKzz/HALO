@@ -37,9 +37,9 @@ public class ApplicationDto {
 	private Integer run;
 	
 	private String sdate;
-
+	
 	private String edate;
-
+	
 	private String udate;
 	
 	private String seatDetail;

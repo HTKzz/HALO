@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +25,6 @@ public class AttachService {
 	private String attachLocation;
 
 	private final AttachRepository attachRepository;
-
 	private final FileService fileService;
 
 	public void saveAttach(Attach attach, MultipartFile attachFile) throws Exception {
@@ -79,6 +76,11 @@ public class AttachService {
 		Attach file1 = attachRepository.findByNum(num);
 
 		return file1;
+	}
+
+	public List<AttachDto> getImageList(long anum) {
+		List<AttachDto> attachLists = attachRepository.getLists(anum);
+		return attachLists;
 	}
 
 }

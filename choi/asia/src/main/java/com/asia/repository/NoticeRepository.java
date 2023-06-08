@@ -3,20 +3,14 @@ package com.asia.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-import com.asia.entity.Member;
 import com.asia.entity.Notice;
 
-public interface NoticeRepository extends JpaRepository<Notice, Long>, QuerydslPredicateExecutor<Member>, NoticeRepositoryCustom {
+public interface NoticeRepository extends JpaRepository<Notice, Long>, NoticeRepositoryCustom {
 	
 	Notice findByNum(Long num);
-	Notice findByName(String name);
-	Notice findByContent(String content);
 
 	void deleteByNum(Long num);
-	
-	boolean existsByName(String name);
 	
 	@Modifying
 	@Query("update Notice n set n.cnt = n.cnt + 1 where n.num = :num")

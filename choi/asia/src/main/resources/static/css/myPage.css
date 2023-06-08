@@ -9,20 +9,14 @@
 	font-style: normal;
 }
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
 .myPage {
 	max-width: 900px;
+	font-family: Pretendard-Regular;
 }
 
 .myPageForm-board {
 	width: 1000px;
 	margin: 0 auto;
-	padding: 80px 0;
 }
 
 .myPageForm-header-div {

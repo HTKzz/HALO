@@ -9,7 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.thymeleaf.util.StringUtils;
 
-import com.asia.dto.NoticeSearchDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.Notice;
 import com.asia.entity.QNotice;
 import com.querydsl.core.QueryResults;
@@ -27,10 +27,10 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
 
 	
 	@Override
-	public Page<Notice> getNoticeList(NoticeSearchDto noticeSearchDto, Pageable pageable){
+	public Page<Notice> getNoticeLists(SearchDto searchDto, Pageable pageable){
 		QueryResults<Notice> results = queryFactory // queryFactory 이용해서 쿼리 생성
 				.selectFrom(QNotice.notice) //글 데이터 조회하기 위해 QNotice의 notice 지정
-				.where(searchByLike(noticeSearchDto.getSearchBy(), noticeSearchDto.getSearchQuery()))
+				.where(searchByLike(searchDto.getSearchBy(), searchDto.getSearchQuery()))
 				.orderBy(QNotice.notice.num.desc()) //우리는 num
 				.offset(pageable.getOffset()) // 데이터를 가져 올 시작 인덱스를 지정
 				.limit(pageable.getPageSize()) // 한번에 가져 올 최대 개수 지정(게시글 수)

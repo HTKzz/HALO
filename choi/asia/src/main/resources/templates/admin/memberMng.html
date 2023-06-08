@@ -8,17 +8,28 @@
 <th:block layout:fragment="script">
 	<script th:inline="javascript">
 		$(document).ready(function() {
-			$("#memberMng-search-btn").on("click", function(e) {
+			$("#searchBtn").on("click", function(e) {
 				e.preventDefault();
+				
+				var searchBy = $("#searchBy").val();
+				var searchQuery = encodeURI($("#searchQuery").val());
+				
+				if (((searchBy == "stat") || (searchBy == "role")) && searchQuery.length == 1) {
+                    alert("2글자이상 입력해주세요.");
+                    return false;
+                }
+				
 				page(0);
 			});
 		});
 
 		function page(page) {
-			var searchOption = $("#searchOption").val();
-			var memberMngSearch = $("#memberMngSearch").val();
-			location.href = "/admin/memberMngList/" + page + "?searchOption=" + searchOption
-					+ "&memberMngSearch=" + memberMngSearch;
+			
+			var searchBy = $("#searchBy").val();
+			var searchQuery = encodeURI($("#searchQuery").val());
+			
+			location.href = "/admin/memberMngList/" + page + "?searchBy=" + searchBy
+					+ "&searchQuery=" + searchQuery;
 		}
 	</script>
 </th:block>
@@ -33,26 +44,25 @@
 		<div class="vocList-title">
 			<h3>회원관리</h3>
 		</div>
-		<form class="memberMngForm" role="form" method="get" th:action="@{'/admin/memberMngList/' + ${memberMngList.pageable.pageNumber}}" 
-			  th:object="${memberFormDto}">
-			<div class="vocList-searchOptions">
+		<form class="memberMngForm"th:action="@{'/admin/memberMngList/' + ${memberMngList.pageable.pageNumber}}" method="get">
+			<div class="vocList-searchOptions" th:object="${searchDto}">
 				<span class="vocList-searchOption-list">
-					<select th:field="*{searchOption}" id="searchOption" class="memberMng-select">
-						<option th:value="name">이름</option>
-						<option th:value="tel">전화번호</option>
-						<option th:value="email">이메일</option>
-						<option th:value="birth">생년월일</option>
-						<option th:value="join">가입일</option>
-						<option th:value="stat">상태</option>
-						<option th:value="role">권한</option>
+					<select th:field="*{searchBy}" class="memberMng-select">
+						<option th:value="name">이름
+						<option th:value="id">아이디
+						<option th:value="tel">전화번호
+						<option th:value="email">이메일
+						<option th:value="birth">생년월일
+						<option th:value="join">가입일
+						<option th:value="stat">상태
+						<option th:value="role">권한
 					</select>
 				</span>
 				<span class="vocList-searchOption-list">
-					<input class="memberMng-select-search" id="memberMngSearch" name="memberMngSearch" 
-							th:field="*{memberMngSearch}" type="text">
+					<input class="memberMng-select-search" type="text" th:field="*{searchQuery}">
 				</span>
 				<span class="vocList-searchOption-list">
-					<button class="memberMng-search-btn" id="memberMng-search-btn" type="submit">검색</button>
+					<button class="memberMng-search-btn" type="submit" id="searchBtn">검색</button>
 				</span>
 			</div>
 
@@ -64,6 +74,7 @@
 				<thead>
 					<tr class="voc-tr">
 						<th class="vocList-name">이름</th>
+						<th class="vocList-name">아이디</th>
 						<th class="vocList-tel">전화번호</th>
 						<th class="vocList-email">이메일</th>
 						<th class="vocList-birth">생년월일</th>
@@ -76,6 +87,7 @@
 				<tbody th:align="center">
 					<tr th:each="mng:${memberMngList}">
 						<td class="vocList-name" th:text="${mng.name}">이름</td>
+						<td class="vocList-name" th:text="${mng.id}">아이디</td>
 						<td class="vocList-tel" th:text="${mng.tel}">전화번호</td>
 						<td class="vocList-email" th:text="${mng.email}">이메일</td>
 						<td class="vocList-birth" th:text="${mng.birth}">생년월일</td>
@@ -84,8 +96,8 @@
 						<td class="vocList-role" th:text="${mng.role}">권한</td>
 					</tr>
 				</tbody>
-			</table>
-			<br>
+			</table><br>
+
 			<div class="page_wrap" th:with="start=${(memberMngList.number/maxPage)*maxPage + 1}, end=(${(memberMngList.totalPages == 0) ? 1 : (start + (maxPage - 1) < memberMngList.totalPages ? start + (maxPage - 1) : memberMngList.totalPages)})">
 				<ul class="pagination justify-content-center">
 					<li class="page-item" th:classappend="${memberMngList.first} ? 'disabled'">
@@ -105,6 +117,5 @@
 		</section>
 	</div>
 </div>
-
 
 </html>

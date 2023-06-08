@@ -63,3 +63,23 @@ form .mFfields .form-group {
 .mFspan input {
 	margin-left: 20px;
 }
+
+.btn-default {
+    border: 0;
+    margin-top: 20px;
+    transition: 0.5s;
+    background: #666;
+    color: white;
+    width: 150px;
+    display: inline-block;
+    height: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-default:hover {
+	background: #222;
+	color: #fff;
+}
