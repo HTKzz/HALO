@@ -2,12 +2,15 @@ package com.asia.service;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.asia.dto.SearchDto;
 import com.asia.entity.Member;
 import com.asia.repository.MemberRepository;
 
@@ -63,7 +66,8 @@ public class MemberService implements UserDetailsService {
 	public boolean checkIdDuplicate(String id) {
 		return memberRepository.existsById(id);
 	}
-
+	
+	// 아이디 찾기
 	public Member findByNameAndEmail(String name, String email) {
 		Member member = memberRepository.findByNameAndEmail(name, email);
 		if (member != null) {
@@ -72,7 +76,8 @@ public class MemberService implements UserDetailsService {
 			throw new NullPointerException("가입된 회원이 아닙니다");
 		}
 	}
-
+	
+	// 비밀번호 찾기
 	public Member findByIdAndEmail(String id, String email) {
 		Member member = memberRepository.findByIdAndEmail(id, email);
 		if (member != null) {
@@ -95,4 +100,10 @@ public class MemberService implements UserDetailsService {
     public void updateMemberPwd(String password, String id) {
     	memberRepository.updatememberMyPage(password, id);
     }
+    
+    // 회원관리 페이지 리스트 불러오기
+ 	public Page<Member> memberList(SearchDto searchDto, Pageable pageable) {
+
+ 		return memberRepository.getMemberMngLists(searchDto, pageable); // 모든 리스트
+ 	}
 }

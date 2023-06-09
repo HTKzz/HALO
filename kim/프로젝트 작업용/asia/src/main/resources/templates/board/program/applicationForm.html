@@ -78,43 +78,55 @@
                         <div class="inputseat" id="inputseat" style="display: block;">
                             <span class="applicationForm-input-group-text">좌석</span>
                             <select class="applicationForm-input" id="select-seat" name="select" th:field="*{seatDetail}">
-                                <option th:value="null">좌석정보를 입력해주세요.</option>
+                                <option th:value="null" hidden>좌석정보를 입력해주세요.</option>
                                 <option th:value="A">A</option>
                                 <option th:value="B">B</option>
                                 <option th:value="C">C</option>
                             </select>
-                        </div>
-                        <br /><br />
+                        </div><br /><br />
+                        <!-- <p th:if="${#fields.hasErrors('seatDetail')}" th:errors="*{seatDetail}" class="fieldError">Incorrect data</p><br /><br /> -->
 
                         <span class="applicationForm-input-group-text">프로그램명</span>
-                        <input type="text" th:field="*{name}" name="title" class="applicationForm-input" placeholder="프로그램명을 입력하세요." /><br />
+                        <input type="text" th:field="*{name}" name="title" class="applicationForm-input" placeholder="프로그램명을 입력하세요." />
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p><br />
 
                         <span class="applicationForm-input-group-text">가격(단위:원)</span>
-                        <input type="number" th:field="*{price}" name="price" class="applicationForm-input" placeholder="프로그램 가격을 입력하세요." /><br />
+                        <input type="number" th:field="*{price}" name="price" class="applicationForm-input" placeholder="프로그램 가격을 입력하세요." />
+                        <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="fieldError">Incorrect data</p><br />
 
                         <span class="applicationForm-input-group-text">관람등급</span>
                         <select class="applicationForm-input" name="select" th:field="*{rat}">
-                            <option th:value="null">관람등급을 선택해주세요.</option>
+                            <option th:value="null" class="applicationForm-input-option">관람등급을 선택해주세요.</option>
                             <option th:value="전체관람가">전체관람가</option>
                             <option th:value="7세이상관람가">7세이상관람가</option>
                             <option th:value="12세이상관람가">12세이상관람가</option>
                             <option th:value="15세이상관람가">15세이상관람가</option>
                             <option th:value="청소년관람불가">청소년관람불가</option>
-                        </select><br /><br />
+                        </select>
+                        
+                        	<p th:if="${#fields.hasErrors('rat')}" th:errors="*{rat}" class="fieldError">Incorrect data</p><br /><br />
+                        
 
 
                         <span class="applicationForm-input-group-text">프로그램 기간</span>
                         <input type="date" aria-required="true" th:field="*{sdate}" name="sdate" class="applicationForm-input" placeholder="프로그램 시작일을 입력하세요.(yyyy-mm-dd)" />
-                        <input type="date" th:field="*{edate}" name="edate" class="applicationForm-input" placeholder="프로그램 종료일을 입력하세요.(yyyy-mm-dd)" /><br /><br />
+                        <p th:if="${#fields.hasErrors('sdate')}" th:errors="*{sdate}" class="fieldError">Incorrect data</p>
+                        <input type="date" th:field="*{edate}" name="edate" class="applicationForm-input" placeholder="프로그램 종료일을 입력하세요.(yyyy-mm-dd)" />
+                        <p th:if="${#fields.hasErrors('edate')}" th:errors="*{edate}" class="fieldError">Incorrect data</p><br /><br />
 
                         <span class="applicationForm-input-group-text">관람시간(단위:분)</span>
-                        <input type="number" th:field="*{run}" name="run" class="applicationForm-input" placeholder="프로그램 관람시간을 입력하세요." /><br /><br />
+                        <input type="number" th:field="*{run}" name="run" class="applicationForm-input" placeholder="프로그램 관람시간을 입력하세요." />
+                        <p th:if="${#fields.hasErrors('run')}" th:errors="*{run}" class="fieldError">Incorrect data</p><br /><br />
 
                         <span class="applicationForm-input-group-text">상세정보</span>
-                        <textarea th:field="*{detail}" name="content" id="textarea" placeholder="프로그램 상세정보를 입력하세요.">
-              </textarea><br /><br /><br />
+                        <textarea th:field="*{detail}" name="content" id="textarea" placeholder="프로그램 상세정보를 입력하세요."></textarea>
+                        <p th:if="${#fields.hasErrors('detail')}" th:errors="*{detail}" class="fieldError">Incorrect data</p><br /><br /><br />
 
-                        <span class="applicationForm-input-group-text">첨부파일</span>
+                        <span class="applicationForm-input-group-text">첨부파일</span><br>
+                        <div class="applicationForm-caution"> ※ 주의사항</div>
+                        <div class="applicationForm-caution"> &nbsp;&#45; 첫번째 : 썸네일용 파일</div>
+                        <div class="applicationForm-caution"> &nbsp;&#45; 두번째 : 메인화면 광고용 파일</div>
+                        <div class="applicationForm-caution"> &nbsp;&#45; 나머지 : 프로그램 소개용 파일</div>
                         <div class="filebox" th:if="${#lists.isEmpty(applicationDto.attachDtoList)}">
                 <div class="attachfile" th:each="numb: ${#numbers.sequence(1,5)}">
                   <input class="upload-name" value="첨부파일" placeholder="첨부파일" readonly/>
@@ -132,10 +144,10 @@
                 </div>
               </div>
 
-              <div class="applicationForm-btn" th:if="${#strings.isEmpty(applicationDto.num)}" style="text-align: center">
+              <div class="applicationForm-btn" th:if="${#strings.isEmpty(applicationDto.num)}">
                 <button class="applicationForm-button" th:formaction="@{/board/program/apply}" type="submit" name="sign">신청</button>
               </div>
-              <div class="applicationForm-btn" th:unless="${#strings.isEmpty(applicationDto.num)}" style="text-align: center">
+              <div class="applicationForm-btn" th:unless="${#strings.isEmpty(applicationDto.num)}">
                 <button class="applicationForm-button" th:formaction="@{'/board/program/apply/' + ${applicationDto.num}}" type="submit" name="sign">수정</button>
               </div>
             </div>

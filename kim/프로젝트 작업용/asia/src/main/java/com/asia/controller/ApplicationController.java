@@ -58,6 +58,7 @@ public class ApplicationController {
 							   @RequestParam("attachFile") List<MultipartFile> attachFileList) {
 		
 		if (bindingResult.hasErrors()) {   // 상품 등록시 필수 값이 없다면 다시 상품 등록 페이지로 전환한다.
+			model.addAttribute("errorMessage", "내용을 입력해주세요.");
 			return "board/program/applicationForm";
 		}
 		
@@ -187,7 +188,7 @@ public class ApplicationController {
    	@GetMapping(value="/program/delete/{num}")
 	public String applicationDelete(@PathVariable Long num, Model model) throws Exception {
    		
-   		Application application = applicationService.getApplication(num);
+   		Application application = applicationService.getApplicationDtl(num);
    		List<Application> list = applicationService.getApplication(application.getName());
    		
    		for(int i = 0; i < list.size(); i++) {
@@ -205,9 +206,8 @@ public class ApplicationController {
     	
             //큰카테고리에 해당하는 상품 가져오기.
     		String programCategory = "공연";
-
+    		
             Page<ApplicationDto> showapplications = applicationService.getList1(pageable, programCategory);
-            System.out.println(showapplications);
             
             int nowPage = showapplications.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
             int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환

@@ -32,9 +32,7 @@ public interface VocRepository extends JpaRepository<Voc, Long>, QuerydslPredica
 	@Modifying
 	@Query("update Voc set group_Ord = group_Ord + 1 where origin_No = :originNo and group_Ord > :groupOrd")
 	void updateGroupOrd(Long originNo, Long groupOrd);
-
-	Voc findByContent(String content);
-
+	
 	// 상세보기 이전글 다음글
 	@Query(value = "select count(*) from Voc", nativeQuery = true)
 	long getList();
@@ -51,10 +49,4 @@ public interface VocRepository extends JpaRepository<Voc, Long>, QuerydslPredica
 	@Modifying
 	@Query("update Voc set real_num = real_num + 1 where realNum >= :realNum")
 	void updateRealNum(Long realNum);
-	
-	// 검색 제목
-	Page<Voc> findByNameContaining(String vocListSearch, Pageable pageable);
-
-	// 검색 작성자
-	Page<Voc> findByMemberIdContaining(String vocListSearch, Pageable pageable);
 }
