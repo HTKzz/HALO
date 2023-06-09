@@ -38,7 +38,7 @@
 </th:block>
 
 <div layout:fragment="content">
-
+<article class="vocDetail-board">
 	<form method="get" action="/voc/detail" role="form">
 		<input type="hidden" id="num" th:value="${voc.num}">
 		
@@ -70,9 +70,9 @@
 		
 		
 		<div>
-			<div class="download">
-				<span class="download_text">첨부파일</span>
-				<span class="download_inner" th:each="attach : ${voc.attachDtoList}">
+			<div class="voc-download">
+				<span class="voc-download-text">첨부파일</span>
+				<span class="voc-download-inner" th:each="attach : ${voc.attachDtoList}">
 					<a th:href="@{/voc/download/{num}(num=${attach.num})}" th:text="${attach.oriName}"></a>
 				</span>
 			</div>
@@ -124,6 +124,7 @@
 		
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 	</form>
+	</article>
 </div>
 
 </html>

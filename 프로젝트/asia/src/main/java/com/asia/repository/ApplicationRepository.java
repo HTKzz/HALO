@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.repository.query.Param;
 
 import com.asia.dto.ApplicationDto;
 import com.asia.entity.Application;
@@ -18,6 +19,13 @@ public interface ApplicationRepository extends JpaRepository<Application, Long>,
 	
 	Page<Application> findAll(Pageable pageable);
 	
+	List<Application> findByName(String name);
+	
+	ApplicationDto findByNum(Long num);
+	
+	@Query(value="select * from Application where num = :num", nativeQuery = true)
+	Application getApplication(Long num);
+	
 	@Query("select distinct new com.asia.dto.ApplicationDto(name, sdate, edate) from Application where program_Category = :programCategory and APPROVAL_STATUS = '승인' order by sdate asc")
 	List<ApplicationDto> getList1(String programCategory);
 	
@@ -25,16 +33,18 @@ public interface ApplicationRepository extends JpaRepository<Application, Long>,
 			+ "where name = :name")
 	List<ApplicationDto> getList2(String name);
 	
-	List<Application> findByName(String name);
-	
-	Application findByNum(long anum);
+	@Query(value="select * from Application where num IN (:nums) order by sdate asc", nativeQuery = true)
+	List<Application> findByNums(@Param("nums") List<Long> nums);
 	
 	@Modifying
 	@Query(value = "update APPLICATION a set a.APPROVAL_STATUS = '승인' where a.NUM = :num", nativeQuery = true)
 	void updateApprovalStatus(Long num);
 	
-	@Query("select distinct new com.asia.dto.ApplicationDto(name, sdate, edate) from Application where APPROVAL_STATUS = '승인' order by sdate asc")
+	@Query("select distinct new com.asia.dto.ApplicationDto(num, name, sdate, edate) from Application where APPROVAL_STATUS = '승인' order by sdate asc")
 	List<ApplicationDto> getSlideList();
 	
-	
+	@Query(value = "SELECT TB.num FROM(SELECT ROW_NUMBER() OVER(PARTITION BY application.name ORDER BY application.sdate DESC ) AS RNUM, application.* FROM application ) TB WHERE RNUM = 1 and program_Category = :programCategory and APPROVAL_STATUS = '승인'", nativeQuery = true)
+	List<Long> getAppNum(String programCategory);
+
+	List<Application> findByName(long num);
 }

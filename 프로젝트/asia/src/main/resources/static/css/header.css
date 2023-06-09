@@ -8,16 +8,23 @@
 }
 
 header {
+	flex-wrap:nowrap;
 	z-index: 999;
 	position: fixed;
-	min-width: 1300px;
-	/* display: flex; */
+	width: 100%;
+	min-width: 1370px;
+	height: 76px;
 	background: #fff;
 	transition: 0.6s;
 	letter-spacing: 2px;
 	font-family: Pretendard-Regular;
-	padding-right: 15px;
-	text-align: center;
+	background: #fff
+}
+
+.header-wrapper {
+	display: inline-block;
+	position: relative;
+	width: 100%;
 }
 
 header .logo {
@@ -30,17 +37,20 @@ header .logo {
 	line-height: 76px;
 	float: left;
 	margin-left: 70px;
+	margin-right: 70px;
 }
 
 header .navigation {
 	position: relative;
 	display: inline-block;
-	line-height: 75px;
-	max-height: 75px;
-	width: 800px;
+	text-align:center;
+	line-height: 76px;
+	max-height: 76px;
+	width: 100%;
 	transition: 0.6s;
 	transition-property: line-height;
 	transition: 0.6s;
+	line-height: 76px;
 }
 
 header.sticky .navigation {
@@ -48,9 +58,9 @@ header.sticky .navigation {
 }
 
 header .navigation .menu {
-	position: relative;
+	position: ablsolute;
+	float:left;
 	display: flex;
-	justify-content: center;
 	list-style: none;
 	user-select: none;
 }
@@ -81,14 +91,12 @@ header .navigation .menu {
 	top: 76px;
 	line-height: 38px;
 	list-style: none;
-	border-radius: 0 0 8px 8px;
+	border-radius: 8px 8px 8px 8px;
 	box-shadow: 0 5px 25px rgb(0 0 0/ 20%);
 	pointer-events: none;
 	transform: translateY(20px);
 	opacity: 0;
 	transition: 0.3s;
-	list-style: none;
-	margin-left: 15px;
 }
 
 #sub-menu-items {
@@ -130,10 +138,6 @@ header .navigation .menu {
 	list-style: none;
 }
 
-header {
-	width: 100%;
-}
-
 header .container {
 	justify-content: space-between;
 	align-items: center;
@@ -148,22 +152,33 @@ header nav ul li button {
 	font-size: 1.2rem;
 }
 
-#menu-item-img {
-	width: 30px;
-	height: 30px;
-	top: -18px;
-	position: relative;
-}
-
 .logoimage {
 	width: 150px;
-	height: 30px;
+	height: auto;
 	object-fit: cover;
 	margin-left: -35px;
 	margin-bottom: -7px;
 }
 
-.menu-right {
+.menu-wrapper {
+	float: right;
+	position: relative;
+}
+
+.menu-item-wrapper{
+	position: absolute;
+}
+
+.menu-item-wrpper>li {
+	width: 120px;
+	margin-left: 40px;
+}
+
+.menu-item-wrpper>li>a {
+	width: 100%;
+}
+
+#menu-right {
 	margin-left: 50px;
 	margin-right: -40px;
 }

@@ -61,38 +61,34 @@
 					<table class="vocList-table">
 						<thead>
 							<tr class="voc-tr">
-								<td class="vocList-num">프로그램아이디</td>
-								<td class="vocList-name">프로그램명</td>
-								<td class="vocList-category">카테고리</td>
-								<td class="vocList-writer">등록자</td>
-								<td class="vocList-date">등록일</td>
-								<td class="vocList-approvalStatus">승인상태</td>
-								<td class="vocList-approvalStatusYN">승인여부</td>
+								<th style="width: 5%;">프로그램번호</th>
+								<th style="width: 45%;">프로그램명</th>
+								<th style="width: 8%;">카테고리</th>
+								<th style="width: 10%;">등록자</th>
+								<th style="width: 15%;">등록일</th>
+								<th style="width: 7%;">승인상태</th>
+								<th style="width: 8%;">승인여부</th>
 							</tr>
 						</thead>
-						<tbody th:align="center">
+						<tbody>
 							<tr th:each="application1, status: ${applications.getContent()}">
-								<td class="vocList-num" th:text="${application1.num}"></td>
-								<td class="vocList-name"><a
-									th:href="'/board/program/application/'+${application1.name}"
+								<td th:text="${application1.num}"></td>
+								<td><a class="a-name"
+									th:href="'/board/program/application/'+${application1.num}"
 									th:text="${application1.name}"></a></td>
-								<td class="vocList-category"
+								<td
 									th:text="${application1.programCategory}"></td>
-								<td class="vocList-writer" th:text="${application1.createdBy}"></td>
-								<td class="vocList-date"
+								<td th:text="${application1.createdBy}"></td>
+								<td
 									th:text="${#temporals.format(application1.regTime, 'yy년 MM월 dd일 HH시 mm분')}"></td>
-								<td class="vocList-approvalStatus"
+								<td
 									th:text="${application1.approvalStatus}"></td>
-								<td class="vocList-approvalStatus-listbutton"
-									th:if="${application1.approvalStatus} == '미승인'"
-									style="text-align: center">
-									<button class="vocList-approvalStatus-button"
-										th:formaction="@{'/admin/approvalstatus/change/' + ${application1.num}}"
+								<td
+									th:if="${application1.approvalStatus} == '미승인'">
+									<button class="myReservationForm-btn" th:formaction="@{'/admin/approvalstatus/change/' + ${application1.num}}"
 										type="submit">승인하기</button>
 								</td>
-								<td class="vocList-approvalStatus-listbutton"
-									th:if="${application1.approvalStatus} == '승인'"
-									style="text-align: center">승인완료</td>
+								<td th:if="${application1.approvalStatus} == '승인'">승인완료</td>
 							</tr>
 						</tbody>
 					</table>

@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -124,12 +123,12 @@ public class ApplicationController {
 	}
 	
 	// 프로그램 신청 상세보기 호출
-	@GetMapping(value = "/program/application/{name}")
-	public String applicationDtl(Model model, @PathVariable("name") String name){
-		ApplicationDto applicationDto = applicationService.getApplicationDtl(name);
+	@GetMapping(value = "/program/application/{num}")
+	public String applicationDtl(Model model, @PathVariable long num) {
+		ApplicationDto applicationDto = applicationService.getApplicationDtl(num);
 		model.addAttribute("application2", applicationDto);
 		
-		List<ApplicationDto> application1 = applicationService.getApplicationSelect(name);
+		List<ApplicationDto> application1 = applicationService.getApplicationSelect(applicationDto.getName());
 		String seatDetail = applicationDto.getSeatDetail();
 
 		Map<Long, Long> seatMap = new HashMap<>();
@@ -187,7 +186,7 @@ public class ApplicationController {
    	@GetMapping(value="/program/delete/{num}")
 	public String applicationDelete(@PathVariable Long num, Model model) throws Exception {
    		
-   		Application application = applicationService.getApplicationDtl(num);
+   		Application application = applicationService.getAppDtl(num);
    		List<Application> list = applicationService.getApplication(application.getName());
    		
    		for(int i = 0; i < list.size(); i++) {
