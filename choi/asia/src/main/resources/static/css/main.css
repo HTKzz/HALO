@@ -1,0 +1,261 @@
+.slide {
+  /* layout */
+  display: flex;
+  
+  /* 컨테이너의 내용물이 컨테이너 크기(width, height)를 넘어설 때 보이지 않도록 하기 위해 hidden을 준다. */
+  overflow: hidden;
+
+  /* position */
+  /* slide_button의 position absolute가 컨테이너 안쪽에서 top, left, right offset이 적용될 수 있도록 relative를 준다. (기본값이 static인데, static인 경우 그 상위 컨테이너로 나가면서 현재 코드에선 html을 기준으로 offset을 적용시키기 때문) */
+  position: relative;
+
+  /* size */
+  width: 100%;
+  min-width: 1270px;
+
+  /* slide drag를 위해 DOM요소가 드래그로 선택되는것을 방지 */
+  user-select: none;
+  
+  /* left : 20px; */
+}
+.slide_item {
+  /* layout */
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+
+  /* position - 버튼 클릭시 left offset값을 적용시키기 위해 */
+  position: relative;
+  left: 0px;
+
+  /* size */
+  width: 100%;
+  height: 500px;
+  /* flex item의 flex-shrink는 기본값이 1이므로 컨테이너 크기에 맞게 줄어드는데, 슬라이드를 구현할 것이므로 줄어들지 않도록 0을 준다. */
+  flex-shrink: 0;
+
+  /* transition */
+  transition: left 0.5s; 
+}
+.slide_button {
+  /* layout */
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* position */
+  position: absolute;
+  /* 버튼이 중앙에 위치하게 하기위해 계산 */
+ /*  top: calc(50% - 16px); */
+
+  /* size */
+  width: 250px;
+  height: 500px;
+
+  /* style */
+  /* border-radius: 100%; */
+  background-color: #cccc;
+  cursor: pointer;
+}
+
+.slide_prev_button {
+  left: 50x;  /* 버튼 위치 조절 */
+} 
+  .slide_next_button {
+  right: 50px;
+}  
+
+/* 각 슬라이드가 변경되는 것을 시각적으로 확인하기 쉽도록 각 슬라이드별 색상 적용 */
+/*  .slide_item.item1 {
+  background-color: darkgoldenrod;
+} 
+.slide_item.item2 {
+  background-color: aqua;
+}
+.slide_item.item3 {
+  background-color: blueviolet;
+}
+.slide_item.item4 {
+  background-color: burlywood;
+}
+.slide_item.item5 {
+  background-color: cornflowerblue;
+} */
+
+/* 페이지네이션 스타일 */
+.slide_pagination {
+  /* layout */
+  gap: 10px;
+
+  /* position */
+  position: absolute;
+  bottom: 20px;
+  /* left:50%, translateX(-50%)를 하면 가로 가운데로 위치시킬 수 있다. */
+  left: 50%;
+  transform: translateX(-50%);
+}
+.slide_pagination > li {
+list-style: none;
+  /* 현재 슬라이드가 아닌 것은 투명도 부여 */
+  color: #7fb5ff88;
+  cursor: pointer;
+  font-size: 25px;
+}
+.slide_pagination > li.active {
+  list-style:none;
+  /* 현재 슬라이드 색상은 투명도 없이 */
+  color: #7fb5ff;
+}
+
+.slide_item_duplicate {
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 0px;
+  width: 100%;
+  height: 300px;
+  flex-shrink: 0;
+  transition: left 0.15s;
+}
+.main-slide-img{
+height: 470px;
+}
+
+.slide img {
+padding-bottom:30px;
+}
+
+.notice{
+    width: 1400px;
+    height: 500px;
+    box-sizing: border-box;
+    margin: auto;
+    font-family: 'SpoqaHanSansNeo-Medium';
+}
+.notice_inner{
+    width: 1400px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.notice_left{
+    width: 600px;
+    height: 400px;
+}
+.notice_left h2{
+    padding-left: 10px;
+    display: inline-block;
+}
+.notice_left>a{
+    float: right;
+    margin-top: 7px;
+    transition: 0.2s;
+}
+.notice_left>a:hover{
+    color: #fc7131;
+}
+.notice_left_box a{
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    margin-top: 5px;
+    transition: 0.2s;
+}
+.notice_left_box a:first-child{
+    border-top: 3px solid #333;
+}
+.notice_left_box a:hover{
+    color: #fd5e15;
+}
+.notice_left_box a em{
+    font-style: normal;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 400px;
+}
+.notice_left_box a b{
+    font-weight: normal;
+}
+.notice_right{
+    width: 600px;
+    height: 400px;
+}
+.notice_right h2{
+    padding-left: 10px;
+    display: inline-block;
+}
+.notice_right>a{
+    float: right;
+    margin-top: 7px;
+}
+.notice_right>a img{
+    width: 30px;
+    height: 30px;
+}
+.notice_right_box{
+    width: 100%;
+    height: 365px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 3px solid #333;
+}
+.inner_box{
+    border: 2px solid lightgray;
+    width: 120px;
+    height: 180px;
+    box-shadow: 2px 2px 5px gray;
+    transition: 0.3s;
+}
+.inner_box:hover{
+    box-shadow: 2px 2px 8px #333;
+}
+.inner_box a{
+    width: 120px;
+    height: 180px;
+    display: inline-block;
+    text-align: center;
+}
+.inner_box a img{
+    width: 80px;
+    height: 80px;
+    padding-top: 20px;
+    transition: 0.3s;
+}
+.inner_box a:hover img{
+    color: #fd5e15;
+    animation: innericon 1s infinite;
+    transition: 0.3s;
+}
+@keyframes innericon{
+    0%{
+        padding-top: 20px;
+    }
+    25%{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    50%{
+        padding-top: 20px;
+        padding-bottom: 0;
+    }
+    75%{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    100%{
+        padding-top: 20px;
+    }
+}
+.inner_box a p{
+    font-size: 18px;
+    padding-top: 20px;
+    transition: 0.3s;
+}
+.inner_box a:hover p{
+    color: #fd5e15;
+}

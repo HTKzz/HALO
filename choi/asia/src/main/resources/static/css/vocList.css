@@ -5,19 +5,18 @@
     font-style: normal;
 }
 
-body {
+.vocList-container {
+	text-align: center;
+	position: relative;
+	padding: 100px 0;
+	width: 1600px;
+	margin: 0 auto;
 	font-family: Pretendard-Regular;
 	font-size: 1rem;
 	line-height: 1.5rem;
 	color: black;
 	letter-spacing: 0.1px;
 	word-break: keep-all;
-}
-
-.vocList-container {
-	text-align: center;
-	position: relative;
-	padding: 100px 0;
 }
 
 .vocList-title {
@@ -121,13 +120,7 @@ body {
 	cursor: pointer;
 }
 
-.fieldError {
-	color: #bd2130;
-}
-
-
-/* 寃��깋諛� css */
-
+/* 검색바 css */
 .vocList-container select {
 	font-family: Pretendard-Regular;
 	border: 1px solid #bbb;
