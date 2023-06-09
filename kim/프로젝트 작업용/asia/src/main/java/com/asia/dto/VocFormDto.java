@@ -25,7 +25,8 @@ public class VocFormDto {
 
 	@NotBlank(message = "글제목은 필수 입력 값입니다.")
 	private String name; // 글제목
-
+	
+	@NotBlank(message = "글내용은 필수 입력 값입니다.")
 	private String content; // 글내용
 
 	@NotNull

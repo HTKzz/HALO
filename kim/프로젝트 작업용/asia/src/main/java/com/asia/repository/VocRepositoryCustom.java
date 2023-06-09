@@ -3,12 +3,12 @@ package com.asia.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.asia.dto.VocSearchDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.Voc;
 
 //사용자정의 인터페이스 작성
 public interface VocRepositoryCustom {
 
-	Page<Voc> getVocLists(VocSearchDto vocSearchDto, Pageable pageable);
+	Page<Voc> getVocLists(SearchDto searchDto, Pageable pageable);
 	
 }

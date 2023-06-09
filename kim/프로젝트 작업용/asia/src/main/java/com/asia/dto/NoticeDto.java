@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
 import org.modelmapper.ModelMapper;
 
 import com.asia.entity.Member;
@@ -23,8 +25,10 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class NoticeDto{
 	
+	@NotBlank(message = "※ 글제목은 필수 입력 값입니다.")
 	private String name;
 	
+	@NotBlank(message = "※ 글내용은 필수 입력 값입니다.")
 	private String content;
 	
 	private LocalDate d_date;
@@ -44,6 +48,8 @@ public class NoticeDto{
 	private Member member;
 	
 	private LocalDateTime regTime;
+	
+	private String not;
 	
 	private List<AttachDto> attachDtoList = new ArrayList<>();
 	

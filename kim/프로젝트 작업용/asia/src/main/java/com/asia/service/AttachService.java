@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +25,7 @@ public class AttachService {
 	private String attachLocation;
 
 	private final AttachRepository attachRepository;
-
+	
 	private final FileService fileService;
 
 	public void saveAttach(Attach attach, MultipartFile attachFile) throws Exception {
@@ -63,8 +61,30 @@ public class AttachService {
 		}
 	}
 
-	public void deleteAttach(Long num) throws Exception {
-		List<AttachDto> attachLists = attachRepository.getLists(num);
+	public void vocDeleteAttach(Long num) throws Exception {
+		List<AttachDto> attachLists = attachRepository.getVocList(num);
+
+		for (int i = 0; i < attachLists.size(); i++) {
+
+			String attach = attachLists.get(i).getName();
+
+			fileService.deleteFile(attachLocation + "/" + attach);
+		}
+	}
+	
+	public void appDeleteAttach(Long num) throws Exception {
+		List<AttachDto> attachLists = attachRepository.getAppList(num);
+
+		for (int i = 0; i < attachLists.size(); i++) {
+
+			String attach = attachLists.get(i).getName();
+
+			fileService.deleteFile(attachLocation + "/" + attach);
+		}
+	}
+	
+	public void noticeDeleteAttach(Long num) throws Exception {
+		List<AttachDto> attachLists = attachRepository.getNoticeList(num);
 
 		for (int i = 0; i < attachLists.size(); i++) {
 
@@ -79,6 +99,11 @@ public class AttachService {
 		Attach file1 = attachRepository.findByNum(num);
 
 		return file1;
+	}
+
+	public List<AttachDto> getImageList(long anum) {
+		List<AttachDto> attachLists = attachRepository.getLists(anum);
+		return attachLists;
 	}
 
 }

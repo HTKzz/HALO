@@ -59,7 +59,7 @@ public class MemberController {
 		memberService.saveMember(member);
 
 		// 일반회원
-		for (int i = 2; i < 20; i++) {
+		for (int i = 1; i < 10; i++) {
 			check = memberService.checkIdDuplicate(String.valueOf(i));
 			if (check)
 				return;
@@ -67,13 +67,32 @@ public class MemberController {
 			memberFormDto.setId("user" + String.valueOf(i));
 			memberFormDto.setPassword("12341234");
 			memberFormDto.setEmail("User" + String.valueOf(i) + "@userEmail.com");
-			memberFormDto.setTel("010555"+ String.valueOf(i) +"555");
+			memberFormDto.setTel("010555" + String.valueOf(i) + "555");
 			memberFormDto.setBirth("1996-05-23");
 			memberFormDto.setAddr("관저동");
 			member = Member.createMember(memberFormDto, passwordEncoder);
 			String password1 = passwordEncoder.encode(memberFormDto.getPassword());
 			member.setPassword(password1);
 			member.setRole(Role.USER);
+			memberService.saveMember(member);
+		}
+
+		// 기업회원
+		for (int i = 1; i < 10; i++) {
+			check = memberService.checkIdDuplicate(String.valueOf(i));
+			if (check)
+				return;
+			memberFormDto.setName("관리자");
+			memberFormDto.setId("company" + String.valueOf(i));
+			memberFormDto.setPassword("12341234");
+			memberFormDto.setEmail("company" + String.valueOf(i) + "@companyEmail.com");
+			memberFormDto.setTel("010352" + String.valueOf(i) + "555");
+			memberFormDto.setBirth("1996-05-23");
+			memberFormDto.setAddr("관저동");
+			member = Member.createMember(memberFormDto, passwordEncoder);
+			String password1 = passwordEncoder.encode(memberFormDto.getPassword());
+			member.setPassword(password1);
+			member.setRole(Role.COMPANY);
 			memberService.saveMember(member);
 		}
 	}
@@ -96,7 +115,7 @@ public class MemberController {
 		return "member/companyForm";
 	}
 
-	// 회원가입
+	// 일반 회원가입
 	@PostMapping(value = "/memberadd")
 	public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
 
@@ -113,6 +132,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 
+	// 기업 회원가입
 	@PostMapping(value = "/companyadd")
 	public String newCompany(@Valid CompanyFormDto companyFormDto, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -141,11 +161,13 @@ public class MemberController {
 		return "/member/memberLoginForm";
 	}
 
+	// 아이디 비번 찾기페이지 호출
 	@GetMapping(value = "/idpw")
 	public String findIdPw() {
 		return "/member/findIdPw";
 	}
 
+	// 아이디 찾기
 	@PostMapping(value = "/findid")
 	@ResponseBody
 	public HashMap<String, Object> findId(@RequestParam("name") String name, @RequestParam("email") String email)
@@ -156,6 +178,7 @@ public class MemberController {
 		return map;
 	}
 
+	// 비밀번호 찾기
 	@PostMapping(value = "/findpw")
 	@ResponseBody
 	public String findPw(String id, String email) throws MessagingException, InterruptedException, ExecutionException {
@@ -171,9 +194,8 @@ public class MemberController {
 	@GetMapping(value = "/myPage")
 	public String myPage(Model model, Principal principal) {
 		String name = principal.getName();
-		System.out.println(name);
 		Member member = memberService.findUserMyPage(name);
-		System.out.println(member);
+
 		model.addAttribute("member", member);
 
 		return "member/myPage";
@@ -183,7 +205,6 @@ public class MemberController {
 	@PostMapping(value = "/modMyPage")
 	public String modMyPage(@RequestParam("password") String password, @RequestParam("id") String id, Model model,
 			Principal principal) {
-
 		String password1 = passwordEncoder.encode(password);
 		memberService.updateMemberPwd(password1, id);
 

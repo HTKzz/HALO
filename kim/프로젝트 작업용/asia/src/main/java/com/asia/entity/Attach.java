@@ -13,11 +13,13 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "attach")
 @Getter
 @Setter
+@ToString
 @SequenceGenerator(name = "ATTACH_SEQ_NUM",
 				   sequenceName = "ATTACH_SEQ",
 				   initialValue = 1,

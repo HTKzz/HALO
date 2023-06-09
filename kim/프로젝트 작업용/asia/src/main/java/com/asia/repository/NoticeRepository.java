@@ -6,15 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.asia.entity.Notice;
 
-public interface NoticeRepository extends JpaRepository<Notice, Long> {
+public interface NoticeRepository extends JpaRepository<Notice, Long>, NoticeRepositoryCustom {
 	
 	Notice findByNum(Long num);
-	Notice findByName(String name);
-	Notice findByContent(String content);
 
 	void deleteByNum(Long num);
-	
-	boolean existsByName(String name);
 	
 	@Modifying
 	@Query("update Notice n set n.cnt = n.cnt + 1 where n.num = :num")

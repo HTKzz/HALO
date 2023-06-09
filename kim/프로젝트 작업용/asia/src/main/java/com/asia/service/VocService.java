@@ -14,8 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.AttachDto;
+import com.asia.dto.SearchDto;
 import com.asia.dto.VocFormDto;
-import com.asia.dto.VocSearchDto;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Voc;
@@ -80,36 +80,27 @@ public class VocService {
 		return voc.getNum();
 	}
 
-	// 리스트 조회
-	public List<Voc> vocList() {
-		return vocRepository.findAll();
-	}
-
-	// 게시글 불러오기
-	public Voc vocDetail(Long num) { /// Voc entity 가져와야
-		return vocRepository.findById(num).get();
-	}
-
 	// 삭제
 	public void vocDelete(Long num) {
-		vocRepository.deleteByNum(num);
+		vocRepository.deleteByRealNum(num);
+		vocRepository.DeleteRealNum(num);
 	}
 
 	// 수정-등록된 상품 불러오는 메서드
 	@Transactional(readOnly = true) // 읽어오는 트랜잭션을 읽기전용으로 설정, 이럴 경우 JPA가 변경감지(더티체킹)를 수행하지 않아서 성능향상
 	public VocFormDto getvocDtl(Long num) {
-		List<Attach> attachList = attachRepository.findByVocNumOrderByNumAsc(num); //해당 이미지 조회
+		Voc voc = vocRepository.findByRealNum(num);
+		
+		List<Attach> attachList = attachRepository.findByVocNumOrderByNumAsc(voc.getNum()); //해당 이미지 조회
 		List<AttachDto> attachDtoList = new ArrayList<AttachDto>();
 		for(Attach attach : attachList) { //조회한 attach엔티티를 attachDto객체로 만들어서 리스트에 추가
 			AttachDto attachDto = AttachDto.of(attach);
 			attachDtoList.add(attachDto);
 		}
 		
-		Voc voc = vocRepository.findById(num).orElseThrow(EntityNotFoundException::new);
-		
 		long allVocCnt = vocRepository.getList();
-		String prevContent = vocRepository.getPrevContent(num);
-		String nextContent = vocRepository.getNextContent(num);
+		String prevContent = vocRepository.getPrevContent(voc.getRealNum());
+		String nextContent = vocRepository.getNextContent(voc.getRealNum());
 		VocFormDto vocFormDto = VocFormDto.of(voc);
 		vocFormDto.setAllVocCnt(allVocCnt);
 		vocFormDto.setPrevContent(prevContent);
@@ -122,20 +113,21 @@ public class VocService {
 	public Long updateVoc(VocFormDto vocFormDto,List<MultipartFile> attachFileList) throws Exception {
 		// 글 수정
 		Voc voc = vocRepository.findById(vocFormDto.getNum()).orElseThrow(EntityNotFoundException::new);
-		voc.updateVoc(vocFormDto);   // 수정화면으로 전달 받은 noticeFormDto를 통해 Notice엔티티 업데이트
+		voc.updateVoc(vocFormDto); // 수정화면으로 전달 받은 noticeFormDto를 통해 Notice엔티티 업데이트
 
 		//이미지 수정
-		List<Long> attachIds = vocFormDto.getAttachIds();   //이미지 아이디 리스트 반환
+		List<Long> attachIds = vocFormDto.getAttachIds(); //이미지 아이디 리스트 반환
+		
 		for(int i = 0; i <attachFileList.size();i++) {
-			attachService.updateAttach(attachIds.get(i), attachFileList.get(i));   //이미지아이디를 업데이트하기 위해서 이미지 아이디, 이미지 파일정보 전달
+			attachService.updateAttach(attachIds.get(i), attachFileList.get(i));//이미지아이디를 업데이트하기 위해서 이미지 아이디, 이미지 파일정보 전달
 		}
 		
 		return voc.getNum();
 	}
 	
 	
-	public Page<Voc> getVocLists(VocSearchDto vocSearchDto, Pageable pageable){
-		return vocRepository.getVocLists(vocSearchDto, pageable);
+	public Page<Voc> getVocLists(SearchDto searchDto, Pageable pageable){
+		return vocRepository.getVocLists(searchDto, pageable);
 	}
 
 	//답글등록
@@ -143,7 +135,7 @@ public class VocService {
 		
 		Member member = memberRepository.findById(name);
 		
-		Voc presentVoc = vocRepository.findByNum(parentNo);   //답글다는글
+		Voc presentVoc = vocRepository.findByRealNum(parentNo);//답글다는글
 		
 		Voc voc = vocFormDto.createVoc();
 		String reply = "";
@@ -166,6 +158,7 @@ public class VocService {
 //		for(int i = 0; i < voc.getGroupLayer(); i++) {
 //			reply += "Re: ";
 //		}
+		
 		voc.setName(reply + voc.getName());
 		vocRepository.save(voc);
 		
@@ -197,7 +190,6 @@ public class VocService {
 			attachDtoList.add(attachDto);
 		}
 		
-//		Voc voc = vocRepository.findById(voc1.getNum()).orElseThrow(EntityNotFoundException::new);
 		VocFormDto vocFormDto = VocFormDto.of(voc1);
 		
 		long allVocCnt = vocRepository.getList();
@@ -215,14 +207,8 @@ public class VocService {
 	public Voc findByNum(Long num) {
 		return vocRepository.findByNum(num);
 	}
-
-	// 검색 vocService
-	public Page<Voc> vocListSearchByName(String vocListSearch, Pageable pageable){
-		return vocRepository.findByNameContaining(vocListSearch, pageable);
-	}
-
-	public Page<Voc> vocListSearchBywriter(String vocListSearch, Pageable pageable){
-		return vocRepository.findByMemberIdContaining(vocListSearch, pageable);
-	}
 	
+	public Voc findByRealNum(Long num) {
+		return vocRepository.findByRealNum(num);
+	}
 }

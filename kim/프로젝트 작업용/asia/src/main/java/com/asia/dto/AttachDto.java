@@ -2,6 +2,7 @@ package com.asia.dto;
 
 import org.modelmapper.ModelMapper;
 
+import com.asia.entity.Application;
 import com.asia.entity.Attach;
 import com.querydsl.core.annotations.QueryProjection;
 
@@ -21,6 +22,7 @@ public class AttachDto {
 	private String oriName;
 	private String url;
 	private String thumb;
+	private Application application;
 
 	private static ModelMapper modelMapper = new ModelMapper(); // 멤버 변수로 ModelMapper 객체 추가
 	
@@ -35,4 +37,12 @@ public class AttachDto {
 			this.oriName = oriName;
 			this.url = url;
 		}
+	
+	@QueryProjection
+	public AttachDto(Long num, String name, String url){
+			this.num = num;
+			this.name = name;
+			this.url = url;
+		}
+	
 }
