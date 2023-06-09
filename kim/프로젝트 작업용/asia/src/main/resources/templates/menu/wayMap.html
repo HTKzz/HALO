@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout1}">
+	  
+<head>
+	<meta charset="UTF-8">
+	<title>ACC 오시는길</title>
+	<link th:href="@{/css/wayMap.css}" rel="stylesheet">
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=81492fd910ca122c5c54e1b95863fe6b"></script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<article id="wayMap-content">
+			<div class="wayMap-wayWrap">
+			
+				<h3>오시는 길</h3>
+				<p class="wayMap-address">광주광역시 동구 문화전당로 38 (우편번호)61485</p>
+				<div class="wayMap-btnline">
+					<a class="wayMap-down-btn" href="/images/wayMap/ACC_안내지도.jpg" target="_blank" rel="noopener noreferrer">
+							<button class="wayMap-btn_style03" title="안내지도 다운받기">안내지도 다운받기 +</button>
+					</a>
+				</div>
+				<div class="wayMap-wayArea">
+					<div id="map"></div>
+					<!-- <div id="map" style="width: 500px; height: 400px;"></div> -->
+					<form action="https://map.daum.net/" method="get" target="_blank" title="새창">
+						<input name="eName" type="hidden" value="광주 동구 문화전당로 38" />
+						<div class="wayMap-waySearch">
+							<h4>찾아오시는 길</h4>
+							<div>
+								<ul>
+									<li class="wayMap-mapStart">
+										<label for="mapStart">출발</label>
+										<input class="wayMap-text" id="mapStart" name="sName" placeholder="출발지를 입력하세요" type="text" value="" />
+									</li>
+									<li class="wayMap-arrow"></li>
+									<li class="wayMap-mapArrival">
+										<label for="mapArrival">도착</label>
+										<input class="wayMap-text" disabled="disabled" id="mapArrival" type="text" value="국립아시아문화전당" />
+									</li>
+								</ul>
+								<p class="wayMap-btn"><button type="submit" class="wayMap-findBtn" title="새창열림">길찾기</button></p>
+							</div>
+						</div>
+					</form>
+					
+				</div>
+				<h4>교통이용안내</h4>
+				<div class="wayMap-tabList04">
+					<ul>
+						<li class="wayMap-active">
+							<button class="wayMap-tabIcon-Btn" type="button" data-target="mapWay01" title="선택됨">
+								<span class="wayMap-tabIcon01">대중교통</span>
+							</button>
+						</li>
+						<li>
+							<button class="wayMap-tabIcon-Btn" type="button" data-target="mapWay02">
+								<span class="wayMap-tabIcon02">시외교통</span>
+							</button>
+						</li>
+					</ul>
+				</div>
+				<div id="mapWay01" class="wayMap-tabContent">
+					<div class="wayMap-title_line">지하철로 오시는 길</div>
+					<ul class="wayMap-rulelist_bullet">
+						<li>문화전당역에서 하차(5번, 6번 출입구)</li>
+					</ul>
+					<div class="wayMap-title_line">버스로 오시는 길</div>
+						<ul class="wayMap-rulelist_bullet">
+							<li>국립아시아문화전당 또는 문화전당역</li>
+						</ul>
+						<ul class="wayMap-wayLine">
+							<li>
+								<span class="wayMap-line wayMap-lineColor01">지선</span>
+								<span class="wayMap-txt">수완12, 1187, 518, 석곡87, 송정98, 풍암61, 첨단95, 금남55, 419, 금남57</span>
+							</li>
+							<li>
+								<span class="wayMap-line wayMap-lineColor02">급행</span>
+								<span class="wayMap-txt">첨단09, 순환01, 진월07, 풍암06</span>
+							</li>
+							<li>
+								<span class="wayMap-line wayMap-lineColor03">간선</span>
+								<span class="wayMap-txt">지원45, 금호36, 봉선37, 봉선27, 일곡28, 지원15, 운림35, 진월17, 문흥39</span>
+							</li>
+						</ul>
+				</div>
+				<div id="mapWay02" class="wayMap-tabContent">
+					<div class="wayMap-title_line">고속터미널에서 오시는 길</div>
+					<ul class="wayMap-rulelist_bullet">
+						<li>
+							버스 : 첨단09, 금호36, 518, 지원151
+						</li>
+					</ul>
+					<div class="wayMap-title_line">광주공항에서 오시는 길</div>
+					<ul class="wayMap-rulelist_bullet">
+						<li>
+							지하철 : 문화전당역 하차
+						</li>
+					</ul>
+					<div class="wayMap-title_line">광주역 / 송정역에서 오시는 길</div>
+					<ul class="wayMap-rulelist_bullet">
+						<li>광주역(버스) : 금남57, 금남58, 지원151, 송정98, 518, 1187, 금남55</li>
+						<li>송정역(지하철) : 문화전당역 하차</li>
+					</ul>
+				</div>
+			</div>
+	</article>
+	 <script>
+		var container = document.getElementById('map');
+		var position = new kakao.maps.LatLng(35.146759, 126.920249);
+		var options = {
+				center: position,
+				level: 4,
+				mapTypeId : daum.maps.MapTypeId.ROADMAP
+			};
+					
+		var map = new kakao.maps.Map(container, options);
+		
+		var imageSrc = '/images/wayMap/mapmarker.png', // 마커이미지의 주소입니다
+			imageSize = new kakao.maps.Size(32, 42), // 마커이미지의 크기입니다
+			imageOption = {offset: new kakao.maps.Point(16, 42)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+						
+		// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+						
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+			position: position,
+			image: markerImage // 마커이미지 설정
+			});
+						
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+					
+		// 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		var content = '<div class="wayMap-customoverlay"><span class="wayMap-title">국립아시아문화전당</span></div>';
+					
+		// 커스텀 오버레이가 표시될 위치입니다
+		// 커스텀 오버레이를 생성합니다
+		var customOverlay = new kakao.maps.CustomOverlay({
+			map: map,
+			position: position,
+			content: content,
+			yAnchor: 1
+			});
+					
+		// 모바일 줌 기능 삭제 - 191029
+		var viewTarget = $('.wayMap-moNav');
+		var setZoom;
+		if(!viewTarget.is(':hidden')) {
+			setZoom = false;
+			} else {
+			setZoom = true;
+			}
+		map.setZoomable(setZoom);
+		kakao.maps.event.addListener(map, 'center_changed', function() {
+			if(!viewTarget.is(':hidden')) {
+				if(setZoom != false) {
+					setZoom = false;
+					map.setZoomable(setZoom);
+					}
+				} else {
+					if(setZoom != true) {
+						setZoom = true;
+						map.setZoomable(setZoom);
+						}
+					}
+			});
+		
+		$(document).ready(function() {
+			$('.wayMap-tabList04 button').on('click', function() {
+				var $this = $(this);
+        		var pointTarget = '#'+$this.data('target');
+        		$this.closest('.wayMap-tabList04').find('li').removeClass('wayMap-active').find('button').removeAttr('title');
+       			$this.closest('.wayMap-wayWrap').find('.wayMap-tabContent').hide();
+        		$this.parent('li').addClass('wayMap-active').find('button').attr('title','선택됨');
+        		$(pointTarget).show();
+    		});
+    		var secondView = '#'+$('.wayMap-tabList04 li:first-child button').data('target');
+    		$(secondView).show();
+		});
+		
+	</script>
+</div>
+</body>
+</html>

@@ -1,4 +1,9 @@
-@charset "UTF-8";
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
 
 @font-face {
 	font-family: 'SF_HambakSnow';
@@ -9,66 +14,14 @@
 	font-style: normal;
 }
 
-.filebox .upload-name {
-	display: inline-block;
-	height: 40px;
-	padding: 0 10px;
-	vertical-align: middle;
-	border: 1px solid #dddddd;
-	width: 100%;
-	color: #999999;
-}
-
-.filebox label {
-	display: inline-block;
-	padding: 10px 20px;
-	color: #fff;
-	vertical-align: middle;
-	background-color: #999999;
-	cursor: pointer;
-	height: 40px;
-	margin-left: 10px;
-}
-
-.filebox input[type="file"] {
-	position: absolute;
-	width: 0;
-	height: 0;
-	padding: 0;
-	overflow: hidden;
-	border: 0;
-}
-
-.noticeForm-input-group-text {
-	line-height: 30px;
-	width: 100%;
-	margin-bottom: 20px;
-	border: 0;
-	/* border-bottom: 1px solid #bbb; */
-}
-
-.noticeForm-input {
-	width: 100%;
-	margin-bottom: 20px;
-	border: 0;
-	border-bottom: 1px solid #bbb;
-}
-
-.noticeForm-input-detail {
-	width: 100%;
-	margin-bottom: 20px;
-	border: 0;
-	border-bottom: 1px solid #bbb;
-	border-top: 1px solid #bbb;
-	border-right: 1px solid #bbb;
-	border-left: 1px solid #bbb;
-}
-
-/*--------- default setting ---------*/
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+.noticeForm-board {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 100px 0;
+	font-family: Pretendard-Regular;
+	font-size: 1rem;
+	letter-spacing: 0.1px;
+	word-break: keep-all;
 }
 
 .noticeForm-title-h1 {
@@ -79,50 +32,18 @@
 	text-align: center;
 }
 
-.noticeForm-txt h4 {
-	font-family: 'SF_HambakSnow';
-	font-size: 1.7rem;
-	line-height: 2rem;
-	text-align: center;
-}
-
-.noticeForm-button {
-	display: inline-block;
-	height: 50px;
-	font-size: 1rem;
-	font-weight: bold;
-	background: none;
-	border-radius: 5px;
-	border: 1px solid #aaa;
-	transition: 0.4s;
-	cursor: pointer;
-}
-
-.noticeForm-input option {
-	color: #888;
-}
-
-.noticeForm-board input::placeholder, .noticeForm-board textarea::placeholder
-	{
-	color: #888;
-}
-
-.noticeForm-board li {
-	list-style: none;
-}
-
-/*--------- common class setting ---------*/
-.noticeForm-board {
-	width: 1000px;
-	margin: 0 auto;
-	padding: 100px 0;
-}
-
-.noticeForm-contents {
+.noticeForm {
 	border-radius: 10px;
 	border: 1px solid #999;
 	padding: 50px 5%;
 }
+
+.noticeForm-header {
+	font-size: 1.3rem;
+	line-height: 2rem;
+	text-align: center;
+}
+
 
 .noticeForm-inner {
 	padding-top: 30px;
@@ -132,37 +53,88 @@
 	padding-top: 20px;
 }
 
-.noticeForm-board input, .noticeForm-board select {
+.noticeForm-board input {
+	font-family: Pretendard-Regular;
 	height: 40px;
 	font-size: 1rem;
 	padding-left: 7px;
-}
-
-.noticeForm-board select, .noticeForm-board textarea {
-	border: 1px solid #bbb;
 	border-radius: 5px;
-	width: 100%;
 }
 
 .noticeForm-board textarea {
-	margin-top: 15px;
+	border: 1px solid #bbb;
+	border-radius: 5px;
+	width: 100%;
 	height: 200px;
-	padding: 10px 0 0 10px;
+	padding: 10px 0 0 7px;
 	resize: none;
 	font-size: 1rem;
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'Pretendard-Regular';
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
-/*--------- 첨부파일 ---------*/
+.noticeForm-name-input {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	border-bottom: 1px solid #bbb;
+}
+
+/*---- 첨부파일 ----*/
+.noticeForm-input-group-text {
+	line-height: 30px;
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+}
+
+.attachfile {
+	display: flex;
+	margin: 20px 0;
+	padding: 7px;
+}
+
+.noticeForm-filebox .upload-name {
+	display: inline-block;
+	height: 40px;
+	padding: 0 10px;
+	vertical-align: middle;
+	border: 1px solid #dddddd;
+	width: 100%;
+	color: #999999;
+}
+
+.noticeForm-filebox label {
+	display: inline-block;
+	padding: 10px 20px;
+	color: #fff;
+	vertical-align: middle;
+	background-color: #999999;
+	cursor: pointer;
+	height: 40px;
+	margin-left: 10px;
+}
+
+.noticeForm-filebox input[type="file"] {
+	position: absolute;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+} 
+
 .custom-file-label {
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: Pretendard-Regular;
 	font-size: 1rem;
-	line-height: 1.5rem;
 	color: black;
 	letter-spacing: 0.1px;
 	word-break: keep-all;
 	padding: 50px 5%;
 	margin: 0 auto;
+	border: 0;
+	border-radius: 5px;
 }
 
 .custom-file-label:hover {
@@ -170,30 +142,29 @@
 	color: #fff;
 }
 
-.noticeForm-btn {
-	display: flex;
-	justify-content: center;
+.notice-btn {
+	text-align: center;
 }
 
-.noticeForm-button {
-	width: 48.5%;
-	border: 0;
-	margin-top: 30px;
-	transition: 0.5s;
+.form-btn {
+	text-align: center;
 }
 
-.noticeForm-button[name=sign] {
+.btn-submit {
+	width : 150px;
+	height: 50px;
+	margin-top: 20px;
 	background: #666;
 	color: white;
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	transition: 0.4s;
+	cursor: pointer;
 }
 
-.noticeForm-button[name=sign]:hover {
+.btn-submit:hover {
 	background: #111;
 	color: white;
-}
-
-.attachfile {
-	display: flex;
-	margin: 20px 0;
-	padding: 7px;
 }

@@ -5,28 +5,18 @@
     font-style: normal;
 }
 
-* {
+.vocList-container {
+	text-align: center;
+	position: relative;
+	padding: 100px 0;
+	width: 1600px;
 	margin: 0 auto;
-    padding: 0 auto;
-    list-style: none;
-    text-decoration: none;
-}
-
-body {
 	font-family: Pretendard-Regular;
 	font-size: 1rem;
 	line-height: 1.5rem;
 	color: black;
 	letter-spacing: 0.1px;
 	word-break: keep-all;
-	padding: 50px 5%;
-	margin: 0 auto;
-}
-
-.vocList-container {
-	text-align: center;
-	position: relative;
-	padding: 100px 0;
 }
 
 .vocList-title {
@@ -130,13 +120,7 @@ body {
 	cursor: pointer;
 }
 
-.fieldError {
-	color: #bd2130;
-}
-
-
 /* 검색바 css */
-
 .vocList-container select {
 	font-family: Pretendard-Regular;
 	border: 1px solid #bbb;
