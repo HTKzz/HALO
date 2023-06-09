@@ -72,17 +72,14 @@
 						<td class="vocList-num" th:text="${voc.realNum}"></td>
 						<td class="vocList-name" id="voc-name" style="width:750px;">
 							<div th:if="${voc.groupLayer > 0}">
-								<th:block
-									th:each="num : ${#numbers.sequence(0, voc.groupLayer)}">
+								<th:block th:each="num : ${#numbers.sequence(0, voc.groupLayer)}">
 									<span style="padding-left: 20px"></span>
 								</th:block>
-								<span style="font-size: 12px;">[답변]</span> <a
-									th:text="${voc.name}"
-									th:href="@{/voc/detail/{num}(num=${voc.num})}"></a>
+								<span style="font-size: 12px;">[답변]</span>
+								<a class="a-name" th:text="${voc.name}" th:href="@{/voc/detail/{num}(num=${voc.realNum})}"></a>
 							</div>
 							<div th:unless="${voc.groupLayer > 0}">
-								<a th:text="${voc.name}"
-									th:href="@{/voc/detail/{num}(num=${voc.num})}"></a>
+								<a class="a-name" th:text="${voc.name}" th:href="@{/voc/detail/{num}(num=${voc.realNum})}"></a>
 							</div>
 
 						</td>

@@ -4,7 +4,7 @@
     font-weight: 400;
     font-style: normal;
 }
-/* 추가 */
+
 @font-face {
 	font-family: 'SF_HambakSnow';
 	src:
@@ -31,16 +31,6 @@
 	text-align: center;
 }
 
-/* input::placeholder, textarea::placeholder {
-	color: #888;
-} */
-
-/* 삭제 */
-/* li {
-	list-style: none;
-} */
-
-/* 수정 */
 .vocForm-title-h1 {
 	font-family: 'SF_HambakSnow';
 	font-size: 3rem;
@@ -48,7 +38,7 @@
 	padding-bottom: 40px;
 	text-align: center;
 }
-/* 수정 */
+
 .vocForm {
 	border-radius: 10px;
 	border: 1px solid #999;
@@ -63,7 +53,6 @@
 	padding-top: 20px;
 }
 
-/* 수정 */
 .vocForm-board input {
 	font-family: Pretendard-Regular;
 	height: 40px;
@@ -71,7 +60,7 @@
 	padding-left: 7px;
 	border-radius: 5px;
 }
-/* 수정 */
+
 .vocForm-board textarea {
 	border: 1px solid #bbb;
 	border-radius: 5px;
@@ -153,12 +142,10 @@
 	color: #fff;
 }
 
-/* 추가 */
 .form-btn {
 	text-align: center;
 }
 
-/* 수정 */
 .btn-submit {
 	width : 150px;
 	height: 50px;

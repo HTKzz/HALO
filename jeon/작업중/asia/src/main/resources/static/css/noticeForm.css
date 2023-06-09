@@ -5,7 +5,6 @@
     font-style: normal;
 }
 
-/* 추가 */
 @font-face {
 	font-family: 'SF_HambakSnow';
 	src:
@@ -25,38 +24,6 @@
 	word-break: keep-all;
 }
 
-/* 삭제 */
-/* button {
-	display: inline-block;
-	height: 50px;
-	font-size: 1rem;
-	font-weight: bold;
-	background: none;
-	border-radius: 5px;
-	border: 1px solid #aaa;
-	transition: 0.4s;
-	cursor: pointer;
-}
-
-button:hover {
-	background: #222;
-	color: #fff;
-} */
-/* 삭제 */
-/* input::placeholder, textarea::placeholder {
-	color: #888;
-} */
-
-/* 삭제 */
-/* li {
-	list-style: none;
-} */
-
-/* 삭제 */
-/* .fieldError {
-	color: #bd2130;
-} */
-
 .noticeForm-title-h1 {
 	font-family: 'SF_HambakSnow';
 	font-size: 3rem;
@@ -64,7 +31,6 @@ button:hover {
 	padding-bottom: 40px;
 	text-align: center;
 }
-
 
 .noticeForm {
 	border-radius: 10px;
@@ -79,7 +45,6 @@ button:hover {
 }
 
 
-/* 추가 */
 .noticeForm-inner {
 	padding-top: 30px;
 }
@@ -88,7 +53,6 @@ button:hover {
 	padding-top: 20px;
 }
 
-/* 수정 */
 .noticeForm-board input {
 	font-family: Pretendard-Regular;
 	height: 40px;
@@ -96,7 +60,7 @@ button:hover {
 	padding-left: 7px;
 	border-radius: 5px;
 }
-/* 수정 */
+
 .noticeForm-board textarea {
 	border: 1px solid #bbb;
 	border-radius: 5px;
@@ -182,12 +146,10 @@ button:hover {
 	text-align: center;
 }
 
-/* 추가 */
 .form-btn {
 	text-align: center;
 }
 
-/* 수정 */
 .btn-submit {
 	width : 150px;
 	height: 50px;

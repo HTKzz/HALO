@@ -36,7 +36,7 @@ public class NoticeService {
 	private final AttachService attachService;
 
 	// 공지글 저장하기.
-	public Long writenotice(@Valid NoticeDto noticeDto, List<MultipartFile> attachList, String id) throws Exception {
+	public Long writeNotice(@Valid NoticeDto noticeDto, List<MultipartFile> attachList, String id) throws Exception {
 
 		Notice notice = noticeDto.createNotice();
 
@@ -81,7 +81,7 @@ public class NoticeService {
 
 	// 게시판 디테일 불러오기
 	@Transactional
-	public NoticeDto getnoticeDetail(Long num) {
+	public NoticeDto getNoticeDetail(Long num) {
 
 		List<Attach> attachList = attachRepository.findByNoticeNumOrderByNumAsc(num);
 		List<AttachDto> attachDtoList = new ArrayList<>();
@@ -108,7 +108,7 @@ public class NoticeService {
 	}
 
 	// 게시판 글 수정하기
-	public Long updatenotice(NoticeDto noticeDto, List<MultipartFile> attachList) throws Exception {
+	public Long updateNotice(NoticeDto noticeDto, List<MultipartFile> attachList) throws Exception {
 
 		Notice notice = noticeRepository.findById(noticeDto.getNum()).orElseThrow(EntityNotFoundException::new);
 
@@ -125,7 +125,7 @@ public class NoticeService {
 	}
 
 	// 게시판 글 삭제하기
-	public void deletenotice(Long num) throws Exception {
+	public void deleteNotice(Long num) throws Exception {
 
 		noticeRepository.deleteByNum(num);
 

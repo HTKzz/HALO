@@ -19,6 +19,9 @@ public class MainController {
 	
 	private final ApplicationService applicationService;
 	
+	
+	
+	
 	@GetMapping(value = "/")
 	public String main(Model model) {
 		
