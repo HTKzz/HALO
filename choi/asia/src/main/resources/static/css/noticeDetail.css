@@ -6,7 +6,11 @@
 }
 
 *{
+	margin: 0 auto;
+    padding: 0 auto;
     list-style: none;
+    border: 0;
+    text-decoration: none;
 }
 
 body {
@@ -16,12 +20,12 @@ body {
 	color: black;
 	letter-spacing: 0.1px;
 	word-break: keep-all;
+	padding: 50px 5%;
 }
 
 form{
 	font-family: Pretendard-Regular;
-	text-align: center;
-	min-width: 1000px;
+	width: 1100px;
 	height: 100%;
 	/* position: relative; */
 }

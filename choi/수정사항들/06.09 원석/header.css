@@ -8,7 +8,7 @@
 }
 
 header {
-	flex-wrap: nowrap;
+	flex-wrap:nowrap;
 	z-index: 999;
 	position: fixed;
 	width: 100%;
@@ -43,7 +43,7 @@ header .logo {
 header .navigation {
 	position: relative;
 	display: inline-block;
-	text-align: center;
+	text-align:center;
 	line-height: 76px;
 	max-height: 76px;
 	width: 100%;
@@ -59,7 +59,7 @@ header.sticky .navigation {
 
 header .navigation .menu {
 	position: ablsolute;
-	float: left;
+	float:left;
 	display: flex;
 	list-style: none;
 	user-select: none;
@@ -165,7 +165,7 @@ header nav ul li button {
 	position: relative;
 }
 
-.menu-item-wrapper {
+.menu-item-wrapper{
 	position: absolute;
 }
 
@@ -181,12 +181,4 @@ header nav ul li button {
 #menu-right {
 	margin-left: 50px;
 	margin-right: -40px;
-}
-
-.header-welcome {
-	max-height: 15px;
-	position: relative;
-	top: -30px;
-	left: 300px;
-	font-size: 13px;
 }

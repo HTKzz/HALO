@@ -71,7 +71,7 @@
 				<a th:href="@{/notices/modNotice/{num}(num=${noticeDto.num})}">수정</a>
 			</span>
 		
-			<span class="l-button">
+			<span class="l-button" th:if="${username} == 'admin'">
 				<a th:href="@{'/notices/deleteNotice/' + ${noticeDto.num}}" id="succSubmit">삭제</a>
 				
 			</span>

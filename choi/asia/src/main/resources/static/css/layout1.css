@@ -31,10 +31,10 @@ html {
 }
 
 .content {
-	min-width: 1200px;
+	padding: 50px 5%;
+	min-width: 1000px;
 	margin-top: 10px;
 	margin-bottom: 100px;
-	padding: 50px 5%;
 }
 
 .content > div {
@@ -48,5 +48,11 @@ html {
 	.header, .footer {
 		display:none
 	}
-	
+}
+
+.fieldError {
+   color: #bd2130;
+   font-size: 0.9em;
+   margin-left: 10px;
+   margin-top: -10px;
 }

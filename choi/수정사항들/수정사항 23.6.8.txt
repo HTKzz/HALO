@@ -1,0 +1,47 @@
+1) layout1.css
+	.header{
+	height: 76px;  --변경
+	}
+	
+	.content{
+	padding: 50px 5%;  --추가
+	}
+
+
+2) main.html
+	133번째 줄  --교체
+	img{
+	height: 500px;
+	}
+	.slide img {
+	padding-bottom:30px; 
+	}
+		
+	
+3) myPage.css
+	12번째 줄
+		*{}    --삭제
+	18번째 줄 
+	.myPage{
+		font-family: Pretendard-Regular;    --추가
+	}
+	23번째 줄
+	.myPageForm-board{
+		padding: 80px 0;   --삭제
+	}
+
+
+4) myReservation.css
+	12번째 줄
+		*{}    --삭제
+	18번째 줄 
+	.myReservationForm-board{
+		font-family: Pretendard-Regular;    --추가
+		padding: 80px 0;     --삭제
+	}
+
+
+
+5) main           --교체
+6) header.html  --교체
+7) header.css    --교체

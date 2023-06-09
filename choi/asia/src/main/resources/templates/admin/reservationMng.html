@@ -82,7 +82,7 @@
 						<td class="vocList-udate" style="width: 15%;">공연일</td>
 						<td class="vocList-memberNum" style="width: 15%;">예매자</td>
 						<td class="vocList-stat" style="width: 15%;">상태</td>
-						<td class="vocList-stat" style="width: 70px;">
+						<td class="vocList-stat" style="width: 70px;" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 							<a class="vocList-stat" style="cursor:pointer;" onclick="window.open('https://classic-admin.portone.io/users/login')" >환불 페이지</a>
 						</td>
 					</tr>

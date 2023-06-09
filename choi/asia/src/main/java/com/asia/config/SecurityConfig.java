@@ -33,8 +33,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/");
 
 		http.authorizeRequests()
-				.mvcMatchers("/admin/**").hasRole("ADMIN")
-				.mvcMatchers("/", "/members/**", "/mail/**", "/reservations/**", "/board/**", "/voc/**", "/notices/**", "/asia/**", "/pay/**", "/useinfo/**", "/main/**").permitAll()
+				.mvcMatchers("/board/program/apply").hasAnyRole("ADMIN", "COMPANY")
+				.mvcMatchers("/admin/**", "/board/program/apply/**", "/board/program/delete/**", "/notices/write").hasRole("ADMIN")
+				.mvcMatchers("/reservations/**").hasAnyRole("ADMIN", "USER")
+				.mvcMatchers("/voc/new", "/voc/update/**", "/voc/delete/**", "/voc/reply/**").hasAnyRole("COMPANY", "ADMIN", "USER")
+				.mvcMatchers("/", "/members/**", "/mail/**", "/board/**", "/voc/**", "/notices/**", "/asia/**", "/pay/**", "/useinfo/**", "/main/**", "/download/**").permitAll()
 				.anyRequest().authenticated();
 
 		http.exceptionHandling() // 인증되지 않은 사용자가 리소스에 접근하였을 때 수행되는 핸들러 등록

@@ -58,7 +58,6 @@ public class ApplicationController {
 							   @RequestParam("attachFile") List<MultipartFile> attachFileList) {
 		
 		if (bindingResult.hasErrors()) {   // 상품 등록시 필수 값이 없다면 다시 상품 등록 페이지로 전환한다.
-			model.addAttribute("errorMessage", "내용을 입력해주세요.");
 			return "board/program/applicationForm";
 		}
 		
@@ -112,7 +111,7 @@ public class ApplicationController {
 			applicationService.updateApplication(applicationDto, attachFileList);
 			if(applicationDto.getProgramCategory().equals("공연")) {
 				return "redirect:/board/program/showlist";
-			} else if(applicationDto.getProgramCategory().equals("행사")) {
+			} else if(applicationDto.getProgramCategory().equals("전시")) {
 				return "redirect:/board/program/exhibitionlist";
 			} else {
 				return "redirect:/board/program/eventlist";
@@ -192,7 +191,7 @@ public class ApplicationController {
    		List<Application> list = applicationService.getApplication(application.getName());
    		
    		for(int i = 0; i < list.size(); i++) {
-   	   		attachService.deleteAttach(list.get(i).getNum());
+   	   		attachService.appDeleteAttach(list.get(i).getNum());
 			applicationService.deleteApplication(list.get(i).getNum());
    		}
 		

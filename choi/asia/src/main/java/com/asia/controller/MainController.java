@@ -1,7 +1,9 @@
 package com.asia.controller;
 
+import java.security.Principal;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +22,9 @@ public class MainController {
 	private final ApplicationService applicationService;
 	
 	@GetMapping(value = "/")
-	public String main(Model model) {
-		
+	public String main(Model model, Principal principal, Authentication authentication) {
 		List<ApplicationDto> slideList = applicationService.getSlideList();
+		
 		model.addAttribute("slideList", slideList);
 		
 		return "main";
