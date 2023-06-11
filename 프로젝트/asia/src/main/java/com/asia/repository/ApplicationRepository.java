@@ -43,6 +43,9 @@ public interface ApplicationRepository extends JpaRepository<Application, Long>,
 	@Query("select distinct new com.asia.dto.ApplicationDto(num, name, sdate, edate) from Application where APPROVAL_STATUS = '승인' order by sdate asc")
 	List<ApplicationDto> getSlideList();
 	
+	@Query(value = "SELECT TB.num FROM(SELECT ROW_NUMBER() OVER(PARTITION BY application.name ORDER BY application.sdate DESC ) AS RNUM, application.* FROM application ) TB WHERE RNUM = 1 and APPROVAL_STATUS = '승인'", nativeQuery = true)
+	List<Long> getAppNumNoPC();
+	
 	@Query(value = "SELECT TB.num FROM(SELECT ROW_NUMBER() OVER(PARTITION BY application.name ORDER BY application.sdate DESC ) AS RNUM, application.* FROM application ) TB WHERE RNUM = 1 and program_Category = :programCategory and APPROVAL_STATUS = '승인'", nativeQuery = true)
 	List<Long> getAppNum(String programCategory);
 

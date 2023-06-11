@@ -302,7 +302,14 @@ public class ApplicationService {
 	// 메인페이지 슬라이드 사진 불러오기
 	@Transactional(readOnly = true)
 	public List<ApplicationDto> getSlideList() {
-		List<ApplicationDto> list = applicationRepository.getSlideList();
+		List<Long> listNum = applicationRepository.getAppNumNoPC();
+		List<Application> appList = applicationRepository.findByNums(listNum);
+		
+		List<ApplicationDto> list = new ArrayList<>();
+		for(Application app: appList) {
+			list.add(ApplicationDto.of(app));
+		}
+		
 		int size = list.size();
 		
 		for(int i = 0; i < size; i++) {

@@ -46,6 +46,7 @@ public class Notice extends BaseEntity {
 	
 	private String name;
 	
+	@Lob
 	private String content;
 	
 	private LocalDate d_date;
