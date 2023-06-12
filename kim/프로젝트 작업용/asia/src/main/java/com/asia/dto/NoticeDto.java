@@ -49,8 +49,6 @@ public class NoticeDto{
 	
 	private LocalDateTime regTime;
 	
-	private String not;
-	
 	private List<AttachDto> attachDtoList = new ArrayList<>();
 	
 	private List<Long> attachNums = new ArrayList<>();
@@ -69,4 +67,12 @@ public class NoticeDto{
 	public NoticeDto(Long num) {
 		this.num = num;
 	}
+	
+	@QueryProjection
+	public NoticeDto(Long num, String name, LocalDate d_date) {
+		this.num = num;
+		this.name = name;
+		this.d_date = d_date;
+	}
+	
 }

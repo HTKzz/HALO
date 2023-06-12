@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.asia.dto.ApplicationDto;
 import com.asia.dto.SearchDto;
 import com.asia.entity.Application;
 import com.asia.entity.Member;
@@ -96,7 +97,7 @@ public class AdminController {
 	public String approvalstatusChange(@PathVariable("num") Long num, Model model) {
 
 		try {
-			Application application = applicationService.getApplicationDtl(num);
+			Application application = applicationService.getAppDtl(num);
 			applicationService.updateApprovalStatus(application);
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "프로그램 승인 중 에러가 발생하였습니다.");
@@ -122,13 +123,12 @@ public class AdminController {
 		String seatDetail = reservation.getApplication().getSeatDetail();
 
 		Long deleteSeat = reservation.getApplication().getNum();
-		int anum = Long.valueOf(deleteSeat).intValue();
 
 		if (seatDetail != null) {
 			String selectSeat = reservation.getSeat();
 			String[] array = selectSeat.split(", ");
 
-			seatService.cancelUpdateSeat(seatDetail, anum, array);
+			seatService.cancelUpdateSeat(seatDetail, deleteSeat, array);
 		}
 		reservationService.cancleReservation(num);
 

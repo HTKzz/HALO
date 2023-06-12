@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -124,12 +123,12 @@ public class ApplicationController {
 	}
 	
 	// 프로그램 신청 상세보기 호출
-	@GetMapping(value = "/program/application/{name}")
-	public String applicationDtl(Model model, @PathVariable("name") String name){
-		ApplicationDto applicationDto = applicationService.getApplicationDtl(name);
+	@GetMapping(value = "/program/application/{num}")
+	public String applicationDtl(Model model, @PathVariable long num) {
+		ApplicationDto applicationDto = applicationService.getApplicationDtl(num);
 		model.addAttribute("application2", applicationDto);
 		
-		List<ApplicationDto> application1 = applicationService.getApplicationSelect(name);
+		List<ApplicationDto> application1 = applicationService.getApplicationSelect(applicationDto.getName());
 		String seatDetail = applicationDto.getSeatDetail();
 
 		Map<Long, Long> seatMap = new HashMap<>();
@@ -187,7 +186,7 @@ public class ApplicationController {
    	@GetMapping(value="/program/delete/{num}")
 	public String applicationDelete(@PathVariable Long num, Model model) throws Exception {
    		
-   		Application application = applicationService.getApplicationDtl(num);
+   		Application application = applicationService.getAppDtl(num);
    		List<Application> list = applicationService.getApplication(application.getName());
    		
    		for(int i = 0; i < list.size(); i++) {
@@ -201,15 +200,15 @@ public class ApplicationController {
     // 카테고리별 게시판 호출(공연)
     @GetMapping("/program/showlist")
     public String showListView(Model model, Long num,
-    						   @PageableDefault(page = 0, size = 6)Pageable pageable) {
+    						   @PageableDefault(page = 0, size = 1)Pageable pageable) {
     	
             //큰카테고리에 해당하는 상품 가져오기.
     		String programCategory = "공연";
     		
             Page<ApplicationDto> showapplications = applicationService.getList1(pageable, programCategory);
             
-            int nowPage = showapplications.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
-            int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
+            int nowPage = showapplications.getPageable().getPageNumber() + 1; // pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
+            int startPage = Math.max(nowPage - 4, 1); // 매개변수로 들어온 두 값을 비교해서 큰값을 반환
             int endPage = Math.min(nowPage + 4, showapplications.getTotalPages());
             
             model.addAttribute("application4", showapplications);

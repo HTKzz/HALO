@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+<div class="quickmenu" th:fragment="quickmenu">
+	<link th:href="@{/css/quickmenu.css}" rel="stylesheet">
+	<div id="floatdiv">
+		<div id="floatTitle">퀵메뉴</div>
+		<div id="floatContent">
+			<ul>
+				<li><img
+					src="#" /><a
+					href=#>
+						test1</a></li>
+				<li><img
+					src="#" /><a
+					href=#>
+						test2</a></li>
+				<li><img
+					src="#" /><a
+					href=#>
+						test3</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</html>

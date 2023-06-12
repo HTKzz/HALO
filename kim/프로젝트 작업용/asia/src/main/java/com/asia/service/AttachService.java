@@ -102,7 +102,7 @@ public class AttachService {
 	}
 
 	public List<AttachDto> getImageList(long anum) {
-		List<AttachDto> attachLists = attachRepository.getLists(anum);
+		List<AttachDto> attachLists = attachRepository.getAppList(anum);
 		return attachLists;
 	}
 

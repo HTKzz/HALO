@@ -190,8 +190,11 @@ public class ApplicationService {
 
 	// 프로그램 신청글 상세보기페이지 호출
 	@Transactional(readOnly = true)
-	public ApplicationDto getApplicationDtl(String name) {
-		List<Application> application1 = applicationRepository.findByName(name);
+	public ApplicationDto getApplicationDtl(Long num) {
+		
+		ApplicationDto appDto = applicationRepository.findByNum(num);
+		
+		List<Application> application1 = applicationRepository.findByName(appDto.getName());
 
 		List<Attach> attachList = attachRepository.findByApplicationNumOrderByNumAsc(application1.get(0).getNum()); // 해당 프로그램 이미지 조회
 		List<AttachDto> attachDtoList = new ArrayList<>();
@@ -245,15 +248,22 @@ public class ApplicationService {
 	}
 
 	public Page<ApplicationDto> getList1(Pageable pageable, String programCategory) {
-		List<ApplicationDto> list = applicationRepository.getList1(programCategory);
+		
+		List<Long> appNum = applicationRepository.getAppNum(programCategory);
+		List<Application> appList = applicationRepository.findByNums(appNum);
+		
+		List<ApplicationDto> list = new ArrayList<>();
+		for(Application app: appList) {
+			list.add(ApplicationDto.of(app));
+		}
+		
 		List<ApplicationDto> resultList = new ArrayList<ApplicationDto>();
 		int offset = Long.valueOf(pageable.getOffset()).intValue();
 		int offset2 = pageable.getPageSize();
 		
 		for (int x = offset; x < offset + offset2; x++) {
 			if (x < list.size()) {
-				List<Application> application = applicationRepository.findByName(list.get(x).getName());
-				List<AttachDto> attach = attachRepository.getLists(application.get(0).getNum());
+				List<AttachDto> attach = attachRepository.getAppList(list.get(x).getNum());
 				list.get(x).setUrl(attach.get(0).getUrl());
 				resultList.add(list.get(x));
 			}
@@ -274,8 +284,8 @@ public class ApplicationService {
 		return list;
 	}
 
-	public Application getApplicationDtl(long anum) {
-		Application application = applicationRepository.findByNum(anum);
+	public Application getAppDtl(long anum) {
+		Application application = applicationRepository.getApplication(anum);
 		return application;
 	}
 
@@ -292,17 +302,27 @@ public class ApplicationService {
 	// 메인페이지 슬라이드 사진 불러오기
 	@Transactional(readOnly = true)
 	public List<ApplicationDto> getSlideList() {
-		List<ApplicationDto> list = applicationRepository.getSlideList();
+		List<Long> listNum = applicationRepository.getAppNumNoPC();
+		List<Application> appList = applicationRepository.findByNums(listNum);
 		
-		for(int i = 0; i < list.size(); i++) {
+		List<ApplicationDto> list = new ArrayList<>();
+		for(Application app: appList) {
+			list.add(ApplicationDto.of(app));
+		}
+		
+		int size = list.size();
+		
+		for(int i = 0; i < size; i++) {
 			if(i <= 9) {
 				List<Application> application = applicationRepository.findByName(list.get(i).getName());
-				List<AttachDto> attach = attachRepository.getLists(application.get(0).getNum());
-				list.get(i).setUrl(attach.get(0).getUrl());
+				List<AttachDto> attach = attachRepository.getAppList(application.get(0).getNum());
+				list.get(i).setUrl(attach.get(1).getUrl());
 			} else {
-				list.remove(i);
+				list.remove(10);
 			}
 		}
+		
+		System.out.println(list.size());
 		
 		return list;
 	}

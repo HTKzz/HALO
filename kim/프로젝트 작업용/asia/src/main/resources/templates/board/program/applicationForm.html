@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout1}">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout1}">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0" />
     <title>프로그램 신청/수정 페이지(Board)</title>
     <link rel="stylesheet" th:href="@{/css/applicationForm.css}" />
-    <link rel="stylesheet" th:href="@{/css/header.css}" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 
@@ -22,6 +23,13 @@
 
             bindDomEvent();
 
+            if ($("#select-programCategory").val() == '공연') {
+                document.getElementById('inputseat').style.display = 'block';
+            } else {
+                document.getElementById('inputseat').style.display = 'none';
+                $("#select-seat").find("option:eq(0)").prop("selected", true);
+            }
+            
             $("#select-programCategory").on("change", function(){
                 if ($("#select-programCategory").val() == '공연') {
                     document.getElementById('inputseat').style.display = 'block';
@@ -78,7 +86,7 @@
                         <div class="inputseat" id="inputseat" style="display: block;">
                             <span class="applicationForm-input-group-text">좌석</span>
                             <select class="applicationForm-input" id="select-seat" name="select" th:field="*{seatDetail}">
-                                <option th:value="null" hidden>좌석정보를 입력해주세요.</option>
+                                <option th:value="null">좌석정보를 입력해주세요.</option>
                                 <option th:value="A">A</option>
                                 <option th:value="B">B</option>
                                 <option th:value="C">C</option>

@@ -1,67 +1,138 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security" 
-layout:decorate="~{layouts/layout1}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{layouts/layout1}">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
+
+	<!-- <link rel="stylesheet" th:href="@{/css/header.css}"> -->
+	<!-- <link rel="stylesheet" href="https://musenet.ggcf.kr/userContent/css/swiper.min.css"> -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script> -->
 </head>
 
-<div class="header" th:fragment="header">
+<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
-    <link th:href="@{/css/header.css}" rel="stylesheet">
-	<header>
-		<a href="/" class="logo"><img src=/images/ACC.jpg class="logoimage" /></a>
-		<div class="navigation">
-			<ul class="menu">
-				<li class="menu-item" sec:authorize="isAuthenticated()"><a href="/board/program/apply">상품신청</a></li>
-				<li class="menu-item" sec:authorize="isAnonymous() || isAuthenticated()">
-					<a class="sub-btn" id="sub-btn" href="#">ACC소개</a>
-					<ul class="sub-menu" id="sub-menu-items">
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/accIntro">전당소개</a></li>
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/wayMap">오시는길</a></li>
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/useinfo">이용안내</a></li>
-						<!-- <li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="#"></a></li>
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="#"></a></li> -->
-					</ul>
-				</li>
-				<li class="menu-item" sec:authorize="isAnonymous() || isAuthenticated()">
-					<a class="sub-btn" id="sub-btn" href="#">소식</a>
-					<ul class="sub-menu" id="sub-menu-items">
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/notices/lists">공지사항</a></li>
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/voc/list">VOC</a></li>
-						<!-- <li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="#"></a></li> -->
-					</ul>
-				</li>
+<body>
+<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+	<div class="acc-header" th:fragment="header">
+		<header class="acc-header-wrap">
+			<a href="/" class="acc-header-logo">
+				<img src="/images/ACC-logo.png" alt="ACC국립아시아문화전당" />
+			</a>
+			<nav class="acc-header-nav">
+				<ul class="acc-header-gnb">
+					<li class="acc-menu-title" sec:authorize="isAuthenticated()">
+						<a href="/board/program/apply" class="menu-item-title" th:value="상품신청" sec:authorize="isAuthenticated()">상품신청</a>
+					</li>
+					<li class="acc-menu-title" >
+						<a href="/accIntro" class="menu-item-title menu-item-title1" sec:authorize="isAnonymous() || isAuthenticated()">ACC소개</a>
+						<ul class="acc-header-sub-item-list">
+							<li class="acc-header-sub-item" sec:authorize="isAnonymous() || isAuthenticated()">
+								<a href="/accIntro">전당소개</a>
+							</li>
+							<li class="acc-header-sub-item" sec:authorize="isAnonymous() || isAuthenticated()">
+								<a href="/wayMap">오시는 길</a>
+							</li>
+							<li class="acc-header-sub-item" sec:authorize="isAnonymous() || isAuthenticated()">
+								<a href="/useinfo">이용안내</a>
+							</li>
+						</ul>
+					</li>
+					<li class="acc-menu-title" >
+						<a href="/notices/lists" class="menu-item-title" sec:authorize="isAnonymous() || isAuthenticated()">소식</a>
+						<ul>
+							<li class="acc-header-sub-item" sec:authorize="isAnonymous() || isAuthenticated()">
+								<a href="/notices/lists">공지사항</a>
+							</li>
+							<li class="acc-header-sub-item" sec:authorize="isAnonymous() || isAuthenticated()">
+								<a href="/voc/list">고객의 소리</a>
+							</li>
+						</ul>
+					</li>
+					<li class="acc-menu-title" >
+						<a href="/board/program/showlist" class="menu-item-title" sec:authorize="isAnonymous() || isAuthenticated()">프로그램</a>
+						<ul>
+							<li class="acc-header-sub-item" sec:authorize="isAnonymous() || isAuthenticated()">
+								<a href="/board/program/showlist">공 연</a>
+							</li>
+							<li class="acc-header-sub-item" sec:authorize="isAnonymous() || isAuthenticated()">
+								<a href="/board/program/exhibitionlist">전 시</a>
+							</li>
+							<li class="acc-header-sub-item" sec:authorize="isAnonymous() || isAuthenticated()">
+								<a href="/board/program/eventlist">행 사</a>
+							</li>
+						</ul>
+					</li>
+					<li class="acc-menu-title" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+						<a href="/admin/reservationMng" class="menu-item-title">관리자</a>
+						<ul>
+							<li class="acc-header-sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+								<a href="/admin/reservationMng">예매관리</a>
+							</li>
+							<li class="acc-header-sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+								<a href="/admin/applications">상품관리</a>
+							</li>
+							<li class="acc-header-sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+								<a href="/admin/memberMngList">회원관리</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<div class="headermenu-submenu">
+				<ul>
+					<li class="headermenu-list" th:if="${#authentication.principal != 'anonymousUser'}">
+						<a href="/members/myPage">
+							<span class="headermenu-userid" th:if="${#authentication.principal != 'anonymousUser'}" th:text="${#authentication.principal.username}"></span>
+						</a>
+						<span class="headermenu-welcome" th:if="${#authentication.principal != 'anonymousUser'}" th:text="${'님 환영합니다.'}"></span>
+						
+					</li>
+					<li class="headermenu-list" sec:authorize="isAnonymous()">
+						<span class="headermenu-item" sec:authorize="isAnonymous()">
+							<a href="/members/login">로그인</a>
+						</span>
+					</li>
+					<li class="headermenu-list" sec:authorize="isAnonymous()">
+						<span class="headermenu-item" sec:authorize="isAnonymous()">
+							<a href="/members/select">회원가입</a>
+						</span>
+					</li>
+					<li class="headermenu-list" sec:authorize="isAuthenticated()">
+						<span class="headermenu-item" sec:authorize="isAuthenticated()">
+							<a href="/members/myPage">마이페이지</a>
+						</span>
+					</li>
+					<li class="headermenu-list" sec:authorize="isAuthenticated()">
+						<span class="headermenu-item" sec:authorize="isAuthenticated()">
+							<a href="/members/logout">로그아웃</a>
+						</span>
+					</li>
+				</ul>
+			</div>
 
-				<li class="menu-item" sec:authorize="isAnonymous() || isAuthenticated()">
-					<a href="#" id="sub-btn">프로그램</a>
-					<ul class="sub-menu" id="sub-menu-items">
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/board/program/showlist">공연</a></li>
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/board/program/exhibitionlist">전시</a></li>
-						<li class="sub-item" sec:authorize="isAnonymous() || isAuthenticated()"><a href="/board/program/eventlist">행사</a></li>
-					</ul>
-				</li>
+		</header>
 
-				<li class="menu-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-					<a href="#" id="sub-btn" style="margin-right:20px;">관리자</a>
-					<ul class="sub-menu" id="sub-menu-items">
-						<li class="sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/reservationMng">예매관리</a></li>
-						<li class="sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/applications">상품관리</a></li>
-						<li class="sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/memberMngList">회원관리</a></li>
-					</ul>
-				</li>
-			
-				<li class="menu-item menu-right" sec:authorize="isAnonymous()"><a href="/members/login" >로그인</a></li>
-				<li class="menu-item" sec:authorize="isAnonymous()"><a href="/members/select">회원가입</a></li>
-				<li class="menu-item menu-right" sec:authorize="isAuthenticated()"><a href="/members/myPage">마이페이지</a></li>
-				<li class="menu-item" sec:authorize="isAuthenticated()"><a href="/members/logout">로그아웃</a></li>
-			</ul>
-		</div>
-	</header>
-</div>
+		<script>
+			$("header > nav").on({
+				"mouseenter" : function() {
+					$(this).find("ul").stop().fadeIn(200);
+					$(".menu-item-title:hover").css({
+						"font-weight": "bolder"
+					});
+				},
+				"mouseleave" : function() {
+					$(this).find("ul").stop().fadeOut(200);
+					$(".menu-item-title").css({
+						"font-weight": "normal",
+						"font-size": ""
+					});
+				}
+			}, ".acc-header-gnb > li");
+		</script>
+	</div>
+</body>
 </html>

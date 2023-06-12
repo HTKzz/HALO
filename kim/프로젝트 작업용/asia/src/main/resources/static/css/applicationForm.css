@@ -78,11 +78,6 @@
 }
 
 /*--------- default setting ---------*/
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
 
 .applicationForm-title-h1 {
 	font-family: 'SF_HambakSnow';

@@ -67,22 +67,22 @@ public class SeatService {
 		return count;
 	}
 
-	public List<SeatADto> getSeatA(int anum) {
+	public List<SeatADto> getSeatA(Long anum) {
 		List<SeatADto> seat = seatARepository.getSeat(anum);
 		return seat;
 	}
 
-	public List<SeatBDto> getSeatB(int num) {
+	public List<SeatBDto> getSeatB(Long num) {
 		List<SeatBDto> seat = seatBRepository.getSeat(num);
 		return seat;
 	}
 
-	public List<SeatCDto> getSeatC(int anum) {
+	public List<SeatCDto> getSeatC(Long anum) {
 		List<SeatCDto> seat = seatCRepository.getSeat(anum);
 		return seat;
 	}
 
-	public void updateSeat(UpdateDto updateDto, int anum, String seat1) {
+	public void updateSeat(UpdateDto updateDto, Long anum, String seat1) {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map result = objectMapper.convertValue(updateDto, Map.class);
@@ -124,7 +124,7 @@ public class SeatService {
 		}
 	}
 	
-	public void cancelUpdateSeat(String seatDetail, int anum, String[] array) {
+	public void cancelUpdateSeat(String seatDetail, Long anum, String[] array) {
 		
 		if (seatDetail.equals("A")) {
 			List<SeatADto> seat = seatARepository.getSeat(anum);

@@ -16,7 +16,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class AttachDto {
-	
+
 	private Long num;
 	private String name;
 	private String oriName;
@@ -25,24 +25,16 @@ public class AttachDto {
 	private Application application;
 
 	private static ModelMapper modelMapper = new ModelMapper(); // 멤버 변수로 ModelMapper 객체 추가
-	
+
 	public static AttachDto of(Attach attach) {
 		return modelMapper.map(attach, AttachDto.class);
 	}
-	
+
 	@QueryProjection
-	public AttachDto(Long num, String name, String oriName, String url){
-			this.num = num;
-			this.name = name;
-			this.oriName = oriName;
-			this.url = url;
-		}
-	
-	@QueryProjection
-	public AttachDto(Long num, String name, String url){
-			this.num = num;
-			this.name = name;
-			this.url = url;
-		}
-	
+	public AttachDto(Long num, String name, String oriName, String url) {
+		this.num = num;
+		this.name = name;
+		this.oriName = oriName;
+		this.url = url;
+	}
 }
