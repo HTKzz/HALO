@@ -65,6 +65,7 @@ public class MemberController {
 				return;
 			memberFormDto.setName("관리자");
 			memberFormDto.setId("user" + String.valueOf(i));
+			memberFormDto.setId("user" + String.valueOf(i));
 			memberFormDto.setPassword("12341234");
 			memberFormDto.setEmail("User" + String.valueOf(i) + "@userEmail.com");
 			memberFormDto.setTel("010555" + String.valueOf(i) + "555");

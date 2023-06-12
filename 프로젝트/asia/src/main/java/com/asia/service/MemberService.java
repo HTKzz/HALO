@@ -47,10 +47,10 @@ public class MemberService implements UserDetailsService {
 			throw new IllegalStateException("이미 사용된 전화번호입니다.");
 		}
 		findMember = null;
-		findMember = memberRepository.findByCid(member.getCid());
-		if (findMember != null) {
-			throw new IllegalStateException("이미 사용된 사업자등록번호입니다.");
-		}
+//		findMember = memberRepository.findByCid(member.getCid());
+//		if (findMember != null) {
+//			throw new IllegalStateException("이미 사용된 사업자등록번호입니다.");
+//		}
 	}
 
 	// 로그인
