@@ -94,14 +94,6 @@ public class ApplicationDto {
 	}
 	
 	@QueryProjection
-	public ApplicationDto(Long num, String name, String sdate, String edate) {
-		this.num = num;
-		this.name = name;
-		this.sdate = sdate;
-		this.edate = edate;
-	}
-	
-	@QueryProjection
 	public ApplicationDto(String name, String sdate, String edate) {
 		this.name = name;
 		this.sdate = sdate;

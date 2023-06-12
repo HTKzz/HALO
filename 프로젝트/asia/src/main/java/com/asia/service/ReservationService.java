@@ -25,7 +25,7 @@ public class ReservationService {
 	private final MemberRepository memberRepository;
 	private final ReservationRepository reservationRepository;
 	
-	public Long saveReservation(Application application, String name, String seat, int cnt, int price) throws Exception {
+	public void saveReservation(Application application, String name, String seat, int cnt, int price) throws Exception {
 		
 		Member member = memberRepository.findById(name);
 		
@@ -40,8 +40,6 @@ public class ReservationService {
 		reservation.setApplication(application);
 		
 		reservationRepository.save(reservation);
-		
-		return null;		
 	}
 	
 	@Transactional(readOnly=true)

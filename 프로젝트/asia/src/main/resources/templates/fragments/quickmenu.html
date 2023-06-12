@@ -4,25 +4,88 @@
 	layout:decorate="~{layouts/layout1}">
 
 <div class="quickmenu" th:fragment="quickmenu">
-	<link th:href="@{/css/quickmenu.css}" rel="stylesheet">
-	<div id="floatdiv">
-		<div id="floatTitle">퀵메뉴</div>
-		<div id="floatContent">
-			<ul>
-				<li><img
-					src="#" /><a
-					href=#>
-						test1</a></li>
-				<li><img
-					src="#" /><a
-					href=#>
-						test2</a></li>
-				<li><img
-					src="#" /><a
-					href=#>
-						test3</a></li>
+	<!-- <link th:href="@{/css/quickmenu.css}" rel="stylesheet"> -->
+	<div class="wrap">
+
+		<div class="box-shortcut">
+			<ul class="menu">
+			
+				<li><a href="#con1" title="스크롤 이동">메뉴1</a></li>				
 			</ul>
+			
+			<button class="btn-scroll-top" title="스크롤 이동"><img class="btn-img" src="https://www.acc.go.kr/include/main/images/common/btn_top.png">&nbsp TOP</button>
+			
 		</div>
+		
+		<script type="text/javascript">
+		(function($){
+			  
+			  $.fn.quickMenu = function(){
+			    return this.each(function(){
+			      var idx = 0;
+			      var h = [];
+			      var $wrap = $(this);
+			      var $menu = $wrap.find(".menu");
+			      var $btn = $menu.children("li").children("a");
+			      var $btnScrollTop = $wrap.find(".btn-scroll-top");
+			      var $section = $(".section");
+			      var wrapH = $wrap.outerHeight();
+			      var wrapT = $wrap.position().top;
+			      var nowScroll = 0;
+			      var scrolling = true;
+
+			      function btnActive(num){
+			        $btn.not($btn.eq(num)).removeClass("on");
+			        $btn.eq(num).addClass("on");
+			      }
+
+			      function moveScroll(num){
+			        if(scrolling){
+			          scrolling = false;
+			          $("html, body").animate({scrollTop : num}, function(){scrolling = true});
+			        }
+			      }
+			          
+			      btnActive(idx);
+
+			      $wrap.css({"margin-top": -(wrapH / 2)});
+			      
+			      $btn.on("click", function(e){
+			        e.preventDefault();
+			        idx = $(this).parent().index();
+			        var conT = $section.eq(idx).offset().top;
+
+			        moveScroll(conT);
+			      });
+			      
+			      $btnScrollTop.on("click", function(e){
+			        e.preventDefault();
+			        
+			        moveScroll(0);
+			      });
+			      
+			      $(window).scroll(function(){
+			        
+			        nowScroll = $(this).scrollTop();
+			        
+			        $section.each(function(idx){
+			          h[idx] = $(this).offset().top
+			          
+			          if(nowScroll >= h[idx]){
+			            btnActive(idx);
+			          }
+			        });
+			      });
+			          
+			    });
+			  }
+			  
+			})(jQuery);
+
+			$(function(){
+			  $(".box-shortcut").quickMenu();
+			});
+		</script>
+
 	</div>
-</div>
 </html>

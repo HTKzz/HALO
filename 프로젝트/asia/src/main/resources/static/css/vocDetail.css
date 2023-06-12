@@ -82,6 +82,7 @@
 .bodyContent pre{
 	line-height: 200%;
 	white-space: pre-wrap;
+	word-break: break-all;
 }
 
 .bodyContent_inner{
@@ -111,7 +112,7 @@
 	float: left;
 	text-align: center;
 	letter-spacing: 3px;
-	padding: 20px 10px;
+	padding: 20px 0;
 	border-bottom: 1px solid #e2e2e2;
 	margin-bottom: 15px;
 }
@@ -125,12 +126,11 @@
 }
 
 .r-button{
-	padding-right: 39px;
+	/* padding-right: 39px; */
 	float: right;
 }
 
 .l-button{
-	padding: 0 30px;
 	float: left;
 }
 
@@ -139,7 +139,7 @@
 }
  
 .inner_text{
-	padding-left: 25px;
+	padding-left: 15px;
 	display: inline-block;
 	margin: 10px;
 }
@@ -150,7 +150,6 @@
 	font-size: 15px;
 	letter-spacing: 0.5px;
 	float: right;
-	margin-top: 10px;
 	margin-right: 20px;
 	padding: 9px 32px;
 	border-radius: 5px;
@@ -163,5 +162,6 @@
 	color: #fff;
 }
 
-
-
+.du-group-button {
+	margin-left: 23px;
+}

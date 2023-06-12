@@ -106,7 +106,7 @@ public class MemberController {
 		return "member/memberForm";
 	}
 
-	// 일반 회원가입 페이지 불러오기
+	// 기업 회원가입 페이지 불러오기
 	@GetMapping(value = "/company/new")
 	public String companyForm(Model model) {
 		CompanyFormDto companyFormDto = new CompanyFormDto();

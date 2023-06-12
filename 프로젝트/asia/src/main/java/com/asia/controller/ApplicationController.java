@@ -108,6 +108,7 @@ public class ApplicationController {
 		
 		try {
 			applicationService.updateApplication(applicationDto, attachFileList);
+			
 			if(applicationDto.getProgramCategory().equals("공연")) {
 				return "redirect:/board/program/showlist";
 			} else if(applicationDto.getProgramCategory().equals("전시")) {

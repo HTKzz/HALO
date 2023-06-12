@@ -1,17 +1,16 @@
 package com.asia.repository;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.asia.constant.Stat;
 import com.asia.entity.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Long>, MemberRepositoryCustom {
 	
+	Member findByNum(Long num);
 	Member findById(String id);
+	Member findByCid(String cid);
 	Member findByTel(String tel);
 	Member findByEmail(String email);
 	Member findByName(String name);

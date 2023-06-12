@@ -67,7 +67,7 @@ public class NoticeController {
 
 	// 새 글쓰기
 	@PostMapping(value = "/submitNotice")
-	public String addnoticeList(@Valid NoticeDto noticeDto, BindingResult bindingResult, Model model,
+	public String addNotice(@Valid NoticeDto noticeDto, BindingResult bindingResult, Model model,
 			Principal principal, @RequestParam("attachFile") List<MultipartFile> attachList) {
 
 		if (bindingResult.hasErrors()) {
@@ -91,9 +91,10 @@ public class NoticeController {
 	@GetMapping(value = "/detail/{num}")
 	public String noticeDetail(@PathVariable("num") Long num, Model model, Principal principal) {
 
-		NoticeDto noticeDto = noticeService.getNoticeDetail(num);
-
 		noticeService.updateCnt(num);
+
+		NoticeDto noticeDto = noticeService.getNoticeDetail(num);
+		
 		model.addAttribute("noticeDto", noticeDto);
 
 		if (principal != null) {
@@ -125,7 +126,7 @@ public class NoticeController {
 
 	// 글 수정하기
 	@PostMapping(value = "/modNotice/{num}")
-	public String modnotice(@PathVariable("num") Long num, NoticeDto noticeDto, Model model,
+	public String modNotice(@PathVariable("num") Long num, NoticeDto noticeDto, Model model,
 			BindingResult bindingResult, @RequestParam("attachFile") List<MultipartFile> attachList) {
 
 		if (bindingResult.hasErrors()) {
@@ -147,7 +148,7 @@ public class NoticeController {
 
 	// 글 삭제하기
 	@GetMapping(value = "/deleteNotice/{num}")
-	public String deletenotice(@PathVariable("num") Long num) throws Exception {
+	public String deleteNotice(@PathVariable("num") Long num) throws Exception {
 
 		attachService.noticeDeleteAttach(num);
 		noticeService.deleteNotice(num);

@@ -12,21 +12,11 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import com.asia.entity.Voc;
 
 public interface VocRepository extends JpaRepository<Voc, Long>, QuerydslPredicateExecutor<Voc>, VocRepositoryCustom {
-
-	// 조회수
-	@Modifying
-	@Query("update Voc v set v.cnt = v.cnt + 1 where v.realNum = :num")
-	int updateCnt(Long num);
-
-	// 페이징(vocMng) , VocRepositoryCustom 상속받아서 Querydsl로 구현한 관리페이지목록을 불러오는
-	// getBoardPage()메서드 사용가능
-	List<Voc> findByName(String name);
+	
+	Voc findByRealNum(Long num);
 
 	// 삭제
 	void deleteByRealNum(Long num);
-
-	// 답글에
-	Voc findByNum(Long num);
 
 	// 답글
 	@Modifying
@@ -53,6 +43,9 @@ public interface VocRepository extends JpaRepository<Voc, Long>, QuerydslPredica
 	@Modifying
 	@Query("update Voc set real_num = real_num - 1 where real_Num > :realNum")
 	void DeleteRealNum(Long realNum);
-
-	Voc findByRealNum(Long num);
+	
+	// 조회수
+	@Modifying
+	@Query("update Voc v set v.cnt = v.cnt + 1 where v.realNum = :num")
+	int updateCnt(Long num);
 }

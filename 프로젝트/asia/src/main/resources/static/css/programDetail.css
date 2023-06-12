@@ -92,142 +92,151 @@
 }
 
 .rule_box {
-	background:#72bade; padding:2%; box-sizing:border-box; border-radius: 5px;
+	background: #72bade;
+	padding: 2%;
+	box-sizing: border-box;
+	border-radius: 5px;
 }
 
 .rule_box02 {
-	background:#fff; padding:5% 6%; box-sizing:border-box; border-radius:50px;
+	background: #fff;
+	padding: 5% 6%;
+	box-sizing: border-box;
+	border-radius: 50px;
 }
 
 .rule_title01 {
-	font-weight:700; text-align:center; font-size:2.0em;
+	font-weight: 700;
+	text-align: center;
+	font-size: 2.0em;
 }
 
 .rule_title02 {
-	font-weight:700;
+	font-weight: 700;
 }
 
 .rule_title01 {
-	font-size:2.0em;
-	color:#227dc3;
-	text-align:center;
-	font-weight:700;
+	font-size: 2.0em;
+	color: #227dc3;
+	text-align: center;
+	font-weight: 700;
 }
 
 .rule_title01 span {
-	background:#fff !important;
-	padding:0px 20px;
-	display:inline-block;
+	background: #fff !important;
+	padding: 0px 20px;
+	display: inline-block;
 	font-family: 'Hahmlet-Bold';
 }
 
 .rule_point {
-	font-weight:700;
-	font-size:1.1em;
+	font-weight: 700;
+	font-size: 1.1em;
 }
 
 .rule_topText {
-	color:#ae5c30;
-	font-weight:700;
-	font-size:1.1em;
+	color: #ae5c30;
+	font-weight: 700;
+	font-size: 1.1em;
 }
 
 .ft_pink {
-	color:#da577f;
-	font-weight:500;
+	color :#da577f;
+	font-weight: 500;
 }
 
 .ft_bold {
-	font-weight:700;
+	font-weight: 700;
 }
 
 .line_box {
-	position:relative;
-	text-align:center;
-	line-height:1.5em; color:#8e6859;
-	font-size:1.8em;
-	font-weight:700;
-	padding:10px;
-	box-sizing:border-box
+	position: relative;
+	text-align: center;
+	line-height: 1.5em;
+	color: #8e6859;
+	font-size: 1.8em;
+	font-weight: 700;
+	padding: 10px;
+	box-sizing: border-box;
 }
 
 .line_box::before {
-	content:'';
-	position:absolute;
-	left:0;
-	top:50%;
-	width:100%;
-	height:2px;
-	margin-top:-1px;
-	background:#8e6859;
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 100%;
+	height: 2px;
+	margin-top: -1px;
+	background: #8e6859;
 }
 
 .line_box span {
-	display:inline-block;
-	position:relative;
-	padding:0 .75em;
-	background:#fff;
+	display: inline-block;
+	position: relative;
+	padding: 0 .75em;
+	background: #fff;
 }
 
 .line_box span::before {
-	left:0px;
+	left: 0px;
 }
 
 .line_box span i {
-	display:block;
-	margin-bottom:.25em;
-	vertical-align:top;
+	display: block;
+	margin-bottom: .25em;
+	vertical-align: top;
 }
 
 .line_box span::after {
-	right:0px;
+	right: 0px;
 }
 
 .line_box span::before, .line_box span::after {
-	content:'';
-	position:absolute;
-	top:50%;
-	width:6px;
-	height:6px;
-	margin-top:-3px;
-	background:#8e6859;
-	border-radius:50%;
+	content: '';
+	position: absolute;
+	top: 50%;
+	width: 6px;
+	height: 6px;
+	margin-top: -3px;
+	background: #8e6859;
+	border-radius: 50%;
 }
 
 .noshow_box {
 	border: 2px dashed #e9e9e9;
-	padding:3% 1%;
-	box-sizing:border-box;
-	border-radius:20px;
-	text-align:center;
+	padding: 3% 1%;
+	box-sizing: border-box;
+	border-radius: 20px;
+	text-align: center;
 }
 
 .noshow_text01 {
-	font-weight:700;
-	font-size:1.4em;
+	font-weight: 700;
+	font-size: 1.4em;
 	font-family: 'Cafe24Ssurround';
 }
 
 .noshow_text02 {
-	color:#db3276;
+	color: #db3276;
 }
 
 .noshow_text03 {
-	text-decoration:underline;
+	text-decoration: underline;
 }
 
 .rule_list02 {
 	overflow: hidden;
 	position: relative;
 	z-index: 10;
-	padding-left:7px;
+	padding-left: 7px;
 }
 
 .rule_list02 li {
 	position: relative;
 	padding-left: 10px;
 	line-height: 140%;
-	margin-bottom:12px;
+	margin-bottom: 12px;
 }
 
 .rule_list02 li:before {
@@ -238,12 +247,12 @@
 	top: 10px;
 	width: 4px;
 	height: 4px;
-	background-color:#6a4f40;
-	border-radius:3px;
+	background-color: #6a4f40;
+	border-radius: 3px;
 }
 
 .rule_list02 li.last_list:before {
-	background-color:#fff !important;
+	background-color: #fff !important;
 }
 
 .programDetail-infoTab {
@@ -301,144 +310,196 @@
 
 /* 공연 상세 */
 .programDetailView {
-	padding-top:70px;
-	color:#000;
+	padding-top: 70px;
+	color: #000;
 	max-width: 1040px;
     margin: 0 auto 125px;
 }
 
 .programDetailView h5 {
-	max-width:1040px;
-	margin:0 auto 30px;
-	padding-bottom:20px;
-	border-bottom:1px solid #d7d7d7;
-	font-weight:500;
-	font-size:30px;
-	color:#010101;
-	text-align:center;
+	max-width: 1040px;
+	margin: 0 auto 30px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #d7d7d7;
+	font-weight: 500;
+	font-size: 30px;
+	color: #010101;
+	text-align: center;
 }
 
 .programDetailViewTop {
-	position:relative;
-	max-width:1040px;
-	min-height:630px;
-	margin:0 auto 125px;
+	position: relative;
+	max-width: 1040px;
+	min-height: 630px;
+	margin: 0 auto 125px;
 }
 
 .programDetailViewTop:after {
-	content:".";
-	display:block;
-	height:0;
-	clear:both;
-	visibility:hidden;
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
 }
 
 .programDetailViewTop .topTxt {
-	float:right;
-	width:50%;
-	margin-left:50%;
-	word-break:keep-all;
+	float: right;
+	width: 50%;
+	margin-left: 50%;
+	word-break: keep-all;
 }
 
 .programDetailViewTop .topTxt h4 {
-	margin-top:-7px;
-	margin-bottom:3%;
-	font-weight:500;
-	font-size:30px;
-	letter-spacing:-0.02em;
+	margin-bottom: 3%;
+	font-weight: 500;
+	font-size: 30px;
+	letter-spacing: -0.02em;
 }
 
 .programDetailViewTop .topTxt .addTxt {
-	margin-bottom:7%;
-	font-weight:300;
-	font-size:18px;
-	line-height:1.4;
-	letter-spacing:-0.02em;
+	margin-bottom: 7%;
+	font-weight: 300;
+	font-size: 18px;
+	line-height: 1.4;
+	letter-spacing: -0.02em;
 }
 
 .programDetailViewTop .poster {
 	position:absolute;
-	left:0;
-	top:0;
-	width:44%;
-	height:100%;
-	max-height:650px;
-	margin-right:6%;
 }
 
 .programDetailViewTop .poster img {
-	width:100%;
-	max-width:445px;
-	max-height:100%;
-	max-height:644px;
+	width: 445px;
+	height: 630px;
+	max-width: 445px;
+	max-height: 100%;
+	max-height: 644px;
 }
 
 .programDetailViewTop .detailTxt {
-	float:right;
-	width:50%;
-	margin-left:50%;
-	padding-bottom:30px;
-	font-size:16px;
-	vertical-align:top;
+	float: right;
+	width: 50%;
+	margin-left: 50%;
+	padding-bottom: 30px;
+	font-size: 16px;
+	vertical-align: top;
 }
 
 .programDetailViewTop .detailTxt .txtList li {
-	overflow:hidden;
-	margin-top:8px;
-	line-height:1.4;
+	overflow: hidden;
+	margin-top: 8px;
+	line-height: 1.4;
 }
 
 .programDetailViewTop .detailTxt .txtList li:first-child {
-	margin-top:0;
+	margin-top: 0;
 }
 
 .programDetailViewTop .detailTxt .txtList li > em {
-	float:left;
-	min-width:2em;
-	padding-right:6%;
-	color:#666;
+	float: left;
+	min-width: 2em;
+	padding-right: 6%;
+	color: #666;
 }
 
 .programDetailViewTop .detailTxt .txtList li > span {
-	display:block;
-	overflow:hidden;
-	font-weight:300;
-	color:#1b1b1b;
+	display: block;
+	overflow: hidden;
+	font-weight: 300;
+	color: #1b1b1b;
 }
 
 .programDetailViewTop .programDetail-selectBtn {
-	float:right;
-	width:50%;
-	margin-left:50%;
+	float: right;
+	width: 50%;
+	margin-left: 50%;
 }
 
 .programDetailViewCon {
-	max-width:1040px;
-	margin:0 auto 60px;
+	max-width: 1040px;
+	margin: 0 auto 60px;
 }
 
 .programDetailView .programDetail-no-Info {
-	max-width:1040px;
-	margin:0 auto;
-	text-align:center;
+	max-width: 1040px;
+	margin: 0 auto;
+	text-align: center;
 }
 
 .programDetailView .programDetail-no-Info h5 {
-	margin:0 auto;
+	margin: 0 auto;
 }
 
 
 @media all and (max-width:960px) {
-    .programDetailView { padding-top:45px; }
-    .programDetailView h5 { margin:0 auto 20px;}
-    .programDetailViewTop { min-height:auto; margin:0 auto; }
-    .programDetailViewTop .topTxt { float:none; width:auto; margin-left:0; padding:0 10px; text-align:center; }
-    .programDetailViewTop .topTxt h4 { width:80%; margin:0 auto 10px; font-size:19px; word-break:keep-all; }
-    .programDetailViewTop .topTxt .addTxt { margin-bottom:35px; font-size:13px; }
-    .programDetailViewTop .poster { position:static; float:left; padding-left:10px; box-sizing:border-box; }
-    .programDetailViewTop .detailTxt { margin-left:0; padding:0 10px 0 0; font-size:13px; box-sizing:border-box; }
-    .programDetailViewTop .detailTxt .txtList li > em { padding-right:8px; }
-    .programDetailViewTop .programDetail-selectBtn { float:none; clear:both; width:auto; margin-left:0; padding-top:35px; }
-    .programDetailView h5 { padding-bottom:0; border-bottom:0 none; font-size:16px; text-align:left; }
-    .programDetailView .programDetail-no-Info > h5 { margin-bottom:15px; padding:0 10px; }
+    .programDetailView {
+    	padding-top: 45px;
+    }
+    
+    .programDetailView h5 {
+    	margin: 0 auto 20px;
+    }
+    
+    .programDetailViewTop {
+    	min-height: auto;
+    	margin: 0 auto;
+    }
+    
+    .programDetailViewTop .topTxt {
+    	float: none;
+    	width: auto;
+    	margin-left: 0;
+    	padding: 0 10px;
+    	text-align: center;
+    }
+    
+    .programDetailViewTop .topTxt h4 {
+    	width: 80%;
+    	margin: 0 auto 10px;
+    	font-size: 19px;
+    	word-break: keep-all;
+    }
+    
+    .programDetailViewTop .topTxt .addTxt {
+    	margin-bottom: 35px;
+    	font-size: 13px;
+    }
+    
+    .programDetailViewTop .poster {
+    	position: static;
+    	float: left;
+    	padding-left: 10px;
+    	box-sizing: border-box;
+    }
+    
+    .programDetailViewTop .detailTxt {
+    	margin-left: 0;
+    	padding: 0 10px 0 0;
+    	font-size: 13px;
+    	box-sizing: border-box;
+    }
+    
+    .programDetailViewTop .detailTxt .txtList li > em {
+    	padding-right: 8px;
+    }
+    
+    .programDetailViewTop .programDetail-selectBtn {
+    	float: none;
+    	clear: both;
+    	width: auto;
+    	margin-left: 0;
+    	padding-top: 35px;
+    }
+    
+    .programDetailView h5 {
+    	padding-bottom: 0;
+   		border-bottom: 0 none;
+   		font-size: 16px;
+   		text-align: left;
+   	}
+   	
+    .programDetailView .programDetail-no-Info > h5 {
+    	margin-bottom: 15px;
+    	padding: 0 10px;
+    }
 }

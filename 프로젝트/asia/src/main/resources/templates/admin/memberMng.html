@@ -5,35 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<th:block layout:fragment="script">
-	<script th:inline="javascript">
-		$(document).ready(function() {
-			$("#searchBtn").on("click", function(e) {
-				e.preventDefault();
-				
-				var searchBy = $("#searchBy").val();
-				var searchQuery = encodeURI($("#searchQuery").val());
-				
-				if (((searchBy == "stat") || (searchBy == "role")) && searchQuery.length == 1) {
-                    alert("2글자이상 입력해주세요.");
-                    return false;
-                }
-				
-				page(0);
-			});
-		});
-
-		function page(page) {
-			
-			var searchBy = $("#searchBy").val();
-			var searchQuery = encodeURI($("#searchQuery").val());
-			
-			location.href = "/admin/memberMngList/" + page + "?searchBy=" + searchBy
-					+ "&searchQuery=" + searchQuery;
-		}
-	</script>
-</th:block>
-
 <head>
 <link th:href="@{/css/vocList.css}" rel="stylesheet">
 </head>
@@ -70,17 +41,19 @@
 		</form>
 		
 		<section class="vocList">
+		<form>
 			<table class="vocList-table">
 				<thead>
 					<tr class="voc-tr">
 						<th style="width: 8%;">이름</th>
 						<th style="width: 12%;">아이디</th>
 						<th style="width: 12%;">전화번호</th>
-						<th style="width: 20%;">이메일</th>
+						<th style="width: 15%;">이메일</th>
 						<th style="width: 12%;">생년월일</th>
 						<th style="width: 15%;">가입일시</th>
 						<th style="width: 10%;">상태</th>
-						<th style="width: 11%;">권한</th>
+						<th style="width: 10%;">권한</th>
+						<th style="width: 6%;">상태 변경</th>
 					</tr>
 				</thead>
 
@@ -94,15 +67,17 @@
 						<td th:text="${mng.join}">가입일</td>
 						<td th:text="${mng.stat}">상태</td>
 						<td th:text="${mng.role}">권한</td>
+						<td>
+							<button class="myReservationForm-btn" th:formaction="@{'/admin/memberStat/change/' + ${mng.num}}" type="submit">변경</button>
+						</td>
 					</tr>
 				</tbody>
 			</table><br>
-
+			</form>
 			<div class="page_wrap" th:with="start=${(memberMngList.number/maxPage)*maxPage + 1}, end=(${(memberMngList.totalPages == 0) ? 1 : (start + (maxPage - 1) < memberMngList.totalPages ? start + (maxPage - 1) : memberMngList.totalPages)})">
 				<ul class="pagination justify-content-center">
 					<li class="page-item" th:classappend="${memberMngList.first} ? 'disabled'">
-						<a class="page-link" th:href="'javascript:page(' + ${memberMngList.pageable.pageNumber - 1} + ')'" 
-							tabindex="-1" aria-disabled="true">Previous</a>
+						<a class="page-link" th:href="'javascript:page(' + ${memberMngList.pageable.pageNumber - 1} + ')'" tabindex="-1" aria-disabled="true">Previous</a>
 					</li>
 					
 					<li class="page-item" th:classappend="${page == memberMngList.pageable.pageNumber + 1} ? 'active'" th:each="page : ${#numbers.sequence(start, end)}">
@@ -116,6 +91,7 @@
 			</div>
 		</section>
 	</div>
+	<script th:src="@{/js/memberMng.js}" type="text/javascript"></script>
 </div>
 
 </html>

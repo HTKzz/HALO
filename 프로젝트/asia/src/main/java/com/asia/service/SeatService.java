@@ -130,7 +130,6 @@ public class SeatService {
 			List<SeatADto> seat = seatARepository.getSeat(anum);
 			
 			for (int i = 0; i < array.length; i++) {
-				
 				for (int j = 0; j < seat.size(); j++) {
 					if (seat.get(j).getSeat().equals(array[i])) {
 						seat.get(j).setStat("seat");
@@ -147,7 +146,6 @@ public class SeatService {
 			List<SeatBDto> seat = seatBRepository.getSeat(anum);
 			
 			for (int i = 0; i < array.length; i++) {
-				
 				for (int j = 0; j < seat.size(); j++) {
 					if (seat.get(j).getSeat().equals(array[i])) {
 						seat.get(j).setStat("seat");
@@ -164,7 +162,6 @@ public class SeatService {
 			List<SeatCDto> seat = seatCRepository.getSeat(anum);
 			
 			for (int i = 0; i < array.length; i++) {
-				
 				for (int j = 0; j < seat.size(); j++) {
 					if (seat.get(j).getSeat().equals(array[i])) {
 						seat.get(j).setStat("seat");

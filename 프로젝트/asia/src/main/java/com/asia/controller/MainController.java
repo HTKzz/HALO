@@ -24,6 +24,7 @@ public class MainController {
 	private final ApplicationService applicationService;
 	private final NoticeService noticeService;
 	
+	// 메인페이지 호출
 	@GetMapping(value = "/")
 	public String main(Model model) {
 		
@@ -36,22 +37,25 @@ public class MainController {
 		return "main";
 	}
 	
-	@GetMapping(value = "/useinfo")
-	public String useinfo() {
-
-		return "menu/useinfo";
-	}
-	
+	// 전당소개 호출
 	@GetMapping(value = "/accIntro")
 	public String accIntro() {
 
 		return "menu/accIntro";
 	}
 	
+	// 오시는길 호출
 	@GetMapping(value = "/wayMap")
 	public String wayMap() {
 
 		return "menu/wayMap";
+	}
+	
+	// 이용안내 호출
+	@GetMapping(value = "/useinfo")
+	public String useinfo() {
+
+		return "menu/useinfo";
 	}
 
 	// 권한이 없는 사람이 접근했을경우
@@ -60,6 +64,7 @@ public class MainController {
 		return "member/error";
 	}
 	
+	// 개인, 법인 선택 페이지
 	@RequestMapping(value = "/members/select")
 	public String signupSelect() {
 		return "member/select";

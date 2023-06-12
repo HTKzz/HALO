@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.asia.constant.Stat;
 import com.asia.dto.SearchDto;
 import com.asia.entity.Member;
 import com.asia.repository.MemberRepository;
@@ -46,7 +47,7 @@ public class MemberService implements UserDetailsService {
 			throw new IllegalStateException("이미 사용된 전화번호입니다.");
 		}
 		findMember = null;
-		findMember = memberRepository.findByTel(member.getCid());
+		findMember = memberRepository.findByCid(member.getCid());
 		if (findMember != null) {
 			throw new IllegalStateException("이미 사용된 사업자등록번호입니다.");
 		}
@@ -103,7 +104,25 @@ public class MemberService implements UserDetailsService {
     
     // 회원관리 페이지 리스트 불러오기
  	public Page<Member> memberList(SearchDto searchDto, Pageable pageable) {
-
  		return memberRepository.getMemberMngLists(searchDto, pageable); // 모든 리스트
  	}
+ 	
+ 	public Member getMemDtl(Long num) {
+ 		Member member = memberRepository.findByNum(num);
+ 		return member;
+ 	}
+ 	
+ 	//회원 상태 수정
+ 	public void updateStat(Member member) {
+ 		if(member.getStat().toString().equals("회원")) {
+ 			member.setStat(Stat.블랙);
+ 	 		memberRepository.save(member);
+ 		} else {
+ 			member.setStat(Stat.회원);
+ 	 		memberRepository.save(member);
+ 		}
+ 	}
+ 	
+ 	
+
 }

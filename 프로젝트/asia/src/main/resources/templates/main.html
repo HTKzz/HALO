@@ -18,11 +18,7 @@
 			style="background-color: transparent;"></span>
 		<ul class="slide_pagination" style="display: flex;"></ul>
 	</div>
-
-	<input type="hidden" th:name="${_csrf.parameterName}"
-		th:value="${_csrf.token}">
-
-
+	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 	<section class="notice">
 		<div class="notice_inner">
 			<div class="notice_left">
@@ -69,7 +65,6 @@
 			</div>
 		</div>
 	</section>
-
 	<script th:src="@{/js/main.js}" type="text/javascript"></script>
 </div>
 </html>
