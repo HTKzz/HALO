@@ -37,10 +37,10 @@ public interface VocRepository extends JpaRepository<Voc, Long>, QuerydslPredica
 	@Query(value = "select count(*) from Voc", nativeQuery = true)
 	long getList();
 
-	@Query(value = "select name from Voc where real_num = :num -1", nativeQuery = true)
+	@Query(value = "select name, group_ord from Voc where real_num = :num -1", nativeQuery = true)
 	String getPrevContent(Long num);
 
-	@Query(value = "select name from Voc where real_num = :num +1", nativeQuery = true)
+	@Query(value = "select name, group_ord from Voc where real_num = :num +1", nativeQuery = true)
 	String getNextContent(Long num);
 	
 	@Query(value = "select real_num from (SELECT * FROM voc ORDER BY real_num DESC) WHERE ROWNUM= 1", nativeQuery = true)

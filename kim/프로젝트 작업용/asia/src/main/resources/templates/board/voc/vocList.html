@@ -76,10 +76,10 @@
 									<span style="padding-left: 20px"></span>
 								</th:block>
 								<span style="font-size: 12px;">[답변]</span>
-								<a th:text="${voc.name}" th:href="@{/voc/detail/{num}(num=${voc.realNum})}"></a>
+								<a class="a-name" th:text="${voc.name}" th:href="@{/voc/detail/{num}(num=${voc.realNum})}"></a>
 							</div>
 							<div th:unless="${voc.groupLayer > 0}">
-								<a th:text="${voc.name}" th:href="@{/voc/detail/{num}(num=${voc.realNum})}"></a>
+								<a class="a-name" th:text="${voc.name}" th:href="@{/voc/detail/{num}(num=${voc.realNum})}"></a>
 							</div>
 
 						</td>

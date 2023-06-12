@@ -9,6 +9,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <!-- CSS only -->
 <link th:href="@{/css/layout1.css}" rel="stylesheet">
+<link th:href="@{/css/header.css}" rel="stylesheet">
 <link th:href="@{/css/Pagination.css}" rel="stylesheet">
 
 <!-- JS, Popper.js, and jQuery -->
@@ -17,9 +18,12 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="script"></th:block>
 <th:block layout:fragment="css"></th:block>
 </head>
+
 <body>
 <div th:replace="fragments/header::header"></div>
-<div layout:fragment="content" class="content"> </div>
+<div layout:fragment="content" class="content"></div>
+<div th:replace="fragments/quickmenu::quickmenu"></div>
 <div th:replace="fragments/footer::footer"></div>
 </body>
+
 </html>

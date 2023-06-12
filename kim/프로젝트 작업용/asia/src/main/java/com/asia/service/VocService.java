@@ -87,7 +87,6 @@ public class VocService {
 	}
 
 	// 수정-등록된 상품 불러오는 메서드
-	@Transactional(readOnly = true) // 읽어오는 트랜잭션을 읽기전용으로 설정, 이럴 경우 JPA가 변경감지(더티체킹)를 수행하지 않아서 성능향상
 	public VocFormDto getvocDtl(Long num) {
 		Voc voc = vocRepository.findByRealNum(num);
 		
@@ -99,8 +98,27 @@ public class VocService {
 		}
 		
 		long allVocCnt = vocRepository.getList();
+		
 		String prevContent = vocRepository.getPrevContent(voc.getRealNum());
+		if (prevContent != null) {
+			String[] array = prevContent.split(",");
+			if (Integer.parseInt(array[1]) > 0) {
+				prevContent = "[답변] " + array[0];
+			} else {
+				prevContent = array[0];
+			}
+		}
+		
 		String nextContent = vocRepository.getNextContent(voc.getRealNum());
+		if (nextContent != null) {
+			String[] array = nextContent.split(",");
+			if (Integer.parseInt(array[1]) > 0) {
+				nextContent = "[답변] " + array[0];
+			} else {
+				nextContent = array[0];
+			}
+		}
+		
 		VocFormDto vocFormDto = VocFormDto.of(voc);
 		vocFormDto.setAllVocCnt(allVocCnt);
 		vocFormDto.setPrevContent(prevContent);
@@ -181,20 +199,39 @@ public class VocService {
 	public VocFormDto getVoc() { //글 등록 후 바로 상세보기로
 		Long vocNum = vocRepository.getRealNum();
 		
-		Voc voc1 = vocRepository.findByNum(vocNum);
+		Voc voc = vocRepository.findByRealNum(vocNum);
 		 
-		List<Attach> attachList = attachRepository.findByVocNumOrderByNumAsc(voc1.getNum()); //해당 이미지 조회
+		List<Attach> attachList = attachRepository.findByVocNumOrderByNumAsc(voc.getNum()); //해당 이미지 조회
 		List<AttachDto> attachDtoList = new ArrayList<AttachDto>();
 		for(Attach attach : attachList) { //조회한 attach엔티티를 attachDto객체로 만들어서 리스트에 추가
 			AttachDto attachDto = AttachDto.of(attach);
 			attachDtoList.add(attachDto);
 		}
 		
-		VocFormDto vocFormDto = VocFormDto.of(voc1);
+		VocFormDto vocFormDto = VocFormDto.of(voc);
 		
 		long allVocCnt = vocRepository.getList();
-		String prevContent = vocRepository.getPrevContent(voc1.getNum());
-		String nextContent = vocRepository.getNextContent(voc1.getNum());
+		
+		String prevContent = vocRepository.getPrevContent(voc.getRealNum());
+		if (prevContent != null) {
+			String[] array = prevContent.split(",");
+			if (Integer.parseInt(array[1]) > 0) {
+				prevContent = "[답변] " + array[0];
+			} else {
+				prevContent = array[0];
+			}
+		}
+		
+		String nextContent = vocRepository.getNextContent(voc.getRealNum());
+		if (nextContent != null) {
+			String[] array = nextContent.split(",");
+			if (Integer.parseInt(array[1]) > 0) {
+				nextContent = "[답변] " + array[0];
+			} else {
+				nextContent = array[0];
+			}
+		}
+		
 		vocFormDto.setAllVocCnt(allVocCnt);
 		vocFormDto.setPrevContent(prevContent);
 		vocFormDto.setNextContent(nextContent);
@@ -202,10 +239,6 @@ public class VocService {
 		vocFormDto.setAttachDtoList(attachDtoList);
 		
 		return vocFormDto;
-	}
-
-	public Voc findByNum(Long num) {
-		return vocRepository.findByNum(num);
 	}
 	
 	public Voc findByRealNum(Long num) {

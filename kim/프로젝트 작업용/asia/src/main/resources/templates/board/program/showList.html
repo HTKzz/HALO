@@ -18,7 +18,7 @@
 						<th:block th:each="showlist, status: ${application4.getContent()}">
 							<li>
 								<div class="card">
-									<a class="card-inner" th:href="'/board/program/application/' + ${showlist.name}">
+									<a class="card-inner" th:href="'/board/program/application/' + ${showlist.num}">
 										<div class="card-head">
 											<figure class="card-img-fig">
 												<img th:src="${showlist.url}" class="card-img" th:alt="${showlist.name}">

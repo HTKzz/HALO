@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.asia.dto.AttachDto;
 import com.asia.dto.NoticeDto;
 import com.asia.dto.SearchDto;
+import com.asia.entity.Application;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Notice;
@@ -133,6 +134,20 @@ public class NoticeService {
 
 	public Notice getNotice(Long num) {
 		return noticeRepository.findByNum(num);
+	}
+	
+	// 메인화면 공지사항 리스트
+	public List<NoticeDto> getNoticeList() {
+		List<NoticeDto> noticeList = noticeRepository.getNoticeList();
+		int size = noticeList.size();
+		
+		for(int i = 0; i < size; i++) {
+			if(i > 7) {
+				noticeList.remove(8);
+			}
+		}
+		
+		return noticeList;
 	}
 
 }

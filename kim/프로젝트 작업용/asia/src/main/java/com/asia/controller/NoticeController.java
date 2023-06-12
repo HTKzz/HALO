@@ -46,13 +46,13 @@ public class NoticeController {
 
 		model.addAttribute("maxPage", 10);
 		model.addAttribute("noticeList", lists);
-		
+
 		if (!searchDto.getSearchQuery().matches("[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝|(|)|.|-]*")) {
 			searchDto.setSearchQuery("");
 		}
-		
+
 		model.addAttribute("SearchDto", searchDto);
-		
+
 		return "board/notice/notice";
 	}
 
@@ -96,9 +96,10 @@ public class NoticeController {
 		noticeService.updateCnt(num);
 		model.addAttribute("noticeDto", noticeDto);
 
-		String name = principal.getName();
-		
-		model.addAttribute("username", name);
+		if (principal != null) {
+			String name = principal.getName();
+			model.addAttribute("username", name);
+		}
 
 		return "board/notice/noticeDetailForm";
 	}

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.asia.dto.ApplicationDto;
 import com.asia.dto.AttachDto;
 import com.asia.dto.SeatADto;
 import com.asia.dto.SeatBDto;
@@ -41,11 +42,11 @@ public class ReservationController {
 
 	// 좌석o 선택페이지 이동
 	@PostMapping(value = "/new")
-	public String selectSeat(Model model, @RequestParam("test") int anum, @RequestParam("seatDetail") String seat) {
+	public String selectSeat(Model model, @RequestParam("test") Long anum, @RequestParam("seatDetail") String seat) {
 
 		model.addAttribute("updateDto", new UpdateDto());
 
-		Application application = applicationService.getApplicationDtl(anum);
+		ApplicationDto application = applicationService.getApplicationDtl(anum);
 		model.addAttribute("name", application.getName());
 		model.addAttribute("udate", application.getUdate());
 		model.addAttribute("price", application.getPrice());
@@ -78,11 +79,11 @@ public class ReservationController {
 
 	// 좌석o 예매하기
 	@PostMapping(value = "/add")
-	public String addreservation(Model model, @RequestParam("anum") int anum, @RequestParam("seat1") String seatDetail,
+	public String addreservation(Model model, @RequestParam("anum") Long anum, @RequestParam("seat1") String seatDetail,
 			@RequestParam("seat") String seat, @RequestParam("cnt") int cnt, @RequestParam("price") int price,
 			Principal principal, UpdateDto updateDto) throws Exception {
 
-		Application application = applicationService.getApplicationDtl(anum);
+		Application application = applicationService.getAppDtl(anum);
 
 		String name = principal.getName();
 
@@ -97,7 +98,7 @@ public class ReservationController {
 	@PostMapping(value = "/new1")
 	public String reservation1(Model model, @RequestParam("test") long anum) {
 
-		Application application = applicationService.getApplicationDtl(anum);
+		Application application = applicationService.getAppDtl(anum);
 		List<AttachDto> images = attachService.getImageList(anum);
 		model.addAttribute("application", application);
 		model.addAttribute("anum", anum);
@@ -111,7 +112,7 @@ public class ReservationController {
 	public String addreservation1(Model model, @RequestParam("anum") int anum, @RequestParam("cnt") int cnt,
 			@RequestParam("price") int price, Principal principal) throws Exception {
 
-		Application application = applicationService.getApplicationDtl(anum);
+		Application application = applicationService.getAppDtl(anum);
 
 		String name = principal.getName();
 
@@ -149,13 +150,12 @@ public class ReservationController {
 		String seatDetail = reservation.getApplication().getSeatDetail();
 
 		Long deleteSeat = reservation.getApplication().getNum();
-		int anum = Long.valueOf(deleteSeat).intValue();
 
 		if (seatDetail != null) {
 			String selectSeat = reservation.getSeat();
 			String[] array = selectSeat.split(", ");
 
-			seatService.cancelUpdateSeat(seatDetail, anum, array);
+			seatService.cancelUpdateSeat(seatDetail, deleteSeat, array);
 		}
 
 		reservationService.cancleReservation(num);
@@ -172,13 +172,12 @@ public class ReservationController {
 		String seatDetail = reservation.getApplication().getSeatDetail();
 
 		Long deleteSeat = reservation.getApplication().getNum();
-		int anum = Long.valueOf(deleteSeat).intValue();
 
 		if (seatDetail != null) {
 			String selectSeat = reservation.getSeat();
 			String[] array = selectSeat.split(", ");
 
-			seatService.cancelUpdateSeat(seatDetail, anum, array);
+			seatService.cancelUpdateSeat(seatDetail, deleteSeat, array);
 		}
 
 		reservationService.refundReservation(num);

@@ -1,0 +1,60 @@
+#floatdiv {
+	position: fixed;
+	_position: absolute;
+	_z-index: -1;
+	width: 100px;
+	display: inline-block; /* overflow:hidden;  같은 의미? */
+	right: 0px; /* //화면 오른쪽에 위치한다. left로 변경가능 */
+	top: 20%; /* //화면 위쪽과의 간격 */
+	background-color: transparent;
+	margin: 0;
+}
+
+#floatdiv ul {
+	list-style: none;
+}
+
+#floatdiv li {
+	margin-bottom: 2px;
+	text-align: left;
+}
+
+#floatdiv a {
+	color: #5D5D5D;
+	border: 0;
+	text-decoration: none;
+	display: float;
+}
+
+#floatdiv a:hover, #floatdiv .menu {
+	background-color: #5D5D5D;
+	color: #fff;
+} /* 마우스오버 시 배경/글씨 색깔 */
+#floatdiv .menu, #floatdiv .last {
+	margin-bottom: 0px;
+}
+
+#floatContent {
+	padding: 5px;
+	border-width: 2px;
+	border-color: #7f7f7f;
+	border-style: solid;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#floatTitle {
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #7f7f7f;
+	/* 텍스트 */
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 12px;
+	/* 모양 */
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}

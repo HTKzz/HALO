@@ -17,7 +17,7 @@ public interface SeatBRepository extends JpaRepository<SeatB, Long> {
 	List<CountDto> getCount();
 	
 	@Query("select new com.asia.dto.SeatBDto(num, stat, seat) from SeatB where application_num = :num")
-	List<SeatBDto> getSeat(int num);
+	List<SeatBDto> getSeat(Long num);
 
 	SeatB findByNum(Long num);
 	
