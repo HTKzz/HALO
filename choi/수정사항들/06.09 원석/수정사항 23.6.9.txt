@@ -1,6 +1,0 @@
-1) main.css
-
-	• 추가
-
- 첫째 줄  '.slide' 안에
-min-width: 1270px; 
