@@ -1,77 +1,98 @@
-/* layout */
-button {
-	border: 0;
-	cursor: pointer;
+@font-face {
+	font-family: 'SF_HambakSnow';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
-a {
-	color: #fff;
-	text-decoration: none;
-	line-height: 3;
-}
-
-.wrap {
-	height: 100%;
-}
-
-.content {
-	position: relative;
-	height: 100%;
-}
-
-.content .section {
-	height: 100%;
-}
-
-.content .con1 {
-	background-color: #877249;
-}
-
-/* .content .con2 {
-	background-color: #593d91;
-}
-
-.content .con3 {
-	background-color: #ed6cc3;
-}
-
-.content .con4 {
-	background-color: #089191;
-} */
-
-/* style */
-.box-shortcut {
+#quick-floatdiv {
 	position: fixed;
-	right: 50px;
-	top: 50%;
-	z-index: 9000;
+	_position: absolute;
+	_z-index: -1;
+	width: 90px;
+	display: inline-block; /* overflow:hidden;  같은 의미? */
+	right: 0px; /* //화면 오른쪽에 위치한다. left로 변경가능 */
+	top: 20%; /* //화면 위쪽과의 간격 */
+	background-color: transparent;
+	margin: 0;
 }
 
-.box-shortcut {
-	border-radius: 10px;
-	background: #fff
+#quick-floatdiv a {
+	color: #5D5D5D;
+	border: 0;
+	text-decoration: none;
+	display: float;
 }
 
-.box-shortcut .menu>li>a {
-	display: block;
-	padding: 10px;
-	box-sizing: border-box;
+#quick-floatdiv .menu, #quick-floatdiv .last {
+	margin-bottom: 0px;
 }
 
-.box-shortcut .menu>li>.on {
-	background: #cb2256;
+#quick-floatContent {
+	background-color:white;
+	border-width: 2px;
+	border-color: #7f7f7f;
+	border-style: solid;
 }
 
-.box-shortcut .btn-scroll-top {
-	padding: 10px;
-	background: #aa1845;
+#quick-floatContent a{
+	font-family: Pretendard-Regular;
 }
 
-.box-shortcut .btn-scroll-top {
+#quick-floatContent > div{
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+#quick-floatContent > div:hover img{
+	transform: scale(1.15);
+}
+
+#quick-floatContent img{
+	 transition: all 0.2s linear;
+	 width:80px;
+}
+
+#quick-floatTitle {
+	font-family: 'SF_HambakSnow';
+	width: 90px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #7f7f7f;
+	/* 텍스트 */
 	color: #fff;
-	width: 61px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 15px;
+	letter-spacing: 1px;
+	
+	/* 모양 */
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
 
-.btn-img {
-	width: 6px;
+.quick-top{
+	width:90px;
+	text-align:center;
+	height:30px;
+	line-height: 30px;
+	background-color: #7f7f7f;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#quick-floatContent .quick-wayToCome img{
+	height:75px;
+}
+
+#quick-floatContent .quick-voc img{
+	height:67px;
+}
+
+.quick-top > #moveToTop{
+	font-family: 'SF_HambakSnow';
+	color:white;
 }

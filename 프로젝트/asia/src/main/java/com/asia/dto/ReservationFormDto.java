@@ -12,14 +12,18 @@ import lombok.ToString;
 public class ReservationFormDto {
 
 	private Long num;
+	
+	private String name;
 
-	private int cnt;
+	private Long cnt;
 
 	private String seat;
 	
 	private String udate;
 	
-	private int price;
+	private String place;
+	
+	private Long price;
 	
 	private String stat;
 }

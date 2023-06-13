@@ -51,7 +51,7 @@ public class Notice extends BaseEntity {
 	
 	private LocalDate d_date;
 	
-	@Column(columnDefinition = "number default 0", nullable = false)
+	@Column(nullable = false)
 	private int cnt;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -62,34 +62,9 @@ public class Notice extends BaseEntity {
 	@ToString.Exclude
 	private List<Attach> attach;
 	
-	@Enumerated(EnumType.STRING)
-	private Stat stat;
-	
-	@Enumerated(EnumType.STRING)
-	private Role role;
-	
-	//새 게시글 쓰기
-	public static Notice addNotice(NoticeDto noticeDto) {
-		
-		Notice notice = new Notice();
-		notice.setName(noticeDto.getName());
-		notice.setContent(noticeDto.getContent());
-		notice.setCnt(notice.cnt);
-		notice.getRole();
-		return notice;
-	}
-	
 	//글 수정하기
 	public void updateNotice(NoticeDto noticeDto) {
-		
-		this.num = noticeDto.getNum();
 		this.name = noticeDto.getName();
 		this.content = noticeDto.getContent();
-	}
-	
-	//글 삭제하기
-	public void deleteNotice(NoticeDto noticeDto) {
-		
-		this.num = noticeDto.getNum();
 	}
 }

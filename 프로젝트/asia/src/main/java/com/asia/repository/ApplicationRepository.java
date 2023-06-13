@@ -17,7 +17,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Long>,
 	
 	void deleteByNum(Long num);
 	
-	List<Application> findByName(String name);
+	List<Application> findByOriginNo(Long num);
 	
 	ApplicationDto findByNum(Long num);
 	

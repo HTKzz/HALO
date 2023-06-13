@@ -22,12 +22,14 @@ import com.asia.dto.SearchDto;
 import com.asia.entity.Application;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
+import com.asia.entity.Reservation;
 import com.asia.entity.SeatA;
 import com.asia.entity.SeatB;
 import com.asia.entity.SeatC;
 import com.asia.repository.ApplicationRepository;
 import com.asia.repository.AttachRepository;
 import com.asia.repository.MemberRepository;
+import com.asia.repository.ReservationRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -45,8 +47,6 @@ public class ApplicationService {
 	public Long saveApplication(ApplicationDto applicationDto, List<MultipartFile> attachFileList, String name)
 			throws Exception {
 
-		validateDuplicateApplication(applicationDto);
-
 		Member member = memberRepository.findById(name);
 
 		String seat = applicationDto.getSeatDetail();
@@ -61,6 +61,8 @@ public class ApplicationService {
 		TimeUnit time = TimeUnit.DAYS;
 		long diffrence = time.convert(diff, TimeUnit.MILLISECONDS);
 
+		Long originNo = null;
+
 		for (int i = 0; i < diffrence + 1; i++) {
 			if (seat.equals("A")) {
 				Calendar cal = Calendar.getInstance();
@@ -71,6 +73,13 @@ public class ApplicationService {
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
 				application.setApprovalStatus("미승인");
+				applicationRepository.save(application);
+				
+				if (i == 0) {
+					originNo = application.getNum();
+				}
+				
+				application.setOriginNo(originNo);
 				applicationRepository.save(application);
 
 				for (int j = 1; j < 49; j++) {
@@ -104,6 +113,13 @@ public class ApplicationService {
 				application.setMember(member);
 				application.setApprovalStatus("미승인");
 				applicationRepository.save(application);
+				
+				if (i == 0) {
+					originNo = application.getNum();
+				}
+				
+				application.setOriginNo(originNo);
+				applicationRepository.save(application);
 
 				for (int j = 1; j < 41; j++) {
 					SeatB seatB = new SeatB();
@@ -135,6 +151,13 @@ public class ApplicationService {
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
 				application.setApprovalStatus("미승인");
+				applicationRepository.save(application);
+				
+				if (i == 0) {
+					originNo = application.getNum();
+				}
+				
+				application.setOriginNo(originNo);
 				applicationRepository.save(application);
 
 				for (int j = 1; j < 33; j++) {
@@ -168,6 +191,13 @@ public class ApplicationService {
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
 				application.setApprovalStatus("미승인");
+				applicationRepository.save(application);
+				
+				if (i == 0) {
+					originNo = application.getNum();
+				}
+				
+				application.setOriginNo(originNo);
 				applicationRepository.save(application);
 
 				for (int j = 0; j < attachFileList.size(); j++) {
@@ -231,7 +261,7 @@ public class ApplicationService {
 		Application application = applicationRepository.findById(applicationDto.getNum())
 				.orElseThrow(EntityNotFoundException::new);
 
-		List<Application> appList = applicationRepository.findByName(application.getName());
+		List<Application> appList = applicationRepository.findByOriginNo(application.getOriginNo());
 
 		for (int i = 0; i < appList.size(); i++) {
 			Application application1 = appList.get(i);
@@ -271,8 +301,8 @@ public class ApplicationService {
 		return new PageImpl<>(resultList, pageable, list.size());
 	}
 
-	public List<Application> getApplication(String Name) {
-		List<Application> application = applicationRepository.findByName(Name);
+	public List<Application> getApplication(Long num) {
+		List<Application> application = applicationRepository.findByOriginNo(num);
 		return application;
 	}
 
@@ -289,7 +319,7 @@ public class ApplicationService {
 
 	// 승인상태 수정
 	public void updateApprovalStatus(Application application) throws Exception {
-		List<Application> appList = applicationRepository.findByName(application.getName());
+		List<Application> appList = applicationRepository.findByOriginNo(application.getOriginNo());
 
 		for (int i = 0; i < appList.size(); i++) {
 			Application application1 = appList.get(i);
@@ -312,7 +342,7 @@ public class ApplicationService {
 		
 		for(int i = 0; i < size; i++) {
 			if(i <= 9) {
-				List<Application> application = applicationRepository.findByName(list.get(i).getName());
+				List<Application> application = applicationRepository.findByOriginNo(list.get(i).getOriginNo());
 				List<AttachDto> attach = attachRepository.getAppList(application.get(0).getNum());
 				list.get(i).setUrl(attach.get(1).getUrl());
 			} else {
@@ -332,13 +362,4 @@ public class ApplicationService {
 	public void deleteApplication(Long num) {
 		applicationRepository.deleteByNum(num);
 	}
-	
-	private void validateDuplicateApplication(ApplicationDto applicationDto) {
-		List<Application> findApplication = applicationRepository.findByName(applicationDto.getName());
-		
-		if (findApplication.size() != 0) {
-			throw new IllegalStateException("이미 등록된 제목입니다."); // 이미 만들어진 이름의 경우 예외를 발생시킨다.
-		}
-	}
-
 }

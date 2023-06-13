@@ -2,7 +2,6 @@ package com.asia.controller;
 
 import java.util.List;
 
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.asia.dto.ApplicationDto;
 import com.asia.dto.NoticeDto;
-import com.asia.entity.Notice;
 import com.asia.service.ApplicationService;
 import com.asia.service.NoticeService;
 
