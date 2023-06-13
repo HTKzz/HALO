@@ -7,16 +7,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!-- <link rel="stylesheet" th:href="@{/css/header.css}"> -->
-	<!-- <link rel="stylesheet" href="https://musenet.ggcf.kr/userContent/css/swiper.min.css"> -->
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script> -->
 </head>
-
-<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-
 <body>
-<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 	<div class="acc-header" th:fragment="header">
 		<header class="acc-header-wrap">
 			<a href="/" class="acc-header-logo">
@@ -113,26 +105,9 @@
 					</li>
 				</ul>
 			</div>
-
 		</header>
-
-		<script>
-			$("header > nav").on({
-				"mouseenter" : function() {
-					$(this).find("ul").stop().fadeIn(200);
-					$(".menu-item-title:hover").css({
-						"font-weight": "bolder"
-					});
-				},
-				"mouseleave" : function() {
-					$(this).find("ul").stop().fadeOut(200);
-					$(".menu-item-title").css({
-						"font-weight": "normal",
-						"font-size": ""
-					});
-				}
-			}, ".acc-header-gnb > li");
-		</script>
+		<script th:src="@{/js/header.js}" type="text/javascript"></script>
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 	</div>
 </body>
 </html>

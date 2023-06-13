@@ -35,7 +35,7 @@ public class Application extends BaseEntity {
 	
 	// 프로그램 아이디
 	@Id
-	@Column(name="num")
+	@Column(name="app_num")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="APPLICATION_SEQ_NUM")
 	private Long num;
 	
@@ -118,17 +118,4 @@ public class Application extends BaseEntity {
 		this.detail = applicationDto.getDetail();
 		this.programCategory = applicationDto.getProgramCategory();
 	}
-	
-//	public static Application saveApplication(ApplicationDto applicationDto) {
-//		Application application = new Application();
-//		application.setName(applicationDto.getName());
-//		application.setSdate(applicationDto.getSdate());
-//		application.setEdate(applicationDto.getEdate());
-//		application.setUdate(applicationDto.getUdate());
-//		application.setSeatDetail(applicationDto.getSeatDetail());
-//		
-//		return application;
-//	}
-
-	
 }

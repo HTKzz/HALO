@@ -20,12 +20,6 @@ public class SeatBDto {
 	private String seat;
 	
 	@QueryProjection
-	public SeatBDto(Long num, String seat) {
-		this.num = num;
-		this.seat = seat;
-	}
-	
-	@QueryProjection
 	public SeatBDto(Long num, String stat, String seat) {
 		this.num = num;
 		this.stat = stat;

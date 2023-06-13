@@ -20,12 +20,6 @@ public class SeatADto {
 	private String seat;
 	
 	@QueryProjection
-	public SeatADto(Long num, String seat) {
-		this.num = num;
-		this.seat = seat;
-	}
-	
-	@QueryProjection
 	public SeatADto(Long num, String stat, String seat) {
 		this.num = num;
 		this.stat = stat;

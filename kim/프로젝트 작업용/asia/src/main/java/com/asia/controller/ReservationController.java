@@ -79,7 +79,7 @@ public class ReservationController {
 
 	// 좌석o 예매하기
 	@PostMapping(value = "/add")
-	public String addreservation(Model model, @RequestParam("anum") Long anum, @RequestParam("seat1") String seatDetail,
+	public String addReservation(Model model, @RequestParam("anum") Long anum, @RequestParam("seat1") String seatDetail,
 			@RequestParam("seat") String seat, @RequestParam("cnt") int cnt, @RequestParam("price") int price,
 			Principal principal, UpdateDto updateDto) throws Exception {
 
@@ -133,7 +133,6 @@ public class ReservationController {
 
 		if (reservations.isEmpty()) {
 			model.addAttribute("reservations", "nothing");
-
 		} else {
 			model.addAttribute("reservations", reservations);
 		}

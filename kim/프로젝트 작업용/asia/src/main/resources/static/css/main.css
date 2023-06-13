@@ -1,162 +1,131 @@
-.slide {
-  /* layout */
-  display: flex;
-  
-  /* 컨테이너의 내용물이 컨테이너 크기(width, height)를 넘어설 때 보이지 않도록 하기 위해 hidden을 준다. */
-  overflow: hidden;
+@charset "UTF-8";
 
-  /* position */
-  /* slide_button의 position absolute가 컨테이너 안쪽에서 top, left, right offset이 적용될 수 있도록 relative를 준다. (기본값이 static인데, static인 경우 그 상위 컨테이너로 나가면서 현재 코드에선 html을 기준으로 offset을 적용시키기 때문) */
-  position: relative;
-
-  /* size */
-  width: 100%;
-  min-width: 1270px; 
-
-  /* slide drag를 위해 DOM요소가 드래그로 선택되는것을 방지 */
-  user-select: none;
-  
-  /* left : 20px; */
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
+
+.slide_wrap {
+  	display: flex;
+  	overflow: hidden;
+  	position: relative;
+  	width: 100%;
+  	min-width: 1270px;
+  	user-select: none;
+}
+
 .slide_item {
-  /* layout */
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
-
-  /* position - 버튼 클릭시 left offset값을 적용시키기 위해 */
-  position: relative;
-  left: 0px;
-
-  /* size */
-  width: 100%;
-  height: 500px;
-  /* flex item의 flex-shrink는 기본값이 1이므로 컨테이너 크기에 맞게 줄어드는데, 슬라이드를 구현할 것이므로 줄어들지 않도록 0을 준다. */
-  flex-shrink: 0;
-
-  /* transition */
-  transition: left 0.5s; 
+  	flex-wrap: nowrap;
+  	align-items: center;
+  	justify-content: center;
+  	position: relative;
+  	left: 0px;
+  	width: 100%;
+  	height: 100%;
+  	flex-shrink: 0;
+ 	transition: left 0.5s; 
 }
+
+.main-slide-img {
+	width: 100%;
+	height: 470px;
+	margin-left: 1px;
+	margin-right: 1px;
+	/* border-right: 2px solid white;
+	border-left: 2px solid white; */
+}
+
 .slide_button {
-  /* layout */
-  background-color: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /* position */
-  position: absolute;
-  /* 버튼이 중앙에 위치하게 하기위해 계산 */
- /*  top: calc(50% - 16px); */
-
-  /* size */
-  width: 250px;
-  height: 500px;
-
-  /* style */
-  /* border-radius: 100%; */
-  background-color: #cccc;
-  cursor: pointer;
+ 	align-items: center;
+ 	width: 250px;
+ 	height: 100%;
+ 	background-color: #cccc;
+ 	cursor: pointer;
 }
 
 .slide_prev_button {
-  left: 50x;  /* 버튼 위치 조절 */
+	position: absolute;
+	background-color: transparent;
+  	justify-content: flex-start;
 } 
-  .slide_next_button {
-  right: 50px;
-}  
 
-/* 각 슬라이드가 변경되는 것을 시각적으로 확인하기 쉽도록 각 슬라이드별 색상 적용 */
-/*  .slide_item.item1 {
-  background-color: darkgoldenrod;
-} 
-.slide_item.item2 {
-  background-color: aqua;
-}
-.slide_item.item3 {
-  background-color: blueviolet;
-}
-.slide_item.item4 {
-  background-color: burlywood;
-}
-.slide_item.item5 {
-  background-color: cornflowerblue;
-} */
+.slide_next_button {
+	position: absolute;
+ 	background-color: transparent;
+ 	left: 1150px;
+}  
 
 /* 페이지네이션 스타일 */
 .slide_pagination {
-  /* layout */
-  gap: 10px;
-
-  /* position */
-  position: absolute;
-  bottom: 20px;
-  /* left:50%, translateX(-50%)를 하면 가로 가운데로 위치시킬 수 있다. */
-  left: 50%;
-  transform: translateX(-50%);
+	gap: 10px;
+	display: flex;
+	position: absolute;
+	/* left:50%, translateX(-50%)를 하면 가로 가운데로 위치시킬 수 있다. */
+	left: 50%;
+	transform: translateX(-50%);
 }
+
+
+.slide_pagination_div {
+	
+}
+
 .slide_pagination > li {
-list-style: none;
-  /* 현재 슬라이드가 아닌 것은 투명도 부여 */
-  color: #7fb5ff88;
-  cursor: pointer;
-  font-size: 25px;
+	vertical-align: middle;
+	list-style: none;
+	color: #7fb5ff88;
+	cursor: pointer;
+	font-size: 25px;
 }
+
 .slide_pagination > li.active {
-  list-style:none;
-  /* 현재 슬라이드 색상은 투명도 없이 */
-  color: #7fb5ff;
+	list-style:none;
+	color: #7fb5ff;
 }
 
-.slide_item_duplicate {
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  left: 0px;
-  width: 100%;
-  height: 300px;
-  flex-shrink: 0;
-  transition: left 0.15s;
-}
-.main-slide-img{
-height: 470px;
-}
-
-.slide img {
-padding-bottom:30px;
-}
-
-.notice{
+.acc_main_notice {
     width: 1400px;
     height: 500px;
     box-sizing: border-box;
     margin: auto;
-    font-family: 'SpoqaHanSansNeo-Medium';
+    font-family: Pretendard-Regular;
 }
-.notice_inner{
+
+.acc_main_notice_inner {
     width: 1400px;
-    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.notice_left{
+
+.acc_main_notice_inner .acc_main_notice_left a, .acc_main_notice_inner .acc_main_notice_right a {
+	color: #333;
+}
+
+.acc_main_notice_left {
     width: 600px;
     height: 400px;
 }
-.notice_left h2{
+
+.acc_main_notice_left h2 {
     padding-left: 10px;
     display: inline-block;
 }
-.notice_left>a{
+
+.acc_main_notice_left > a {
     float: right;
     margin-top: 7px;
+    padding-right: 10px;
     transition: 0.2s;
 }
-.notice_left>a:hover{
-    color: #fc7131;
+
+.acc_main_notice_left > a:hover, .acc_main_notice_right > a:hover {
+    font-weight: bold;
 }
-.notice_left_box a{
+
+.acc_main_notice_left_box a {
     border-bottom: 1px solid lightgray;
     display: flex;
     justify-content: space-between;
@@ -164,159 +133,391 @@ padding-bottom:30px;
     margin-top: 5px;
     transition: 0.2s;
 }
-.notice_left_box a:first-child{
+
+.acc_main_notice_left_box a:first-child {
     border-top: 3px solid #333;
 }
-.notice_left_box a:hover{
-    color: #fd5e15;
+
+.acc_main_notice_left_box a:hover {
+    font-weight: bold;
 }
-.notice_left_box a em{
+
+.acc_main_notice_left_box a em {
     font-style: normal;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 400px;
 }
-.notice_left_box a b{
+
+.acc_main_notice_left_box a b {
     font-weight: normal;
 }
-.notice_right{
+
+.acc_main_notice_right {
     width: 600px;
     height: 400px;
 }
-.notice_right h2{
+
+.acc_main_notice_right h2{
     padding-left: 10px;
     display: inline-block;
 }
-.notice_right>a{
+
+.acc_main_notice_right > a {
     float: right;
     margin-top: 7px;
+    padding-right: 10px;
+    transition: 0.2s;
 }
-.notice_right>a img{
-    width: 30px;
-    height: 30px;
-}
-.notice_right_box{
+
+.acc_main_notice_right_box {
     width: 100%;
-    height: 365px;
     display: flex;
     justify-content: space-around;
-    align-items: center;
     border-top: 3px solid #333;
+    margin-top: 5px;
 }
-.inner_box{
+
+.acc_main_iframe {
+	margin-top: 10px;
+}
+
+.inner_box {
     border: 2px solid lightgray;
     width: 120px;
     height: 180px;
     box-shadow: 2px 2px 5px gray;
     transition: 0.3s;
 }
-.inner_box:hover{
+
+.inner_box:hover {
     box-shadow: 2px 2px 8px #333;
 }
-.inner_box a{
+
+.inner_box a {
     width: 120px;
     height: 180px;
     display: inline-block;
     text-align: center;
 }
-.inner_box a img{
+
+.inner_box a img {
     width: 80px;
     height: 80px;
     padding-top: 20px;
     transition: 0.3s;
 }
-.inner_box a:hover img{
+
+.inner_box a:hover img {
     color: #fd5e15;
     animation: innericon 1s infinite;
     transition: 0.3s;
 }
-@keyframes innericon{
+
+@keyframes innericon {
     0%{
         padding-top: 20px;
     }
+    
     25%{
         padding-top: 10px;
         padding-bottom: 10px;
     }
+    
     50%{
         padding-top: 20px;
         padding-bottom: 0;
     }
+    
     75%{
         padding-top: 10px;
         padding-bottom: 10px;
     }
+    
     100%{
         padding-top: 20px;
     }
 }
-.inner_box a p{
-    font-size: 18px;
+
+.inner_box a p {
+	font-size: 18px;
     padding-top: 20px;
     transition: 0.3s;
 }
-.inner_box a:hover p{
+
+.inner_box a:hover p {
     color: #fd5e15;
 }
 
-#floatdiv {
-	position: fixed;
-	_position: absolute;
-	_z-index: -1;
-	width: 100px;
-	display: inline-block; /* overflow:hidden;  같은 의미? */
-	right: 0px; /* //화면 오른쪽에 위치한다. left로 변경가능 */
-	top: 20%; /* //화면 위쪽과의 간격 */
-	background-color: transparent;
-	margin: 0;
+
+
+/* quickLink */
+.acc-main-quickLink {
+	position: relative;
+	margin: 85px 0 64px;
+	z-index: 2;
 }
 
-#floatdiv ul {
-	list-style: none;
+.acc-main-quickLink .acc-main-quickLinkWrap {
+	max-width: 1500px;
+	margin: 0 auto;
+	background: #fff;
+	display: flex;
+	justify-content: center;
 }
 
-#floatdiv li {
-	margin-bottom: 2px;
-	text-align: left;
-}
-
-#floatdiv a {
-	color: #5D5D5D;
-	border: 0;
-	text-decoration: none;
-	display: float;
-}
-
-#floatdiv a:hover, #floatdiv .menu {
-	background-color: #5D5D5D;
-	color: #fff;
-} /* 마우스오버 시 배경/글씨 색깔 */
-#floatdiv .menu, #floatdiv .last {
-	margin-bottom: 0px;
-}
-
-#floatContent {
-	padding: 5px;
-	border-width: 2px;
-	border-color: #7f7f7f;
-	border-style: solid;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
-}
-
-#floatTitle {
-	width: 100px;
-	height: 30px;
-	line-height: 30px;
-	background-color: #7f7f7f;
-	/* 텍스트 */
-	color: #fff;
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider {
+	width: 100%;
+	height: 105px;
 	text-align: center;
-	text-decoration: none;
-	font-weight: bold;
+	margin-top: 40px;
+	margin-bottom: 60px;
+}
+
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider .acc-main-slider-item {
+	display: inline-block;
+	width: 10%;
+	transition: 0.7s;
+}
+
+.acc-main-slider-item a {
+	color: #333;
+}
+
+.acc-main-slider-item:hover {
+	/* font-weight: bold; */
+	color: #999;
+	/* outline: 1px solid #999; */
+	transform: scale(1.2);
+	z-index: 2;
+	/* box-shadow: 2px 2px 2px #000; */
+}
+
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider a {
+	display: block;
+	padding-top: 78px;
+	background-repeat: no-repeat;
+	background-position: 50% 0;
+	color: #040404;
+	font-size: 17px;
+	letter-spacing: -1px;
+	letter-spacing: -0.03em;
+	font-family: Pretendard-Regular;
+}
+
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider a.q1 {
+	background-image: url(/images/main/icon_quick_link01.png);
+}
+
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider a.q2 {
+	background-image: url(/images/main/icon_quick_link02.png);
+}
+
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider a.q3 {
+	background-image: url(/images/main/icon_quick_link03.png);
+}
+
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider a.q4 {
+	background-image: url(/images/main/icon_quick_link04.png);
+}
+
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider a.q5 {
+	background-image: url(/images/main/icon_quick_link05.png);
+}
+
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider a.q6 {
+	background-image: url(/images/main/icon_quick_link06.png);
+}
+
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider a.q7 {
+	background-image: url(/images/main/icon_quick_link07.png);
+}
+
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider a.q8 {
+	background-image: url(/images/main/icon_quick_link08.png);
+}
+
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider a.q14 {
+	background-image: url(/images/main/icon_quick_link14.png);
+}
+
+.acc-main-quickLink .acc-main-quickLinkWrap .acc-main-slider a span {
+	display: block;
+	width: 35px;
+	margin: 14px auto 0;
+	padding-right: 15px;
+	padding-bottom: 2px;
+	padding-left: 2px;
+	border-bottom: 1px solid #979797;
+	background-image: url(/include/info/images/main/bg_go_arrow.png);
+	background-repeat: no-repeat;
+	background-position: 90% 50%;
+	color: #8d8d8d;
 	font-size: 12px;
-	/* 모양 */
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
+	font-weight: 300;
+	text-align: left;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.acc-main-quickLink .acc-main-slideControl {
+	display: inline-block;
+	position: relative;
+	margin-top: 30px;
+	padding: 0 3em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.slider{
+margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #23E3C9;
+  width: 100%;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.slides{
+  width: 100%;
+  height: 500px;
+  display: flex;
+}
+
+.slides input{
+  display: none;
+}
+
+.slide{
+  width: 100%;
+  transition: 2s;
+}
+
+.slide img{
+  width: 1800px;
+  height: 500px;
+}
+
+/*css for manual slide navigation*/
+
+.navigation-manual{
+  position: absolute;
+  width: 800px;
+  margin-top: -40px;
+  display: flex;
+  justify-content: center;
+}
+
+.manual-btn{
+  border: 2px solid #40D3DC;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.manual-btn:not(:last-child){
+  margin-right: 40px;
+}
+
+.manual-btn:hover{
+  background: #40D3DC;
+}
+
+#radio1:checked ~ .first{
+  margin-left: 0;
+}
+
+#radio2:checked ~ .first{
+  margin-left: -100%;
+}
+
+#radio3:checked ~ .first{
+  margin-left: -200%;
+}
+
+#radio4:checked ~ .first{
+  margin-left: -300%;
+}
+
+/*css for automatic navigation*/
+
+.navigation-auto{
+  position: absolute;
+  display: flex;
+  width: 800px;
+  justify-content: center;
+  margin-top: 460px;
+}
+
+.navigation-auto div{
+  border: 2px solid #40D3DC;
+  padding: 5px;
+  border-radius: 10px;
+  transition: 1s;
+}
+
+.navigation-auto div:not(:last-child){
+  margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1{
+  background: #40D3DC;
+}
+
+#radio2:checked ~ .navigation-auto .auto-btn2{
+  background: #40D3DC;
+}
+
+#radio3:checked ~ .navigation-auto .auto-btn3{
+  background: #40D3DC;
+}
+
+#radio4:checked ~ .navigation-auto .auto-btn4{
+  background: #40D3DC;
 }

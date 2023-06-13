@@ -30,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class VocService {
 
-	private final Logger LOGGER = LoggerFactory.getLogger(VocService.class);
+//	private final Logger LOGGER = LoggerFactory.getLogger(VocService.class);
 	
 	private final VocRepository vocRepository;
 	private final AttachService attachService;
@@ -235,7 +235,6 @@ public class VocService {
 		vocFormDto.setAllVocCnt(allVocCnt);
 		vocFormDto.setPrevContent(prevContent);
 		vocFormDto.setNextContent(nextContent);
-		
 		vocFormDto.setAttachDtoList(attachDtoList);
 		
 		return vocFormDto;

@@ -35,7 +35,7 @@ public class AdminController {
 	private final SeatService seatService;
 	private final MemberService memberService;
 
-	// 예매 관리 페이지
+	// 예매 관리 페이지 호출
 	@GetMapping(value = { "/reservationMng", "/reservationMng/{page}" })
 	public String reservationManage(@PathVariable("page") Optional<Integer> page, Model model, SearchDto searchDto) {
 		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
@@ -53,24 +53,26 @@ public class AdminController {
 
 		return "admin/reservationMng";
 	}
+	
+	// 예매 관리 취소
+	@PostMapping(value = "/adminCancelReservation/{num}")
+	public String adminCancelReservation(@PathVariable("num") Long num) {
 
-	// 전체회원 리스트 출력
-	@GetMapping(value = { "/memberMngList", "/memberMngList/{page}" })
-	public String memberMngList(@PathVariable("page") Optional<Integer> page, Model model, SearchDto searchDto) {
-		
-		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
-		Page<Member> memberMngList = memberService.memberList(searchDto, pageable);
+		Reservation reservation = reservationService.getDtl(num);
 
-		model.addAttribute("maxPage", 10);
-		model.addAttribute("memberMngList", memberMngList);
-		
-		if (!searchDto.getSearchQuery().matches("[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝|(|)|.|-]*")) {
-			searchDto.setSearchQuery("");
+		String seatDetail = reservation.getApplication().getSeatDetail();
+
+		Long deleteSeat = reservation.getApplication().getNum();
+
+		if (seatDetail != null) {
+			String selectSeat = reservation.getSeat();
+			String[] array = selectSeat.split(", ");
+
+			seatService.cancelUpdateSeat(seatDetail, deleteSeat, array);
 		}
-		
-		model.addAttribute("SearchDto", searchDto);
+		reservationService.cancleReservation(num);
 
-		return "admin/memberMng";
+		return "redirect:/admin/reservationMng";
 	}
 
 	// 상품관리 페이지 호출, 검색
@@ -106,7 +108,8 @@ public class AdminController {
 
 		return "redirect:/admin/applications";
 	}
-
+	
+	// 상품관리 환불
 	@PostMapping(value = "/refundComplete/{num}")
 	public String refundComplete(@PathVariable Long num) {
 
@@ -115,23 +118,32 @@ public class AdminController {
 		return "redirect:/admin/reservationMng";
 	}
 
-	@PostMapping(value = "/adminCancelReservation/{num}")
-	public String adminCancelReservation(@PathVariable("num") Long num) {
+	// 전체회원 리스트 출력
+	@GetMapping(value = { "/memberMngList", "/memberMngList/{page}" })
+	public String memberMngList(@PathVariable("page") Optional<Integer> page, Model model, SearchDto searchDto) {
+		
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
+		Page<Member> memberMngList = memberService.memberList(searchDto, pageable);
 
-		Reservation reservation = reservationService.getDtl(num);
-
-		String seatDetail = reservation.getApplication().getSeatDetail();
-
-		Long deleteSeat = reservation.getApplication().getNum();
-
-		if (seatDetail != null) {
-			String selectSeat = reservation.getSeat();
-			String[] array = selectSeat.split(", ");
-
-			seatService.cancelUpdateSeat(seatDetail, deleteSeat, array);
+		model.addAttribute("maxPage", 10);
+		model.addAttribute("memberMngList", memberMngList);
+		
+		if (!searchDto.getSearchQuery().matches("[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝|(|)|.|-]*")) {
+			searchDto.setSearchQuery("");
 		}
-		reservationService.cancleReservation(num);
+		
+		model.addAttribute("SearchDto", searchDto);
 
-		return "redirect:/admin/reservationMng";
+		return "admin/memberMng";
+	}
+	
+	// 회원관리 상태 수정 (일반->블랙)
+	@GetMapping(value = "/memberStat/change/{num}")
+	public String memberstatChange(@PathVariable("num") Long num, Model model) {
+		
+		Member member = memberService.getMemDtl(num);
+		memberService.updateStat(member);
+			
+		return "redirect:/admin/memberMngList";
 	}
 }

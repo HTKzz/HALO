@@ -65,6 +65,7 @@ public class MemberController {
 				return;
 			memberFormDto.setName("관리자");
 			memberFormDto.setId("user" + String.valueOf(i));
+			memberFormDto.setId("user" + String.valueOf(i));
 			memberFormDto.setPassword("12341234");
 			memberFormDto.setEmail("User" + String.valueOf(i) + "@userEmail.com");
 			memberFormDto.setTel("010555" + String.valueOf(i) + "555");
@@ -106,7 +107,7 @@ public class MemberController {
 		return "member/memberForm";
 	}
 
-	// 일반 회원가입 페이지 불러오기
+	// 기업 회원가입 페이지 불러오기
 	@GetMapping(value = "/company/new")
 	public String companyForm(Model model) {
 		CompanyFormDto companyFormDto = new CompanyFormDto();

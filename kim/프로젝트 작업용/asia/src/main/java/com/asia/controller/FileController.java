@@ -25,32 +25,8 @@ import lombok.RequiredArgsConstructor;
 public class FileController {
 	
 	private final AttachService attachService;
-	
-   	// 프로그램 신청 첨부파일 다운로드
-    @GetMapping("/board/program/download/{num}")
-    public ResponseEntity<Object> programDownload(@PathVariable("num") Long num) throws Exception {
-       
-       Attach file1 = attachService.download(num);
-       String fileName = file1.getName();
-       String path = "C:/asia/attach/" + fileName;
-       
-       try {
-          Path filePath = Paths.get(path);
-          Resource resource = new InputStreamResource(Files.newInputStream(filePath)); // 파일 resource 얻기
-          
-          File file = new File(path);
-          
-          HttpHeaders headers = new HttpHeaders();
-          // 다운로드 되거나 로컬에 저장되는 용도로 쓰이는지를 알려주는 헤더
-          headers.setContentDisposition(ContentDisposition.builder("attachment").filename(file1.getName()).build());
-             
-          return new ResponseEntity<Object>(resource, headers, HttpStatus.OK);
-          
-       } catch(Exception e) {
-          return new ResponseEntity<Object>(null, HttpStatus.CONFLICT);
-       }
-    }
     
+    // VOC 첨부파일 다운로드
     @GetMapping("/voc/download/{num}")
 	public ResponseEntity<Object> vocDownload(@PathVariable("num") Long num) throws Exception {
 
@@ -75,6 +51,7 @@ public class FileController {
 		}
 	}
     
+    // NOTICE 첨부파일 다운로드
     @GetMapping("/download/{num}")
 	public ResponseEntity<Object> download(@PathVariable("num") Long num) throws Exception {
 		

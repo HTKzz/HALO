@@ -193,10 +193,8 @@ public class ApplicationService {
 	public ApplicationDto getApplicationDtl(Long num) {
 		
 		ApplicationDto appDto = applicationRepository.findByNum(num);
-		
-		List<Application> application1 = applicationRepository.findByName(appDto.getName());
 
-		List<Attach> attachList = attachRepository.findByApplicationNumOrderByNumAsc(application1.get(0).getNum()); // 해당 프로그램 이미지 조회
+		List<Attach> attachList = attachRepository.findByApplicationNumOrderByNumAsc(appDto.getNum()); // 해당 프로그램 이미지 조회
 		List<AttachDto> attachDtoList = new ArrayList<>();
 		for (Attach attach : attachList) {
 			AttachDto attachDto = AttachDto.of(attach);
@@ -204,13 +202,14 @@ public class ApplicationService {
 		}
 
 		// 프로그램 아이디를 통해서 프로그램 엔티티를 조회한다. 존해하지 않을때에는 예외를 발생시킴.
-		Application application = applicationRepository.findById(application1.get(0).getNum())
+		Application application = applicationRepository.findById(appDto.getNum())
 					.orElseThrow(EntityNotFoundException::new);
 		ApplicationDto applicationDto = ApplicationDto.of(application);
 		applicationDto.setAttachDtoList(attachDtoList);
 		return applicationDto;
 	}
-
+	
+	// 상세보기 수정폼 불러오기
 	@Transactional(readOnly = true)
 	public ApplicationDto getApplicationDtlModify(Long num) {
 		List<Attach> attachList = attachRepository.findByApplicationNumOrderByNumAsc(num); // 해당 프로그램 이미지 조회
@@ -274,7 +273,6 @@ public class ApplicationService {
 
 	public List<Application> getApplication(String Name) {
 		List<Application> application = applicationRepository.findByName(Name);
-
 		return application;
 	}
 
