@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -34,14 +37,20 @@ public class Reservation extends BaseEntity {
 	@Column(name = "reservation_num")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="RESERVATION_SEQ_GEN")
 	private Long num;
+	
+	private String name;
 
-	private int cnt;
+	private Long cnt;
 
 	private String seat;
 	
-	private LocalDate rdate;
+	private String udate;
 	
-	private int price;
+	private LocalDate rdate;
+
+	private String place;
+	
+	private Long price;
 	
 	private String stat;
 	

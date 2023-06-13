@@ -81,6 +81,7 @@ public class Member {
 	public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
 		Member member = new Member();
 		member.setId(memberFormDto.getId());
+		member.setCid(memberFormDto.getCid());
 		member.setName(memberFormDto.getName());
 		member.setEmail(memberFormDto.getEmail());
 		member.setTel(memberFormDto.getTel());

@@ -60,7 +60,6 @@ public class VocController {
 			vocService.saveVoc(vocFormDto, attachFileList, name);
 
 			VocFormDto vocFormDto1 = vocService.getVoc();
-			vocService.updateCnt(vocFormDto1.getNum());
 			model.addAttribute("voc", vocFormDto1);
 			
 		} catch (Exception e) {

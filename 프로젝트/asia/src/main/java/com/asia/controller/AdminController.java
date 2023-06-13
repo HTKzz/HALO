@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.asia.dto.ApplicationDto;
 import com.asia.dto.SearchDto;
 import com.asia.entity.Application;
 import com.asia.entity.Member;
@@ -56,9 +56,14 @@ public class AdminController {
 	
 	// 예매 관리 취소
 	@PostMapping(value = "/adminCancelReservation/{num}")
-	public String adminCancelReservation(@PathVariable("num") Long num) {
+	public String adminCancelReservation(@PathVariable("num") Long num, Model model, RedirectAttributes re) {
 
 		Reservation reservation = reservationService.getDtl(num);
+		
+		if(reservation.getApplication() == null) {
+			re.addFlashAttribute("errorMessage", "상품정보가 존재하지 않습니다.");
+			return "redirect:/admin/reservationMng";
+		}
 
 		String seatDetail = reservation.getApplication().getSeatDetail();
 
@@ -70,7 +75,23 @@ public class AdminController {
 
 			seatService.cancelUpdateSeat(seatDetail, deleteSeat, array);
 		}
-		reservationService.cancleReservation(num);
+		reservationService.cancelReservation(num);
+
+		return "redirect:/admin/reservationMng";
+	}
+	
+	// 예매관리 환불
+	@PostMapping(value = "/refundComplete/{num}")
+	public String refundComplete(@PathVariable Long num, RedirectAttributes re) {
+		
+		Reservation reservation = reservationService.getDtl(num);
+		
+		if(reservation.getApplication() == null) {
+			re.addFlashAttribute("errorMessage", "상품정보가 존재하지 않습니다.");
+			return "redirect:/admin/reservationMng";
+		}
+
+		reservationService.refundComplete(num);
 
 		return "redirect:/admin/reservationMng";
 	}
@@ -107,15 +128,6 @@ public class AdminController {
 		}
 
 		return "redirect:/admin/applications";
-	}
-	
-	// 상품관리 환불
-	@PostMapping(value = "/refundComplete/{num}")
-	public String refundComplete(@PathVariable Long num) {
-
-		reservationService.refundComplete(num);
-
-		return "redirect:/admin/reservationMng";
 	}
 
 	// 전체회원 리스트 출력

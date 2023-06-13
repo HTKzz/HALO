@@ -46,22 +46,22 @@
 				</div>
 			</section>
 			
-			<div class="page_wrap">
+			<div class="page_wrap" th:with="start=${(application6.number/maxPage)*maxPage + 1}, end=(${(application6.totalPages == 0) ? 1 : (start + (maxPage - 1) < application6.totalPages ? start + (maxPage - 1) : application6.totalPages)})">
 				<ul class="pagination justify-content-center">
 					<li class="page-item"
-						th:classappend="${startPage == application6.pageable.pageNumber + 1} ? 'disabled'">
+						th:classappend="${application6.first} ? 'disabled'">
 						<a class="page-link"
 						th:href="@{/board/program/eventlist(page=${application6.pageable.pageNumber - 1})}"
 						tabindex="-1" aria-disabled="true">Previous</a>
 					</li>
 					<li class="page-item"
 						th:classappend="${page == application6.pageable.pageNumber + 1} ? 'active'"
-						th:each="page : ${#numbers.sequence(startPage, endPage)}"><a
+						th:each="page : ${#numbers.sequence(start, end)}"><a
 						class="page-link"
 						th:href="@{/board/program/eventlist(page=${page-1})}"
 						th:text=${page} aria-current="page">1</a></li>
 					<li class="page-item"
-						th:classappend="${endPage == application6.pageable.pageNumber + 1} ? 'disabled'">
+						th:classappend="${application6.last} ? 'disabled'">
 						<a class="page-link"
 						th:href="@{/board/program/eventlist(page=${application6.pageable.pageNumber + 1})}">Next</a>
 					</li>

@@ -39,6 +39,7 @@ layout:decorate="~{layouts/layout1}">
                     <div class="seatDetail" style="width:560px;">
                         <input type="hidden" th:value="${anum}" name="anum">
                         <input type="hidden" th:value="${seat}" name="seat1">
+                        <input type="hidden" th:value="${place}" name="place">
                         <div class="row" th:each="list : ${seatList}">
                             <span class="" th:classappend="${list.stat}" th:text="${list.seat}" th:id="${list.seat}"></span>
                             <input type="hidden" th:value="${list.stat}" th:id="${list.seat}" th:name="${list.seat}">

@@ -10,6 +10,18 @@
 <link th:href="@{/css/vocList.css}" rel="stylesheet">
 </head>
 
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+	<script th:inline="javascript">
+        $(document).ready(function() {
+            var errorMessage = [[${errorMessage}]];
+			if(errorMessage != null){
+				alert(errorMessage);
+			}
+        });
+    </script>
+</th:block>
+
 <div layout:fragment="content">
 	<div class="vocList-container">
 		<div class="vocList-title">
@@ -52,9 +64,9 @@
 				<tbody>
 					<tr th:each="reservation : ${reservations}">
 						<td th:text="${reservation.num}"></td>
-						<td th:text="${reservation.application.name}"></td>
+						<td th:text="${reservation.name}"></td>
 						<td th:text="${reservation.rdate}"></td>
-						<td th:text="${reservation.application.udate}"></td>
+						<td th:text="${reservation.udate}"></td>
 						<td th:text="${reservation.member.id}"></td>
 						<td th:text="${reservation.stat}"></td>
 						<td>

@@ -126,8 +126,8 @@ public class NoticeService {
 		int size = noticeList.size();
 		
 		for(int i = 0; i < size; i++) {
-			if(i > 7) {
-				noticeList.remove(8);
+			if(i > 8) {
+				noticeList.remove(9);
 			}
 		}
 		

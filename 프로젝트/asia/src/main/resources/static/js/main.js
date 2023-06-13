@@ -1,5 +1,5 @@
-// 슬라이크 전체 크기(width 구하기)
-		const slide = document.querySelector(".slide");
+// 슬라이드 전체 크기(width 구하기)
+		const slide = document.querySelector(".slide_wrap");
 		let slideWidth = slide.clientWidth;
 
 		// 버튼 엘리먼트 선택하기
@@ -204,3 +204,5 @@
 			    nextMove();
 			  }, 3000);
 			});
+			
+			
