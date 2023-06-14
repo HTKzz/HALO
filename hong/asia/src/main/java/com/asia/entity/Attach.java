@@ -13,11 +13,13 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "attach")
 @Getter
 @Setter
+@ToString
 @SequenceGenerator(name = "ATTACH_SEQ_NUM",
 				   sequenceName = "ATTACH_SEQ",
 				   initialValue = 1,
@@ -25,7 +27,7 @@ import lombok.Setter;
 public class Attach extends BaseEntity {
 
 	@Id
-	@Column(name = "num")
+	@Column(name = "att_num")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ATTACH_SEQ_NUM")
 	private Long num;
 

@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.ApplicationDto;
 import com.asia.dto.AttachDto;
-import com.asia.dto.MainApplicationDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.Application;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
@@ -45,8 +45,6 @@ public class ApplicationService {
 	public Long saveApplication(ApplicationDto applicationDto, List<MultipartFile> attachFileList, String name)
 			throws Exception {
 
-		validateDuplicateApplication(applicationDto);
-
 		Member member = memberRepository.findById(name);
 
 		String seat = applicationDto.getSeatDetail();
@@ -61,6 +59,8 @@ public class ApplicationService {
 		TimeUnit time = TimeUnit.DAYS;
 		long diffrence = time.convert(diff, TimeUnit.MILLISECONDS);
 
+		Long originNo = null;
+
 		for (int i = 0; i < diffrence + 1; i++) {
 			if (seat.equals("A")) {
 				Calendar cal = Calendar.getInstance();
@@ -71,6 +71,13 @@ public class ApplicationService {
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
 				application.setApprovalStatus("미승인");
+				applicationRepository.save(application);
+				
+				if (i == 0) {
+					originNo = application.getNum();
+				}
+				
+				application.setOriginNo(originNo);
 				applicationRepository.save(application);
 
 				for (int j = 1; j < 49; j++) {
@@ -104,6 +111,13 @@ public class ApplicationService {
 				application.setMember(member);
 				application.setApprovalStatus("미승인");
 				applicationRepository.save(application);
+				
+				if (i == 0) {
+					originNo = application.getNum();
+				}
+				
+				application.setOriginNo(originNo);
+				applicationRepository.save(application);
 
 				for (int j = 1; j < 41; j++) {
 					SeatB seatB = new SeatB();
@@ -135,6 +149,13 @@ public class ApplicationService {
 				Application application = applicationDto.createApplication();
 				application.setMember(member);
 				application.setApprovalStatus("미승인");
+				applicationRepository.save(application);
+				
+				if (i == 0) {
+					originNo = application.getNum();
+				}
+				
+				application.setOriginNo(originNo);
 				applicationRepository.save(application);
 
 				for (int j = 1; j < 33; j++) {
@@ -169,6 +190,13 @@ public class ApplicationService {
 				application.setMember(member);
 				application.setApprovalStatus("미승인");
 				applicationRepository.save(application);
+				
+				if (i == 0) {
+					originNo = application.getNum();
+				}
+				
+				application.setOriginNo(originNo);
+				applicationRepository.save(application);
 
 				for (int j = 0; j < attachFileList.size(); j++) {
 					Attach attach = new Attach();
@@ -188,34 +216,13 @@ public class ApplicationService {
 
 	}
 
-//		// 상품 등록
-//		Application application = applicationDto.createApplication(); // 프로그램 등록 폼으로부터 입력받은 데이터를 application객체를 생성한다.
-//		application.setMember(member);
-//		applicationRepository.save(application); // 프로그램 데이터를 저장.
-//
-//		// 첨부파일 등록(이미지)
-//		for (int i = 0; i < attachFileList.size(); i++) {
-//			Attach attach = new Attach();
-//			attach.setApplication(application);
-//			if (i == 0) // 첫 번째 이미지일 경우 대표 상품 이미지 여부 값을 Y로 세팅한다. 나머지 상품 이미지는 N으로 설정한다.
-//				attach.setthumb("Y");
-//			else
-//				attach.setthumb("N");
-//			attachService.saveAttach(attach, attachFileList.get(i)); // 상품 이미지 정보를 저장한다.
-//		}
-//
-//		return application.getNum();
-//
-//	}
-
+	// 프로그램 신청글 상세보기페이지 호출
 	@Transactional(readOnly = true)
-	public ApplicationDto getApplicationDtl(String name) {
-		List<Application> application1 = applicationRepository.findByName(name);
+	public ApplicationDto getApplicationDtl(Long num) {
+		
+		ApplicationDto appDto = applicationRepository.findByNum(num);
 
-		List<Attach> attachList = attachRepository.findByApplicationNumOrderByNumAsc(application1.get(0).getNum()); // 해당
-																													// 프로그램
-																													// 이미지
-																													// 조회
+		List<Attach> attachList = attachRepository.findByApplicationNumOrderByNumAsc(appDto.getNum()); // 해당 프로그램 이미지 조회
 		List<AttachDto> attachDtoList = new ArrayList<>();
 		for (Attach attach : attachList) {
 			AttachDto attachDto = AttachDto.of(attach);
@@ -223,15 +230,16 @@ public class ApplicationService {
 		}
 
 		// 프로그램 아이디를 통해서 프로그램 엔티티를 조회한다. 존해하지 않을때에는 예외를 발생시킴.
-		Application application = applicationRepository.findById(application1.get(0).getNum())
-				.orElseThrow(EntityNotFoundException::new);
+		Application application = applicationRepository.findById(appDto.getNum())
+					.orElseThrow(EntityNotFoundException::new);
 		ApplicationDto applicationDto = ApplicationDto.of(application);
 		applicationDto.setAttachDtoList(attachDtoList);
 		return applicationDto;
 	}
-
+	
+	// 상세보기 수정폼 불러오기
 	@Transactional(readOnly = true)
-	public ApplicationDto getApplicationDtl(Long num) {
+	public ApplicationDto getApplicationDtlModify(Long num) {
 		List<Attach> attachList = attachRepository.findByApplicationNumOrderByNumAsc(num); // 해당 프로그램 이미지 조회
 		List<AttachDto> attachDtoList = new ArrayList<>();
 		for (Attach attach : attachList) {
@@ -251,7 +259,7 @@ public class ApplicationService {
 		Application application = applicationRepository.findById(applicationDto.getNum())
 				.orElseThrow(EntityNotFoundException::new);
 
-		List<Application> appList = applicationRepository.findByName(application.getName());
+		List<Application> appList = applicationRepository.findByOriginNo(application.getOriginNo());
 
 		for (int i = 0; i < appList.size(); i++) {
 			Application application1 = appList.get(i);
@@ -266,51 +274,23 @@ public class ApplicationService {
 		return application.getNum();
 	}
 
-	@Transactional(readOnly = true)
-	public ApplicationDto getShowList(Long num) {
-		List<Attach> attachList = attachRepository.findByApplicationNumOrderByNumAsc(num); // 해당 프로그램 이미지 조회
-		List<AttachDto> attachDtoList = new ArrayList<>();
-		for (Attach attach : attachList) {
-			AttachDto attachDto = AttachDto.of(attach);
-			attachDtoList.add(attachDto);
-		}
-
-		// 프로그램 아이디를 통해서 프로그램 엔티티를 조회한다. 존해하지 않을때에는 예외를 발생시킴.
-		Application application = applicationRepository.findById(num).orElseThrow(EntityNotFoundException::new);
-		ApplicationDto applicationDto = ApplicationDto.of(application);
-		applicationDto.setAttachDtoList(attachDtoList);
-		return applicationDto;
-	}
-
-//	@Transactional(readOnly = true)
-//	public Page<Application> getApplicationPage(ApplicationSearchDto applicationSearchDto, Pageable pageable) {
-//		return applicationRepository.getApplicationPage(applicationSearchDto, pageable);
-//	}
-
-	// 프로그램 신청글 리스트 페이징처리
-	// findAll : Application 이라는 클래스가 담긴 List를 반환하는것을 확인할수있다
-	public Page<Application> applicationList(Pageable pageable) {
-		return applicationRepository.findAll(pageable);
-	}
-
-	public void deleteApplication(Long num) {
-		applicationRepository.deleteByNum(num);
-	}
-
-	public Page<MainApplicationDto> showApplicationList(Pageable pageable, String programCategory) {
-		return applicationRepository.findDistinctByProgramCategory(pageable, programCategory);
-	}
-
 	public Page<ApplicationDto> getList1(Pageable pageable, String programCategory) {
-		List<ApplicationDto> list = applicationRepository.getList1(programCategory);
+		
+		List<Long> appNum = applicationRepository.getAppNum(programCategory);
+		List<Application> appList = applicationRepository.findByNums(appNum);
+		
+		List<ApplicationDto> list = new ArrayList<>();
+		for(Application app: appList) {
+			list.add(ApplicationDto.of(app));
+		}
+		
 		List<ApplicationDto> resultList = new ArrayList<ApplicationDto>();
 		int offset = Long.valueOf(pageable.getOffset()).intValue();
 		int offset2 = pageable.getPageSize();
 		
 		for (int x = offset; x < offset + offset2; x++) {
 			if (x < list.size()) {
-				List<Application> application = applicationRepository.findByName(list.get(x).getName());
-				List<AttachDto> attach = attachRepository.getLists(application.get(0).getNum());
+				List<AttachDto> attach = attachRepository.getAppList(list.get(x).getNum());
 				list.get(x).setUrl(attach.get(0).getUrl());
 				resultList.add(list.get(x));
 			}
@@ -319,63 +299,63 @@ public class ApplicationService {
 		return new PageImpl<>(resultList, pageable, list.size());
 	}
 
-	public List<Application> getApplication(String Name) {
-		List<Application> application = applicationRepository.findByName(Name);
-
+	public List<Application> getApplication(Long num) {
+		List<Application> application = applicationRepository.findByOriginNo(num);
 		return application;
 	}
 
 	@Transactional(readOnly = true)
-	public List<ApplicationDto> getApplicationSelect(String name) {
-		List<ApplicationDto> list = applicationRepository.getList2(name);
+	public List<ApplicationDto> getApplicationSelect(Long Num) {
+		List<ApplicationDto> list = applicationRepository.getList2(Num);
 		return list;
 	}
 
-	public Application getApplicationDtl1(long anum) {
-		Application application = applicationRepository.findByNum(anum);
+	public Application getAppDtl(long anum) {
+		Application application = applicationRepository.getApplication(anum);
 		return application;
-	}
-
-	public Application getApplication(Long num) {
-		Application application = applicationRepository.findByNum(num);
-		return application;
-	}
-
-	private void validateDuplicateApplication(ApplicationDto applicationDto) {
-		List<Application> findApplication = applicationRepository.findByName(applicationDto.getName());
-		if (findApplication.size() != 0) {
-			throw new IllegalStateException("이미 등록된 제목입니다."); // 이미 만들어진 이름의 경우 예외를 발생시킨다.
-		}
 	}
 
 	// 승인상태 수정
 	public void updateApprovalStatus(Application application) throws Exception {
-
-		List<Application> appList = applicationRepository.findByName(application.getName());
+		List<Application> appList = applicationRepository.findByOriginNo(application.getOriginNo());
 
 		for (int i = 0; i < appList.size(); i++) {
 			Application application1 = appList.get(i);
 			applicationRepository.updateApprovalStatus(application1.getNum());
-
 		}
-
 	}
 	
+	// 메인페이지 슬라이드 사진 불러오기
 	@Transactional(readOnly = true)
 	public List<ApplicationDto> getSlideList() {
-		List<ApplicationDto> list = applicationRepository.getSlideList();
+		List<Long> listNum = applicationRepository.getAppNumNoPC();
+		List<Application> appList = applicationRepository.findByNums(listNum);
 		
-		for(int i = 0; i < list.size(); i++) {
+		List<ApplicationDto> list = new ArrayList<>();
+		for(Application app: appList) {
+			list.add(ApplicationDto.of(app));
+		}
+		
+		int size = list.size();
+		
+		for(int i = 0; i < size; i++) {
 			if(i <= 9) {
-				List<Application> application = applicationRepository.findByName(list.get(i).getName());
-				List<AttachDto> attach = attachRepository.getLists(application.get(0).getNum());
-				list.get(i).setUrl(attach.get(0).getUrl());
+				List<Application> application = applicationRepository.findByOriginNo(list.get(i).getOriginNo());
+				List<AttachDto> attach = attachRepository.getAppList(application.get(0).getNum());
+				list.get(i).setUrl(attach.get(1).getUrl());
 			} else {
-				list.remove(i);
+				list.remove(10);
 			}
 		}
 		
 		return list;
 	}
-
+	
+	public Page<Application> getApplicationList(SearchDto searchDto, Pageable pageable) {
+		return applicationRepository.getApplicationList(searchDto, pageable);
+	}
+	
+	public void deleteApplication(Long num) {
+		applicationRepository.deleteByNum(num);
+	}
 }

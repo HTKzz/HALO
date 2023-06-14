@@ -6,39 +6,18 @@
 
 <meta charset="UTF-8">
 
-<!-- 사용자 스크립트 추가 -->
-<th:block layout:fragment="script">
-	<script th:inline="javascript">
-		$(document).ready(function() {
-			$("#searchBtn").on("click", function(e) {
-				e.preventDefault();
-				page(0);
-			});
-		});
-
-		function page(page) {
-			var searchBy = $("#searchBy").val();
-			var searchQuery = $("#searchQuery").val();
-			location.href = "/voc/list/" + page + "?searchBy=" + searchBy
-					+ "&searchQuery=" + searchQuery;
-		}
-	</script>
-</th:block>
-
 <head>
 <link th:href="@{/css/vocList.css}" rel="stylesheet">
 </head>
 
 <div layout:fragment="content">
-
 	<div class="vocList-container">
 		<div class="vocList-title">
-			<h3>VOC 고객의 소리</h3>
+			<h3>고객의 소리</h3>
 		</div>
-
 		<!-- 검색 -->
 		<form class="memberMngForm" th:action="@{'/voc/list/' + ${list.pageable.pageNumber}}" method="get">
-			<div class="vocSearch vocList-searchOptions" th:object=${vocSearchDto}>
+			<div class="vocSearch vocList-searchOptions" th:object=${searchDto}>
 				<span class="vocList-searchOption-list">
 					<select class="memberMng-select" th:field="*{searchBy}">
 						<option th:value="name">제목</option>
@@ -66,23 +45,19 @@
 						<th class="vocList-cnt">조회수</th>
 					</tr>
 				</thead>
-
 				<tbody>
 					<tr th:each="voc:${list}">
 						<td class="vocList-num" th:text="${voc.realNum}"></td>
 						<td class="vocList-name" id="voc-name" style="width:750px;">
 							<div th:if="${voc.groupLayer > 0}">
-								<th:block
-									th:each="num : ${#numbers.sequence(0, voc.groupLayer)}">
+								<th:block th:each="num : ${#numbers.sequence(0, voc.groupLayer)}">
 									<span style="padding-left: 20px"></span>
 								</th:block>
-								<span style="font-size: 12px;">[답변]</span> <a
-									th:text="${voc.name}"
-									th:href="@{/voc/detail/{num}(num=${voc.num})}"></a>
+								<span style="font-size: 12px;">[답변]</span>
+								<a class="a-name" th:text="${voc.name}" th:href="@{/voc/detail/{num}(num=${voc.realNum})}"></a>
 							</div>
 							<div th:unless="${voc.groupLayer > 0}">
-								<a th:text="${voc.name}"
-									th:href="@{/voc/detail/{num}(num=${voc.num})}"></a>
+								<a class="a-name" th:text="${voc.name}" th:href="@{/voc/detail/{num}(num=${voc.realNum})}"></a>
 							</div>
 
 						</td>
@@ -94,11 +69,9 @@
 				</tbody>
 			</table>
 			<br>
-
 			<div class="voc-write" sec:authorize="isAuthenticated()">
 				<a th:href="@{/voc/new}" class="vocList-btn">글쓰기</a>
 			</div>
-
 			<div class="page_wrap"
 				th:with="start=${(list.number/maxPage)*maxPage + 1}, end=(${(list.totalPages == 0) ? 1 : (start + (maxPage - 1) < list.totalPages ? start + (maxPage - 1) : list.totalPages)})">
 				<ul class="pagination justify-content-center">
@@ -122,6 +95,7 @@
 			</div>
 		</section>
 	</div>
+	<script th:src="@{/js/vocList.js}" type="text/javascript"></script>
 </div>
 
 </html>

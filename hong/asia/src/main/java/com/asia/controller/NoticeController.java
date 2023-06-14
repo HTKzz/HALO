@@ -2,14 +2,14 @@ package com.asia.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.NoticeDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.Notice;
 import com.asia.service.AttachService;
 import com.asia.service.NoticeService;
@@ -35,21 +36,22 @@ public class NoticeController {
 	private final NoticeService noticeService;
 	private final AttachService attachService;
 
-	// 공지 게시판 리스트 불러오기
-	@GetMapping(value = "/lists")
-	public String noticelist(Model model,
-			@PageableDefault(page = 0, size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable) {
+	// 공지 게시판 리스트 불러오기 (페이지, 검색)
+	@GetMapping(value = { "/lists", "/lists/{page}" })
+	public String noticelist(Model model, @PathVariable("page") Optional<Integer> page, SearchDto searchDto) {
 
-		Page<Notice> lists = noticeService.noticeList(pageable);
-		
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
+
+		Page<Notice> lists = noticeService.noticeList(searchDto, pageable);
+
+		model.addAttribute("maxPage", 10);
 		model.addAttribute("noticeList", lists);
 
-		int nowPage = lists.getPageable().getPageNumber() + 1;
-		int startPage = Math.max(nowPage - 4, 1);
-		int endPage = Math.min(nowPage + 9, lists.getTotalPages());
-		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
+		if (!searchDto.getSearchQuery().matches("[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝|(|)|.|-]*")) {
+			searchDto.setSearchQuery("");
+		}
+
+		model.addAttribute("SearchDto", searchDto);
 
 		return "board/notice/notice";
 	}
@@ -57,15 +59,15 @@ public class NoticeController {
 	// 게시판 글쓰기 폼 불러오기
 	@GetMapping(value = "/write")
 	public String noticeForm(Model model) {
-		
+
 		model.addAttribute("noticeDto", new NoticeDto());
-		
+
 		return "board/notice/noticeForm";
 	}
 
 	// 새 글쓰기
 	@PostMapping(value = "/submitNotice")
-	public String addnoticeList(@Valid NoticeDto noticeDto, Notice notice, BindingResult bindingResult, Model model,
+	public String addNotice(@Valid NoticeDto noticeDto, BindingResult bindingResult, Model model,
 			Principal principal, @RequestParam("attachFile") List<MultipartFile> attachList) {
 
 		if (bindingResult.hasErrors()) {
@@ -75,8 +77,8 @@ public class NoticeController {
 		try {
 			String id = principal.getName();
 
-			noticeService.writenotice(noticeDto, attachList, id);
-			
+			noticeService.writeNotice(noticeDto, attachList, id);
+
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "등록 중 에러가 발생하였습니다.");
 			return "board/notice/noticeForm";
@@ -87,18 +89,19 @@ public class NoticeController {
 
 	// 글 상세보기
 	@GetMapping(value = "/detail/{num}")
-	public String noticeDetail(@PathVariable("num") Long num, Model model, NoticeDto noticeDto, Principal principal) {
-		
-		noticeDto = noticeService.getnoticeDetail(num);
-		
+	public String noticeDetail(@PathVariable("num") Long num, Model model, Principal principal) {
+
 		noticeService.updateCnt(num);
+
+		NoticeDto noticeDto = noticeService.getNoticeDetail(num);
+		
 		model.addAttribute("noticeDto", noticeDto);
-		
-		String name = principal.getName();
-		Notice notice = noticeService.findByNum(num);
-		model.addAttribute("username", name);
-		model.addAttribute("writername", notice.getMember().getId());
-		
+
+		if (principal != null) {
+			String name = principal.getName();
+			model.addAttribute("username", name);
+		}
+
 		return "board/notice/noticeDetailForm";
 	}
 
@@ -108,7 +111,7 @@ public class NoticeController {
 
 		try {
 
-			NoticeDto noticeDto = noticeService.getnoticeDetail(num);
+			NoticeDto noticeDto = noticeService.getNoticeModifyDtl(num);
 			model.addAttribute("noticeDto", noticeDto);
 
 		} catch (EntityNotFoundException e) {
@@ -123,8 +126,8 @@ public class NoticeController {
 
 	// 글 수정하기
 	@PostMapping(value = "/modNotice/{num}")
-	public String modnotice(@PathVariable("num") Long num, NoticeDto noticeDto, Model model, BindingResult bindingResult,
-			@RequestParam("attachFile") List<MultipartFile> attachList) {
+	public String modNotice(@PathVariable("num") Long num, NoticeDto noticeDto, Model model,
+			BindingResult bindingResult, @RequestParam("attachFile") List<MultipartFile> attachList) {
 
 		if (bindingResult.hasErrors()) {
 
@@ -132,7 +135,7 @@ public class NoticeController {
 		}
 
 		try {
-			noticeService.updatenotice(noticeDto, attachList);
+			noticeService.updateNotice(noticeDto, attachList);
 
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "잘못된 정보 입니다.");
@@ -145,39 +148,11 @@ public class NoticeController {
 
 	// 글 삭제하기
 	@GetMapping(value = "/deleteNotice/{num}")
-	public String deletenotice(@PathVariable("num") Long num) throws Exception {
+	public String deleteNotice(@PathVariable("num") Long num) throws Exception {
 
-		attachService.deleteAttach(num);
-		noticeService.deletenotice(num);
-		
+		attachService.noticeDeleteAttach(num);
+		noticeService.deleteNotice(num);
+
 		return "redirect:/notices/lists";
 	}
-
-	/*
-	 * // 답글쓰기 폼 풀러오기
-	 * 
-	 * @GetMapping(value = "/replyForm/{num}") public String
-	 * replyForm(@PathVariable("num") Long num, Model model) {
-	 * model.addAttribute("num", num);
-	 * 
-	 * NoticeDto noticeDto = new NoticeDto();
-	 * 
-	 * model.addAttribute("noticeDto", noticeDto);
-	 * 
-	 * return "board/notice/replyForm"; }
-	 * 
-	 * // 답글 저장
-	 * 
-	 * @PostMapping(value = "/replyNotice") public String replynotice(Principal
-	 * principal, @RequestParam("attachFile") List<MultipartFile> attachList,
-	 * NoticeDto noticeDto, Model model) { try { String id = principal.getName();
-	 * System.out.println(noticeDto); noticeService.replynotice(noticeDto,
-	 * attachList, id, model);
-	 * 
-	 * }catch(Exception e) {
-	 * 
-	 * return "board/notice/replyForm"; }
-	 * 
-	 * return "redirect:/notices/lists"; }
-	 */
 }

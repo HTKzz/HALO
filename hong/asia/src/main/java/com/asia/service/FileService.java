@@ -12,7 +12,6 @@ import lombok.extern.java.Log;
 @Log
 public class FileService {
 
-
 	public String uploadFile(String uploadPath, String originalFileName, byte[] fileData) throws Exception {
 		UUID uuid = UUID.randomUUID();
 		// Universally Unique Identifier는 서로 다른 객체들을 구별하기 위해서 이름을 부여할 때 사용한다.(파일명 중복문제 해결)

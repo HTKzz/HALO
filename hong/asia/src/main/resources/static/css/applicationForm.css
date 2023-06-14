@@ -1,19 +1,22 @@
 @charset "UTF-8";
 
 @import
-	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap')
-	;
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-@import url('https://webfontworld.github.io/kopus/KoPubWorldBatang.css')
-	;
+@import url('https://webfontworld.github.io/kopus/KoPubWorldBatang.css');
 
 @font-face {
 	font-family: 'SF_HambakSnow';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
-		format('woff');
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')	format('woff');
 	font-weight: normal;
 	font-style: normal;
+}
+
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
 
 .filebox .upload-name {
@@ -27,6 +30,7 @@
 }
 
 .filebox label {
+	font-family: Pretendard-Regular;
 	display: inline-block;
 	padding: 10px 20px;
 	color: #fff;
@@ -38,6 +42,7 @@
 }
 
 .filebox input[type="file"] {
+	font-family: Pretendard-Regular;
 	position: absolute;
 	width: 0;
 	height: 0;
@@ -51,10 +56,11 @@
 	width: 100%;
 	margin-bottom: 20px;
 	border: 0;
-	/* border-bottom: 1px solid #bbb; */
+	font-size: 18px;
 }
 
 .applicationForm-input {
+	font-family: Pretendard-Regular;
 	width: 100%;
 	margin-bottom: 20px;
 	border: 0;
@@ -72,11 +78,6 @@
 }
 
 /*--------- default setting ---------*/
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
 
 .applicationForm-title-h1 {
 	font-family: 'SF_HambakSnow';
@@ -87,8 +88,9 @@
 }
 
 .applicationForm-txt h4 {
+	/* font-family: Pretendard-Regular; */
 	font-family: 'SF_HambakSnow';
-	font-size: 1.7rem;
+	font-size: 1.8rem;
 	line-height: 2rem;
 	text-align: center;
 }
@@ -114,8 +116,7 @@
 	color: #888;
 }
 
-.applicationForm-board input::placeholder, .applicationForm-board textarea::placeholder
-	{
+.applicationForm-board input::placeholder, .applicationForm-board textarea::placeholder {
 	color: #888;
 }
 
@@ -134,6 +135,7 @@
 	border-radius: 10px;
 	border: 1px solid #999;
 	padding: 50px 5%;
+	font-family: Pretendard-Regular;
 }
 
 .applicationForm-inner {
@@ -158,6 +160,7 @@
 
 .applicationForm-board textarea {
 	margin-top: 15px;
+	margin-bottom: 20px;
 	height: 200px;
 	padding: 10px 0 0 10px;
 	resize: none;
@@ -167,7 +170,7 @@
 
 /*--------- 첨부파일 ---------*/
 .custom-file-label {
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: Pretendard-Regular;
 	font-size: 1rem;
 	line-height: 1.5rem;
 	color: black;
@@ -175,6 +178,7 @@
 	word-break: keep-all;
 	padding: 50px 5%;
 	margin: 0 auto;
+	border-radius: 5px;
 }
 
 .custom-file-label:hover {
@@ -185,6 +189,7 @@
 .applicationForm-btn {
 	display: flex;
 	justify-content: center;
+	text-align: center;
 }
 
 .applicationForm-button {
@@ -208,4 +213,15 @@
 	display: flex;
 	margin: 20px 0;
 	padding: 7px;
+}
+
+.upload-name {
+	font-family: Pretendard-Regular;
+	border-radius: 5px;
+}
+
+.applicationForm-caution {
+	font-size: 0.9em;
+	color: #999;
+	margin-left: 10px;
 }

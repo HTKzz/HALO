@@ -5,28 +5,18 @@
     font-style: normal;
 }
 
-* {
+.vocList-container {
+	text-align: center;
+	position: relative;
+	padding: 100px 0;
+	width: 1600px;
 	margin: 0 auto;
-    padding: 0 auto;
-    list-style: none;
-    text-decoration: none;
-}
-
-body {
 	font-family: Pretendard-Regular;
 	font-size: 1rem;
 	line-height: 1.5rem;
 	color: black;
 	letter-spacing: 0.1px;
 	word-break: keep-all;
-	padding: 50px 5%;
-	margin: 0 auto;
-}
-
-.vocList-container {
-	text-align: center;
-	position: relative;
-	padding: 100px 0;
 }
 
 .vocList-title {
@@ -46,14 +36,14 @@ body {
 }
 
 .vocList-table {
-	font-size: 15px;
+	font-size: 16px;
 	width: 100%;
 	border-top : 2px solid #333;
 	border-bottom: 1px solid #ccc;
 }
 
-.vocList-table a {
-	color: #333;
+.a-name {
+	color: black;
 	display: inline-block;
 	line-height: 1.4;
 	word-break: break-all;
@@ -64,17 +54,29 @@ body {
 	text-decoration: underline;
 }
 
-.vocList-table .vocList-num .vocList-cnt {
-	width: 100px;
+.voc-tr {
+	width: 100%;
 	text-align: center;
 }
 
-.vocList-table .vocList-date {
-	width: 200px;
+.vocList-num {
+	width: 8%;
+}
+.vocList-name {
+	width: 50%;
+}
+.vocList-writer {
+	width: 15%;
+}
+.vocList-date {
+	width: 15%;
+}
+.vocList-cnt {
+	width: 10%;
 }
 
-.vocList-table th, .vocList-table td {
-	padding: 14px 0;
+.vocList-table th{
+	padding: 14px;
 }
 
 .vocList-table tbody td {
@@ -97,7 +99,7 @@ body {
 
 .page-item.active a {
 	color: #fdfdfd;
-	background-color: #1d1f20;
+	bckground-color: #1d1f20;
 	border: solid 1px #1d1f20;
 }
 
@@ -130,14 +132,9 @@ body {
 	cursor: pointer;
 }
 
-.fieldError {
-	color: #bd2130;
-}
-
-
 /* 검색바 css */
-
 .vocList-container select {
+	font-family: Pretendard-Regular;
 	border: 1px solid #bbb;
 	border-radius: 5px;
 	width: 85px;
@@ -146,14 +143,16 @@ body {
 }
 
 .memberMng-select-search {
+	font-family: Pretendard-Regular;
 	border: 1px solid #aaa;
 	border-radius: 5px;
 	width: 180px;
-	height: 33px;
+	height: 35px;
 	text-align: center;
 }
 
 .memberMng-search-btn {
+	font-family: Pretendard-Regular;
 	border: 1px solid #aaa;
 	border-radius: 5px;
 	background: #fff;
@@ -163,8 +162,6 @@ body {
     transition: 0.5s;
     font-weight: bold;
     cursor: pointer;
-    position: relative;
-    top: 2px;
 }
 
 .vocList-searchOptions {
@@ -183,19 +180,26 @@ body {
 	border: solid 1px #1d1f20;
 }
 
-.vocList-approvalStatus-button {
-	background-color: #A4A4A4;
-	color: #fff;
-    border: none;    
-    border-radius: 5px;
-    width: 70px;
-    height: 30px;
-    cursor: pointer;
-    transition: 0.5s;
-    font-weight: bold;
-}
-
 .vocList-approvalStatus-button:hover {
 	background: #777;
 	color: #fff;
 }
+
+.myReservationForm-btn {
+	font-family: Pretendard-Regular;
+	background-color: #A4A4A4;
+	border: none;
+	color: white;
+	border-radius: 5px;
+	width: 100%;
+	height: 30px;
+	padding: 5px 0;
+	font-size: 12pt;
+	cursor: pointer;
+	word-break: keep-all;
+}
+
+.myReservationForm-btn:hover {
+	background-color: #747474;
+}
+

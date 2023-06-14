@@ -25,7 +25,7 @@ public class AttachService {
 	private String attachLocation;
 
 	private final AttachRepository attachRepository;
-
+	
 	private final FileService fileService;
 
 	public void saveAttach(Attach attach, MultipartFile attachFile) throws Exception {
@@ -61,8 +61,30 @@ public class AttachService {
 		}
 	}
 
-	public void deleteAttach(Long num) throws Exception {
-		List<AttachDto> attachLists = attachRepository.getLists(num);
+	public void vocDeleteAttach(Long num) throws Exception {
+		List<AttachDto> attachLists = attachRepository.getVocList(num);
+
+		for (int i = 0; i < attachLists.size(); i++) {
+
+			String attach = attachLists.get(i).getName();
+
+			fileService.deleteFile(attachLocation + "/" + attach);
+		}
+	}
+	
+	public void appDeleteAttach(Long num) throws Exception {
+		List<AttachDto> attachLists = attachRepository.getAppList(num);
+
+		for (int i = 0; i < attachLists.size(); i++) {
+
+			String attach = attachLists.get(i).getName();
+
+			fileService.deleteFile(attachLocation + "/" + attach);
+		}
+	}
+	
+	public void noticeDeleteAttach(Long num) throws Exception {
+		List<AttachDto> attachLists = attachRepository.getNoticeList(num);
 
 		for (int i = 0; i < attachLists.size(); i++) {
 
@@ -73,10 +95,13 @@ public class AttachService {
 	}
 
 	public Attach download(Long num) throws Exception {
-
 		Attach file1 = attachRepository.findByNum(num);
-
 		return file1;
+	}
+
+	public List<AttachDto> getImageList(long anum) {
+		List<AttachDto> attachLists = attachRepository.getAppList(anum);
+		return attachLists;
 	}
 
 }

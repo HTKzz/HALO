@@ -3,6 +3,7 @@ package com.asia.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.asia.service.MemberService;
@@ -22,20 +24,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	MemberService memberService;
 
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin()
-				.loginPage("/members/login")
-				.defaultSuccessUrl("/")
-				.usernameParameter("id")
-				.failureUrl("/members/login/error")
-				.and()
-				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
+		http.formLogin().loginPage("/members/login").failureHandler(authenticationFailureHandler())
+				.defaultSuccessUrl("/").usernameParameter("id")
+//			.failureUrl("/members/login/error")
+				.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
 				.logoutSuccessUrl("/");
 
-		http.authorizeRequests()
-				.mvcMatchers("/admin/**").hasRole("ADMIN")
-				.mvcMatchers("/", "/members/**", "/mail/**", "/reservations/**", "/board/**", "/voc/**", "/notices/**", "/asia/**", "/pay/**", "/useinfo/**", "/main/**").permitAll()
-				.anyRequest().authenticated();
+		http.authorizeRequests().mvcMatchers("/board/program/apply").hasAnyRole("ADMIN", "COMPANY")
+				.mvcMatchers("/admin/**", "/board/program/apply/**", "/board/program/delete/**", "/notices/write")
+				.hasRole("ADMIN").mvcMatchers("/reservations/**").hasAnyRole("ADMIN", "USER")
+				.mvcMatchers("/voc/new", "/voc/update/**", "/voc/delete/**", "/voc/reply/**")
+				.hasAnyRole("COMPANY", "ADMIN", "USER")
+				.mvcMatchers("/", "/members/**", "/mail/**", "/board/**", "/voc/**", "/notices/**", "/asia/**",
+						"/pay/**", "/useinfo/**", "/main/**", "/download/**", "/accIntro/**", "/wayMap/**")
+				.permitAll().anyRequest().authenticated();
 
 		http.exceptionHandling() // 인증되지 않은 사용자가 리소스에 접근하였을 때 수행되는 핸들러 등록
 //      .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
@@ -46,6 +48,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
+	public AuthenticationFailureHandler authenticationFailureHandler() {
+		return new AuthFailureHandler();
+	}
+
+	@Bean
+	public AuthenticationProvider authenticationProvider() {
+		return new CustomAuthenticationProvider(userDetailsService, passwordEncoder);
 	}
 
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

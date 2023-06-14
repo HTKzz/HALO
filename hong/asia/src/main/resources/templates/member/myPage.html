@@ -11,9 +11,7 @@ layout:decorate="~{layouts/layout1}">
 	<script th:src="@{/js/myPage.js}" type="text/javascript"></script>
 </head>
 
-
 <div layout:fragment="content">
-
 	<article class="myPageForm-board">
 		<div class="myPageForm-header-div">
 			<a class="myPageForm-header-inner1" th:href="@{/members/myPage}">
@@ -38,49 +36,40 @@ layout:decorate="~{layouts/layout1}">
 					<div class="myPageForm-input-group-text">이름</div>
 					<input type="text" th:field="${member.name}" name="name" class="myPageForm-input" readonly>
 				</div>
-				
 				<div class="myPageForm-inner">
 					<div class="myPageForm-input-group-text">아이디</div>
 					<input type="text" th:field="${member.id}" name="id" class="myPageForm-input" readonly />
 				</div>
-				
 				<div class="myPageForm-inner">
 					<div class="myPageForm-input-group-text">비밀번호
 						<span style="color: hotpink;">(수정가능)</span>
 					</div>
 					<input type="password" name="password" id="myPage-text-pw" class="myPageForm-input">
-					<!-- <input type=button id="pw_button" name="pw_button" value="변경" onClick="check_pw();"> -->
 				</div>
-				
 				<div class="myPageForm-inner">
 					<div class="myPageForm-input-group-text">이메일</div>
 					<input type="text" th:field="${member.email}" name="email" class="myPageForm-input" readonly />
 				</div>
-				
 				<div class="myPageForm-inner">
 					<div class="myPageForm-input-group-text">전화번호</div>
 					<input type="text" th:field="${member.tel}" name="tel" class="myPageForm-input" readonly />
 				</div>
-				
 				<div class="myPageForm-inner">
 					<div class="myPageForm-input-group-text">주소</div>
 					<input type="text" th:field="${member.addr}" name="addr" class="myPageForm-input" readonly  />
 				</div>
-				
 				<div class="myPageForm-inner">
 					<div class="myPageForm-input-group-text">수신여부</div>
 					<input type="text" th:field="${member.agree}" name="agree" class="myPageForm-input" readonly  />
 				</div>
-				
 				<span class="myPageForm-Btn">
-					<button class="myPage-submit">수정 후 저장</button>
+					<button class="myPage-submit" id="btn">수정 후 저장</button>
 				</span>
 				</div>
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-			
 			</form>
 		</section>
 	</article>
-	
+	<script th:src="@{/js/myPage.js}" type="text/javascript"></script>
 </div>
 </html>

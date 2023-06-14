@@ -9,7 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.thymeleaf.util.StringUtils;
 
-import com.asia.dto.ReservationSearchDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.QReservation;
 import com.asia.entity.Reservation;
 import com.querydsl.core.QueryResults;
@@ -24,10 +24,10 @@ public class ReservationRepositoryCustomImpl implements ReservationRepositoryCus
 		this.queryFactory = new JPAQueryFactory(em);
 	}
 	
-	public Page<Reservation> getAdminItemPage(ReservationSearchDto reservationSearchDto, Pageable pageable) {
+	public Page<Reservation> getAdminReservationPage(SearchDto searchDto, Pageable pageable) {
 
 		QueryResults<Reservation> results = queryFactory.selectFrom(QReservation.reservation)
-				.where(searchByLike(reservationSearchDto.getSearchBy(), reservationSearchDto.getSearchQuery()))
+				.where(searchByLike(searchDto.getSearchBy(), searchDto.getSearchQuery()))
 				.orderBy(QReservation.reservation.num.desc())
 				.offset(pageable.getOffset())
 				.limit(pageable.getPageSize())
