@@ -49,34 +49,26 @@
 
 			</section>
 
-			<div class="page_wrap">
-				<nav aria-label="...">
-					<ul class="pagination justify-content-center">
-
-						<li class="page-item"
-							th:classappend="${startPage == application5.pageable.pageNumber + 1} ? 'disabled'">
-							<a class="page-link"
-							th:href="@{/board/program/exhibitionlist(page=${application5.pageable.pageNumber - 1})}"
-							tabindex="-1" aria-disabled="true">Previous</a>
-						</li>
-
-
-						<li class="page-item"
-							th:classappend="${page == application5.pageable.pageNumber + 1} ? 'active'"
-							th:each="page : ${#numbers.sequence(startPage, endPage)}"><a
-							class="page-link"
-							th:href="@{/board/program/exhibitionlist(page=${page-1})}"
-							th:text=${page} aria-current="page">1</a></li>
-
-
-						<li class="page-item"
-							th:classappend="${endPage == application5.pageable.pageNumber + 1} ? 'disabled'">
-							<a class="page-link"
-							th:href="@{/board/program/exhibitionlist(page=${application5.pageable.pageNumber + 1})}">Next</a>
-						</li>
-
-					</ul>
-				</nav>
+			<div class="page_wrap" th:with="start=${(application5.number/maxPage)*maxPage + 1}, end=(${(application5.totalPages == 0) ? 1 : (start + (maxPage - 1) < application5.totalPages ? start + (maxPage - 1) : application5.totalPages)})">
+				<ul class="pagination justify-content-center">
+					<li class="page-item"
+						th:classappend="${application5.first} ? 'disabled'">
+						<a class="page-link"
+						th:href="@{/board/program/exhibitionlist(page=${application5.pageable.pageNumber - 1})}"
+						tabindex="-1" aria-disabled="true">Previous</a>
+					</li>
+					<li class="page-item"
+						th:classappend="${page == application5.pageable.pageNumber + 1} ? 'active'"
+						th:each="page : ${#numbers.sequence(start, end)}"><a
+						class="page-link"
+						th:href="@{/board/program/exhibitionlist(page=${page-1})}"
+						th:text=${page} aria-current="page">1</a></li>
+					<li class="page-item"
+						th:classappend="${application5.last} ? 'disabled'">
+						<a class="page-link"
+						th:href="@{/board/program/exhibitionlist(page=${application5.pageable.pageNumber + 1})}">Next</a>
+					</li>
+				</ul>
 			</div>
 		</main>
 	</div>

@@ -28,7 +28,6 @@
 	<form action="/reservations/add1" role="form" method="post" th:object="${application}" id="frm" onsubmit="return false">
          <input type="hidden" th:value="${anum}" name="anum">
          
-         
          <div class="reserve-name">
 			<input type="hidden" th:field="*{name}" id="name" name="name" value="name">
 			<textarea th:field="*{name}" spellcheck="false" disabled></textarea>
@@ -50,12 +49,10 @@
 		</div>
 		<div class="form-group">
 			<label>장소</label>
-			 <input type="hidden" th:field="*{place}" id="place" name="place">
 			 <input type="text" th:field="*{place}" readOnly>
 		</div>
 		<div class="form-group">
 			<label>날짜</label>
-			 <input type="hidden" th:field="*{udate}" id="udate" name="udate">
 			 <input type="text" th:field="*{udate}" readOnly>
 		</div>
 		<div class="form-group-cnt">

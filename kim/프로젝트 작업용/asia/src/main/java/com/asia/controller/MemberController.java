@@ -65,7 +65,6 @@ public class MemberController {
 				return;
 			memberFormDto.setName("관리자");
 			memberFormDto.setId("user" + String.valueOf(i));
-			memberFormDto.setId("user" + String.valueOf(i));
 			memberFormDto.setPassword("12341234");
 			memberFormDto.setEmail("User" + String.valueOf(i) + "@userEmail.com");
 			memberFormDto.setTel("010555" + String.valueOf(i) + "555");
@@ -85,6 +84,7 @@ public class MemberController {
 				return;
 			memberFormDto.setName("관리자");
 			memberFormDto.setId("company" + String.valueOf(i));
+			memberFormDto.setCid(String.valueOf(i));
 			memberFormDto.setPassword("12341234");
 			memberFormDto.setEmail("company" + String.valueOf(i) + "@companyEmail.com");
 			memberFormDto.setTel("010352" + String.valueOf(i) + "555");
@@ -137,14 +137,14 @@ public class MemberController {
 	@PostMapping(value = "/companyadd")
 	public String newCompany(@Valid CompanyFormDto companyFormDto, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			return "member/memberForm";
+			return "member/companyForm";
 		}
 		try {
 			Member member = Member.createCompany(companyFormDto, passwordEncoder);
 			memberService.saveMember(member);
-		} catch (IllegalStateException e) {
+		} catch (Exception e) {
 			model.addAttribute("errorMessage", e.getMessage());
-			return "member/memberForm";
+			return "member/companyForm";
 		}
 		return "redirect:/";
 	}

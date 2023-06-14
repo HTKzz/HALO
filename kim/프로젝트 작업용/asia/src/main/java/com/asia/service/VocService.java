@@ -60,6 +60,7 @@ public class VocService {
 			voc.setRealNum(realNum+1);
 		}
 		
+		voc.setCnt(1);
 		voc.setMember(member);
 		vocRepository.save(voc);
 		

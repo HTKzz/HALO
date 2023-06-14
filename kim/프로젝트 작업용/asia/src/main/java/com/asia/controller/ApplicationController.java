@@ -9,8 +9,6 @@ import java.util.TreeMap;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -27,8 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.asia.dto.ApplicationDto;
 import com.asia.dto.CountDto;
 import com.asia.entity.Application;
+import com.asia.entity.Reservation;
 import com.asia.service.ApplicationService;
 import com.asia.service.AttachService;
+import com.asia.service.ReservationService;
 import com.asia.service.SeatService;
 
 import lombok.RequiredArgsConstructor;
@@ -38,9 +38,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApplicationController {
 	
-	private final Logger LOGGER = LoggerFactory.getLogger(ApplicationController.class);
+//	private final Logger LOGGER = LoggerFactory.getLogger(ApplicationController.class);
 
 	private final ApplicationService applicationService;
+	private final ReservationService reservationService;
 	private final SeatService seatService;
 	private final AttachService attachService;
 
@@ -187,11 +188,11 @@ public class ApplicationController {
    	@GetMapping(value="/program/delete/{num}")
 	public String applicationDelete(@PathVariable Long num, Model model) throws Exception {
    		
-   		Application application = applicationService.getAppDtl(num);
-   		List<Application> list = applicationService.getApplication(application.getName());
+   		List<Application> list = applicationService.getApplication(num);
    		
    		for(int i = 0; i < list.size(); i++) {
    	   		attachService.appDeleteAttach(list.get(i).getNum());
+   	   		reservationService.deleteJoin(list.get(i).getNum());
 			applicationService.deleteApplication(list.get(i).getNum());
    		}
 		
@@ -208,15 +209,8 @@ public class ApplicationController {
     		
             Page<ApplicationDto> showapplications = applicationService.getList1(pageable, programCategory);
             
-            int nowPage = showapplications.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
-            int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
-            int endPage = Math.min(nowPage + 4, showapplications.getTotalPages());
-            
+            model.addAttribute("maxPage", 10);
             model.addAttribute("application4", showapplications);
-            
-            model.addAttribute("nowPage", nowPage);
-            model.addAttribute("startPage", startPage);
-            model.addAttribute("endPage", endPage);
             
             return "board/program/showList";
     	
@@ -227,20 +221,13 @@ public class ApplicationController {
     public String exhibitionListView(Model model, Long num, String programCategory,
     								 @PageableDefault(page = 0, size = 6)Pageable pageable) {
     	
-    	
             //큰카테고리에 해당하는 상품 가져오기.
     		programCategory = "전시";
 
             Page<ApplicationDto> showapplications = applicationService.getList1(pageable, programCategory);
             
-            int nowPage = showapplications.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
-            int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
-            int endPage = Math.min(nowPage + 4, showapplications.getTotalPages());
+            model.addAttribute("maxPage", 10);
             model.addAttribute("application5", showapplications);
-            
-            model.addAttribute("nowPage", nowPage);
-            model.addAttribute("startPage", startPage);
-            model.addAttribute("endPage", endPage);
             
             return "board/program/exhibitionList";
     	
@@ -256,14 +243,8 @@ public class ApplicationController {
 
             Page<ApplicationDto> showapplications = applicationService.getList1(pageable, programCategory);
             
-            int nowPage = showapplications.getPageable().getPageNumber() + 1; //pageable에서 넘어온 현재페이지를 가지고올수있다 * 0부터시작하니까 +1
-            int startPage = Math.max(nowPage - 4, 1); //매개변수로 들어온 두 값을 비교해서 큰값을 반환
-            int endPage = Math.min(nowPage + 4, showapplications.getTotalPages());
+            model.addAttribute("maxPage", 10);
             model.addAttribute("application6", showapplications);
-            
-            model.addAttribute("nowPage", nowPage);
-            model.addAttribute("startPage", startPage);
-            model.addAttribute("endPage", endPage);
             
             return "board/program/eventList";
     	

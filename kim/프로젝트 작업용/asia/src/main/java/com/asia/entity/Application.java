@@ -1,5 +1,6 @@
 package com.asia.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,6 +39,8 @@ public class Application extends BaseEntity {
 	@Column(name="app_num")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="APPLICATION_SEQ_NUM")
 	private Long num;
+	
+	private Long originNo;
 	
 	// 프로그램명
 	@Column(name="name", nullable = false)
@@ -103,7 +106,7 @@ public class Application extends BaseEntity {
 	
 	@OneToMany(mappedBy ="application", cascade=CascadeType.REMOVE)
 	@ToString.Exclude
-	private List<Reservation> reservation;
+	private List<Reservation> reservation = new ArrayList<>();
 	
 	// 프로그램 정보를 업데이트 해준다
 	public void updateApplication(ApplicationDto applicationDto) {
