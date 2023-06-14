@@ -51,11 +51,11 @@
 													"_parent": {
 														"$ref": "AAAAAAGIsjPXAhQg0c4="
 													},
-													"font": "Arial;13;0",
-													"left": 24.72998046875,
+													"font": "Arial;20;0",
+													"left": 32.123046875,
 													"top": 5,
-													"width": 94.20263671875,
-													"height": 13,
+													"width": 144.388671875,
+													"height": 20,
 													"text": "AdminController"
 												},
 												{
@@ -64,15 +64,15 @@
 													"_parent": {
 														"$ref": "AAAAAAGIsjPXAhQg0c4="
 													},
-													"font": "Arial;13;1",
+													"font": "Arial;20;1",
 													"left": 5,
 													"top": 5,
-													"width": 14.72998046875,
-													"height": 13,
+													"width": 22.123046875,
+													"height": 20,
 													"text": "sd"
 												}
 											],
-											"font": "Arial;13;0",
+											"font": "Arial;20;0",
 											"width": 2177,
 											"height": 1481,
 											"nameLabel": {
