@@ -84,6 +84,7 @@ public class MemberController {
 				return;
 			memberFormDto.setName("관리자");
 			memberFormDto.setId("company" + String.valueOf(i));
+			memberFormDto.setCid(String.valueOf(i));
 			memberFormDto.setPassword("12341234");
 			memberFormDto.setEmail("company" + String.valueOf(i) + "@companyEmail.com");
 			memberFormDto.setTel("010352" + String.valueOf(i) + "555");
@@ -106,7 +107,7 @@ public class MemberController {
 		return "member/memberForm";
 	}
 
-	// 일반 회원가입 페이지 불러오기
+	// 기업 회원가입 페이지 불러오기
 	@GetMapping(value = "/company/new")
 	public String companyForm(Model model) {
 		CompanyFormDto companyFormDto = new CompanyFormDto();
@@ -136,14 +137,14 @@ public class MemberController {
 	@PostMapping(value = "/companyadd")
 	public String newCompany(@Valid CompanyFormDto companyFormDto, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			return "member/memberForm";
+			return "member/companyForm";
 		}
 		try {
 			Member member = Member.createCompany(companyFormDto, passwordEncoder);
 			memberService.saveMember(member);
-		} catch (IllegalStateException e) {
+		} catch (Exception e) {
 			model.addAttribute("errorMessage", e.getMessage());
-			return "member/memberForm";
+			return "member/companyForm";
 		}
 		return "redirect:/";
 	}

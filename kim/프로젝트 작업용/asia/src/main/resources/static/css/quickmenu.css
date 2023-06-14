@@ -1,8 +1,17 @@
-#floatdiv {
+@font-face {
+	font-family: 'SF_HambakSnow';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#quick-floatdiv {
 	position: fixed;
 	_position: absolute;
-	_z-index: -1;
-	width: 100px;
+	_z-index: 3;
+	width: 90px;
 	display: inline-block; /* overflow:hidden;  같은 의미? */
 	right: 0px; /* //화면 오른쪽에 위치한다. left로 변경가능 */
 	top: 20%; /* //화면 위쪽과의 간격 */
@@ -10,51 +19,70 @@
 	margin: 0;
 }
 
-#floatdiv ul {
-	list-style: none;
-}
-
-#floatdiv li {
-	margin-bottom: 2px;
-	text-align: left;
-}
-
-#floatdiv a {
-	color: #5D5D5D;
+#quick-floatdiv a {
+	color: #888;
 	border: 0;
 	text-decoration: none;
 	display: float;
 }
 
-#floatdiv a:hover, #floatdiv .menu {
-	background-color: #5D5D5D;
-	color: #fff;
-} /* 마우스오버 시 배경/글씨 색깔 */
-#floatdiv .menu, #floatdiv .last {
-	margin-bottom: 0px;
-}
-
-#floatContent {
-	padding: 5px;
+#quick-floatContent {
+	background-color: white;
 	border-width: 2px;
-	border-color: #7f7f7f;
+	border-color: #2156A6;
 	border-style: solid;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
 }
 
-#floatTitle {
-	width: 100px;
+#quick-floatContent a {
+	font-family: Pretendard-Regular;
+	background-color: transparent;
+}
+
+#quick-floatContent > div {
+	margin-bottom: 10px;
+	margin-top: 8px;
+}
+
+#quick-floatContent > div:hover img {
+	transform: scale(1.15);
+}
+
+#quick-floatContent img {
+	 transition: all 0.2s linear;
+	 width: 60px;
+}
+
+#quick-floatTitle {
+	font-family: 'SF_HambakSnow';
+	width: 90px;
 	height: 30px;
 	line-height: 30px;
-	background-color: #7f7f7f;
+	background-color: #2156A6;
+	
 	/* 텍스트 */
 	color: #fff;
 	text-align: center;
 	text-decoration: none;
 	font-weight: bold;
-	font-size: 12px;
+	font-size: 15px;
+	letter-spacing: 1px;
+	
 	/* 모양 */
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
+}
+
+.quick-top {
+	width: 90px;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	background-color: #2156A6;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.quick-top > #moveToTop {
+	font-family: 'SF_HambakSnow';
+	color: white;
 }

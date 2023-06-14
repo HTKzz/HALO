@@ -25,6 +25,8 @@ public class ApplicationDto {
 	
 	private Long num;
 	
+	private Long originNo;
+	
 	@NotBlank(message = "※ 프로그램명은 필수 입력 값입니다.")
 	private String name;
 
@@ -91,14 +93,6 @@ public class ApplicationDto {
 		this.edate = edate;
 		this.udate = udate;
 		this.seatDetail = seatDetail;
-	}
-	
-	@QueryProjection
-	public ApplicationDto(Long num, String name, String sdate, String edate) {
-		this.num = num;
-		this.name = name;
-		this.sdate = sdate;
-		this.edate = edate;
 	}
 	
 	@QueryProjection

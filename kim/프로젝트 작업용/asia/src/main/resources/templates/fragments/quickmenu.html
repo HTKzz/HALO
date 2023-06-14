@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layouts/layout1}">
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout1}">
 
 <div class="quickmenu" th:fragment="quickmenu">
 	<link th:href="@{/css/quickmenu.css}" rel="stylesheet">
-	<div id="floatdiv">
-		<div id="floatTitle">퀵메뉴</div>
-		<div id="floatContent">
-			<ul>
-				<li><img
-					src="#" /><a
-					href=#>
-						test1</a></li>
-				<li><img
-					src="#" /><a
-					href=#>
-						test2</a></li>
-				<li><img
-					src="#" /><a
-					href=#>
-						test3</a></li>
-			</ul>
+	<div id="quick-floatdiv">
+		<div id="quick-floatTitle">Quick</div>
+		<div id="quick-floatContent" style="text-align:center;">
+			<div class="quick-notice">
+				<a href="/notices/lists">
+					<img src="/images/quickMenu/megaphone.png" /><br />
+					<span>공지사항</span>
+				</a>
+			</div>
+			<div class="quick-wayToCome">
+				<a href="/wayMap">
+					<img src="/images/quickMenu/signpost.png" /><br />
+					<span>오시는길</span>
+				</a>
+			</div>
+			<div class="quick-voc">
+				<a href="/voc/list">
+					<img src="/images/quickMenu/chat.png" /><br />
+					<span>고객의소리</span>
+				</a>
+			</div>
+		</div>
+		<div class="quick-top" style="">
+			<a href="#" id="moveToTop">▲&nbsp;Top </a>
 		</div>
 	</div>
+	<script th:src="@{/js/quickmenu.js}" type="text/javascript"></script>
 </div>
 </html>

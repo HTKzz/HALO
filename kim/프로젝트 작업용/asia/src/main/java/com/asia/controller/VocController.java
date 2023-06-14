@@ -60,7 +60,6 @@ public class VocController {
 			vocService.saveVoc(vocFormDto, attachFileList, name);
 
 			VocFormDto vocFormDto1 = vocService.getVoc();
-			vocService.updateCnt(vocFormDto1.getNum());
 			model.addAttribute("voc", vocFormDto1);
 			
 		} catch (Exception e) {
@@ -93,8 +92,10 @@ public class VocController {
 	@GetMapping("/detail/{num}")
 	public String detailVoc(Model model, @PathVariable("num") Long num, Principal principal) {
 		
-		VocFormDto vocFormDto = vocService.getvocDtl(num);
 		vocService.updateCnt(num);
+		
+		VocFormDto vocFormDto = vocService.getvocDtl(num);
+		
 		model.addAttribute("voc", vocFormDto);
 		
 		if(principal != null) {
@@ -151,20 +152,22 @@ public class VocController {
 	@PostMapping(value = "/update/{num}")
 	public String vocUpdate(@Valid VocFormDto vocFormDto, BindingResult bindingResult, @RequestParam("attachFile") List<MultipartFile> attachFileList, 
 			Model model, @PathVariable("num") Long num) {
+		
 		if (bindingResult.hasErrors()) {
 			return "board/voc/vocForm";
 		}
+		
 		try {
 			vocService.updateVoc(vocFormDto, attachFileList);
-
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "상품 수정 중 에러 발생");
 			return "board/voc/vocForm";
 		}
+		
 		return "redirect:/voc/detail/{num}";
 	}
 
-	// 답글
+	// 답글 페이지 호출
 	@GetMapping("/reply/{num}")
 	public String replyForm(@PathVariable("num") Long num, Model model) {
 		Voc parentVoc = vocService.findByRealNum(num);
@@ -175,7 +178,8 @@ public class VocController {
 
 		return "board/voc/vocReply";
 	}
-
+	
+	// 답글
 	@PostMapping("/reply/new")
 	public String newReplyVoc(@Valid VocFormDto vocFormDto, BindingResult bindingResult, Model model,
 			@RequestParam("attachFile") List<MultipartFile> attachFileList, @RequestParam("parentNo") Long parentNo, Principal principal) {

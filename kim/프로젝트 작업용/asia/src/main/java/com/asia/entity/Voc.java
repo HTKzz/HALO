@@ -46,7 +46,7 @@ public class Voc extends BaseEntity {
 	@Column
 	private String content; // 글내용
 
-	@Column(columnDefinition = "number default 0", nullable = false)
+	@Column(nullable = false)
 	private int cnt;
 	
 	@Column

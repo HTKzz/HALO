@@ -1,27 +1,33 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout1}">
+	
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/programCardList.css}">
-
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/programCardList.css}">
 </head>
+
 <body>
-<div layout:fragment="content">
-    <main class="container">
-        <section class="new_arrivals">
-            <h2 class="content-title"><span>ACC's Event</span></h2>
-            
-            <div id="pattern" class="pattern">
-                	<ul class="card-img-list">
-						<th:block th:each="eventlist, status: ${application6.getContent()}">
+	<div layout:fragment="content">
+		<main class="container">
+			<section class="new_arrivals">
+				<h2 class="content-title">
+					<span>ACC's Event</span>
+				</h2>
+				<div id="pattern" class="pattern">
+					<ul class="card-img-list">
+						<th:block
+							th:each="eventlist, status: ${application6.getContent()}">
 							<li>
 								<div class="card">
-									<a class="card-inner" th:href="'/board/program/application/' +${eventlist.num}">
+									<a class="card-inner"
+										th:href="'/board/program/application/' +${eventlist.num}">
 										<div class="card-head">
 											<figure class="card-img-fig">
-												<img th:src="${eventlist.url}" class="card-img" th:alt="${eventlist.name}">
-												<figcaption class=cif><i class="ion-upload"></i>
+												<img th:src="${eventlist.url}" class="card-img"
+													th:alt="${eventlist.name}">
+												<figcaption class=cif>
+													<i class="ion-upload"></i>
 													<h4>자세히보기</h4>
 													<h2>More Info</h2>
 												</figcaption>
@@ -29,7 +35,8 @@
 										</div>
 										<div class="card-body">
 											<h4 class="card-title">[[${eventlist.name}]]</h4>
-											<p class="card-program-period">[[${eventlist.sdate}]] ~ [[${eventlist.edate}]]</p>
+											<p class="card-program-period">[[${eventlist.sdate}]] ~
+												[[${eventlist.edate}]]</p>
 										</div>
 									</a>
 								</div>
@@ -37,53 +44,30 @@
 						</th:block>
 					</ul>
 				</div>
-                    
-        </section>
-
-  <div class="page_wrap">
-        <ul class="pagination justify-content-center">
-        
-            <li class="page-item" th:classappend="${startPage == application6.pageable.pageNumber + 1} ? 'disabled'">
-                <a class="page-link" th:href="@{/board/program/eventlist(page=${application6.pageable.pageNumber - 1})}" tabindex="-1" aria-disabled="true">Previous</a>
-            </li>
-            
-           
-            <li class="page-item" th:classappend="${page == application6.pageable.pageNumber + 1} ? 'active'" th:each= "page : ${#numbers.sequence(startPage, endPage)}">
-                <a class="page-link" th:href="@{/board/program/eventlist(page=${page-1})}"
-                th:text=${page} aria-current="page">1</a>
-            </li>
-            
- 
-            <li class="page-item" th:classappend="${endPage == application6.pageable.pageNumber + 1} ? 'disabled'">
-                <a class="page-link" th:href="@{/board/program/eventlist(page=${application6.pageable.pageNumber + 1})}">Next</a>
-            </li>
-            
-        </ul>
-</div>
-
- <!-- <div class=searchbar>
-    검색기능-5
-    <form th:action="@{/board/program/eventlist}" method="get">
-
-        <select id="searchType" name="searchType" title="검색 유형 선택">
-        	<option value="">전체 검색</option>
-        	<option value="name">제목</option>
-        	<option value="programCategory">카테고리</option>
-        	<option value="createdBy">등록자</option>
-        </select>
-        
-        <input type="text" name="searchKeyword">
-        <button type="submit">검색</button>
-        
-    </form>
-    </div> -->
-
-        
-        
-    </main>
-    </div>
-    <footer></footer>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script> -->
+			</section>
+			
+			<div class="page_wrap" th:with="start=${(application6.number/maxPage)*maxPage + 1}, end=(${(application6.totalPages == 0) ? 1 : (start + (maxPage - 1) < application6.totalPages ? start + (maxPage - 1) : application6.totalPages)})">
+				<ul class="pagination justify-content-center">
+					<li class="page-item"
+						th:classappend="${application6.first} ? 'disabled'">
+						<a class="page-link"
+						th:href="@{/board/program/eventlist(page=${application6.pageable.pageNumber - 1})}"
+						tabindex="-1" aria-disabled="true">Previous</a>
+					</li>
+					<li class="page-item"
+						th:classappend="${page == application6.pageable.pageNumber + 1} ? 'active'"
+						th:each="page : ${#numbers.sequence(start, end)}"><a
+						class="page-link"
+						th:href="@{/board/program/eventlist(page=${page-1})}"
+						th:text=${page} aria-current="page">1</a></li>
+					<li class="page-item"
+						th:classappend="${application6.last} ? 'disabled'">
+						<a class="page-link"
+						th:href="@{/board/program/eventlist(page=${application6.pageable.pageNumber + 1})}">Next</a>
+					</li>
+				</ul>
+			</div>
+		</main>
+	</div>
 </body>
 </html>

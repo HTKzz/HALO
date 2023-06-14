@@ -95,9 +95,7 @@ public class AttachService {
 	}
 
 	public Attach download(Long num) throws Exception {
-
 		Attach file1 = attachRepository.findByNum(num);
-
 		return file1;
 	}
 

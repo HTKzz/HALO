@@ -24,7 +24,6 @@ public class NoticeRepositoryCustomImpl implements NoticeRepositoryCustom{
 	public NoticeRepositoryCustomImpl(EntityManager em) {
 		this.queryFactory = new JPAQueryFactory(em); //JPAQueryFactory 생성자로 EntityManager 객체 넣어줌
 	}
-
 	
 	@Override
 	public Page<Notice> getNoticeLists(SearchDto searchDto, Pageable pageable){

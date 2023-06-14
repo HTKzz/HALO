@@ -20,12 +20,6 @@ public class SeatCDto {
 	private String seat;
 	
 	@QueryProjection
-	public SeatCDto(Long num, String seat) {
-		this.num = num;
-		this.seat = seat;
-	}
-	
-	@QueryProjection
 	public SeatCDto(Long num, String stat, String seat) {
 		this.num = num;
 		this.stat = stat;

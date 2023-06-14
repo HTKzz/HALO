@@ -27,7 +27,7 @@ import lombok.ToString;
 public class Attach extends BaseEntity {
 
 	@Id
-	@Column(name = "num")
+	@Column(name = "att_num")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="ATTACH_SEQ_NUM")
 	private Long num;
 

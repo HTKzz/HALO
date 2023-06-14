@@ -64,11 +64,6 @@ public class NoticeDto{
 	}
 	
 	@QueryProjection
-	public NoticeDto(Long num) {
-		this.num = num;
-	}
-	
-	@QueryProjection
 	public NoticeDto(Long num, String name, LocalDate d_date) {
 		this.num = num;
 		this.name = name;

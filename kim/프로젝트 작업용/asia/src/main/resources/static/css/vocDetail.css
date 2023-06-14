@@ -82,6 +82,7 @@
 .bodyContent pre{
 	line-height: 200%;
 	white-space: pre-wrap;
+	word-break: break-all;
 }
 
 .bodyContent_inner{

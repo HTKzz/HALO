@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.asia.dto.ApplicationDto;
 import com.asia.dto.AttachDto;
+import com.asia.dto.ReservationFormDto;
 import com.asia.dto.SeatADto;
 import com.asia.dto.SeatBDto;
 import com.asia.dto.SeatCDto;
@@ -50,6 +52,7 @@ public class ReservationController {
 		model.addAttribute("name", application.getName());
 		model.addAttribute("udate", application.getUdate());
 		model.addAttribute("price", application.getPrice());
+		model.addAttribute("place", application.getPlace());
 
 		model.addAttribute("anum", anum);
 		model.addAttribute("seat", seat);
@@ -79,9 +82,8 @@ public class ReservationController {
 
 	// 좌석o 예매하기
 	@PostMapping(value = "/add")
-	public String addreservation(Model model, @RequestParam("anum") Long anum, @RequestParam("seat1") String seatDetail,
-			@RequestParam("seat") String seat, @RequestParam("cnt") int cnt, @RequestParam("price") int price,
-			Principal principal, UpdateDto updateDto) throws Exception {
+	public String addReservation(Model model, @RequestParam("anum") Long anum, @RequestParam("seat1") String seatDetail,
+			Principal principal, UpdateDto updateDto, ReservationFormDto reservationFormDto) throws Exception {
 
 		Application application = applicationService.getAppDtl(anum);
 
@@ -89,7 +91,9 @@ public class ReservationController {
 
 		seatService.updateSeat(updateDto, anum, seatDetail);
 
-		reservationService.saveReservation(application, name, seat, cnt, price);
+		reservationService.saveReservation(application, name, reservationFormDto);
+		
+		System.out.println("들"+reservationFormDto);
 
 		return "redirect:/reservations/myReservation";
 	}
@@ -109,16 +113,13 @@ public class ReservationController {
 
 	// 좌석x 예매
 	@PostMapping(value = "/add1")
-	public String addreservation1(Model model, @RequestParam("anum") int anum, @RequestParam("cnt") int cnt,
-			@RequestParam("price") int price, Principal principal) throws Exception {
+	public String addreservation1(Model model, @RequestParam("anum") int anum, Principal principal, ReservationFormDto reservationFormDto) throws Exception {
 
 		Application application = applicationService.getAppDtl(anum);
 
 		String name = principal.getName();
 
-		String seat = null;
-
-		reservationService.saveReservation(application, name, seat, cnt, price);
+		reservationService.saveReservation(application, name, reservationFormDto);
 
 		return "redirect:/reservations/myReservation";
 	}
@@ -133,7 +134,6 @@ public class ReservationController {
 
 		if (reservations.isEmpty()) {
 			model.addAttribute("reservations", "nothing");
-
 		} else {
 			model.addAttribute("reservations", reservations);
 		}
@@ -143,9 +143,14 @@ public class ReservationController {
 
 	// 예매내역 취소
 	@PostMapping(value = "/cancelMyReservation/{num}")
-	public String cancelMyReservation(@PathVariable Long num) {
+	public String cancelMyReservation(@PathVariable Long num, RedirectAttributes re) {
 
 		Reservation reservation = reservationService.getDtl(num);
+		
+		if(reservation.getApplication() == null) {
+			re.addFlashAttribute("errorMessage", "상품정보가 존재하지 않습니다.");
+			return "redirect:/reservations/myReservation";
+		}
 
 		String seatDetail = reservation.getApplication().getSeatDetail();
 
@@ -158,16 +163,21 @@ public class ReservationController {
 			seatService.cancelUpdateSeat(seatDetail, deleteSeat, array);
 		}
 
-		reservationService.cancleReservation(num);
+		reservationService.cancelReservation(num);
 
 		return "redirect:/reservations/myReservation";
 	}
 
 	// 환불 추가
 	@PostMapping(value = "/refundMyReservation/{num}")
-	public String refundMyReservation(@PathVariable Long num) {
+	public String refundMyReservation(@PathVariable Long num, RedirectAttributes re) {
 
 		Reservation reservation = reservationService.getDtl(num);
+		
+		if(reservation.getApplication() == null) {
+			re.addFlashAttribute("errorMessage", "상품정보가 존재하지 않습니다.");
+			return "redirect:/reservations/myReservation";
+		}
 
 		String seatDetail = reservation.getApplication().getSeatDetail();
 
@@ -187,9 +197,15 @@ public class ReservationController {
 
 	// 티켓인쇄 페이지 이동
 	@GetMapping(value = "/viewPrintTicket/{num}")
-	public String printTicket(@PathVariable("num") Long num, Model model) {
+	public String printTicket(@PathVariable("num") Long num, Model model, RedirectAttributes re) {
 
 		Reservation reservation = reservationService.getDtl(num);
+		
+		if(reservation.getApplication() == null) {
+			re.addFlashAttribute("errorMessage", "상품정보가 존재하지 않습니다.");
+			return "redirect:/reservations/myReservation";
+		}
+		
 		model.addAttribute("printTicketInfo", reservation);
 
 		return "reservation/printTicket";
