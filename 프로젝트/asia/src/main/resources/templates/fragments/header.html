@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-	layout:decorate="~{layouts/layout1}">
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  layout:decorate="~{layouts/layout1}">
 
 <head>
 	<meta charset="utf-8">
@@ -11,8 +11,8 @@
 <body>
 	<div class="acc-header" th:fragment="header">
 		<header class="acc-header-wrap">
-			<a href="/" class="acc-header-logo">
-				<img src="/images/ACC-logo.png" alt="ACC국립아시아문화전당" />
+			<a class="acc-header-logo">
+				<img src="/images/ACC-logo.png" alt="ACC국립아시아문화전당" onclick="location.href='/'" class="acc-header-logo-img"/>
 			</a>
 			<nav class="acc-header-nav">
 				<ul class="acc-header-gnb">
@@ -48,13 +48,13 @@
 						<a href="/board/program/showlist" class="menu-item-title" sec:authorize="isAnonymous() || isAuthenticated()">프로그램</a>
 						<ul>
 							<li class="acc-header-sub-item" sec:authorize="isAnonymous() || isAuthenticated()">
-								<a href="/board/program/showlist">공 연</a>
+								<a href="/board/program/list/show">공 연</a>
 							</li>
 							<li class="acc-header-sub-item" sec:authorize="isAnonymous() || isAuthenticated()">
-								<a href="/board/program/exhibitionlist">전 시</a>
+								<a href="/board/program/list/exhibition">전 시</a>
 							</li>
 							<li class="acc-header-sub-item" sec:authorize="isAnonymous() || isAuthenticated()">
-								<a href="/board/program/eventlist">행 사</a>
+								<a href="/board/program/list/event">행 사</a>
 							</li>
 						</ul>
 					</li>

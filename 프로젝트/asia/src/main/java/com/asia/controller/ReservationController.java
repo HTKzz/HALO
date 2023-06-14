@@ -15,9 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.asia.dto.ApplicationDto;
 import com.asia.dto.AttachDto;
 import com.asia.dto.ReservationFormDto;
-import com.asia.dto.SeatADto;
-import com.asia.dto.SeatBDto;
-import com.asia.dto.SeatCDto;
+import com.asia.dto.SeatDto;
 import com.asia.dto.UpdateDto;
 import com.asia.entity.Application;
 import com.asia.entity.Member;
@@ -58,21 +56,21 @@ public class ReservationController {
 		model.addAttribute("seat", seat);
 
 		if (seat.equals("A")) {
-			List<SeatADto> seatList = seatService.getSeatA(anum);
+			List<SeatDto> seatList = seatService.getSeatA(anum);
 			model.addAttribute("seatList", seatList);
 
 			return "seat/seatA";
 		}
 
 		if (seat.equals("B")) {
-			List<SeatBDto> seatList = seatService.getSeatB(anum);
+			List<SeatDto> seatList = seatService.getSeatB(anum);
 			model.addAttribute("seatList", seatList);
 
 			return "seat/seatB";
 		}
 
 		if (seat.equals("C")) {
-			List<SeatCDto> seatList = seatService.getSeatC(anum);
+			List<SeatDto> seatList = seatService.getSeatC(anum);
 			model.addAttribute("seatList", seatList);
 
 			return "seat/seatC";
@@ -92,8 +90,6 @@ public class ReservationController {
 		seatService.updateSeat(updateDto, anum, seatDetail);
 
 		reservationService.saveReservation(application, name, reservationFormDto);
-		
-		System.out.println("들"+reservationFormDto);
 
 		return "redirect:/reservations/myReservation";
 	}

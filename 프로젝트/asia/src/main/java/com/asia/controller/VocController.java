@@ -94,7 +94,7 @@ public class VocController {
 		
 		vocService.updateCnt(num);
 		
-		VocFormDto vocFormDto = vocService.getvocDtl(num);
+		VocFormDto vocFormDto = vocService.getVocDtl(num);
 		
 		model.addAttribute("voc", vocFormDto);
 		
@@ -137,8 +137,7 @@ public class VocController {
 		}
 		
 		try {
-			VocFormDto vocFormDto = vocService.getvocDtl(num); // 조회한 데이터를 모델에 담아 뷰로 전달
-			System.out.println(vocFormDto);
+			VocFormDto vocFormDto = vocService.getVocModifyDtl(num); // 조회한 데이터를 모델에 담아 뷰로 전달
 			model.addAttribute("vocFormDto", vocFormDto);
 		} catch (Exception e) { // 엔티티가 존재하지 않을 경우 에러메세지를 담아 등록페이지로 이동
 			model.addAttribute("errorMessage", "존재하지 않는 글 입니다.");

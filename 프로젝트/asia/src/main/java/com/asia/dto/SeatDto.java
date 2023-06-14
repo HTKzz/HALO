@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class SeatBDto {
+public class SeatDto {
 	
 	private Long num;
 
@@ -20,11 +20,9 @@ public class SeatBDto {
 	private String seat;
 	
 	@QueryProjection
-	public SeatBDto(Long num, String stat, String seat) {
+	public SeatDto(Long num, String stat, String seat) {
 		this.num = num;
 		this.stat = stat;
 		this.seat = seat;
 	}
-	
-	
 }

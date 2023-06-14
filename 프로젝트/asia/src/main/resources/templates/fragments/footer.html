@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security" 
-layout:decorate="~{layouts/layout1}">
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security" 
+	  layout:decorate="~{layouts/layout1}">
 
-<meta charset="UTF-8">
+
 <head>
+	<meta charset="UTF-8">
 </head>
 
 <body>
+
 <div class="footer" th:fragment="footer">
-<link th:href="@{/css/footer.css}" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link th:href="@{/css/footer.css}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<footer class="footer-view">
 	<div class = "footer-acc">
@@ -21,30 +24,45 @@ layout:decorate="~{layouts/layout1}">
 		</div>
 		<div class="footer-content">
 
-
-			<p>국립아시아문화전당 콜센터 1899-5566 (09:00~18:00 ※예매 업무는 17:00까지 / 매주 월요일,
-				1월 1일 휴관)</p>
+			<p>국립아시아문화전당 콜센터 1899-5566 (09:00~18:00 ※예매 업무는 17:00까지 / 매주 월요일, 1월 1일 휴관)</p>
 
 			<p>국립아시아문화전당은 행정 및 재정상의 자율성을 가지고 운영성과에 책임을 지는 책임운영기관입니다.</p>
 
 			<p>광주광역시 동구 문화전당로 38 (우)61485 대표자 이강현 사업자등록번호 571-83-00015</p>
+			
 			<p>Copyright © 국립아시아문화전당. 모든 권리 보유.</p>
+			
 			<ul class="socials">
-				<li><a href="https://www.facebook.com/asiaculturecenter/"
-					target="_blank"><i class="fa fa-facebook"></i></a></li>
-				<li><a href="https://twitter.com/WeloveACC" target="_blank"><i
-						class="fa fa-twitter"></i></a></li>
-				<li><a href="https://blog.naver.com/asiaculturecenter"
-					target="_blank"><i class="fa fa-google-plus"></i></a></li>
-				<li><a
-					href="https://www.youtube.com/channel/UCdSyGG-j_ORzUBS_VuUU4zQ"
-					target="_blank"><i class="fa fa-youtube"></i></a></li>
-				<li><a href="https://www.instagram.com/asiaculturecenter/"
-					target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+				<li>
+					<a href="https://www.facebook.com/asiaculturecenter/" target="_blank">
+						<i class="fa-brands fa-facebook fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/WeloveACC" target="_blank">
+						<i class="fa-brands fa-twitter fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a href="https://blog.naver.com/asiaculturecenter" target="_blank">
+						<i class="fa-brands fa-google fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a href="https://www.youtube.com/channel/UCdSyGG-j_ORzUBS_VuUU4zQ" target="_blank">
+						<i class="fa-brands fa-youtube fa-lg"></i>
+					</a>
+				</li>
+				<li>
+					<a href="https://www.instagram.com/asiaculturecenter/" target="_blank">
+						<i class="fa-brands fa-instagram fa-lg"></i>
+					</a>
+				</li>
 			</ul>
 		</div>
 		 
 	</footer>
 </div>
+
 </body>
 </html>

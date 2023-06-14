@@ -22,14 +22,12 @@ import com.asia.dto.SearchDto;
 import com.asia.entity.Application;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
-import com.asia.entity.Reservation;
 import com.asia.entity.SeatA;
 import com.asia.entity.SeatB;
 import com.asia.entity.SeatC;
 import com.asia.repository.ApplicationRepository;
 import com.asia.repository.AttachRepository;
 import com.asia.repository.MemberRepository;
-import com.asia.repository.ReservationRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -307,8 +305,8 @@ public class ApplicationService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<ApplicationDto> getApplicationSelect(String name) {
-		List<ApplicationDto> list = applicationRepository.getList2(name);
+	public List<ApplicationDto> getApplicationSelect(Long Num) {
+		List<ApplicationDto> list = applicationRepository.getList2(Num);
 		return list;
 	}
 

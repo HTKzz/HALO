@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.asia.dto.SeatADto;
+import com.asia.dto.SeatDto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -42,17 +42,13 @@ public class SeatA {
 	@JoinColumn(name = "application_num")
 	private Application application;
 
-	public static SeatA createSeatA(SeatADto SeatADto) {
+	public static SeatA createSeatA(SeatDto SeatADto) {
 		SeatA seatA = new SeatA();
 		seatA.setStat(SeatADto.getStat());
 		return seatA;
 	}
-
+	
 	public void updateSeatA(String stat) {
 		this.stat = stat;
-	}
-
-	public void updateSeat(String a) {
-		this.stat = a;
 	}
 }

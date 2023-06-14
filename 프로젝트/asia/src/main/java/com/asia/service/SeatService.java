@@ -8,9 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.asia.dto.CountDto;
-import com.asia.dto.SeatADto;
-import com.asia.dto.SeatBDto;
-import com.asia.dto.SeatCDto;
+import com.asia.dto.SeatDto;
 import com.asia.dto.UpdateDto;
 import com.asia.entity.SeatA;
 import com.asia.entity.SeatB;
@@ -67,18 +65,18 @@ public class SeatService {
 		return count;
 	}
 
-	public List<SeatADto> getSeatA(Long anum) {
-		List<SeatADto> seat = seatARepository.getSeat(anum);
+	public List<SeatDto> getSeatA(Long anum) {
+		List<SeatDto> seat = seatARepository.getSeat(anum);
 		return seat;
 	}
 
-	public List<SeatBDto> getSeatB(Long num) {
-		List<SeatBDto> seat = seatBRepository.getSeat(num);
+	public List<SeatDto> getSeatB(Long num) {
+		List<SeatDto> seat = seatBRepository.getSeat(num);
 		return seat;
 	}
 
-	public List<SeatCDto> getSeatC(Long anum) {
-		List<SeatCDto> seat = seatCRepository.getSeat(anum);
+	public List<SeatDto> getSeatC(Long anum) {
+		List<SeatDto> seat = seatCRepository.getSeat(anum);
 		return seat;
 	}
 
@@ -88,38 +86,35 @@ public class SeatService {
 		Map result = objectMapper.convertValue(updateDto, Map.class);
 		
 		if (seat1.equals("A")) {
-			List<SeatADto> seat = seatARepository.getSeat(anum);
+			List<SeatDto> seat = seatARepository.getSeat(anum);
 			for (int i = 0; i < seat.size(); i++) {
-
 				SeatA seatA = new SeatA();
 				seatA = seatARepository.findByNum(seat.get(i).getNum());
 				String A = (String) result.get(seat.get(i).getSeat().toLowerCase());
-				seatA.updateSeat(A);
-
+				seatA.setStat(A);
+				seatARepository.save(seatA);
 			}
 		}
 		
 		if (seat1.equals("B")) {
-			List<SeatBDto> seat = seatBRepository.getSeat(anum);
+			List<SeatDto> seat = seatBRepository.getSeat(anum);
 			for (int i = 0; i < seat.size(); i++) {
-
 				SeatB seatB = new SeatB();
 				seatB = seatBRepository.findByNum(seat.get(i).getNum());
 				String B = (String) result.get(seat.get(i).getSeat().toLowerCase());
-				seatB.updateSeat(B);
-
+				seatB.setStat(B);
+				seatBRepository.save(seatB);
 			}
 		}
 		
 		if (seat1.equals("C")) {
-			List<SeatCDto> seat = seatCRepository.getSeat(anum);
+			List<SeatDto> seat = seatCRepository.getSeat(anum);
 			for (int i = 0; i < seat.size(); i++) {
-
 				SeatC seatC = new SeatC();
 				seatC = seatCRepository.findByNum(seat.get(i).getNum());
 				String C = (String) result.get(seat.get(i).getSeat().toLowerCase());
-				seatC.updateSeat(C);
-
+				seatC.setStat(C);
+				seatCRepository.save(seatC);
 			}
 		}
 	}
@@ -127,7 +122,7 @@ public class SeatService {
 	public void cancelUpdateSeat(String seatDetail, Long anum, String[] array) {
 		
 		if (seatDetail.equals("A")) {
-			List<SeatADto> seat = seatARepository.getSeat(anum);
+			List<SeatDto> seat = seatARepository.getSeat(anum);
 			
 			for (int i = 0; i < array.length; i++) {
 				for (int j = 0; j < seat.size(); j++) {
@@ -136,14 +131,15 @@ public class SeatService {
 						SeatA seatA = new SeatA();
 						seatA = seatARepository.findByNum(seat.get(j).getNum());
 						String A = seat.get(j).getStat();
-						seatA.updateSeat(A);
+						seatA.setStat(A);
+						seatARepository.save(seatA);
 					}
 				}
 			}
 		}
 		
 		if (seatDetail.equals("B")) {
-			List<SeatBDto> seat = seatBRepository.getSeat(anum);
+			List<SeatDto> seat = seatBRepository.getSeat(anum);
 			
 			for (int i = 0; i < array.length; i++) {
 				for (int j = 0; j < seat.size(); j++) {
@@ -152,14 +148,15 @@ public class SeatService {
 						SeatB seatB = new SeatB();
 						seatB = seatBRepository.findByNum(seat.get(j).getNum());
 						String B = seat.get(j).getStat();
-						seatB.updateSeat(B);
+						seatB.setStat(B);
+						seatBRepository.save(seatB);
 					}
 				}
 			}
 		}
 		
 		if (seatDetail.equals("C")) {
-			List<SeatCDto> seat = seatCRepository.getSeat(anum);
+			List<SeatDto> seat = seatCRepository.getSeat(anum);
 			
 			for (int i = 0; i < array.length; i++) {
 				for (int j = 0; j < seat.size(); j++) {
@@ -168,7 +165,8 @@ public class SeatService {
 						SeatC seatC = new SeatC();
 						seatC = seatCRepository.findByNum(seat.get(j).getNum());
 						String C = seat.get(j).getStat();
-						seatC.updateSeat(C);
+						seatC.setStat(C);
+						seatCRepository.save(seatC);
 					}
 				}
 			}

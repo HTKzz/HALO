@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.asia.dto.CountDto;
-import com.asia.dto.SeatCDto;
+import com.asia.dto.SeatDto;
 import com.asia.entity.SeatC;
 
 public interface SeatCRepository extends JpaRepository<SeatC, Long> {
@@ -16,8 +16,8 @@ public interface SeatCRepository extends JpaRepository<SeatC, Long> {
 			+ "group by application_num")
 	List<CountDto> getCount();
 	
-	@Query("select new com.asia.dto.SeatCDto(num, stat, seat) from SeatC where application_num = :num")
-	List<SeatCDto> getSeat(Long num);
+	@Query("select new com.asia.dto.SeatDto(num, stat, seat) from SeatC where application_num = :num")
+	List<SeatDto> getSeat(Long num);
 
 	SeatC findByNum(Long num);
 	

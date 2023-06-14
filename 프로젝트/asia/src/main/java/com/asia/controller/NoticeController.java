@@ -111,7 +111,7 @@ public class NoticeController {
 
 		try {
 
-			NoticeDto noticeDto = noticeService.getNoticeDetail(num);
+			NoticeDto noticeDto = noticeService.getNoticeModifyDtl(num);
 			model.addAttribute("noticeDto", noticeDto);
 
 		} catch (EntityNotFoundException e) {

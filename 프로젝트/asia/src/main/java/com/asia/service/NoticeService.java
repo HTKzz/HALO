@@ -55,7 +55,7 @@ public class NoticeService {
 			Attach attach = new Attach();
 			attach.setNotice(notice);
 			attach.setThumb("N");
-			
+
 			attachService.saveAttach(attach, attachList.get(i));
 		}
 		return notice.getNum();
@@ -68,8 +68,8 @@ public class NoticeService {
 
 	// 조회수
 	@Transactional
-	public int updateCnt(Long num) {
-		return noticeRepository.updateCnt(num);
+	public void updateCnt(Long num) {
+		noticeRepository.updateCnt(num);
 	}
 
 	// 게시판 디테일 불러오기
@@ -99,6 +99,27 @@ public class NoticeService {
 		return noticeDto;
 	}
 
+	// 게시판 디테일 불러오기
+	@Transactional
+	public NoticeDto getNoticeModifyDtl(Long num) {
+
+		Notice notice = noticeRepository.findByNum(num);
+
+		List<Attach> attachList = attachRepository.findByNoticeNumOrderByNumAsc(num);
+		List<AttachDto> attachDtoList = new ArrayList<>();
+
+		for (Attach attach : attachList) {
+
+			AttachDto attachDto = AttachDto.of(attach);
+			attachDtoList.add(attachDto);
+		}
+
+		NoticeDto noticeDto = NoticeDto.of(notice);
+		noticeDto.setAttachDtoList(attachDtoList);
+
+		return noticeDto;
+	}
+
 	// 게시판 글 수정하기
 	public Long updateNotice(NoticeDto noticeDto, List<MultipartFile> attachList) throws Exception {
 
@@ -119,18 +140,18 @@ public class NoticeService {
 	public void deleteNotice(Long num) throws Exception {
 		noticeRepository.deleteByNum(num);
 	}
-	
+
 	// 메인화면 공지사항 리스트
 	public List<NoticeDto> getNoticeList() {
 		List<NoticeDto> noticeList = noticeRepository.getNoticeList();
 		int size = noticeList.size();
-		
-		for(int i = 0; i < size; i++) {
-			if(i > 8) {
+
+		for (int i = 0; i < size; i++) {
+			if (i > 8) {
 				noticeList.remove(9);
 			}
 		}
-		
+
 		return noticeList;
 	}
 }
