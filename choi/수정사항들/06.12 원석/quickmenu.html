@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+<div class="quickmenu" th:fragment="quickmenu">
+	<link th:href="@{/css/quickmenu.css}" rel="stylesheet">
+	<div id="quick-floatdiv">
+		<div id="quick-floatTitle">Quick</div>
+		<div id="quick-floatContent" style="text-align:center;">
+			<div class="quick-notice">
+				<a href="/notices/lists">
+					<img src="/images/quickMenu/notice.jpg" />공지사항
+				</a>
+			</div>
+			<div class="quick-wayToCome">
+				<a href="/wayMap">
+					<img src="/images/quickMenu/wayToCome.png" />오시는길
+				</a>
+			</div>
+			<div class="quick-voc">
+				<a href="/voc/list">
+					<img src="images/service.svg" />고객의소리
+				</a>
+			</div>
+		</div>
+		<div class="quick-top" style="">
+			<a href="#" id="moveToTop">▲Top </a>
+		</div>
+	</div>
+	<script th:src="@{/js/quickmenu.js}" type="text/javascript"></script>
+</div>
+</html>
