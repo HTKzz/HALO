@@ -68,6 +68,11 @@ public class ApplicationController {
 			model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값 입니다.");
 			return "board/program/applicationForm"; // 상품 등록시 첫 번째 이미지가 없다면 에러 메시지와 함께 상품등록 페이지로 전환한다.
 		} // 상품 첫번째 이미지는 메인 페이지에서 보여줄 상품 이미지를 사용하기 위해 필수 값으로 지정한다.
+		
+		if (attachFileList.get(1).isEmpty() && applicationDto.getNum() == null) {
+			model.addAttribute("errorMessage", "두번째 프로그램 이미지는 필수 입력 값입니다.");
+			return "board/program/applicationForm";
+		}
 
 		try {
 			String name = principal.getName();

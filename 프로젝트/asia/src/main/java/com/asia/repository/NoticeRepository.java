@@ -28,6 +28,9 @@ public interface NoticeRepository extends JpaRepository<Notice, Long>, NoticeRep
 	@Query(value="select name from Notice where Notice_num = :num +1", nativeQuery=true)
 	String getNextContent(Long num);
 	
-	@Query("select new com.asia.dto.NoticeDto(num, name, d_date) from Notice order by num desc")
+	@Query(value = "select notice_num from (SELECT * FROM notice ORDER BY notice_num DESC) WHERE ROWNUM= 1", nativeQuery = true)
+	Long getNoticeNum();
+	
+	@Query("select new com.asia.dto.NoticeDto(num, name, d_date) from Notice order by notice_num desc")
 	List<NoticeDto> getNoticeList();
 }

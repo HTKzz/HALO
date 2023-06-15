@@ -3,6 +3,20 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout1}">
 
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+    <script th:Inline="javascript">
+	$(document).ready(function() {
+     	var errorMessage = [[${errorMessage}]];
+
+     	if(errorMessage != null) {
+     		alert(errorMessage);
+    	}
+	});
+    </script>
+</th:block>
+
 <meta charset="UTF-8">
 <title>글쓰기폼</title>
 

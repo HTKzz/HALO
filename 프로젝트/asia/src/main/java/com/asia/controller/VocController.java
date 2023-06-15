@@ -63,7 +63,7 @@ public class VocController {
 			model.addAttribute("voc", vocFormDto1);
 			
 		} catch (Exception e) {
-			model.addAttribute("errorMessage", "등록 중 에러발생");
+			model.addAttribute("errorMessage", "등록 중 에러가 발생하였습니다.");
 			return "board/voc/vocForm";
 		}
 		return "board/voc/vocDetail";
@@ -159,7 +159,7 @@ public class VocController {
 		try {
 			vocService.updateVoc(vocFormDto, attachFileList);
 		} catch (Exception e) {
-			model.addAttribute("errorMessage", "상품 수정 중 에러 발생");
+			model.addAttribute("errorMessage", "수정 중 에러가 발생하였습니다.");
 			return "board/voc/vocForm";
 		}
 		
@@ -189,7 +189,7 @@ public class VocController {
 			vocService.saveReplyVoc(vocFormDto, attachFileList, parentNo, name);
 
 		} catch (Exception e) {
-			model.addAttribute("errorMessage", "상품 등록 중 에러 발생");
+			model.addAttribute("errorMessage", "등록 중 에러가 발생하였습니다.");
 			return "board/voc/vocReply";
 		}
 		return "redirect:/voc/list";

@@ -10,18 +10,6 @@
 <link th:href="@{/css/vocList.css}" rel="stylesheet">
 </head>
 
-<!-- 사용자 스크립트 추가 -->
-<th:block layout:fragment="script">
-    <script th:Inline="javascript">
-	$(document).ready(function() {
-     	var errorMessage = [[${errorMessage}]];
-
-     	if(errorMessage != null) {
-     		alert(errorMessage);
-    	}
-	});
-    </script>
-</th:block>
 
 <div layout:fragment="content">
 	<div class="vocList-container">

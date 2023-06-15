@@ -93,6 +93,12 @@ input {
 	align-items: center;
 }
 
+.form-group-ps {
+	display: flex;
+	margin: 5px;
+	align-items: center;
+}
+
 .form-group input {
 	border: 1px solid white;
 	/* border-radius: 5px; */
@@ -100,6 +106,13 @@ input {
 	height: 30px;
 	text-align: center;
 	text-overflow: ellipsis;
+}
+
+.form-group-ps p {
+	margin-top: -15px;
+	margin-left: auto;
+	margin-right: auto;
+	color: #999;
 }
 
 .form-group label {

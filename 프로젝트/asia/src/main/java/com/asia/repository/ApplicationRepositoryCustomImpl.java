@@ -44,7 +44,6 @@ public class ApplicationRepositoryCustomImpl implements ApplicationRepositoryCus
 	// 프로그램 신청내역 페이징 + 검색기능
 	@Override
 	public Page<Application> getMyApplicationList(SearchDto searchDto, Pageable pageable, String id) {
-		System.out.println("들"+id);
 		QueryResults<Application> results = queryFactory.selectFrom(QApplication.application)
 				.where(searchByLike(searchDto.getSearchBy(), searchDto.getSearchQuery()), QApplication.application.member.id.eq(id))
 				.orderBy(QApplication.application.num.desc())

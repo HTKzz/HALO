@@ -16,10 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.asia.dto.AttachDto;
 import com.asia.dto.NoticeDto;
 import com.asia.dto.SearchDto;
+import com.asia.dto.VocFormDto;
 import com.asia.entity.Application;
 import com.asia.entity.Attach;
 import com.asia.entity.Member;
 import com.asia.entity.Notice;
+import com.asia.entity.Voc;
 import com.asia.repository.AttachRepository;
 import com.asia.repository.MemberRepository;
 import com.asia.repository.NoticeRepository;
@@ -153,5 +155,31 @@ public class NoticeService {
 		}
 
 		return noticeList;
+	}
+
+	public NoticeDto getNotice() {
+		Long noticeNum = noticeRepository.getNoticeNum();
+
+		Notice notice = noticeRepository.findByNum(noticeNum);
+
+		List<Attach> attachList = attachRepository.findByNoticeNumOrderByNumAsc(notice.getNum()); // 해당 이미지 조회
+		List<AttachDto> attachDtoList = new ArrayList<AttachDto>();
+		for (Attach attach : attachList) { // 조회한 attach엔티티를 attachDto객체로 만들어서 리스트에 추가
+			AttachDto attachDto = AttachDto.of(attach);
+			attachDtoList.add(attachDto);
+		}
+
+		NoticeDto noticeDto = NoticeDto.of(notice);
+
+		long allVocCnt = noticeRepository.getList();
+		String prevContent = noticeRepository.getPrevContent(notice.getNum());
+		String nextContent = noticeRepository.getNextContent(notice.getNum());
+
+		noticeDto.setAllNoticeCnt(allVocCnt);
+		noticeDto.setPrevContent(prevContent);
+		noticeDto.setNextContent(nextContent);
+		noticeDto.setAttachDtoList(attachDtoList);
+
+		return noticeDto;
 	}
 }

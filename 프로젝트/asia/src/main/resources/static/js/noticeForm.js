@@ -1,9 +1,4 @@
 $(document).ready(function() {
-     	var errorMessage = [[${errorMessage}]];   <!--상품등록 시 실패 메시지를 받아서 상품등록 재진입 시 alert를 통해서 실패 사유를 보여준다.-->
-     	
-     	if(errorMessage != null) {
-     		alert(errorMessage);
-    	}
 
         bindDomEvent();
 

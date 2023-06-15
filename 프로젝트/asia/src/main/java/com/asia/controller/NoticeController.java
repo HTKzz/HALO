@@ -1,6 +1,7 @@
 package com.asia.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.asia.dto.AttachDto;
 import com.asia.dto.NoticeDto;
 import com.asia.dto.SearchDto;
+import com.asia.entity.Attach;
 import com.asia.entity.Notice;
 import com.asia.service.AttachService;
 import com.asia.service.NoticeService;
@@ -76,15 +79,19 @@ public class NoticeController {
 
 		try {
 			String id = principal.getName();
-
 			noticeService.writeNotice(noticeDto, attachList, id);
-
+			NoticeDto noticeDto2 = noticeService.getNotice();
+			model.addAttribute("noticeDto", noticeDto2);
+			if (principal != null) {
+				model.addAttribute("username", id);
+			}
+			
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", "등록 중 에러가 발생하였습니다.");
 			return "board/notice/noticeForm";
 		}
 
-		return "redirect:/notices/lists";
+		return "board/notice/noticeDetailForm";
 	}
 
 	// 글 상세보기
@@ -116,7 +123,7 @@ public class NoticeController {
 
 		} catch (EntityNotFoundException e) {
 
-			model.addAttribute("errorMessage", "존재하지 않는 상품 입니다.");
+			model.addAttribute("errorMessage", "존재하지 않는 글 입니다.");
 			model.addAttribute("noticeDto", new NoticeDto());
 			return "board/notice/notice";
 		}
@@ -138,7 +145,7 @@ public class NoticeController {
 			noticeService.updateNotice(noticeDto, attachList);
 
 		} catch (Exception e) {
-			model.addAttribute("errorMessage", "잘못된 정보 입니다.");
+			model.addAttribute("errorMessage", "수정 중 에러가 발생하였습니다.");
 
 			return "board/notice/noticeForm";
 		}
