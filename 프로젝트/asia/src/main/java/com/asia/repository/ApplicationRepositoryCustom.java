@@ -10,4 +10,6 @@ public interface ApplicationRepositoryCustom {
 	
 	Page<Application> getApplicationList(SearchDto searchDto, Pageable pageable);
 	
+	Page<Application> getMyApplicationList(SearchDto searchDto, Pageable pageable, String id);
+	
 }

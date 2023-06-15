@@ -136,13 +136,9 @@ img, h4 {
 }
 
 @media print {
-
-	.printTicketForm-Btn {
-		display:none
-	}
-	
-	.printTicketForm-title-h1 {
-		display: none;
-	}
-	
+   
+   .acc-header-wrap, .quickmenu, .printTicketForm-Btn, .printTicketForm-title-h1 {
+      display: none;
+   }
+   
 }

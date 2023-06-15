@@ -86,12 +86,13 @@
 }
 
 .fa-youtube:hover {
-	background-color: #c4302b; 
+	background-color: #c4302b;
     outline-color: #c4302b;
 }
 
-.fa-google:hover {
-	background: linear-gradient(to right, #4288f4 25%, #ea4335 25% 50%, #fbbc05 50% 75%, #34a853 75% );
+.fa-b:hover {
+	background-color: #03c75a;
+	outline-color: #03c75a;
 }
 
 .fa-twitter:hover {

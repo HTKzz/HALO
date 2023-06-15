@@ -13,7 +13,7 @@ layout:decorate="~{layouts/layout1}">
 
 <div layout:fragment="content">
 	<article class="myPageForm-board">
-		<div class="myPageForm-header-div">
+		<div class="myPageForm-header-div" th:if="${member.role.toString} == 'USER' or ${member.role.toString} == 'ADMIN'">
 			<a class="myPageForm-header-inner1" th:href="@{/members/myPage}">
 				<span>
 					<h1 class="myPageForm-header-inner1-h1">My Page</h1>
@@ -22,6 +22,18 @@ layout:decorate="~{layouts/layout1}">
 			<a class="myPageForm-header-inner2" th:href="@{/reservations/myReservation}">
 				<span>
 					<h1 class="myPageForm-header-inner2-h1">Reservation</h1>
+				</span>
+			</a>
+		</div>
+		<div class="myPageForm-header-div" th:if="${member.role.toString} == 'COMPANY'">
+			<a class="myPageForm-header-inner1" th:href="@{/members/myPage}">
+				<span>
+					<h1 class="myPageForm-header-inner1-h1">My Page</h1>
+				</span>
+			</a>
+			<a class="myPageForm-header-inner2" th:href="@{/board/program/myApplication}">
+				<span>
+					<h1 class="myPageForm-header-inner2-h1">Application</h1>
 				</span>
 			</a>
 		</div>

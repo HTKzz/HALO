@@ -151,7 +151,8 @@ public class MemberController {
 
 	// 로그인
 	@GetMapping(value = "/login")
-	public String loginMember() {
+	public String loginMember(Model model, @RequestParam(value = "loginErrorMsg", required = false) String exception) {
+		model.addAttribute("loginErrorMsg", exception);
 		return "/member/memberLoginForm";
 	}
 

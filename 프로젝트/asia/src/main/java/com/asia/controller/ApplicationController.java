@@ -4,12 +4,14 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.asia.dto.ApplicationDto;
 import com.asia.dto.CountDto;
+import com.asia.dto.SearchDto;
 import com.asia.entity.Application;
 import com.asia.entity.Reservation;
 import com.asia.service.ApplicationService;
@@ -75,7 +78,7 @@ public class ApplicationController {
 			return "board/program/applicationForm";
 		}
 
-		return "redirect:/"; // 정상적으로 등록되었다면 메인페이지로 이동한다.
+		return "redirect:/board/program/myApplication"; // 정상적으로 등록되었다면 메인페이지로 이동한다.
 
 	}
 
@@ -106,6 +109,11 @@ public class ApplicationController {
 
 		if (attachFileList.get(0).isEmpty() && applicationDto.getNum() == null) {
 			model.addAttribute("errorMessage", "첫번째 프로그램 이미지는 필수 입력 값입니다.");
+			return "board/program/applicationForm";
+		}
+		
+		if (attachFileList.get(1).isEmpty() && applicationDto.getNum() == null) {
+			model.addAttribute("errorMessage", "두번째 프로그램 이미지는 필수 입력 값입니다.");
 			return "board/program/applicationForm";
 		}
 
@@ -228,5 +236,26 @@ public class ApplicationController {
 		} else {
 			return "board/program/eventList";
 		}
+	}
+	
+	// 기업회원 프로그램 신청내역 조회 페이지
+	@GetMapping(value = { "/program/myApplication", "/program/myApplication/{page}" })
+	public String applicationManageList(@PathVariable("page") Optional<Integer> page, Model model, SearchDto searchDto, Principal principal) {
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
+		
+		String id = principal.getName();
+
+		Page<Application> applications = applicationService.getMyApplicationList(searchDto, pageable, id);
+
+		model.addAttribute("maxPage", 10);
+		model.addAttribute("applications", applications);
+		
+		if (!searchDto.getSearchQuery().matches("[0-9|a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힝|(|)|.|-]*")) {
+			searchDto.setSearchQuery("");
+		}
+		
+		model.addAttribute("SearchDto", searchDto);
+		
+		return "board/program/myApplication";
 	}
 }

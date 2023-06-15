@@ -17,7 +17,7 @@
 			<nav class="acc-header-nav">
 				<ul class="acc-header-gnb">
 					<li class="acc-menu-title" sec:authorize="isAuthenticated()">
-						<a href="/board/program/apply" class="menu-item-title" th:value="상품신청" sec:authorize="isAuthenticated()">상품신청</a>
+						<a href="/board/program/apply" class="menu-item-title" th:value="프로그램신청" sec:authorize="isAuthenticated()">프로그램 신청</a>
 					</li>
 					<li class="acc-menu-title" >
 						<a href="/accIntro" class="menu-item-title menu-item-title1" sec:authorize="isAnonymous() || isAuthenticated()">ACC소개</a>
@@ -45,7 +45,7 @@
 						</ul>
 					</li>
 					<li class="acc-menu-title" >
-						<a href="/board/program/showlist" class="menu-item-title" sec:authorize="isAnonymous() || isAuthenticated()">프로그램</a>
+						<a href="/board/program/list/show" class="menu-item-title" sec:authorize="isAnonymous() || isAuthenticated()">프로그램</a>
 						<ul>
 							<li class="acc-header-sub-item" sec:authorize="isAnonymous() || isAuthenticated()">
 								<a href="/board/program/list/show">공 연</a>
@@ -65,7 +65,7 @@
 								<a href="/admin/reservationMng">예매관리</a>
 							</li>
 							<li class="acc-header-sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-								<a href="/admin/applications">상품관리</a>
+								<a href="/admin/applications">프로그램 관리</a>
 							</li>
 							<li class="acc-header-sub-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 								<a href="/admin/memberMngList">회원관리</a>

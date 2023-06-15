@@ -7,6 +7,13 @@
 	font-style: normal;
 }
 
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
 .applicationForm-title-h1 {
 	font-family: 'SF_HambakSnow';
 	font-size: 3rem;
@@ -16,11 +23,12 @@
 }
 
 body {
-	font-family: 'Lato', sans-serif;
+	font-family: Pretendard-Regular;
 	box-sizing: border-box;
 }
 
 input {
+	font-family: Pretendard-Regular;
 	width: 200px;
 }
 
@@ -43,6 +51,7 @@ input {
 }
 
 .loginbtn {
+	font-family: Pretendard-Regular;
 	background-color: #A4A4A4;
 	border: none;
 	color: white;
@@ -85,8 +94,8 @@ input {
 }
 
 .form-group input {
-	border: 1px solid gray;
-	border-radius: 5px;
+	border: 1px solid white;
+	/* border-radius: 5px; */
 	font-size: 18px;
 	height: 30px;
 	text-align: center;
@@ -94,8 +103,8 @@ input {
 }
 
 .form-group label {
-	font-size: 15px;
-	/* font-weight: bold; */
+	font-size: 17px;
+	font-weight: bold;
 	padding-right: 5px;
 	width: 90px;
 	text-align: center;
@@ -132,6 +141,7 @@ input {
 }
 
 .small {
+	font-size: 15px;
 	font-weight: bold;
 	color: black;
 	margin-left: 2px;

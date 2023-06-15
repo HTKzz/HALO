@@ -4,6 +4,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -49,7 +50,6 @@ public class MemberService implements UserDetailsService {
 		findMember = null;
 		if (member.getCid() != null) {
 			findMember = memberRepository.findByCid(member.getCid());
-			System.out.println(findMember);
 			if (findMember != null) {
 				throw new IllegalStateException("이미 사용된 사업자등록번호입니다.");
 			}
@@ -114,6 +114,11 @@ public class MemberService implements UserDetailsService {
 		Member member = memberRepository.findByNum(num);
 		return member;
 	}
+	
+	public Member getMemDtl(String id) {
+		Member member = memberRepository.findById(id);
+		return member;
+	}
 
 	// 회원 상태 수정
 	public void updateStat(Member member) {
@@ -125,5 +130,4 @@ public class MemberService implements UserDetailsService {
 			memberRepository.save(member);
 		}
 	}
-
 }

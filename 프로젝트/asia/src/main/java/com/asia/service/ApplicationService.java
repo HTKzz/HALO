@@ -348,13 +348,15 @@ public class ApplicationService {
 			}
 		}
 		
-		System.out.println(list.size());
-		
 		return list;
 	}
 	
 	public Page<Application> getApplicationList(SearchDto searchDto, Pageable pageable) {
 		return applicationRepository.getApplicationList(searchDto, pageable);
+	}
+	
+	public Page<Application> getMyApplicationList(SearchDto searchDto, Pageable pageable, String id) {
+		return applicationRepository.getMyApplicationList(searchDto, pageable, id);
 	}
 	
 	public void deleteApplication(Long num) {

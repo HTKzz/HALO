@@ -99,7 +99,7 @@ public class NoticeService {
 		return noticeDto;
 	}
 
-	// 게시판 디테일 불러오기
+	// 게시판 수정폼 불러오기
 	@Transactional
 	public NoticeDto getNoticeModifyDtl(Long num) {
 

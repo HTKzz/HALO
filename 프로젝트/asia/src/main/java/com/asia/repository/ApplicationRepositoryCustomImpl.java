@@ -40,6 +40,23 @@ public class ApplicationRepositoryCustomImpl implements ApplicationRepositoryCus
 
 		return new PageImpl<>(contents, pageable, total);
 	}
+	
+	// 프로그램 신청내역 페이징 + 검색기능
+	@Override
+	public Page<Application> getMyApplicationList(SearchDto searchDto, Pageable pageable, String id) {
+		System.out.println("들"+id);
+		QueryResults<Application> results = queryFactory.selectFrom(QApplication.application)
+				.where(searchByLike(searchDto.getSearchBy(), searchDto.getSearchQuery()), QApplication.application.member.id.eq(id))
+				.orderBy(QApplication.application.num.desc())
+				.offset(pageable.getOffset())
+				.limit(pageable.getPageSize())
+				.fetchResults();
+
+		List<Application> contents = results.getResults();
+		long total = results.getTotal();
+
+		return new PageImpl<>(contents, pageable, total);
+	}
 
 	private BooleanExpression searchByLike(String searchBy, String searchQuery) {
 

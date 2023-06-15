@@ -50,23 +50,23 @@ layout:decorate="~{layouts/layout1}">
                 	<h2 style="font-size: 35px;">예매정보</h2>
                     <div class="form-group">
                         <label th:for="price">프로그램명</label>
-                        <input type="text" th:value="${name}" readOnly>
+                        <input type="text" th:value="${name}" readOnly style="margin-left:8px;">
                         <input type="hidden" th:value="${name}" id="name" name="name">
                     </div>
                     <div class="form-group">
-                        <label th:for="price">날짜</label>
+                        <label th:for="price">날&nbsp;&nbsp;&nbsp;&nbsp;짜</label>
                         <input type="text" th:value="${udate}" readOnly>
                         <input type="hidden" th:value="${udate}" id="udate" name="udate">
                     </div>
                     <div class="form-group">
-                        <label th:for="cnt">인원</label>
+                        <label th:for="cnt">인&nbsp;&nbsp;&nbsp;&nbsp;원</label>
                         <input type="number" name="cnt" id="cnt" class="form-control" value="0" readonly style="text-indent: 15px;">
                     </div>
                     <div class="form-group">
-                        <label th:for="seat">좌석</label> <input type="text" id="seat" name="seat" value="" class="form-control" readonly>
+                        <label th:for="seat">좌&nbsp;&nbsp;&nbsp;&nbsp;석</label> <input type="text" id="seat" name="seat" value="" class="form-control" readonly>
                     </div>
                     <div class="form-group">
-                        <label th:for="price">가격</label>
+                        <label th:for="price">가&nbsp;&nbsp;&nbsp;&nbsp;격</label>
                         <input type="text" id="price" name="price" value="0" class="form-control" readonly>
                         <input type="hidden" id="hdprice" th:value="${price}">
                     </div>
