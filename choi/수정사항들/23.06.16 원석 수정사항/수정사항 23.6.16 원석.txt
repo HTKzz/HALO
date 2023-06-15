@@ -1,0 +1,31 @@
+1). MemberService.java  // 추가
+
+	맨 밑에 메서드 추가
+// 회원 탈퇴 시
+public void quitMember(Member member) {
+		member.setStat(Stat.탈퇴);
+		memberRepository.save(member);
+	}
+
+---------------------------------------------------------------------------------------------------------------------
+
+2). AdminController.java  // 추가
+
+	맨 밑에 메서드 추가
+// 회원 탈퇴 시
+	@GetMapping(value="/member/quit/{num}")
+	public String memberQuit(@PathVariable("num") Long num, Model model) {
+		
+		Member member = memberService.getMemDtl(num);
+		memberService.quitMember(member);
+		return "redirect:/admin/memberMngList";
+	}
+
+---------------------------------------------------------------------------------------------------------------------
+
+3). myPage.html  // 수정
+
+	84번 째 줄 수정
+<section>
+			<button class="myPage-quit" th:href="@{/admin/member/quit/{num}(num=${member.num})">회원탈퇴</button>
+		</section>
