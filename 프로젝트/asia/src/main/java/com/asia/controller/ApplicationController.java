@@ -55,6 +55,8 @@ public class ApplicationController {
 	@GetMapping(value = "/program/apply")
 	public String applicationForm(Model model, Principal principal) {
 		model.addAttribute("applicationDto", new ApplicationDto());
+		String css = "no";
+		model.addAttribute("css", css);
 		return "board/program/applicationForm";
 	}
 
@@ -98,9 +100,10 @@ public class ApplicationController {
 	public String applicationModify(@PathVariable("num") Long num, Model model) {
 
 		try {
-			ApplicationDto applicationDto = applicationService.getApplicationDtlModify(num); // 조회한 프로그램 정보를 model에 담아서
-																								// 뷰로 전달
+			ApplicationDto applicationDto = applicationService.getApplicationDtlModify(num); // 조회한 프로그램 정보를 model에 담아서 뷰로 전달
 			model.addAttribute("applicationDto", applicationDto);
+			String css = "hi";
+			model.addAttribute("css", css);
 		} catch (EntityNotFoundException e) {
 			model.addAttribute("errorMessage", "존재하지 않는 프로그램입니다.");
 			model.addAttribute("applicationDto", new ApplicationDto());

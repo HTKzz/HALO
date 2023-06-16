@@ -31,7 +31,7 @@ public class MemberRepositoryCustomImpl implements MemberRepositoryCustom{
 		QueryResults<Member> results = queryFactory
 				.selectFrom(QMember.member)
 				.where(searchOptionLike(searchDto.getSearchBy(), searchDto.getSearchQuery()))
-				.orderBy(QMember.member.join.desc())
+				.orderBy(QMember.member.num.desc())
 				.offset(pageable.getOffset())
 				.limit(pageable.getPageSize())
 				.fetchResults();

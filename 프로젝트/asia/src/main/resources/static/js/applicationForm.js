@@ -1,5 +1,11 @@
 $(document).ready(function() {
-
+			
+			if ($("#app-css").val() == 'hi') {
+				$("select option[value*='A']").prop('disabled',true);
+				$("select option[value*='C']").prop('disabled',true);
+				$("#select-seat").find("option:eq(0)").prop('disabled',true);
+			}
+			
             bindDomEvent();
 
             if ($("#select-programCategory").val() == '공연') {
