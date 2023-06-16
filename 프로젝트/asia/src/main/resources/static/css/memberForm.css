@@ -94,3 +94,55 @@ form .mFfields .form-group {
 	background: #222;
 	color: #fff;
 }
+
+.emailsend-wrap{
+	border: 0;
+    transition: 0.5s;
+    background: #666;
+    color: white;
+    width: 115px;
+    text-align: center;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.emailsend-wrap:hover {
+	background: #222;
+	color: #fff;
+}
+
+#emailsend{
+    font-weight: bold;
+    color: white;
+}
+
+.emailcheck-wrap{
+	border: 0;
+    transition: 0.5s;
+    background: #666;
+    color: white;
+    width: 80px;
+    text-align: center;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.emailcheck-wrap:hover {
+	background: #222;
+	color: #fff;
+}
+
+#emailcheck{
+    font-weight: bold;
+    color: white;
+}

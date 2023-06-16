@@ -143,3 +143,31 @@
 	background: #111;
 	color: white;
 }
+
+.myPage-quit a:hover {
+	color: #fdfdfd;
+}
+
+.myPage-quit:hover {
+	color: #fdfdfd;
+	background-color: #1d1f20;
+}
+
+.myPage-quit {
+	font-family: Pretendard-Regular;
+	letter-spacing: 1px;
+	background-color: #fff;
+	color: #7d7d7d;
+	width: 90px;
+	float:right; 
+	margin-top: 20px; 
+	margin-right: 50px;
+	height: 35px;
+	text-decoration: none;
+	text-align: center;
+	font-size: 15px;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	transition: 0.4s;
+	cursor: pointer;
+}

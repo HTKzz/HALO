@@ -31,10 +31,10 @@ public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 			msg = "아이디나 비밀번호가 일치하지 않습니다.";
 			
 		} else if(exception instanceof LockedException) {
-			msg = "잠긴 계정입니다.";
+			msg = "비활성화된 계정입니다.";
 			
 		} else if(exception instanceof DisabledException) {
-			msg = "비활성화된 계정입니다.";
+			msg = "탈퇴된 계정입니다.";
 			
 		} else if(exception instanceof AccountExpiredException) {
 			msg = "만료된 계정입니다.";

@@ -67,7 +67,7 @@
 						<td th:text="${mng.stat}">상태</td>
 						<td th:text="${mng.role}">권한</td>
 						<td>
-							<button class="myReservationForm-btn" th:formaction="@{'/admin/memberStat/change/' + ${mng.num}}" type="submit">변경</button>
+							<button class="myReservationForm-btn" th:if="${mng.stat.toString != '탈퇴'}" th:formaction="@{'/admin/memberStat/change/' + ${mng.num}}" type="submit">변경</button>
 						</td>
 					</tr>
 				</tbody>

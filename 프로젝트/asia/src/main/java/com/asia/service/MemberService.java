@@ -114,7 +114,7 @@ public class MemberService implements UserDetailsService {
 		Member member = memberRepository.findByNum(num);
 		return member;
 	}
-	
+
 	public Member getMemDtl(String id) {
 		Member member = memberRepository.findById(id);
 		return member;
@@ -129,5 +129,11 @@ public class MemberService implements UserDetailsService {
 			member.setStat(Stat.회원);
 			memberRepository.save(member);
 		}
+	}
+
+	// 회원 탈퇴 시
+	public void quitMember(Member member) {
+		member.setStat(Stat.탈퇴);
+		memberRepository.save(member);
 	}
 }

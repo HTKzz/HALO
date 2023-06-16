@@ -33,23 +33,18 @@ public class AuthProvider implements AuthenticationProvider  {
         String id = authentication.getName();
         /*String password = HashUtil.sha256(authentication.getCredentials().toString()); todo*/
         String password = String.valueOf(authentication.getCredentials());
-        
-        
-        
         UserDetails user = memberService.loadUserByUsername(id);
         
         Member member = memberService.getMemDtl(id);
-    	System.out.println("들어오나1");
 
 		// 이부분은 custom하게 구성하여 예외처리 진행
         if (null == user){
-        	System.out.println("들어오나2");
             throw new UsernameNotFoundException(id);
         }else if(member.getStat().equals(Stat.블랙)){
-        	System.out.println("들어오나5");
+            throw new LockedException(id);
+        }else if(member.getStat().equals(Stat.탈퇴)){
             throw new DisabledException(id);
         }else if(!user.getPassword().equals(password)){
-        	System.out.println("들어오나3");
             throw new BadCredentialsException(id);
         }
 

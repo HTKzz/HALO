@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -211,5 +212,15 @@ public class MemberController {
 		memberService.updateMemberPwd(password1, id);
 
 		return "redirect:/members/myPage";
+	}
+
+	// 회원 탈퇴 시
+	@GetMapping(value = "/member/quit/{num}")
+	public String memberQuit(@PathVariable("num") Long num) {
+		
+		Member member = memberService.getMemDtl(num);
+		memberService.quitMember(member);
+
+		return "redirect:/members/logout";
 	}
 }

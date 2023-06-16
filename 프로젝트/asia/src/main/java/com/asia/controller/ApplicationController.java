@@ -24,13 +24,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.asia.constant.Role;
 import com.asia.dto.ApplicationDto;
 import com.asia.dto.CountDto;
 import com.asia.dto.SearchDto;
 import com.asia.entity.Application;
-import com.asia.entity.Reservation;
+import com.asia.entity.Member;
 import com.asia.service.ApplicationService;
 import com.asia.service.AttachService;
+import com.asia.service.MemberService;
 import com.asia.service.ReservationService;
 import com.asia.service.SeatService;
 
@@ -47,6 +49,7 @@ public class ApplicationController {
 	private final ReservationService reservationService;
 	private final SeatService seatService;
 	private final AttachService attachService;
+	private final MemberService memberService;
 
 	// 프로그램 신청 페이지 호출
 	@GetMapping(value = "/program/apply")
@@ -76,15 +79,18 @@ public class ApplicationController {
 
 		try {
 			String name = principal.getName();
-			applicationService.saveApplication(applicationDto, attachFileList, name); // 상품 저장 로직을 호출. 상품정보와 상품이미지정보를
-																						// 넘긴다.
+			Member member = memberService.findUserMyPage(name);
+			applicationService.saveApplication(applicationDto, attachFileList, name); // 상품 저장 로직을 호출. 상품정보와 상품이미지정보를 넘긴다.
+			
+			if(member.getRole().equals(Role.COMPANY)) {
+				return "redirect:/board/program/myApplication"; // 정상적으로 등록되었다면 메인페이지로 이동한다.
+			} else {
+				return "redirect:/admin/applications";
+			}
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", e.getMessage());
 			return "board/program/applicationForm";
 		}
-
-		return "redirect:/board/program/myApplication"; // 정상적으로 등록되었다면 메인페이지로 이동한다.
-
 	}
 
 	// 프로그램 수정 페이지 호출
@@ -126,11 +132,11 @@ public class ApplicationController {
 			applicationService.updateApplication(applicationDto, attachFileList);
 
 			if (applicationDto.getProgramCategory().equals("공연")) {
-				return "redirect:/board/program/showlist";
+				return "redirect:/board/program/list/show";
 			} else if (applicationDto.getProgramCategory().equals("전시")) {
-				return "redirect:/board/program/exhibitionlist";
+				return "redirect:/board/program/list/exhibition";
 			} else {
-				return "redirect:/board/program/eventlist";
+				return "redirect:/board/program/list/event";
 			}
 
 		} catch (Exception e) {

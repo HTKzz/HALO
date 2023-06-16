@@ -61,7 +61,7 @@ public class ReservationService {
 	}
 
 	public void cancelReservation(Long num) {
-		String cancel = "취소";
+		String cancel = "취소완료";
 		reservationRepository.updateReservationStat(num, cancel);
 	}
 
