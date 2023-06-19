@@ -203,12 +203,3 @@ if (confirm('취소완료 상태로 변경 하시겠습니까?')) {
 
 	64번 째 줄
 String cancel = "취소완료";
-
------------------------------------------------------------------------------------------------------------------------------------------
-
-13). reservationMng.html  // 수정
-
-	79번 째 줄
-<form th:if="${reservation.stat != '취소완료'} and ${reservation.stat == '결제대기'}" method="post" onsubmit=true>
-                           		<button th:formaction="@{/admin/adminCancelReservation/{num}(num=${reservation.num})}" id="reservation-cancelMsg" 
-                           				class="myReservationForm-btn">취소완료</button>
