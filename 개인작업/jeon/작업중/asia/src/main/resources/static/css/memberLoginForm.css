@@ -1,0 +1,107 @@
+@font-face {
+   font-family: 'SF_HambakSnow';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
+.login {
+	padding-top: 70px;
+	padding-bottom: 90px;
+	max-width: 500px;
+	border-radius: 20px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login > form {
+	margin-top: 50px;
+	padding: 10px;
+}
+
+.loginheader {
+	font-size: 60px;
+	font-family: 'SF_HambakSnow';
+	text-align:center;
+}
+
+.input-box {
+	position: relative;
+	margin: 10px 0;
+	margin-left: 80px;
+}
+
+.input-box>input {
+	background: transparent;
+	border: none;
+	border-bottom: solid 1px #ccc;
+	padding: 20px 0px 5px 0px;
+	font-size: 14pt;
+	width: 80%;
+}
+
+input::placeholder {
+	color: transparent;
+}
+
+input:placeholder-shown+label {
+	color: #aaa;
+	font-size: 14pt;
+	top: 15px;
+}
+
+input:focus+label, label {
+	color: #A4A4A4;
+	font-size: 10pt;
+	pointer-events: none;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	transition: all 0.2s ease;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+}
+
+input:focus, input:not(:placeholder-shown) {
+	border-bottom: solid 1px #8aa1a1;
+	outline: none;
+}
+
+.btn-btn-primary {
+    background: #666;
+	border: none;
+	color: white;
+	border-radius: 5px;
+	width: 320px;
+	height: 50px;
+	font-size: 14pt;
+	margin-top: 50px;
+	margin-left: 80px;
+	cursor:pointer;
+}
+
+
+.loginbtn {
+    background: #666;
+	border: none;
+	color: white;
+	border-radius: 5px;
+	width: 140px;
+	height: 45px;
+	font-size: 14pt;
+	margin-top: 60px;
+	margin-left: 35px;
+	cursor:pointer;
+}
+
+.btn-btn-primary:hover {
+	background: #222;
+	color: #fff;
+}
+
+.loginbtn:hover {
+	background: #222;
+	color: #fff;
+}

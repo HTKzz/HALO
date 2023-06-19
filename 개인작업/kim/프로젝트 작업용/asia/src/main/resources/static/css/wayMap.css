@@ -1,0 +1,435 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* layout */
+#wayMap-content {
+	font-family: Pretendard-Regular;
+	text-align: left;
+	line-height: 1.4;
+}
+
+.wayMap-tabList04 {
+	max-width: 1040px;
+	margin: 50px auto;
+}
+
+.wayMap-tabList04 ul {
+	display: table;
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.wayMap-tabList04 li {
+	display: table-cell;
+	width: auto;
+	height: 70px;
+	background: #fafafa;
+	border: 1px solid #dcdcdc;
+	box-sizing: border-box;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.wayMap-tabList04 li.wayMap-active {
+	background: #fff;
+	border-bottom: 2px solid #1837bd;
+}
+
+.wayMap-tabList04 li button {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	box-sizing: border-box;
+	text-align: center;
+	color: #010101;
+	font-size: 20px;
+	font-weight: 300;
+}
+
+.wayMap-active button {
+    text-transform: none;
+    vertical-align: middle;
+    border: 0 none;
+    background-color: transparent;
+    cursor: pointer;
+    font-family: Pretendard-Regular;
+}
+
+.wayMap-tabList04 li button span {
+	font-family: Pretendard-Regular;
+	display: inline-block;
+	padding: 5px 20px;
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+
+.wayMap-tabList04 li button span.wayMap-tabIcon01 {
+	padding-left: 49px;
+	background-image: url(/images/wayMap/icon_way01.png);
+}
+
+.wayMap-tabList04 li button span.wayMap-tabIcon02 {
+	padding-left: 52px;
+	background-image: url(/images/wayMap/icon_way02.png);
+}
+
+@media all and (max-width:960px) {
+	.wayMap-tabList04 {
+		margin: 0 auto;
+	}
+	
+	.wayMap-tabList04 li {
+		height: 70px;
+	}
+	
+	.wayMap-tabList04 li button {
+		font-size: 17px;
+	}
+	
+	.wayMap-tabList04 li button span {
+		display: block;
+		padding: 50px 0 0;
+		background-position: center top;
+	}
+	
+	.wayMap-tabList04 li button span.wayMap-tabIcon01 {
+		padding-left: 0;
+		padding-top: 20px;
+		background-size: auto 20px;
+	}
+	
+	.wayMap-tabList04 li button span.wayMap-tabIcon02 {
+		padding-left: 0;
+		padding-top: 20px;
+		background-size: auto 20px;
+	}
+}
+
+.wayMap-tabContent {
+	display: none;
+}
+
+.wayMap-tabContent p.wayMap-txt {
+	margin-bottom: 30px;
+	font-size: 17px;
+}
+
+/* 오시는 길 */
+.wayMap-wayWrap {
+	max-width: 1040px;
+	margin: 60px auto;
+}
+
+.wayMap-wayWrap h3 {
+	margin-bottom: 24px;
+	text-align: center;
+	line-height: 1;
+	color: #000;
+	font-size: 42px;
+	font-weight: bold;
+}
+
+.wayMap-wayWrap h4 {
+	margin: 28px 5px;
+	line-height: 1;
+	color: #000;
+	font-size: 24px;
+}
+
+.wayMap-wayWrap p.wayMap-address {
+	margin: 0 5px 39px;
+	text-align: center;
+}
+
+.wayMap-wayArea {
+	margin-bottom: 70px;
+}
+
+.wayMap-wayArea #map {
+	width: 100%;
+	height: 540px;
+	border: 1px solid #dcdcdc;
+	box-sizing: border-box;
+}
+
+.wayMap-wayArea .wayMap-customoverlay {
+	margin: 0 0 50px;
+}
+
+.wayMap-wayArea .wayMap-customoverlay span {
+	display: block;
+	line-height: 34px;
+	padding: 0 10px;
+	background: #00AEEF;
+	border-radius: 17px;
+	color: #fff;
+	font-size: 17px;
+}
+
+.wayMap-wayArea .wayMap-waySearch {
+	overflow: hidden;
+	margin-top: -1px;
+	padding: 10px;
+	font-size: 0;
+	border: 1px solid #dcdcdc;
+}
+
+.wayMap-wayArea .wayMap-waySearch h4, .wayMap-wayArea .wayMap-waySearch ul,	.wayMap-wayArea .wayMap-waySearch p {
+	display: block;
+	box-sizing: border-box;
+	line-height: 54px;
+	font-size: 17px;
+}
+
+.wayMap-wayArea .wayMap-waySearch h4 {
+	float: left;
+	width: 15%;
+	margin: 0;
+	padding-right: 20px;
+	text-align: right;
+	color: #000;
+}
+
+.wayMap-wayArea .wayMap-waySearch ul {
+	float: left;
+	width: 74%;
+	list-style: none;
+}
+
+.wayMap-wayArea .wayMap-waySearch ul li {
+	float: left;
+	width: 48%;
+	border: 1px solid #dcdcdc;
+	box-sizing: border-box;
+}
+
+.wayMap-wayArea .wayMap-waySearch ul li.wayMap-arrow {
+	width: 4%;
+	height: 54px;
+	background: url(/images/wayMap/arrow_way.png) center no-repeat;
+	border: none;
+}
+
+.wayMap-wayArea .wayMap-waySearch p {
+	float: right;
+	width: 10%;
+}
+
+.wayMap-wayArea .wayMap-waySearch ul li label {
+	float: left;
+	width: 20%;
+	border-right: 1px solid #dcdcdc;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.wayMap-wayArea .wayMap-waySearch ul li input, .wayMap-wayArea .wayMap-waySearch ul li input:disabled
+	{
+	display: block;
+	width: 80%;
+	height: 54px;
+	margin-left: 20%;
+	background: #fff;
+	border: none;
+	text-indent: 10px;
+}
+
+.wayMap-wayArea .wayMap-waySearch p button {
+	width: 100%;
+	height: 56px;
+	border: 1px solid #dcdcdc;
+	vertical-align: top;
+}
+
+.wayMap-wayWrap .wayMap-wayLine li {
+	overflow: hidden;
+	margin: 11px 0;
+}
+
+.wayMap-wayWrap .wayMap-wayLine span {
+	line-height: 30px;
+	font-size: 17px;
+}
+
+.wayMap-wayWrap .wayMap-wayLine span.wayMap-line {
+	float: left;
+	width: 64px;
+	border: 1px solid;
+	border-radius: 16px;
+	text-align: center;
+}
+
+.wayMap-wayWrap .wayMap-wayLine span.wayMap-lineColor01 {
+	color: #0ba749;
+}
+
+.wayMap-wayWrap .wayMap-wayLine span.wayMap-lineColor02 {
+	color: #e34818;
+}
+
+.wayMap-wayWrap .wayMap-wayLine span.wayMap-lineColor03 {
+	color: #9435ff;
+}
+
+.wayMap-wayWrap .wayMap-wayLine span.wayMap-txt {
+	display: block;
+	margin-left: 80px;
+}
+
+@media all and (max-width:960px) {
+	.wayMap-wayWrap {
+		margin: 30px auto;
+		padding: 0 4%;
+	}
+	
+	.wayMap-wayWrap h3 {
+		margin-bottom: 12px;
+		font-size: 20px;
+	}
+	
+	.wayMap-wayWrap h4 {
+		margin: 14px 5px;
+		font-size: 17px;
+	}
+	
+	.wayMap-wayArea {
+		margin-bottom: 28px;
+	}
+	
+	.wayMap-wayArea #map {
+		margin-bottom: 32px;
+	}
+	
+	.wayMap-wayArea .wayMap-waySearch {
+		margin: 0;
+		padding: 0;
+		
+	}
+	
+	.wayMap-wayArea .wayMap-waySearch h4 {
+		float: none;
+		width: 100%;
+		text-align: left;
+	}
+	
+	.wayMap-wayArea .wayMap-waySearch div {
+		position: relative;
+	}
+	
+	.wayMap-wayArea .wayMap-waySearch ul {
+		float: none;
+		width: 80%;
+		margin-left: 1px;
+	}
+	
+	.wayMap-wayArea .wayMap-waySearch ul li {
+		float: none;
+		width: 100%;
+		margin-top: -1px;
+	}
+	
+	.wayMap-wayArea .wayMap-waySearch ul li.wayMap-arrowarrow {
+		display: none;
+	}
+	
+	.wayMap-wayArea .wayMap-waySearch p {
+		position: absolute;
+		float: none;
+		right: 0;
+		top: 0;
+		width: 20%;
+		height: 100%;
+	}
+	
+	.wayMap-wayArea .wayMap-waySearch p button {
+		height: 100%;
+	}
+	
+	.wayMap-wayWrap .wayMap-wayLine li {
+		margin: 5px 0;
+	}
+	
+	.wayMap-wayWrap .wayMap-wayLine span {
+		line-height: 24px;
+		font-size: 14px;
+	}
+}
+
+.wayMap-btnline {
+	text-align: center;
+	margin-bottom: 45px;
+}
+
+.wayMap-btnline button{
+	font-family: Pretendard-Regular;
+	background: #fff;
+    font-size: 18px;
+    color: #222;
+    cursor: pointer;
+    padding: 2px 16px;
+    line-height: 36px;
+    border-radius:10px;
+    border:1px solid #888;
+    letter-spacing:-1px;
+    transition: 0.4s;
+}
+
+.wayMap-btnline button:hover {
+	box-shadow:1px 1px 4px rgba(0,0,0,0.4);
+	background: #222;
+	color: #fff;
+}
+
+.wayMap-btn button {
+	cursor: pointer;
+}
+
+.wayMap-btn button:hover {
+	background: #222;
+	color: #fff;	
+}
+
+.wayMap-text {
+	font-size: 15px;
+	font-family: Pretendard-Regular;
+}
+
+.wayMap-findBtn {
+	font-size: 17px;
+	font-family: Pretendard-Regular;
+}
+
+.wayMap-mapStart input, .wayMap-mapArrival input, .wayMap-active button, .wayMap-down-btn button {
+	margin: 0;
+}
+
+.wayMap-tabIcon-Btn {
+	cursor: pointer;
+	border: 0;
+}
+
+.wayMap-title_line {
+	font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 20px !important;
+}
+
+.wayMap-rulelist_bullet {
+	margin-top: 10px !important;
+}
+
+.wayMap-rulelist_bullet li {
+	list-style: none;
+	background: url(/images/wayMap/wayMap-point-li.png) no-repeat left 11px;
+    padding-left: 12px;
+    line-height: 180%;
+    font-weight: 300;
+}

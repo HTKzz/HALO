@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'SF_HambakSnow';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.myPage {
+	max-width: 900px;
+	font-family: Pretendard-Regular;
+}
+
+.myPageForm-board {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.myPageForm-header-div {
+	width: 100%;
+	display:flex;
+	margin-bottom: 20px;
+}
+
+.myPageForm-header-inner1 {
+	border-radius: 10px;
+	border: 1px solid #999;
+	background-color: #e2e2e2;
+	width:50%;
+}
+
+.myPageForm-header-inner2 {
+	border-radius: 10px;
+	border: 1px solid #999;
+	width:50%;
+}
+
+.myPageForm-header-div > a:hover {
+	background-color: #a2a2a2;
+}
+
+
+.myPageForm-header-inner1-h1 {
+	font-family: 'SF_HambakSnow';
+	font-size: 3rem;
+	color: black;
+	line-height: 3.5rem;
+	padding: 10px;
+	text-align: center;
+}
+
+.myPageForm-header-inner2-h1 {
+	font-family: 'SF_HambakSnow';
+	font-size: 3rem;
+	color: black;
+	line-height: 3.5rem;
+	padding: 10px;
+	text-align: center;
+}
+
+.myPageForm-title-h1 {
+	font-family: 'SF_HambakSnow';
+	font-size: 3rem;
+	line-height: 3.5rem;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+.myPageForm-contents {
+	border-radius: 10px;
+	border: 1px solid #999;
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 70px 90px 70px 90px;
+}
+
+.myPageForm-inner {
+	margin-top: 12px;
+}
+
+.myPageForm-input-group-text {
+	line-height: 30px;
+	width: 50%;
+	border: 0;
+	text-align: left;
+	margin-left: 75px;
+	/* border-bottom: 1px solid #bbb; */
+}
+
+.myPageForm-h4 {
+	font-size: 1.5em;
+	margin-bottom: 2px;
+}
+
+.myPageForm-input {
+	width: 80%;
+	margin-bottom: 20px;
+	border: 0;
+	border-bottom: 1px solid #bbb;
+	/* background-color: rgba(239, 239, 239, 0.3); */
+}
+
+.mypageForm-tile {
+	float: left;
+	margin-left: 15px;
+}
+
+.myPageForm-inner-list {
+	text-align: center;
+	border-top: 2px solid #333;
+	margin-top: 10px;
+}
+
+.myPageForm-board input, .myPageForm-board select {
+	height: 40px;
+	font-size: 1rem;
+	padding-left: 7px;
+}
+
+
+
+.myPage-submit {
+	transition: 0.5s;
+	background: #666;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	width: 48.5%;
+	height: 50px;
+	margin-top: 45px;
+	margin-left: auto;
+	margin-right: auto;
+	cursor:pointer;
+	display: block;
+	font-size: 1rem;
+}
+
+.myPage-submit:hover {
+	background: #111;
+	color: white;
+}

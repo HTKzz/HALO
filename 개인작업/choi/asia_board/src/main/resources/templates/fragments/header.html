@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+<meta charset="UTF-8">
+
+<div class="header" th:fragment="header">
+	<link th:href="@{/css/header.css}" rel="stylesheet">
+	<div class="nav-form">
+		<span class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+			<a class="nav-link" href="/admin/item/new">상품 등록</a>
+		</span> 
+		
+		<span class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"> 
+			<a class="nav-link" href="#">상품관리</a>
+		</span> 
+		
+		<span class="nav-item2" sec:authorize="isAuthenticated()">
+			<a class="nav-link" href="/notices/lists">공지사항</a>
+			<ul class="nav-item2-inner">
+				<li class="nav-item2-menu2">
+					<!-- <a class="menu2_inner" href="/notices/lists">공지사항</a>
+					<a class="menu2_inner" href="#">콩지사항</a>
+					<a class="menu2_inner" href="#">쿵지사항</a> -->
+				</li>
+			</ul>
+		</span>
+		
+		<span class="nav-item3" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"> 
+			<a class="nav-link" href="/admin/memberMngList">관리모드</a>
+			<ul class="nav-item3-inner">
+				<li class="nav-item3-menu3">
+					<a class="menu3_inner" href="/admin/memberMngList">회원관리</a>
+					<a class="menu3_inner" href="#">상품관리</a>
+					<a class="menu3_inner" href="#">땡땡관리</a>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="nav-item" sec:authorize="isAuthenticated()"> 
+			<a class="nav-link" href="/cart">장바구니</a>
+		</span> 
+		
+		<span class="nav-item" sec:authorize="isAuthenticated()"> 
+			<a class="nav-link" href="/orders">구매이력</a>
+		</span> 
+		
+		<span class="nav-item" sec:authorize="isAnonymous()"> 
+			<a class="nav-link login" href="/members/login">로그인</a>
+		</span> 
+		
+		<span class="nav-item" sec:authorize="isAuthenticated()"> 
+			<a class="nav-link logout" href="/members/logout">로그아웃</a>
+		</span>
+	</div>
+	<script th:src="@{/js/header.js}" type="text/javascript"></script>
+</div>
+
+</html>

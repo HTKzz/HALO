@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+	
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/programCardList.css}">
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<main class="container">
+			<section class="new_arrivals">
+				<h2 class="content-title">
+					<span>ACC's Exhibition</span>
+				</h2>
+
+				<div id="pattern" class="pattern">
+					<ul class="card-img-list">
+						<th:block
+							th:each="exhibitionlist, status: ${application5.getContent()}">
+							<li>
+								<div class="card">
+									<a class="card-inner"
+										th:href="'/board/program/application/' +${exhibitionlist.num}">
+										<div class="card-head">
+											<figure class="card-img-fig">
+												<img th:src="${exhibitionlist.url}" class="card-img"
+													th:alt="${exhibitionlist.name}">
+												<figcaption class=cif>
+													<i class="ion-upload"></i>
+													<h4>자세히보기</h4>
+													<h2>More Info</h2>
+												</figcaption>
+											</figure>
+										</div>
+										<div class="card-body">
+											<h4 class="card-title">[[${exhibitionlist.name}]]</h4>
+											<p class="card-program-period">[[${exhibitionlist.sdate}]]
+												~ [[${exhibitionlist.edate}]]</p>
+										</div>
+									</a>
+								</div>
+							</li>
+						</th:block>
+					</ul>
+				</div>
+
+			</section>
+
+			<div class="page_wrap" th:with="start=${(application5.number/maxPage)*maxPage + 1}, end=(${(application5.totalPages == 0) ? 1 : (start + (maxPage - 1) < application5.totalPages ? start + (maxPage - 1) : application5.totalPages)})">
+				<ul class="pagination justify-content-center">
+					<li class="page-item"
+						th:classappend="${application5.first} ? 'disabled'">
+						<a class="page-link"
+						th:href="@{/board/program/exhibitionlist(page=${application5.pageable.pageNumber - 1})}"
+						tabindex="-1" aria-disabled="true">Previous</a>
+					</li>
+					<li class="page-item"
+						th:classappend="${page == application5.pageable.pageNumber + 1} ? 'active'"
+						th:each="page : ${#numbers.sequence(start, end)}"><a
+						class="page-link"
+						th:href="@{/board/program/exhibitionlist(page=${page-1})}"
+						th:text=${page} aria-current="page">1</a></li>
+					<li class="page-item"
+						th:classappend="${application5.last} ? 'disabled'">
+						<a class="page-link"
+						th:href="@{/board/program/exhibitionlist(page=${application5.pageable.pageNumber + 1})}">Next</a>
+					</li>
+				</ul>
+			</div>
+		</main>
+	</div>
+</body>
+</html>

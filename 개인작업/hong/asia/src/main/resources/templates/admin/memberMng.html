@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+<link th:href="@{/css/vocList.css}" rel="stylesheet">
+</head>
+
+<div layout:fragment="content">
+	<div class="vocList-container">
+		<div class="vocList-title">
+			<h3>회원관리</h3>
+		</div>
+		<form class="memberMngForm"th:action="@{'/admin/memberMngList/' + ${memberMngList.pageable.pageNumber}}" method="get">
+			<div class="vocList-searchOptions" th:object="${searchDto}">
+				<span class="vocList-searchOption-list">
+					<select th:field="*{searchBy}" class="memberMng-select">
+						<option th:value="name">이름
+						<option th:value="id">아이디
+						<option th:value="tel">전화번호
+						<option th:value="email">이메일
+						<option th:value="birth">생년월일
+						<option th:value="join">가입일
+						<option th:value="stat">상태
+						<option th:value="role">권한
+					</select>
+				</span>
+				<span class="vocList-searchOption-list">
+					<input class="memberMng-select-search" type="text" th:field="*{searchQuery}">
+				</span>
+				<span class="vocList-searchOption-list">
+					<button class="memberMng-search-btn" type="submit" id="searchBtn">검색</button>
+				</span>
+			</div>
+
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+		</form>
+		
+		<section class="vocList">
+		<form>
+			<table class="vocList-table">
+				<thead>
+					<tr class="voc-tr">
+						<th style="width: 8%;">이름</th>
+						<th style="width: 12%;">아이디</th>
+						<th style="width: 12%;">전화번호</th>
+						<th style="width: 15%;">이메일</th>
+						<th style="width: 12%;">생년월일</th>
+						<th style="width: 15%;">가입일시</th>
+						<th style="width: 10%;">상태</th>
+						<th style="width: 10%;">권한</th>
+						<th style="width: 6%;">상태 변경</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="mng:${memberMngList}">
+						<td th:text="${mng.name}">이름</td>
+						<td th:text="${mng.id}">아이디</td>
+						<td th:text="${mng.tel}">전화번호</td>
+						<td th:text="${mng.email}">이메일</td>
+						<td th:text="${mng.birth}">생년월일</td>
+						<td th:text="${mng.join}">가입일</td>
+						<td th:text="${mng.stat}">상태</td>
+						<td th:text="${mng.role}">권한</td>
+						<td>
+							<button class="myReservationForm-btn" th:formaction="@{'/admin/memberStat/change/' + ${mng.num}}" type="submit">변경</button>
+						</td>
+					</tr>
+				</tbody>
+			</table><br>
+			</form>
+			<div class="page_wrap" th:with="start=${(memberMngList.number/maxPage)*maxPage + 1}, end=(${(memberMngList.totalPages == 0) ? 1 : (start + (maxPage - 1) < memberMngList.totalPages ? start + (maxPage - 1) : memberMngList.totalPages)})">
+				<ul class="pagination justify-content-center">
+					<li class="page-item" th:classappend="${memberMngList.first} ? 'disabled'">
+						<a class="page-link" th:href="'javascript:page(' + ${memberMngList.pageable.pageNumber - 1} + ')'" tabindex="-1" aria-disabled="true">Previous</a>
+					</li>
+					
+					<li class="page-item" th:classappend="${page == memberMngList.pageable.pageNumber + 1} ? 'active'" th:each="page : ${#numbers.sequence(start, end)}">
+						<a class="page-link" th:href="'javascript:page(' + ${page - 1} + ')'" th:text=${page} aria-current="page">1</a>
+					</li>
+
+					<li class="page-item" th:classappend="${memberMngList.last} ? 'disabled'">
+						<a class="page-link" th:href="'javascript:page(' + ${memberMngList.pageable.pageNumber + 1} + ')'">Next</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+	<script th:src="@{/js/memberMng.js}" type="text/javascript"></script>
+</div>
+
+</html>

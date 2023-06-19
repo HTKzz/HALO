@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+	
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/programCardList.css}">
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<main class="container">
+			<section class="new_arrivals">
+				<h2 class="content-title">
+					<span>ACC's Show</span>
+				</h2>
+
+				<div id="pattern" class="pattern">
+					<ul class="card-img-list">
+						<th:block th:each="showlist, status: ${application4.getContent()}">
+							<li>
+								<div class="card">
+									<a class="card-inner"
+										th:href="'/board/program/application/' + ${showlist.num}">
+										<div class="card-head">
+											<figure class="card-img-fig">
+												<img th:src="${showlist.url}" class="card-img"
+													th:alt="${showlist.name}">
+												<figcaption class=cif>
+													<i class="ion-upload"></i>
+													<h4>자세히보기</h4>
+													<h2>More Info</h2>
+												</figcaption>
+											</figure>
+										</div>
+										<div class="card-body">
+											<h4 class="card-title">[[${showlist.name}]]</h4>
+											<p class="card-program-period">[[${showlist.sdate}]] ~
+												[[${showlist.edate}]]</p>
+										</div>
+									</a>
+								</div>
+							</li>
+						</th:block>
+					</ul>
+				</div>
+			</section>
+			
+			<div class="page_wrap" th:with="start=${(application4.number/maxPage)*maxPage + 1}, end=(${(application4.totalPages == 0) ? 1 : (start + (maxPage - 1) < application4.totalPages ? start + (maxPage - 1) : application4.totalPages)})">
+				<ul class="pagination justify-content-center">
+					<li class="page-item"
+						th:classappend="${application4.first} ? 'disabled'">
+						<a class="page-link"
+						th:href="@{/board/program/showlist(page=${application4.pageable.pageNumber - 1})}"
+						tabindex="-1" aria-disabled="true">Previous</a>
+					</li>
+					<li class="page-item"
+						th:classappend="${page == application4.pageable.pageNumber + 1} ? 'active'"
+						th:each="page : ${#numbers.sequence(start, end)}"><a
+						class="page-link"
+						th:href="@{/board/program/showlist(page=${page-1})}"
+						th:text=${page} aria-current="page">1</a></li>
+					<li class="page-item"
+						th:classappend="${application4.last} ? 'disabled'">
+						<a class="page-link"
+						th:href="@{/board/program/showlist(page=${application4.pageable.pageNumber + 1})}">Next</a>
+					</li>
+				</ul>
+			</div>
+		</main>
+	</div>
+</body>
+</html>

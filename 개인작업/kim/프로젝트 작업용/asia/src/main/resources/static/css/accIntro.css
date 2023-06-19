@@ -1,0 +1,172 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* layout */
+#accIntro-content {
+	text-align: left;
+	line-height: 1.4;
+}
+
+/* 국립아시아문화전당 */
+.accIntro-introWrap {
+	max-width: 1040px;
+	margin: 0 auto;
+	padding: 20px;
+	font-size: 17px;
+	font-family: Pretendard-Regular;
+}
+
+.accIntro-introTop h3 {
+	margin: 56px 3%;
+	text-align: center;
+	font-size: 42px;
+	font-weight: 300;
+}
+
+.accIntro-introTop h3 strong {
+	font-weight: bold;
+}
+
+.accIntro-introTop h3 span {
+	display: block;
+	margin-top: 32px;
+	color: #2d2dd2;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.accIntro-introTop p.accIntro-txt {
+	margin-top: 50px;
+	margin-bottom: 90px;
+}
+
+.accIntro-introCon .accIntro-item {
+	overflow: hidden;
+	margin-bottom: 70px;
+}
+
+.accIntro-introCon .accIntro-item dl {
+	float: left;
+	width: 49%;
+}
+
+.accIntro-introCon .accIntro-item dl dt {
+	margin-bottom: 32px;
+	color: #363636;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.accIntro-introCon .accIntro-item dl dt span {
+	display: block;
+	font-size: 24px;
+	font-weight: 300;
+}
+
+.accIntro-introCon .accIntro-item dl dd {
+	margin-bottom: 27px;
+	color: #363636;
+	font-weight: 300;
+}
+
+.accIntro-introCon .accIntro-item dl dd.accIntro-topTxt {
+	margin-bottom: 5px;
+	color: #9e3713;
+	font-weight: normal;
+}
+
+.accIntro-introCon .accIntro-item .accIntro-img {
+	float: right;
+	width: 49%;
+	text-align: center;
+}
+
+.accIntro-introCon .accIntro-item .accIntro-img p {
+	margin-bottom: 12px;
+}
+
+.accIntro-introCon .accIntro-oddItem dl {
+	float: right;
+}
+
+.accIntro-introCon .accIntro-oddItem .accIntro-img {
+	float: left;
+}
+
+@media all and (max-width:960px) {
+	
+    .accIntro-introWrap {
+    	font-size:14px;
+    }
+    
+    .accIntro-introTop h3 {
+    	margin: 30px 1%;
+    	font-size: 22px;
+    }
+    
+    .accIntro-introTop h3 strong {
+    	font-weight: 300;
+    }
+    
+    .accIntro-introTop h3 span {
+    	margin-top: 16px;
+    	font-size: 12px;
+    }
+    
+    .accIntro-introTop p.accIntro-txt {
+    	margin: 30px 0;
+    }
+
+    .accIntro-introCon .accIntro-item {
+    	margin-bottom: 24px;
+    }
+    
+    .accIntro-introCon .accIntro-item dl dt {
+    	margin-bottom: 16px;
+    	font-size: 18px;
+    }
+    
+    .accIntro-introCon .accIntro-item dl dt span {
+    	font-size: 16px;
+    }
+    
+    .accIntro-introCon .accIntro-item dl, .accIntro-introCon .accIntro-item .accIntro-img {
+    	float: none;
+    	width: 100%;
+    }
+    
+    .accIntro-introCon .accIntro-item dl dd {
+    	margin-bottom: 10px;
+    }
+    
+}
+
+.accIntro-downloadButton {
+	text-align: center;
+}
+
+.accIntro-downloadButton button{
+	font-family: Pretendard-Regular;
+	background: #fff;
+    font-size: 18px;
+    color: #222;
+    cursor: pointer;
+    padding: 2px 16px;
+    line-height: 36px;
+    border-radius:10px;
+    border:1px solid #888;
+    letter-spacing:-1px;
+    transition: 0.4s;
+}
+
+.accIntro-downloadButton button:hover{
+	box-shadow:1px 1px 4px rgba(0,0,0,0.4);
+	background: #222;
+	color: #fff;
+}
