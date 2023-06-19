@@ -1,31 +1,63 @@
 1). MemberService.java  // 추가
 
 	맨 밑에 메서드 추가
-// 회원 탈퇴 시
-public void quitMember(Member member) {
+	// 회원 탈퇴 시
+	public void quitMember(Member member) {
 		member.setStat(Stat.탈퇴);
 		memberRepository.save(member);
 	}
 
 ---------------------------------------------------------------------------------------------------------------------
 
-2). AdminController.java  // 추가
+2). MemberController.java  // 추가
 
 	맨 밑에 메서드 추가
-// 회원 탈퇴 시
+	// 회원 탈퇴 시
 	@GetMapping(value="/member/quit/{num}")
-	public String memberQuit(@PathVariable("num") Long num, Model model) {
-		
+	public String memberQuit(@PathVariable("num") Long num) {
+		System.out.println(num);
 		Member member = memberService.getMemDtl(num);
 		memberService.quitMember(member);
-		return "redirect:/admin/memberMngList";
+		
+		return "redirect:/members/logout";
 	}
 
 ---------------------------------------------------------------------------------------------------------------------
 
 3). myPage.html  // 수정
 
-	84번 째 줄 수정
-<section>
-			<button class="myPage-quit" th:href="@{/admin/member/quit/{num}(num=${member.num})">회원탈퇴</button>
+	82번 줄 아래 추가
+		<section>
+			<form method="get">
+				<div>
+					<button class="myPage-quit" id="my-memQuit" th:formaction="@{/members/member/quit/{num}(num=${member.num})}">회원탈퇴</button>
+				</div>
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+			</form>
 		</section>
+
+---------------------------------------------------------------------------------------------------------------------
+
+4). memberMng.html  //수정
+
+	69번 째 줄 ~ 71번 째 줄 수정
+						<td>
+							<button class="myReservationForm-btn" th:if="${mng.stat.toString != '탈퇴'}" th:formaction="@{'/admin/memberStat/change/' + ${mng.num}}" type="submit">변경</button>
+						</td>
+
+---------------------------------------------------------------------------------------------------------------------
+
+5). myPage.js
+	
+	20번 째 줄 아래 추가
+	$("#my-memQuit").on("click", function(){
+		if(confirm('회원 탈퇴를 하시겠습니까?')){
+			alert('탈퇴 되셨습니다.');
+		}else{
+			return false;
+		}
+	});
+
+---------------------------------------------------------------------------------------------------------------------
+
+6). 
