@@ -16,8 +16,8 @@
 			</a>
 			<nav class="acc-header-nav">
 				<ul class="acc-header-gnb">
-					<li class="acc-menu-title" sec:authorize="isAuthenticated()">
-						<a href="/board/program/apply" class="menu-item-title" th:value="프로그램신청" sec:authorize="isAuthenticated()">프로그램 신청</a>
+					<li class="acc-menu-title" sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_COMPANY')">
+						<a href="/board/program/apply" class="menu-item-title" th:value="프로그램신청">프로그램 신청</a>
 					</li>
 					<li class="acc-menu-title" >
 						<a href="/accIntro" class="menu-item-title menu-item-title1" sec:authorize="isAnonymous() || isAuthenticated()">ACC소개</a>

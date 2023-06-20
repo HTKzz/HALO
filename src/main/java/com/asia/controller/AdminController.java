@@ -151,7 +151,7 @@ public class AdminController {
 	
 	// 회원관리 상태 수정 (일반->블랙)
 	@GetMapping(value = "/memberStat/change/{num}")
-	public String memberstatChange(@PathVariable("num") Long num, Model model) {
+	public String memberstatChange(@PathVariable("num") Long num) {
 		
 		Member member = memberService.getMemDtl(num);
 		memberService.updateStat(member);

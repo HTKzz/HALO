@@ -83,10 +83,12 @@ public class ReservationService {
 	}
 
 	public void deleteJoin(Long num) {
-		Reservation reservation = reservationRepository.findByApplicationNum(num);
+		List<Reservation> reservation = reservationRepository.findByApplicationNum(num);
 		if (reservation != null) {
-			reservation.setApplication(null);
-			reservationRepository.save(reservation);
+			for(int i = 0; i < reservation.size(); i++) {
+				reservation.get(i).setApplication(null);
+				reservationRepository.save(reservation.get(i));
+			}
 		}
 	}
 }

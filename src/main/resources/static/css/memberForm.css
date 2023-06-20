@@ -1,8 +1,10 @@
 @font-face {
-    font-family: Pretendard-Regular;
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+	font-family: Pretendard-Regular;
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
 }
 
 .mFcontainer {
@@ -76,18 +78,18 @@ form .mFfields .form-group {
 
 .btn-default {
 	font-family: Pretendard-Regular;
-    border: 0;
-    margin-top: 20px;
-    transition: 0.5s;
-    background: #666;
-    color: white;
-    width: 150px;
-    display: inline-block;
-    height: 50px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
+	border: 0;
+	margin-top: 20px;
+	transition: 0.5s;
+	background: #666;
+	color: white;
+	width: 150px;
+	display: inline-block;
+	height: 50px;
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .btn-default:hover {
@@ -95,20 +97,20 @@ form .mFfields .form-group {
 	color: #fff;
 }
 
-.emailsend-wrap{
+.emailsend-wrap {
 	border: 0;
-    transition: 0.5s;
-    background: #666;
-    color: white;
-    width: 115px;
-    text-align: center;
-    display: inline-block;
-    height: 28px;
-    line-height: 28px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
+	transition: 0.5s;
+	background: #666;
+	color: white;
+	width: 115px;
+	text-align: center;
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .emailsend-wrap:hover {
@@ -116,25 +118,25 @@ form .mFfields .form-group {
 	color: #fff;
 }
 
-#emailsend{
-    font-weight: bold;
-    color: white;
+#emailsend {
+	font-weight: bold;
+	color: white;
 }
 
-.emailcheck-wrap{
+.emailcheck-wrap {
 	border: 0;
-    transition: 0.5s;
-    background: #666;
-    color: white;
-    width: 80px;
-    text-align: center;
-    display: inline-block;
-    height: 28px;
-    line-height: 28px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
+	transition: 0.5s;
+	background: #666;
+	color: white;
+	width: 80px;
+	text-align: center;
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .emailcheck-wrap:hover {
@@ -142,7 +144,17 @@ form .mFfields .form-group {
 	color: #fff;
 }
 
-#emailcheck{
-    font-weight: bold;
-    color: white;
+#emailcheck {
+	font-weight: bold;
+	color: white;
+}
+
+.error {
+	display: none;
+	color: #bd2130;
+}
+
+.succ {
+	display: none;
+	color: green;
 }

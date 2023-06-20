@@ -300,7 +300,8 @@ public class ApplicationService {
 	}
 
 	public List<Application> getApplication(Long num) {
-		List<Application> application = applicationRepository.findByOriginNo(num);
+		ApplicationDto applicationDto = applicationRepository.findByNum(num);
+		List<Application> application = applicationRepository.findByOriginNo(applicationDto.getOriginNo());
 		return application;
 	}
 

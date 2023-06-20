@@ -192,10 +192,6 @@ public class VocService {
 			voc.setGroupLayer(presentVoc.getGroupLayer() + 1);
 		}
 
-//		for(int i = 0; i < voc.getGroupLayer(); i++) {
-//			reply += "Re: ";
-//		}
-
 		voc.setName(reply + voc.getName());
 		vocRepository.save(voc);
 

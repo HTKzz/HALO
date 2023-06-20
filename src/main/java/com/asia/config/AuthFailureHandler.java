@@ -19,7 +19,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
-	
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 		
 		String msg = "Invalid Email or Password";
