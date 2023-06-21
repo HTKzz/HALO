@@ -1,0 +1,227 @@
+@charset "UTF-8";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+@import url('https://webfontworld.github.io/kopus/KoPubWorldBatang.css');
+
+@font-face {
+	font-family: 'SF_HambakSnow';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')	format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: Pretendard-Regular;
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.filebox .upload-name {
+	display: inline-block;
+	height: 40px;
+	padding: 0 10px;
+	vertical-align: middle;
+	border: 1px solid #dddddd;
+	width: 100%;
+	color: #999999;
+}
+
+.filebox label {
+	font-family: Pretendard-Regular;
+	display: inline-block;
+	padding: 10px 20px;
+	color: #fff;
+	vertical-align: middle;
+	background-color: #999999;
+	cursor: pointer;
+	height: 40px;
+	margin-left: 10px;
+}
+
+.filebox input[type="file"] {
+	font-family: Pretendard-Regular;
+	position: absolute;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+}
+
+.applicationForm-input-group-text {
+	line-height: 30px;
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	font-size: 18px;
+}
+
+.applicationForm-input {
+	font-family: Pretendard-Regular;
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	border-bottom: 1px solid #bbb;
+}
+
+.applicationForm-input-detail {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 0;
+	border-bottom: 1px solid #bbb;
+	border-top: 1px solid #bbb;
+	border-right: 1px solid #bbb;
+	border-left: 1px solid #bbb;
+}
+
+/*--------- default setting ---------*/
+
+.applicationForm-title-h1 {
+	font-family: 'SF_HambakSnow';
+	font-size: 3rem;
+	line-height: 3.5rem;
+	padding-bottom: 40px;
+	text-align: center;
+}
+
+.applicationForm-txt h4 {
+	/* font-family: Pretendard-Regular; */
+	font-family: 'SF_HambakSnow';
+	font-size: 1.8rem;
+	line-height: 2rem;
+	text-align: center;
+}
+
+.applicationForm-button {
+	display: inline-block;
+	height: 50px;
+	font-size: 1rem;
+	font-weight: bold;
+	background: none;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	transition: 0.4s;
+	cursor: pointer;
+}
+
+.applicationForm-button:hover {
+	background: #222;
+	color: #fff;
+}
+
+.applicationForm-input option {
+	color: #888;
+}
+
+.applicationForm-board input::placeholder, .applicationForm-board textarea::placeholder {
+	color: #888;
+}
+
+.applicationForm-board li {
+	list-style: none;
+}
+
+/*--------- common class setting ---------*/
+.applicationForm-board {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 100px 0;
+}
+
+.applicationForm-contents {
+	border-radius: 10px;
+	border: 1px solid #999;
+	padding: 50px 5%;
+	font-family: Pretendard-Regular;
+}
+
+.applicationForm-inner {
+	padding-top: 30px;
+}
+
+.applicationForm-txt {
+	padding-top: 20px;
+}
+
+.applicationForm-board input, .applicationForm-board select {
+	height: 40px;
+	font-size: 1rem;
+	padding-left: 7px;
+}
+
+.applicationForm-board select, .applicationForm-board textarea {
+	border: 1px solid #bbb;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.applicationForm-board textarea {
+	margin-top: 15px;
+	margin-bottom: 20px;
+	height: 200px;
+	padding: 10px 0 0 10px;
+	resize: none;
+	font-size: 1rem;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+/*--------- 첨부파일 ---------*/
+.custom-file-label {
+	font-family: Pretendard-Regular;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: black;
+	letter-spacing: 0.1px;
+	word-break: keep-all;
+	padding: 50px 5%;
+	margin: 0 auto;
+	border-radius: 5px;
+}
+
+.custom-file-label:hover {
+	background: #777;
+	color: #fff;
+}
+
+.applicationForm-btn {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.applicationForm-button {
+	width: 48.5%;
+	border: 0;
+	margin-top: 30px;
+	transition: 0.5s;
+}
+
+.applicationForm-button[name=sign] {
+	background: #666;
+	color: white;
+}
+
+.applicationForm-button[name=sign]:hover {
+	background: #111;
+	color: white;
+}
+
+.attachfile {
+	display: flex;
+	margin: 20px 0;
+	padding: 7px;
+}
+
+.upload-name {
+	font-family: Pretendard-Regular;
+	border-radius: 5px;
+}
+
+.applicationForm-caution {
+	font-size: 0.9em;
+	color: #999;
+	margin-left: 10px;
+}

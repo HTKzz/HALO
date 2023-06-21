@@ -1,0 +1,160 @@
+@font-face {
+	font-family: Pretendard-Regular;
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+.mFcontainer {
+	position: relative;
+	max-width: 900px;
+	width: 900px;
+	border-radius: 6px;
+	padding: 30px;
+	margin: 0 15px;
+	background-color: #fff;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mFcontainer form {
+	position: relative;
+	margin-top: 16px;
+	min-height: 490px;
+	background-color: #fff;
+	overflow: hidden;
+}
+
+.mFcontainer form .form {
+	position: absolute;
+	background-color: #fff;
+	transition: 0.3s ease;
+}
+
+.mFcontainer form .form.second {
+	opacity: 0;
+	pointer-events: none;
+	transform: translateX(100%);
+}
+
+.mFcontainer form .mFfields {
+	font-family: Pretendard-Regular;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+form .mFfields .form-group {
+	font-family: Pretendard-Regular;
+	display: flex;
+	width: calc(100%/ 3 - 15px);
+	flex-direction: column;
+	margin: 4px 0;
+}
+
+.form-group input {
+	font-family: Pretendard-Regular;
+	outline: none;
+	font-size: 14px;
+	font-weight: 400;
+	color: #333;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	padding: 0 15px;
+	height: 42px;
+	margin: 8px 0;
+}
+
+.mFspan {
+	display: flex;
+	align-items: center;
+}
+
+.mFspan input {
+	margin-left: 20px;
+}
+
+.btn-default {
+	font-family: Pretendard-Regular;
+	border: 0;
+	margin-top: 20px;
+	transition: 0.5s;
+	background: #666;
+	color: white;
+	width: 150px;
+	display: inline-block;
+	height: 50px;
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.btn-default:hover {
+	background: #222;
+	color: #fff;
+}
+
+.emailsend-wrap {
+	border: 0;
+	transition: 0.5s;
+	background: #666;
+	color: white;
+	width: 115px;
+	text-align: center;
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.emailsend-wrap:hover {
+	background: #222;
+	color: #fff;
+}
+
+#emailsend {
+	font-weight: bold;
+	color: white;
+}
+
+.emailcheck-wrap {
+	border: 0;
+	transition: 0.5s;
+	background: #666;
+	color: white;
+	width: 80px;
+	text-align: center;
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.emailcheck-wrap:hover {
+	background: #222;
+	color: #fff;
+}
+
+#emailcheck {
+	font-weight: bold;
+	color: white;
+}
+
+.error {
+	display: none;
+	color: #bd2130;
+}
+
+.succ {
+	display: none;
+	color: green;
+}

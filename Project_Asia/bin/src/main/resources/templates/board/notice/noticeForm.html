@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+    <script th:Inline="javascript">
+	$(document).ready(function() {
+     	var errorMessage = [[${errorMessage}]];
+
+     	if(errorMessage != null) {
+     		alert(errorMessage);
+    	}
+	});
+    </script>
+</th:block>
+
+<meta charset="UTF-8">
+<title>글쓰기폼</title>
+
+<div layout:fragment="content">
+	<link th:href="@{/css/noticeForm.css}" rel="stylesheet">
+	<article class="noticeForm-board">
+		<h1 class="noticeForm-title-h1">공지사항</h1>
+		
+		<section class="noticeForm-contents">
+			<form class="noticeForm" role="form" method="post" th:object="${noticeDto}" enctype="multipart/form-data">
+				<div class="noticeForm-title">
+				<h4 class="noticeForm-header">글 작성하기</h4>
+				</div>
+
+				<input type="hidden" th:field="*{num}">
+
+					<div class="noticeForm-inner">
+					
+					<div>
+							<div class="noticeForm-name">
+								<input type="text" th:field="*{name}" class="noticeForm-name-input"
+									placeholder="제목을 입력해 주세요">
+							</div>
+							<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								class="fieldError">Incorrect data</p>
+						</div>
+
+
+						<div class="noticeform-content">
+							<textarea th:field="*{content}" class="noticeform-content-text"
+								aria-label="With textarea" placeholder="내용을 입력해 주세요"></textarea>
+							<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}"
+								class="fieldError">Incorrect data</p>
+						</div>
+						<br>
+					
+					
+					<span class="noticeForm-input-group-text">첨부파일</span>
+					<div class="noticeForm-filebox" th:if="${#lists.isEmpty(noticeDto.attachDtoList)}">
+						<div class="attachfile" th:each="num: ${#numbers.sequence(1,5)}">
+							<input class="upload-name" value="첨부파일" placeholder="첨부파일" readonly/> 
+							<label th:for="file + ${num}" class="custom-file-label" th:text="파일찾기"></label>
+							<input type="file" class="custom-file-input" name="attachFile" th:id="file + ${num}" />
+						</div>
+					</div>
+
+					<div class="noticeForm-filebox" th:if="${not #lists.isEmpty(noticeDto.attachDtoList)}">
+						<div class="attachfile" th:each="attachDto, status: ${noticeDto.attachDtoList}">
+							<input type="hidden" name="attachIds" th:value="${attachDto.num}" />
+							<input class="upload-name" placeholder="첨부파일" readonly
+									th:value="${not #strings.isEmpty(attachDto.oriName)} ? ${attachDto.oriName} : '첨부파일' + ${status.index+1}"/>
+							<input type="hidden" name="attachNums" th:value="${attachDto.num}"> 
+							<label th:for="file + ${status.index+1}" class="custom-file-label" th:text="파일찾기"></label>
+							<input type="file" class="custom-file-input" name="attachFile" th:id="file + ${status.index+1}"/>
+						</div>
+					</div>
+					
+					<div class="notice-btn">
+						<div th:if="${#strings.isEmpty(noticeDto.num)}">
+							<button th:formaction="@{/notices/submitNotice}" type="submit"
+								class="btn-submit" name="sign">등록</button>
+						</div>
+					
+						<div th:unless="${#strings.isEmpty(noticeDto.num)}">
+							<button class="btn-submit" th:formaction="@{'/notices/modNotice/' + ${noticeDto.num}}"
+									type="submit" name="sign">수정</button>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" th:name="${_csrf.parameterName}"
+					th:value="${_csrf.token}">
+			</form>
+		</section>
+	</article>
+	<script th:src="@{/js/noticeForm.js}" type="text/javascript"></script>
+</div>
+</html>

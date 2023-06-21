@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout1}">
+	
+<head>
+	<meta charset="UTF-8">
+	<title>전당소개(AccIntro)</title>
+	<link th:href="@{/css/accIntro.css}" rel="stylesheet" >
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<article id="accIntro-content">
+			<div class="accIntro-introWrap">
+				<div class="accIntro-introTop">
+					<h3>세계를 향한
+						<strong>아시아 문화의 창</strong>
+						<span class="accIntro-en">A Window of Asian Culture Facing the World</span>
+					</h3>
+					<p class="accIntro-txt">&nbsp;ACC는 아시아 과거-현재의 문화예술과 혁신적인 아이디어, 신념이 만나 미래지향적인 새로운 결과물을 생산해내는 국제적인 예술기관이자 문화 교류기관입니다. 5·18 민주화운동(May 18 Democratic Movement)의 인권과 평화의 의미를 예술적으로 승화한다는 배경에서 출발하여 2015년 11월 개관한 ACC는 아시아 문화에 대한 교류·교육·연구 등을 통하여 상호이해를 증진하고 아시아 각국과 함께 동반성장하고자 설립된 문화체육관광부의 소속기관입니다. ACC는 아시아를 비롯한 전 세계의 참여자들이 연구(Research) - 창작(Creation) - 제작(Production)의 단계를 수행함에 있어 경계를 가로지르며 자유롭게 화합하고 생각을 나눌 수 있는 통합적인 플랫폼의 역할을 합니다. ACC는 민주평화교류원, 문화정보원, 문화창조원, 예술극장, 어린이문화원의 5개원으로 구성되어있으며 1년 내내 다양하고 역동적인 프로그램(전시, 공연, 교육, 축제, 기타 행사)들이 펼쳐집니다. 뿐만 아니라 아시아문화광장, 하늘마당, 열린마당 등 야외공간과 ‘빛의 숲’을 주제로 한 지상정원은 도심 속 휴식 공간으로도 제격입니다.</p>
+				</div>
+				<div class="accIntro-introCon accIntro-MAT50">
+					<div class="accIntro-item">
+						<dl>
+							<dt>아시아문화연구<span>Asian Culture Studies</span></dt>
+							<dd class="accIntro-topTxt">아시아를 기반으로 한 창작소재의 보고(寶庫)</dd>
+							<dd>ACC는 ‘아시아문화연구’를 시작으로 창제작에 활용되는 아시아 관련 배경지식과 문화원천소스를 제공함으로써 다른 기관과 차별성을 갖습니다. 그동안 우리의 관심분야에서 멀리 있었던 아시아 문화를 새로운 창작소재로 발굴하기 위해 심층 연구를 진행하며, 문화 창조와 기획의 바탕이 되는 이론적 토대와 상상력을 제공할 수 있는 실용적 차원의 연구를 수행합니다.</dd>
+						</dl>
+						<div class="accIntro-img">
+							<p><img alt="용 조형물" th:src="@{/images/accIntro/accIntro1.jpg}" /></p>
+						</div>
+					</div>
+					<div class="accIntro-item accIntro-oddItem">
+						<dl>
+							<dt>창제작센터(ACT센터)<span>Arts & Creative Technology Center</span></dt>
+							<dd class="accIntro-topTxt">전 세계 창의적 인재의 네트워크 플랫폼</dd>
+							<dd>전 세계 창의적 인재의 네트워크 플랫폼으로서 창작과 제작(C-P)의 단계가 진행되는 ‘ACT센터’는 예술가의 창의성에 테크놀로지를 융합하여 상상력이 현실이 되는 것을 지원하는 역동적인 생산기관입니다. ‘ACT센터’는 예술가, 디자이너, 연구자, 엔지니어 등 전 세계의 창조적인 인재들이 지식과 기술, 경험을 교류하는 플랫폼의 역할을 합니다. 격년으로 운영되는 ‘ACT페스티벌’은 관련 분야 전문가들이 창의적인 아이디어와 혁신적인 작업을 공유하고 예술+기술의 융합적 콘텐츠가 주는 놀라움을 경험하는 장입니다.</dd>
+						</dl>
+						<div class="accIntro-img">
+							<p><img alt="ACT센터 내부" th:src="@{/images/accIntro/accIntro2.jpg}" /></p>
+						</div>
+					</div>
+					<div class="accIntro-item">
+						<dl>
+							<dt>국제교류</dt>
+							<dd class="accIntro-topTxt">'ACC-R'과 'Made by ACC’</dd>
+							<dd>‘아시아문화연구’와 ‘창제작센터(ACT센터)’의 활동은 활발한 국제교류를 기반으로 진행됩니다. ACC는 아시아 및 국제사회의 문화융성에 기여하고자 아시아문화예술 커뮤니티의 구심점이자 아시아에서 세계로 이어지는 가교 역할의 수행을 위하여 전 세계 유수의 문화예술 기관과의 MOU 체결과 협력사업을 추진하고 있습니다. 아시아의 각국 정부 간, 문화기관 간, 전문가 간의 교류협력 네트워크를 구축하여 아시아의 ‘전통음악’, ‘무용’, ‘스토리’, ‘창작공간’ 관련 행사를 매해 진행하여 아시아 국가 간 상호 이해와 소통의 장을 마련하고 있습니다.</dd>
+							<dd>ACC는 ‘ACC_R’이라는 레지던시 프로그램을 통하여 전 세계의 창제작자, 연구자(학자), 예술가를 국제 공모를 통해 선발하고 이들이 자유롭게 아이디어를 펼쳐 장르와 분야를 확장한 새로운 결과물을 얻을 수 있도록 시설, 인력, 네트워킹 프로그램 등을 지원합니다. ACC에서 제작된 작품은 전시, 공연, 교육 등의 프로그램으로 ACC내에서 연중 펼쳐지며 ‘Made by ACC’의 이름으로 세계시장으로 유통되고 있습니다. </dd>
+						</dl>
+						<div class="accIntro-img">
+							<p><img alt="전통음악 공연모습" th:src="@{/images/accIntro/accIntro3.jpg}" /></p>
+							<p><img alt="음악 공연모습" th:src="@{/images/accIntro/accIntro4.jpg}" /></p>
+						</div>
+					</div>
+					<div class="accIntro-downloadButton">
+						<a href="/images/accIntro/ACC소개책자(국문).pdf" target="_blank" rel="noopener noreferrer">
+							<button>ACC 소개책자 다운받기 +</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+</body>
+</html>
