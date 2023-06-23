@@ -14,7 +14,7 @@ public interface ReservationRepository
 
 	Reservation findByNum(Long num);
 	
-	List<Reservation> findByApplicationNum(Long num);
+	Reservation findByApplicationNum(Long num);
 
 	// 변수 이름 수정(조회조건)
 	List<Reservation> findAllByMemberNumOrderByNumDesc(Long num);

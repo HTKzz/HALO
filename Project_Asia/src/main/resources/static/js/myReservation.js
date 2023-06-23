@@ -31,7 +31,7 @@ $(document).ready(function() {
 				IMP.request_pay({
 			    	pg: "kcp.store-24677c12-63",
 			        pay_method: "card",
-			        merchant_uid: 1355722, // 임의의 번호 사용 후 num 으로 바꿔야 함
+			        merchant_uid: num, // 임의의 번호 사용 후 num 으로 바꿔야 함
 			        name: name,
 			        amount: price
 			    }, function (rsp) { // callback

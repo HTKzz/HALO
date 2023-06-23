@@ -20,7 +20,7 @@
 				<div class="vocList-searchOptions" th:object=${searchDto}>
 					<span class="vocList-searchOption-list"> <select
 						class="memberMng-select" th:field="*{searchBy}">
-							<option th:value="name">제목</option>
+							<option th:value="name">프로그램명</option>
 							<option th:value="writer">작성자</option>
 							<option th:value="programCategory">카테고리</option>
 							<option th:value="approvalStatus">승인상태</option>
@@ -45,7 +45,7 @@
 								<th style="width: 5%;">프로그램번호</th>
 								<th style="width: 45%;">프로그램명</th>
 								<th style="width: 8%;">카테고리</th>
-								<th style="width: 10%;">등록자</th>
+								<th style="width: 10%;">작성자</th>
 								<th style="width: 15%;">등록일</th>
 								<th style="width: 7%;">승인상태</th>
 								<th style="width: 8%;">승인여부</th>

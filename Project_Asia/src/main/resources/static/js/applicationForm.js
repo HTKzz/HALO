@@ -1,12 +1,10 @@
 $(document).ready(function() {
 			
 			if ($("#app-css").val() == 'hi') {
-				$("select option[value*='A']").prop('disabled',true);
-				$("select option[value*='C']").prop('disabled',true);
-				$("#select-seat").find("option:eq(0)").prop('disabled',true);
+				document.getElementById('select-seat').style.pointerEvents = 'none';
+				document.getElementById('select-programCategory').style.pointerEvents = 'none';
+				document.getElementById('select-place').style.pointerEvents = 'none';
 			}
-			
-            bindDomEvent();
 
             if ($("#select-programCategory").val() == '공연') {
                 document.getElementById('inputseat').style.display = 'block';
@@ -23,6 +21,8 @@ $(document).ready(function() {
                     $("#select-seat").find("option:eq(0)").prop("selected", true);
                 }
             });
+			
+            bindDomEvent();
 
         });
 

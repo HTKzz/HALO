@@ -147,5 +147,17 @@ textarea {
 	top: 30px;
 	left: 108px;
    color: #bd2130;
-	
+}
+
+ .form-group-ps {
+	display: flex;
+	margin: 5px;
+	align-items: center;
+}
+
+.form-group-ps p {
+	margin-top: -15px;
+	margin-left: auto;
+	margin-right: auto;
+	color: #999;
 }

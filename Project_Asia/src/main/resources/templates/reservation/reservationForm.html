@@ -62,10 +62,13 @@
 		</div>
 	
 		<div class="form-group">
-			<label th:for="price">가격(단위:원)</label>
+			<label th:for="price">가격</label>
 			<input type="text" th:field="*{price}" class="form-control" readonly>
 			<input type="hidden" name="price" id="hdprice" th:field="*{price}">
 		</div>
+		<div class="form-group-ps">
+            <p>※ 티켓가격 단위는 (원)입니다.</p>
+        </div>
 		<div class="reserve-submit">
 			<button type="submit" class="reserveBtn" id="btn">예매하기</button>
 			<button class="reserveBtn" onclick="history.go(-1)">뒤로가기</button>

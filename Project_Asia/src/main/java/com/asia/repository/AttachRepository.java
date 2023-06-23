@@ -20,13 +20,13 @@ public interface AttachRepository extends JpaRepository<Attach, Long> {
 
 	List<Attach> findByNoticeNumOrderByNumAsc(Long num);
 	
-	@Query("select new com.asia.dto.AttachDto(num, name, oriName, url) from Attach where app_num = :num order by att_num asc")
+	@Query("select new com.asia.dto.AttachDto(num, name, oriName, url) from Attach where app_num = :num")
 	List<AttachDto> getAppList(Long num);
 	
-	@Query("select new com.asia.dto.AttachDto(num, name, oriName, url) from Attach where notice_num = :num order by notice_num asc")
+	@Query("select new com.asia.dto.AttachDto(num, name, oriName, url) from Attach where notice_num = :num")
 	List<AttachDto> getNoticeList(Long num);
 	
-	@Query("select new com.asia.dto.AttachDto(num, name, oriName, url) from Attach where voc_num = :num order by voc_num asc")
+	@Query("select new com.asia.dto.AttachDto(num, name, oriName, url) from Attach where voc_num = :num")
 	List<AttachDto> getVocList(Long num);
 	
 }

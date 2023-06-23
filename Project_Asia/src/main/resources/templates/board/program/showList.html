@@ -52,19 +52,19 @@
 					<li class="page-item"
 						th:classappend="${application4.first} ? 'disabled'">
 						<a class="page-link"
-						th:href="@{/board/program/showlist(page=${application4.pageable.pageNumber - 1})}"
+						th:href="@{/board/program/list/show(page=${application4.pageable.pageNumber - 1})}"
 						tabindex="-1" aria-disabled="true">Previous</a>
 					</li>
 					<li class="page-item"
 						th:classappend="${page == application4.pageable.pageNumber + 1} ? 'active'"
 						th:each="page : ${#numbers.sequence(start, end)}"><a
 						class="page-link"
-						th:href="@{/board/program/showlist(page=${page-1})}"
+						th:href="@{/board/program/list/show(page=${page-1})}"
 						th:text=${page} aria-current="page">1</a></li>
 					<li class="page-item"
 						th:classappend="${application4.last} ? 'disabled'">
 						<a class="page-link"
-						th:href="@{/board/program/showlist(page=${application4.pageable.pageNumber + 1})}">Next</a>
+						th:href="@{/board/program/list/show(page=${application4.pageable.pageNumber + 1})}">Next</a>
 					</li>
 				</ul>
 			</div>

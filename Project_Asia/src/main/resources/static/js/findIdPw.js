@@ -38,6 +38,7 @@ var token = $("meta[name='_csrf']").attr('content');
 
 //일반 회원 아아디 찾기(HashMap으로 값 받을 때)
 $("#find-id-btn").click(function(){
+	console.log("ㅎㅇ");
 	var email = $("#email1").val();
 	var name = $("#name").val();
 	var sMsg = $("#sMsg1")
@@ -75,7 +76,7 @@ $("#find-pw-btn").click(function(){
         		xhr.setRequestHeader(header, token);
     		},
 			success : function(result){
-				showSuccMsg(sMsg,"이메일에서 임시 비밀번호를 확인해 주세요");
+				showSuccMsg(sMsg,"입력하신 이메일에서 임시 비밀번호를 확인해 주세요");
 				eMsg.hide();
 			},
 			error : function(){
@@ -96,8 +97,4 @@ $("#find-pw-btn").click(function(){
         obj.attr("class", "succ");
         obj.html(msg);
         obj.show();
-        var content = document.getElementById('eMsg3');
-        eMsg3.style.marginTop = 0;
-        var content = document.getElementById('eMsg4');
-        eMsg4.style.marginTop = 0;
     }

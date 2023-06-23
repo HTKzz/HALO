@@ -1,75 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout1}">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
 
-<head>
-	<meta charset="UTF-8">
-	<link th:href="@{/css/main.css}" rel="stylesheet">
-</head>
+<th:block layout:fragment="css">
+	<style>
+		
+	</style>
+</th:block>
 
-<body>
 <div layout:fragment="content">
 
-	<div class="slide_wrap">
-		<div class="slide_item" th:each="List: ${slideList}">
-			<a th:href="@{/board/program/application/{num}(num=${List.num})}">
-				<img class="main-slide-img" th:src="${List.url}">
-			</a>
-		</div>
-		<span class="slide_prev_button slide_button"></span>
-		<span class="slide_next_button slide_button"></span>
-	</div>
-	<div class="slide_pagination_div">
-		<ul class="slide_pagination"></ul>
-	</div>
-
-	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-	
-	<section class="acc-main-quickLink">
-	<div class="acc-main-quickLinkWrap">
-		<div class="acc-main-slider">
-			<div class="acc-main-slider-item"><a class="q1" href="#">주차안내</a></div>
-			<div class="acc-main-slider-item"><a class="q2" href="#">고객<i>지원시설</i></a></div>
-			<div class="acc-main-slider-item"><a class="q14" href="#">전시해설</a></div>
-			<div class="acc-main-slider-item"><a class="q4" href="#">ACC 투어</a> </div>
-			<div class="acc-main-slider-item"><a class="q5" href="#">ACC 공간안내</a></div>
-			<div class="acc-main-slider-item"><a class="q6" href="#">함께하는 공간</a></div>
-			<div class="acc-main-slider-item"><a class="q7" href="#">대관안내</a></div>
-			<div class="acc-main-slider-item"><a class="q8" href="#">VR투어</a></div>
-			<div class="acc-main-slider-item"><a class="q3" href="#">ACC컬쳐숍</a></div>
-		</div>
-	</div>
-	</section>
-	<section class="acc_main_notice">
-		<div class="acc_main_notice_inner">
-			<div class="acc_main_notice_left">
-				<h2>공지사항</h2>
-				<a href="/notices/lists"> +more </a>
-				<div class="acc_main_notice_left_box">
-					<th:block th:each="List: ${noticeList}">
-						<a th:href="@{/notices/detail/{num}(num=${List.num})}">
-							<em th:text="${List.name}"></em>
-							<b th:text="${List.d_date}"></b>
-						</a>
-					</th:block>
-				</div>
-			</div>
-			<div class="acc_main_notice_right">
-				<h2>ACC YouTube</h2>
-				<a href="https://www.youtube.com/@AsiaCultureCenter/featured" target='_blank'> +more </a>
-				<div class="acc_main_notice_right_box">
-					<iframe class="acc_main_iframe" width="590" height="345"
-							src="https://www.youtube.com/embed/3u8NsjU2AVc?autoplay=1&mute=1&loop=1&playlist=3u8NsjU2AVc&vq=hd720"
-							title="YouTube video player" frameborder="0"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"	allowfullscreen>
-					</iframe>
-				</div>
-			</div>
-		</div>
-	</section>
-	<script th:src="@{/js/main.js}" type="text/javascript"></script>
 </div>
-
-</body>
-</html>
